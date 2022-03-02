@@ -1,5 +1,5 @@
 # react-boilerplate
-Greetings travlers, this is my humble typescript react-boilerplate 🎉
+Sweetiez main frontend website. E-commerce, receipts, masterclass...
 
 ## Available packages
 - [tailwindcss](https://tailwindcss.com/)
