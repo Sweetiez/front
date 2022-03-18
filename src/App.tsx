@@ -1,24 +1,23 @@
 import './App.css';
-import logo from './logo.svg';
+import {QueryClient, QueryClientProvider} from "react-query";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import Landing from "./components/Landing";
 
 function App() {
+  const queryClient = new QueryClient();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="wrapper transition duration-500 dark:bg-gray-600 h-screen bg-gray-50">
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <Switch>
+              <Route exact path="/">
+                <Landing />
+              </Route>
+            </Switch>
+          </BrowserRouter>
+        </QueryClientProvider>
+      </div>
   );
 }
 
