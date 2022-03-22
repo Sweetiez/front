@@ -3,19 +3,25 @@ import React from 'react';
 const Header: React.FC = () => {
   return (
     <>
-      <div className="sticky top-0 z-10 min-w-full h-24 container bg-indigo-500">
+      <div className="sticky top-0 z-10 min-w-full h-24 container bg-beige-100">
         <div className="grid grid-cols-6 justify-between items-center h-full">
           <div />
-          <div className="flex items-center">
-            <div className="text-white">
+          <div className="flex items-center -mt-8">
+            <div className="text-black">
               <p className="text-lg font-semibold text-4xl">{`FI-Sweets`}</p>
             </div>
           </div>
-          <div />
-          <div />
 
-          <div className="flex items-center justify-center">
-            <button className="bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-full">
+          <div className="col-start-4">
+            <img
+              className="object-cover -ml-16 w-32 h-32 rounded-full"
+              src="https://media.discordapp.net/attachments/548183152376545306/955953631805452349/logo.jpg"
+              alt="logo"
+            />
+          </div>
+
+          <div className="flex items-center justify-center -mt-8">
+            <button className="bg-beige-100 text-black text-xs font-semibold px-4 py-2 rounded-full">
               <svg
                 className="fill-current h-4 w-4 mr-2"
                 xmlns="http://www.w3.org/2000/svg"
