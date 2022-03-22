@@ -143,7 +143,7 @@ const NavMenu: React.FC = () => {
 
   return (
     <>
-      <div className="bg-white">
+      <div className="bg-white z-10">
         {/* Mobile menu */}
         <Transition.Root show={open} as={Fragment}>
           <Dialog
@@ -289,7 +289,7 @@ const NavMenu: React.FC = () => {
           </Dialog>
         </Transition.Root>
 
-        <header className="relative bg-white">
+        <header className="relative bg-white z-10">
           <nav
             aria-label="Top"
             className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
