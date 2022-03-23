@@ -1,6 +1,11 @@
 import React from 'react';
+import ProductCardModel from "./ProductCardModel";
 
-const ProductCard: React.FC = () => {
+interface ProductCardProps {
+  product: ProductCardModel;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({product}) => {
   return (
     <>
       <div className="relative m-3 flex flex-wrap mx-auto justify-center">
@@ -31,9 +36,9 @@ const ProductCard: React.FC = () => {
           <div className="mt-4 pl-2 mb-2 flex justify-between ">
             <div>
               <p className="text-lg font-semibold text-gray-900 mb-0">
-                Product Name
+                  {product.name}
               </p>
-              <p className="text-md text-gray-800 mt-0">$340</p>
+              <p className="text-md text-gray-800 mt-0">{product.price}€</p>
             </div>
             <div className="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
               <svg
