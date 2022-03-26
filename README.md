@@ -1,4 +1,4 @@
-# react-boilerplate
+# Sweetiez main frontend
 Sweetiez main frontend website. E-commerce, receipts, masterclass...
 
 ## Available packages
@@ -7,6 +7,8 @@ Sweetiez main frontend website. E-commerce, receipts, masterclass...
 - [react-query](https://github.com/tannerlinsley/react-query)
 - [react-gravatar](https://github.com/KyleAMathews/react-gravatar)
 - [react-markdown](https://github.com/remarkjs/react-markdown)
+- [react-lottie-player](https://github.com/mifi/react-lottie-player)
+- And many others...
 
 
 ## Available Scripts
