@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const Header: React.FC = () => {
   return (
@@ -7,9 +8,11 @@ const Header: React.FC = () => {
         <div className="grid grid-cols-6 justify-between items-center h-full">
           <div />
           <div className="flex items-center -mt-8">
-            <div className="text-black">
-              <p className="text-lg font-semibold text-4xl">{`FI-Sweets`}</p>
-            </div>
+            <Link to="/">
+              <div className="text-black">
+                <p className="text-lg font-semibold text-4xl">{`FI-Sweets`}</p>
+              </div>
+            </Link>
           </div>
 
           <div className="z-50 col-start-4">

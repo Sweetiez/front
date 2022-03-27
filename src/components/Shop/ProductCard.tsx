@@ -1,6 +1,7 @@
 import React from 'react';
 import ProductCardModel from './ProductCardModel';
 import Stars from '../Stars/Stars';
+import { Link } from 'react-router-dom';
 
 interface ProductCardProps {
   product: ProductCardModel;
@@ -39,12 +40,31 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <p className="text-lg font-semibold text-gray-900 mb-0">
                 {product.name}
               </p>
+
               <p className="text-md text-gray-800 mt-0">{product.price}€</p>
             </div>
             <div className="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
               <Stars number={product.rating ? product.rating : 0} />
             </div>
           </div>
+          <Link  to={"/details/" + product.id}>
+            <button
+                className="grid grid-flow-col auto-cols-max bg-gold-100 items-center text-white active:bg-pink-600 font-bold text-xs px-3 py-1 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                type="button"
+            >
+              <span className="text-xs content-center">Découvrir</span>
+               <svg className="h-6 w-6 text-white pl-1" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2"
+                    stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"/>
+                <line x1="3" y1="12" x2="6" y2="12"/>
+                <line x1="12" y1="3" x2="12" y2="6"/>
+                <line x1="7.8" y1="7.8" x2="5.6" y2="5.6"/>
+                <line x1="16.2" y1="7.8" x2="18.4" y2="5.6"/>
+                <line x1="7.8" y1="16.2" x2="5.6" y2="18.4"/>
+                <path d="M12 12l9 3l-4 2l-2 4l-3 -9"/>
+              </svg>
+            </button>
+          </Link>
         </div>
       </div>
     </>
