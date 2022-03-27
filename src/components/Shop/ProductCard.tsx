@@ -24,7 +24,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               src="https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg"
               alt="product-item"
             />
-            <p
+            <div
               onMouseEnter={() => setIsCartHover(true)}
               onMouseLeave={() => setIsCartHover(false)}
               onClick={() => {
@@ -38,7 +38,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 animationData={cartAnimation}
                 loop={true}
               />
-            </p>
+            </div>
           </div>
           <div className="mt-4 pl-2 mb-2 flex justify-between ">
             <div>
