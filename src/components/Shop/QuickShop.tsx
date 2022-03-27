@@ -1,6 +1,6 @@
 import React from 'react';
 import ProductCardModel from './ProductCardModel';
-import { useCart } from '../../hooks/cart/cartHook';
+import { setCart, useCart } from '../../hooks/cart/cartHook';
 
 interface QuickShopProps {
   product: ProductCardModel;
@@ -10,7 +10,8 @@ interface QuickShopProps {
 const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
   const [itemCount, setItemCount] = React.useState<string | undefined>('1');
   const unitPrice = product.price ? product.price : 9999999999;
-  const { cart, setCart } = useCart();
+  const { data: cartData } = useCart();
+  const cart = cartData ? cartData : [];
 
   function verifyInput() {
     return !itemCount || isNaN(+itemCount) || +itemCount <= 0 ? '1' : itemCount;

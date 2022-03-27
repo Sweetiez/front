@@ -1,21 +1,19 @@
 import CartModel from '../../components/Cart/CartModel';
-import { useState } from 'react';
+import { useQuery } from 'react-query';
 
-function getCart(): CartModel[] {
-  const cart = localStorage.getItem('cart');
-  return cart ? JSON.parse(cart) : [];
+export function useCart() {
+  return useQuery<CartModel[], Error>(
+    `cart`,
+    async () => {
+      const cart = localStorage.getItem('cart');
+      return cart ? JSON.parse(cart) : [];
+    },
+    {
+      refetchInterval: 500,
+    },
+  );
 }
 
-function useCart() {
-  function setCart(cart: CartModel[]): void {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }
-  const [cart] = useState(getCart());
-
-  return {
-    cart,
-    setCart,
-  };
+export function setCart(cart: CartModel[]): void {
+  localStorage.setItem('cart', JSON.stringify(cart));
 }
-
-export { getCart, useCart };
