@@ -4,6 +4,7 @@ import { MenuIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
 import Lottie from 'react-lottie-player';
 import cakeAnimation from '../../assets/cakerun.json';
 import CartModal from '../Cart/CartModal';
+import { useCart } from '../../hooks/cart/cartHook';
 
 const navigation = {
   categories: [
@@ -142,6 +143,7 @@ function classNames(...classes: any[]) {
 const NavMenu: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const { cart } = useCart();
 
   return (
     <>
@@ -459,7 +461,7 @@ const NavMenu: React.FC = () => {
                         aria-hidden="true"
                       />
                       <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                        0
+                        {cart.length}
                       </span>
                       <span className="sr-only">items in cart, view bag</span>
                     </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductCardModel from './ProductCardModel';
+import { useCart } from '../../hooks/cart/cartHook';
 
 interface QuickShopProps {
   product: ProductCardModel;
@@ -9,6 +10,7 @@ interface QuickShopProps {
 const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
   const [itemCount, setItemCount] = React.useState<string | undefined>('1');
   const unitPrice = product.price ? product.price : 9999999999;
+  const { cart, setCart } = useCart();
 
   function verifyInput() {
     return !itemCount || isNaN(+itemCount) || +itemCount <= 0 ? '1' : itemCount;
@@ -79,6 +81,7 @@ const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
                           .replace(',', '.'),
                       )
                     }
+                    className="text-center"
                     onBlur={() => setItemCount(verifyInput)}
                   />
 
@@ -91,7 +94,19 @@ const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
                 </div>
               </div>
 
-              <button className=" bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full">
+              <button
+                onClick={() => {
+                  setCart([
+                    ...cart,
+                    {
+                      item: product,
+                      quantity: itemCount ? +itemCount : 1,
+                    },
+                  ]);
+                  setOpenedModal(false);
+                }}
+                className=" bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full"
+              >
                 Ajouter au panier pour{' '}
                 {+(itemCount ? itemCount : 1) * unitPrice} €
               </button>
