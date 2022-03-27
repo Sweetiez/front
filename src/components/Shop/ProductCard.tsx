@@ -3,6 +3,8 @@ import ProductCardModel from './ProductCardModel';
 import Stars from '../Stars/Stars';
 import { Transition, Dialog } from '@headlessui/react';
 import QuickShop from './QuickShop';
+import Lottie from 'react-lottie-player';
+import cartAnimation from '../../assets/cart.json';
 
 interface ProductCardProps {
   product: ProductCardModel;
@@ -10,6 +12,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [modalState, setModalState] = useState(false);
+  const [isCartHover, setIsCartHover] = useState(false);
 
   return (
     <>
@@ -22,25 +25,19 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               alt="product-item"
             />
             <p
+              onMouseEnter={() => setIsCartHover(true)}
+              onMouseLeave={() => setIsCartHover(false)}
               onClick={() => {
                 setModalState(true);
               }}
               className="absolute right-2 top-2 bg-white rounded-full p-2 cursor-pointer group"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 group-hover:opacity-50 opacity-70"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="black"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
+              <Lottie
+                className="h-8 w-auto"
+                play={isCartHover}
+                animationData={cartAnimation}
+                loop={true}
+              />
             </p>
           </div>
           <div className="mt-4 pl-2 mb-2 flex justify-between ">
