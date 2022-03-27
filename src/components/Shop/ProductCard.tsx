@@ -14,7 +14,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <>
       <div className="relative m-3 flex flex-wrap mx-auto justify-center">
-        <div className="relative max-w-sm min-w-[340px] bg-white shadow-md rounded-3xl p-2 mx-1 my-3 cursor-pointer">
+        <div className="relative max-w-sm min-w-[340px] bg-white shadow-md rounded-2xl p-2 mx-1 my-3 cursor-pointer border">
           <div className="overflow-x-hidden rounded-2xl relative">
             <img
               className="h-40 rounded-2xl w-full object-cover"
