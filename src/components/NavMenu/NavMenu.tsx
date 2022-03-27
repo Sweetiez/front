@@ -143,7 +143,8 @@ function classNames(...classes: any[]) {
 const NavMenu: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
-  const { cart } = useCart();
+  const { data: cartData } = useCart();
+  const cart = cartData ? cartData : [];
 
   return (
     <>

@@ -1,6 +1,6 @@
 import { Dialog } from '@headlessui/react';
 import React from 'react';
-import { useCart } from '../../hooks/cart/cartHook';
+import { useCart, setCart } from '../../hooks/cart/cartHook';
 import { XIcon } from '@heroicons/react/outline';
 
 interface CartModalProps {
@@ -8,7 +8,8 @@ interface CartModalProps {
 }
 
 const CartModal: React.FC<CartModalProps> = ({ setOpenedModal }) => {
-  const { cart, setCart } = useCart();
+  const { data: cartData } = useCart();
+  const cart = cartData ? cartData : [];
 
   const totalPrice = cart.reduce(
     (acc, cartItem) =>
