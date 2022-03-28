@@ -5,8 +5,11 @@ export const fakeProducts: ProductCardModel[] = [
     id: '1',
     name: 'Product 1',
     price: 10,
-    image: 'https://picsum.photos/200/300',
+    image:
+      'https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg',
     rating: 4,
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci alias aliquam culpa, delectus expedita fugit ipsum laboriosam maiores maxime numquam reprehenderit, rerum sint unde vero! Accusamus id quod repudiandae?',
   },
   {
     id: '2',
@@ -14,6 +17,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     image: 'https://picsum.photos/200/300',
     rating: 4,
+    description: 'This is a test description',
   },
   {
     id: '3',
@@ -21,6 +25,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     image: 'https://picsum.photos/200/300',
     rating: 4,
+    description: 'This is a test description',
   },
   {
     id: '4',
@@ -28,6 +33,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     image: 'https://picsum.photos/200/300',
     rating: 5,
+    description: 'This is a test description',
   },
   {
     id: '5',
@@ -35,6 +41,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     image: 'https://picsum.photos/200/300',
     rating: 1,
+    description: 'This is a test description',
   },
   {
     id: '6',
@@ -42,6 +49,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     image: 'https://picsum.photos/200/300',
     rating: 2,
+    description: 'This is a test description',
   },
   {
     id: '7',
@@ -49,6 +57,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     image: 'https://picsum.photos/200/300',
     rating: 3,
+    description: 'This is a test description',
   },
   {
     id: '8',
@@ -56,6 +65,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     image: 'https://picsum.photos/200/300',
     rating: 3.3,
+    description: 'This is a test description',
   },
   {
     id: '9',
@@ -63,6 +73,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     image: 'https://picsum.photos/200/300',
     rating: 4,
+    description: 'This is a test description',
   },
   {
     id: '10',
@@ -70,6 +81,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     image: 'https://picsum.photos/200/300',
     rating: 4.5,
+    description: 'This is a test description',
   },
   {
     id: '11',
@@ -77,6 +89,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     image: 'https://picsum.photos/200/300',
     rating: 0,
+    description: 'This is a test description',
   },
   {
     id: '12',
@@ -84,6 +97,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     image: 'https://picsum.photos/200/300',
     rating: 1,
+    description: 'This is a test description',
   },
   {
     id: '13',
@@ -91,5 +105,6 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     image: 'https://picsum.photos/200/300',
     rating: 2,
+    description: 'This is a test description',
   },
 ];
