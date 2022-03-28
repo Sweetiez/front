@@ -5,9 +5,11 @@ export const fakeProducts: ProductCardModel[] = [
     id: '1',
     name: 'Product 1',
     price: 10,
-    image: 'https://picsum.photos/200/300',
+    image:
+      'https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg',
     rating: 4,
-    description: 'This is a test description',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci alias aliquam culpa, delectus expedita fugit ipsum laboriosam maiores maxime numquam reprehenderit, rerum sint unde vero! Accusamus id quod repudiandae?',
   },
   {
     id: '2',
