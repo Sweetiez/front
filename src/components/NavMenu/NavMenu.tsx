@@ -1,8 +1,10 @@
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react';
-import { Fragment, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { MenuIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
 import Lottie from 'react-lottie-player';
 import cakeAnimation from '../../assets/cakerun.json';
+import CartModal from '../Cart/CartModal';
+import { useCart } from '../../hooks/cart/cartHook';
 
 const navigation = {
   categories: [
@@ -140,6 +142,9 @@ function classNames(...classes: any[]) {
 
 const NavMenu: React.FC = () => {
   const [open, setOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+  const { data: cartData } = useCart();
+  const cart = cartData ? cartData : [];
 
   return (
     <>
@@ -448,13 +453,16 @@ const NavMenu: React.FC = () => {
 
                   {/* Cart */}
                   <div className="ml-4 flow-root lg:ml-6">
-                    <div className="group -m-2 p-2 flex items-center">
+                    <div
+                      onClick={() => setCartOpen(true)}
+                      className="group -m-2 p-2 flex items-center"
+                    >
                       <ShoppingBagIcon
                         className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
                         aria-hidden="true"
                       />
                       <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                        0
+                        {cart.length}
                       </span>
                       <span className="sr-only">items in cart, view bag</span>
                     </div>
@@ -465,6 +473,45 @@ const NavMenu: React.FC = () => {
           </nav>
         </header>
       </div>
+      <Transition.Root show={cartOpen} as={Fragment}>
+        <Dialog
+          as="div"
+          className="z-50 fixed inset-0 overflow-hidden"
+          onClose={setCartOpen}
+        >
+          <div className="absolute inset-0 overflow-hidden">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-in-out duration-500"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in-out duration-500"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <Dialog.Overlay className="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+            </Transition.Child>
+
+            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+              <Transition.Child
+                as={Fragment}
+                enter="transform transition ease-in-out duration-500 sm:duration-700"
+                enterFrom="translate-x-full"
+                enterTo="translate-x-0"
+                leave="transform transition ease-in-out duration-500 sm:duration-700"
+                leaveFrom="translate-x-0"
+                leaveTo="translate-x-full"
+              >
+                <div className="pointer-events-auto w-screen max-w-md">
+                  <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                    <CartModal setOpenedModal={setCartOpen} />
+                  </div>
+                </div>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition.Root>
     </>
   );
 };
