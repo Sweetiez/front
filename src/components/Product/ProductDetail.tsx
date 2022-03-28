@@ -19,7 +19,7 @@ const ProductDetail: React.FC = () => {
         <div className="w-full max-w-6xl rounded bg-white shadow-xl p-10 lg:p-20 mx-auto text-gray-800 relative md:text-left">
           <div className="md:flex items-center -mx-10">
             <div className="w-full md:w-1/2 px-10 mb-10 md:mb-0" />
-            <div className="w-full md:w-1/2 px-10 py-20 border-2 border-gold-100 absolute top-10 bottom-10 left-10 right-10 z-0 bg-beige-100">
+            <div className="w-full md:w-1/2 px-10 py-20 border-2 border-gold-100 absolute top-10 bottom-10 left-10 right-10 z-0 bg-beige-100 shadow">
               <div className="border border-gold-100 absolute top-2 bottom-2 left-2 right-2 z-0">
                 <div className="corner border-tl" />
                 <div className="corner border-tr" />
