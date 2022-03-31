@@ -29,7 +29,12 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
           >
             <div className="ml-4 mb-4 flex lg:ml-0">
               <span className="sr-only">Workflow</span>
-              <Lottie className="h-16 w-auto" loop animationData={cooking} play />
+              <Lottie
+                className="h-16 w-auto"
+                loop
+                animationData={cooking}
+                play
+              />
             </div>
             <h1 className="mx-3 font-semibold text-lg">{product.price}€</h1>
             <div className="flex flex-col-reverse justify-end mb-1 mr-4 group cursor-pointer">
@@ -68,7 +73,9 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 </svg>
               </button>
             </div>
-            <p className="py-2 text-xl text-gray-700 font-pompiere font-size-16">{product.description}</p>
+            <p className="py-2 text-xl text-gray-700 font-pompiere font-size-16">
+              {product.description}
+            </p>
             {product.comments!.map((comment) => (
               <CommentCard key={comment.id} comment={comment} />
             ))}
