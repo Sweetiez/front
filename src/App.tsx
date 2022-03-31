@@ -10,9 +10,9 @@ function App() {
     <div className="wrapper transition duration-500 dark:bg-gray-600 h-screen bg-gray-50">
       <QueryClientProvider client={queryClient}>
         <Router>
-            <Routes>
-                <Route path="/" element={ <Landing />} />
-            </Routes>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+          </Routes>
         </Router>
       </QueryClientProvider>
     </div>
