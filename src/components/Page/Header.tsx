@@ -10,7 +10,7 @@ const Header: React.FC = () => {
           <div className="flex items-center -mt-8">
             <Link to="/">
               <div className="text-black">
-                <p className="text-lg font-semibold text-4xl">{`FI-Sweets`}</p>
+                <p className="text-lg font-birthstone font-semibold text-4xl">{`FI-Sweets`}</p>
               </div>
             </Link>
           </div>

@@ -2,7 +2,6 @@ import './App.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Landing from './components/Landing';
-import ProductDetail from "./components/Product/ProductDetail";
 
 function App() {
   const queryClient = new QueryClient();
@@ -13,7 +12,6 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={ <Landing />} />
-                <Route path="/details/:id" element={ <ProductDetail />} />
             </Routes>
         </Router>
       </QueryClientProvider>
