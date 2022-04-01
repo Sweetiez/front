@@ -23,6 +23,13 @@ export const fakeProducts: ProductCardModel[] = [
         author: 'Gwendal',
         content:
           'La grande cuisine n’est pas faite pour les timorés. Il faut avoir de l’imagination, de l’audace. Il faut prendre le risque de commettre des erreurs et personne n’a le droit de vous imposer des limites, quelles que soient vos origines, d’où que vous veniez. Votre seule limite, c’est votre âme. C’est la vérité, tout le monde peut cuisiner, mais le véritable génie, n’appartient qu’aux audacieux.',
+        rating: 3,
+      },
+      {
+        id: '3',
+        author: 'Antonin',
+        content:
+          'A bien des égards la tache du critique est aisée. Nous ne risquons pas grand chose, et pourtant nous jouissons d’une position de supériorité par rapport a ceux qui se soumettent avec leur travail à notre jugement. Nous nous épanouissons dans la critique négative, plaisante à écrire et à lire. Mais l’amère vérité qu’il faut bien regarder en face c’est que, dans le grand ordre des choses, le met le plus médiocre a sans doute plus de valeur que notre critique qui le dénonce comme tel. Il est pourtant des circonstances où le critique prend un vrai risque. C’est lorsqu’il découvre et défend l’innovation. Le monde est souvent malveillant à l’encontre des nouveaux talents et de la création. Le nouveau a besoin d’amis. Hier soir j’ai vécu une expérience inédite et dégusté un plat extraordinaire d’une origine singulière s’il en est. Avancer que ce plat et son créateur ont radicalement changé l’idée que je me faisais de la grande cuisine serait peu dire. Ils m’ont bouleversé au plus profond de mon être. Je n’ai jamais fait mystère du mépris que m’inspirait la devise d’Auguste Gusteau « Tout le monde peut cuisiner ! ». Mais ce n’est qu’aujourd’hui, aujourd’hui seulement que je comprends vraiment ce qu’il voulait dire. Tout le monde ne peut pas devenir un grand artiste, mais un grand artiste peut surgir n’importe où. Il est difficile d’imaginer origine plus modeste que celle du génie qui officie maintenant chez Gusteau et qui est a nos yeux, rien moins que le plus grand cuisinier de France. Je retournerai bientôt chez Gusteau… plus affamé que jamais.',
         rating: 5,
       },
     ],

@@ -46,6 +46,34 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
               <h1 className="text-4xl font-bold text-gray-800 font-birthstone">
                 {product.name}
               </h1>
+            </div>
+            <p className="py-2 pt-10 text-xl text-gray-700 font-pompiere font-size-16">
+              {product.description}
+            </p>
+            <div className="flex justify-end">
+              <button
+                data-tip="test"
+                data-for="test"
+                className="mt-4 mr-4  bg-gold-100 items-center text-white font-bold text-xs px-2 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                type="button"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 19l7-7 3 3-7 7-3-3z" />
+                  <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+                  <path d="M2 2l7.586 7.586" />
+                  <circle cx="11" cy="11" r="2" />
+                </svg>
+              </button>
               <button
                 className="grid grid-flow-col auto-cols-max r-0 mt-4 bg-gold-100 items-center text-white font-bold text-xs px-3 py-1 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
@@ -73,9 +101,6 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 </svg>
               </button>
             </div>
-            <p className="py-2 text-xl text-gray-700 font-pompiere font-size-16">
-              {product.description}
-            </p>
             {product.comments!.map((comment) => (
               <CommentCard key={comment.id} comment={comment} />
             ))}
