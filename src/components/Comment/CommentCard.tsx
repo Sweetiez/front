@@ -1,6 +1,8 @@
 import React from 'react';
+import ShowMoreText from 'react-show-more-text';
 import Stars from '../Stars/Stars';
 import CommentCardModel from './CommentCardModel';
+import './../../assets/css/comment.css';
 
 interface CommentCardModelProps {
   comment: CommentCardModel;
@@ -9,12 +11,19 @@ interface CommentCardModelProps {
 const CommentCard: React.FC<CommentCardModelProps> = ({ comment }) => {
   return (
     <>
-      <div className="bg-white max-w rounded-2xl px-6 py-4 mt-4 shadow-lg transition duration-500">
+      <div className="bg-white max-w rounded-2xl px-6 py-2 mt-2 shadow-lg transition duration-500">
         <div className="mt-4">
           <div className="flex flex-col-reverse justify-end mb-1 mr-4 group cursor-pointer">
             <Stars number={comment.rating ? comment.rating : 0} />
           </div>
-          <p className="mt-4 text-md text-gray-600">{comment.content}</p>
+          <ShowMoreText
+            lines={5}
+            more="Afficher plus"
+            less=""
+            anchorClass="text-gold-100 ml-1"
+          >
+            {comment.content}
+          </ShowMoreText>
           <div className="flex justify-between items-center">
             <div className="mt-4 flex items-center space-x-4 py-2">
               <div className="">
@@ -24,7 +33,7 @@ const CommentCard: React.FC<CommentCardModelProps> = ({ comment }) => {
                   alt=""
                 />
               </div>
-              <div className="text-sm font-semibold">
+              <div className="text-xs font-semibold">
                 {comment.author} •{' '}
                 <span className="font-normal"> 5 minutes ago</span>
               </div>
