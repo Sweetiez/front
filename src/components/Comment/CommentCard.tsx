@@ -2,12 +2,14 @@ import React from 'react';
 import ShowMoreText from 'react-show-more-text';
 import Stars from '../Stars/Stars';
 import CommentCardModel from './CommentCardModel';
+import { useTranslation } from 'react-i18next';
 
 interface CommentCardModelProps {
   comment: CommentCardModel;
 }
 
 const CommentCard: React.FC<CommentCardModelProps> = ({ comment }) => {
+  const { t } = useTranslation();
   return (
     <>
       <div className="bg-white max-w rounded-2xl px-6 py-2 mt-2 shadow-lg transition duration-500">
@@ -17,7 +19,7 @@ const CommentCard: React.FC<CommentCardModelProps> = ({ comment }) => {
           </div>
           <ShowMoreText
             lines={5}
-            more="Afficher plus"
+            more={t('comment.showMore')}
             less=""
             anchorClass="text-gold-100 ml-1"
           >
@@ -34,7 +36,7 @@ const CommentCard: React.FC<CommentCardModelProps> = ({ comment }) => {
               </div>
               <div className="text-xs font-semibold">
                 {comment.author} •{' '}
-                <span className="font-normal"> 5 minutes ago</span>
+                <span className="font-normal"> {comment.date}</span>
               </div>
             </div>
           </div>

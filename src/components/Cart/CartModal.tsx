@@ -2,12 +2,14 @@ import { Dialog } from '@headlessui/react';
 import React from 'react';
 import { useCart, setCart } from '../../hooks/cart/cartHook';
 import { XIcon } from '@heroicons/react/outline';
+import { useTranslation } from 'react-i18next';
 
 interface CartModalProps {
   setOpenedModal: (openedModal: boolean) => void;
 }
 
 const CartModal: React.FC<CartModalProps> = ({ setOpenedModal }) => {
+  const { t } = useTranslation();
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
 
@@ -37,7 +39,7 @@ const CartModal: React.FC<CartModalProps> = ({ setOpenedModal }) => {
           <Dialog.Title className="text-lg font-medium text-gray-900">
             {/*{' '}*/}
             {/*Shopping cart{' '}*/}
-            Votre panier{' '}
+            {t('cart.title')}{' '}
           </Dialog.Title>
           <div className="ml-3 flex h-7 items-center">
             <button
@@ -86,7 +88,7 @@ const CartModal: React.FC<CartModalProps> = ({ setOpenedModal }) => {
                           type="button"
                           className="font-medium text-indigo-600 hover:text-indigo-500"
                         >
-                          Remove
+                          {t('cart.remove')}
                         </button>
                       </div>
                     </div>
@@ -100,26 +102,24 @@ const CartModal: React.FC<CartModalProps> = ({ setOpenedModal }) => {
 
       <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
         <div className="flex justify-between text-base font-medium text-gray-900">
-          <p>Subtotal</p>
+          <p>{t('cart.subtotal')}</p>
           <p>{totalPrice} €</p>
         </div>
-        <p className="mt-0.5 text-sm text-gray-500">
-          Shipping and taxes calculated at checkout.
-        </p>
+        <p className="mt-0.5 text-sm text-gray-500">{t('cart.totalInfo')}</p>
         <div className="mt-6">
           <div className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
-            Checkout
+            {t('cart.checkout')}
           </div>
         </div>
         <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
           <p>
-            or{' '}
+            {t('cart.or')}{' '}
             <button
               type="button"
               className="font-medium text-indigo-600 hover:text-indigo-500"
               onClick={() => setOpenedModal(false)}
             >
-              Continue Shopping
+              {t('cart.continueShopping')}
               <span aria-hidden="true"> &rarr;</span>
             </button>
           </p>

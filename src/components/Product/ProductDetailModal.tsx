@@ -4,6 +4,7 @@ import Stars from '../Stars/Stars';
 import Lottie from 'react-lottie-player';
 import cooking from '../../assets/cooking.json';
 import CommentCard from '../Comment/CommentCard';
+import {useTranslation} from "react-i18next";
 
 interface ProductModalProps {
   manageAddClick: () => void;
@@ -14,6 +15,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
   manageAddClick,
   product,
 }) => {
+  const { t } = useTranslation();
   return (
     <>
       <div className="scroll-smooth hover:scroll-auto">
@@ -28,7 +30,6 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                            px-6 py-1 bg-white shadow-sm"
           >
             <div className="ml-4 mb-4 flex lg:ml-0">
-              <span className="sr-only">Workflow</span>
               <Lottie
                 className="h-16 w-auto"
                 loop
@@ -79,7 +80,9 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 type="button"
                 onClick={() => manageAddClick()}
               >
-                <span className="text-xs content-center">Ajouter</span>
+                <span className="text-xs content-center">
+                  {t('productDetail.add')}
+                </span>
                 <svg
                   className="h-6 w-6 pl-1"
                   width="24"
