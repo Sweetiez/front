@@ -24,7 +24,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <div className="overflow-x-hidden rounded-2xl relative">
             <img
               className="h-40 rounded-2xl w-full object-cover"
-              src="https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg"
+              src={product.images ? product.images[0] : 'TODO Default'}
               alt="product-item"
               onClick={() => onImageClick(product)}
             />
