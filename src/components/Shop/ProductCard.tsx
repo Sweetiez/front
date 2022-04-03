@@ -32,7 +32,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
               onMouseEnter={() => setIsCartHover(true)}
               onMouseLeave={() => setIsCartHover(false)}
               onClick={() => {
-                console.log('test');
                 openBasket(product, true);
               }}
               className="absolute right-2 top-2 bg-white rounded-full p-2 cursor-pointer group"
