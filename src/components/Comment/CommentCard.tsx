@@ -2,7 +2,6 @@ import React from 'react';
 import ShowMoreText from 'react-show-more-text';
 import Stars from '../Stars/Stars';
 import CommentCardModel from './CommentCardModel';
-import './../../assets/css/comment.css';
 
 interface CommentCardModelProps {
   comment: CommentCardModel;
