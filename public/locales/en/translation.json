@@ -22,6 +22,7 @@
     "comment": "Comment"
   },
   "comment": {
-    "showMore": "Show more"
+    "showMore": "Show more",
+    "report": "Report the comment"
   }
 }

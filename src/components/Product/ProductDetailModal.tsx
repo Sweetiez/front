@@ -76,7 +76,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
               <button
                 data-tip="test"
                 data-for="test"
-                className="grid grid-flow-col auto-cols-max r-0 mt-4 bg-gold-100 items-center text-white font-bold text-xs px-3 py-1 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                className="grid grid-flow-col auto-cols-max transform transition duration-200 hover:scale-105 r-0 mt-4 bg-gold-100 items-center text-white font-bold text-xs px-3 py-1 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-2 mb-1 ease-linear transition-all duration-150"
                 type="button"
               >
                 <span className="text-xs content-center">
@@ -84,8 +84,8 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 </span>
                 <svg
                   className="h-6 w-6 pl-1"
-                  width="18"
-                  height="18"
+                  width="17"
+                  height="17"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -101,7 +101,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 </svg>
               </button>
               <button
-                className="grid grid-flow-col auto-cols-max r-0 mt-4 bg-gold-100 items-center text-white font-bold text-xs px-3 py-1 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                className="grid grid-flow-col auto-cols-max r-0 mt-4 bg-gold-100 transform transition duration-200 hover:scale-105 items-center text-white font-bold text-xs px-3 py-1 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
                 onClick={() => manageAddClick()}
               >
