@@ -18,7 +18,8 @@
     "continueShopping": "Continue shopping"
   },
   "productDetail": {
-    "add": "Add"
+    "add": "Add",
+    "comment": "Comment"
   },
   "comment": {
     "showMore": "Show more"
