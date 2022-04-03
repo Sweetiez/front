@@ -3,14 +3,23 @@ import { Dialog, Transition } from '@headlessui/react';
 import ProductCard from './ProductCard';
 import { fakeProducts } from '../../assets/FakeProducts';
 import ProductDetailModal from '../Product/ProductDetailModal';
+import QuickShop from './QuickShop';
 
 const Shop: React.FC = () => {
   const products = fakeProducts;
   const [open, setOpen] = useState(false);
+  const [currentProduct, setCurrentProduct] = useState(products[0]); // default value?
   const [modalState, setModalState] = useState(false);
 
-  const manageImageClick = useCallback(() => {
+  const manageBasketClick = useCallback((product, state) => {
+    console.log(product);
+    setCurrentProduct(product);
+    setModalState(state);
+  }, []);
+
+  const manageImageClick = useCallback((product) => {
     setOpen(true);
+    setCurrentProduct(product);
   }, []);
 
   const manageAddClick = useCallback(() => {
@@ -28,11 +37,55 @@ const Shop: React.FC = () => {
                 key={product.id}
                 product={product}
                 onImageClick={manageImageClick}
-                modalState={modalState}
-                setModalState={setModalState}
+                openBasket={manageBasketClick}
               />
             ))}
           </div>
+          {/*Modal Cart*/}
+          <Transition.Root show={modalState} as={Fragment}>
+            <Dialog
+              as="div"
+              className="fixed z-10 inset-0 overflow-y-auto"
+              onClose={setModalState}
+            >
+              <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0"
+                  enterTo="opacity-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100"
+                  leaveTo="opacity-0"
+                >
+                  <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                </Transition.Child>
+                <span
+                  className="hidden sm:inline-block sm:align-middle sm:h-screen"
+                  aria-hidden="true"
+                >
+                  &#8203;
+                </span>
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                  enterTo="opacity-100 translate-y-0 sm:scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                  leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                >
+                  <div className=" inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <QuickShop
+                      product={currentProduct}
+                      setOpenedModal={setModalState}
+                    />
+                  </div>
+                </Transition.Child>
+              </div>
+            </Dialog>
+          </Transition.Root>
+          {/*Modal Sidebar left*/}
           <div className="pointer-events-none fixed inset-y-0 left-0 flex max-w-full pl-10">
             <Transition.Root show={open} as={Fragment}>
               <Dialog
@@ -67,7 +120,7 @@ const Shop: React.FC = () => {
                         <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl ">
                           <ProductDetailModal
                             manageAddClick={manageAddClick}
-                            product={fakeProducts[0]}
+                            product={currentProduct}
                           />
                         </div>
                       </div>
