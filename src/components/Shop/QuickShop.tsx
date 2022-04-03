@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import ProductCardModel from './ProductCardModel';
 import { setCart, useCart } from '../../hooks/cart/cartHook';
 
@@ -9,6 +10,8 @@ interface QuickShopProps {
 
 const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
   const [itemCount, setItemCount] = React.useState<string | undefined>('1');
+  const { t } = useTranslation();
+
   const unitPrice = product.price ? product.price : 9999999999;
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
@@ -27,6 +30,8 @@ const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
     );
   }
 
+  const price = +(itemCount ? itemCount : 1) * unitPrice;
+
   return (
     <>
       {/*// <!-- CONTAINER MODAL-->*/}
@@ -36,7 +41,9 @@ const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
           {/*// <!--MODAL HEADER-->*/}
           <div className="flex justify-between items center border-b border-gray-200 py-3">
             <div className="flex items-center justify-center">
-              <p className="text-xl font-bold text-gray-800">Panier rapide</p>
+              <p className="text-xl font-bold text-gray-800">
+                {t('quickShop.title')}
+              </p>
             </div>
             <div
               onClick={() => {
@@ -63,7 +70,7 @@ const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
               {/* Stepper */}
               <div className="pb-3 h-fit w-fit">
                 <label className="w-full text-gray-700 text-sm font-semibold">
-                  Counter Input
+                  {t('quickShop.counterInput')}
                 </label>
                 <div className="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
                   <button
@@ -108,8 +115,9 @@ const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
                 }}
                 className=" bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full"
               >
-                Ajouter au panier pour{' '}
-                {+(itemCount ? itemCount : 1) * unitPrice} €
+                {t('quickShop.addFor', {
+                  price,
+                })}
               </button>
             </div>
           </div>

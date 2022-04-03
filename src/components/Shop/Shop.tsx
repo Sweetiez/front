@@ -12,7 +12,6 @@ const Shop: React.FC = () => {
   const [modalState, setModalState] = useState(false);
 
   const manageBasketClick = useCallback((product, state) => {
-    console.log(product);
     setCurrentProduct(product);
     setModalState(state);
   }, []);
