@@ -1,0 +1,7 @@
+{
+  "quickShop": {
+    "title": "Quick Shop",
+    "counterInput": "Counter Input",
+    "addFor": "Add to cart for {{price}} €"
+  }
+}

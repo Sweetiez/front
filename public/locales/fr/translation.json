@@ -1,0 +1,7 @@
+{
+  "quickShop": {
+    "title": "Panier Papide",
+    "counterInput": "Compteur d'item",
+    "addFor": "Ajouter au panier pour {{price}} €"
+  }
+}
