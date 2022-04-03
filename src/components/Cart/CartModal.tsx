@@ -60,7 +60,7 @@ const CartModal: React.FC<CartModalProps> = ({ setOpenedModal }) => {
                 <li key={itemCart.item!.id} className="flex py-6">
                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                     <img
-                      src={itemCart.item!.image}
+                      src={itemCart.item!.images && itemCart.item!.images[0]}
                       alt={`${itemCart.item!.name}`}
                       className="h-full w-full object-cover object-center"
                     />
