@@ -3,10 +3,11 @@ import ProductCardModel from '../components/Shop/ProductCardModel';
 export const fakeProducts: ProductCardModel[] = [
   {
     id: '1',
-    name: 'Product 1',
+    name: 'Tartelette daim caramel',
     price: 10,
     images: ['https://picsum.photos/200/300', 'https://picsum.photos/200/400'],
     rating: 4,
+    shortDescription: 'ma petite description',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci alias aliquam culpa, delectus expedita fugit ipsum laboriosam maiores maxime numquam reprehenderit, rerum sint unde vero! Accusamus id quod repudiandae?',
     comments: [
@@ -38,10 +39,12 @@ export const fakeProducts: ProductCardModel[] = [
   },
   {
     id: '2',
-    name: 'Product 2',
+    name: 'Tartelete Citron meringué',
     price: 10,
     images: ['https://picsum.photos/200/400'],
     rating: 4,
+    shortDescription:
+      'large description large description large description large description large description large description large description large description large description',
     description: 'This is a test description',
     comments: [
       {
@@ -55,11 +58,14 @@ export const fakeProducts: ProductCardModel[] = [
   },
   {
     id: '3',
-    name: 'Product 3',
+    name: 'Mi-cuit chocolat',
     price: 10,
     images: ['https://picsum.photos/200/500'],
     rating: 4,
-    description: 'This is a test description',
+    shortDescription:
+      'ma moyenne description ma moyenne description ma moyenne description',
+    description:
+      'This is a test large description This is a test large description',
     comments: [
       {
         id: '3',
@@ -72,10 +78,11 @@ export const fakeProducts: ProductCardModel[] = [
   },
   {
     id: '4',
-    name: 'Product 4',
+    name: 'Crème brûlée',
     price: 10,
     images: ['https://picsum.photos/200/600'],
     rating: 5,
+    shortDescription: 'ma petite description',
     description: 'This is a test description',
     comments: [
       {
@@ -93,6 +100,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     images: ['https://picsum.photos/200/700'],
     rating: 1,
+    shortDescription: 'ma petite description',
     description: 'This is a test description',
     comments: [
       {
@@ -110,6 +118,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     images: ['https://picsum.photos/200/800'],
     rating: 2,
+    shortDescription: 'ma petite description',
     description: 'This is a test description',
     comments: [
       {
@@ -125,6 +134,7 @@ export const fakeProducts: ProductCardModel[] = [
     id: '7',
     name: 'Product 7',
     price: 10,
+    shortDescription: 'ma petite description',
     images: ['https://picsum.photos/200/900'],
     rating: 3,
     description: 'This is a test description',
@@ -144,6 +154,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     images: ['https://picsum.photos/200/300'],
     rating: 3.3,
+    shortDescription: 'ma petite description',
     description: 'This is a test description',
     comments: [
       {
@@ -161,6 +172,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     images: ['https://picsum.photos/200/300'],
     rating: 4,
+    shortDescription: 'ma petite description',
     description: 'This is a test description',
     comments: [
       {
@@ -178,6 +190,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     images: ['https://picsum.photos/200/200'],
     rating: 4.5,
+    shortDescription: 'ma petite description',
     description: 'This is a test description',
     comments: [
       {
@@ -195,6 +208,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     images: ['https://picsum.photos/100/300'],
     rating: 0,
+    shortDescription: 'ma petite description',
     description: 'This is a test description',
     comments: [
       {
@@ -212,6 +226,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     images: ['https://picsum.photos/300/300'],
     rating: 1,
+    shortDescription: 'ma petite description',
     description: 'This is a test description',
     comments: [
       {
@@ -229,6 +244,7 @@ export const fakeProducts: ProductCardModel[] = [
     price: 10,
     images: ['https://picsum.photos/400/300'],
     rating: 2,
+    shortDescription: 'ma petite description',
     description: 'This is a test description',
     comments: [
       {
