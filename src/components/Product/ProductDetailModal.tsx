@@ -31,8 +31,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
           ) : (
             <>
               {product.images && (
-                <Carousel showThumbs={false}
-                          showStatus={false}>
+                <Carousel showThumbs={false} showStatus={false}>
                   {product.images.map((image: string) => (
                     <div>
                       <img
