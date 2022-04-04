@@ -20,8 +20,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <>
-      <div className="relative m-3 flex flex-wrap mx-auto justify-center">
-        <div className="relative w-60 lg:w-72 min-w-full bg-white shadow-md rounded-2xl px-3 py-2 mx-1 my-3 cursor-pointer border transform transition duration-500 hover:scale-110 ">
+      <div className="relative m-3 flex flex-wrap justify-center">
+        <div className="relative w-60 xl:w-72 min-w-full bg-white shadow-md rounded-2xl px-3 py-2 mx-1 my-3 cursor-pointer border transform transition duration-500 hover:scale-110 ">
           <div className="overflow-x-hidden rounded-2xl relative">
             <img
               className="h-40 rounded-2xl w-full object-cover"

@@ -1,0 +1,13 @@
+.customLegend {
+  @include transition(all, 0.5s, ease-in-out);
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  margin-left: -45%;
+  width: 90%;
+  border-radius: 10px;
+  color: #ffff;
+  padding: 10px;
+  font-size: 36px;
+  text-align: center;
+}
