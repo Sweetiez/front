@@ -21,10 +21,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <>
       <div className="relative my-3 mx-3 lg:mx-5 flex flex-wrap justify-center">
-        <div className="relative w-60 xl:w-64 min-w-full bg-white shadow-md rounded-2xl px-3 py-2 mx-1 my-3 cursor-pointer border transform transition duration-500 hover:scale-110 ">
-          <div className="overflow-x-hidden rounded-2xl relative">
+        <div className="relative w-60 xl:w-64 min-w-full bg-white shadow-md rounded-2xl  py-0 my-0 cursor-pointer border transform transition duration-500 hover:scale-110 ">
+          <div className="overflow-x-hidden rounded-t-lg relative">
             <img
-              className="h-40 rounded-2xl w-full object-cover"
+              className="h-40 w-full object-cover py-0"
               src={product.images ? product.images[0] : 'TODO Default'}
               alt="product-item"
               onClick={() => openProductDetailClick(product)}
@@ -45,26 +45,21 @@ const ProductCard: React.FC<ProductCardProps> = ({
               />
             </div>
           </div>
-          <div
-            className="mt-4 pl-2 mb-2"
-            onClick={() => openProductDetailClick(product)}
-          >
-            <div>
-              <p className="text-2xl font-pompiere">{product.name}</p>
-              <ShowMoreText
-                lines={2}
-                more=""
-                less=""
-                // anchorClass="text-gold-100 ml-1"
-                className="text-lg font-pompiere w-full h-8 min-h-full "
-              >
-                {product.description}
-              </ShowMoreText>
-              <div className="flex justify-between mt-8">
-                <p className="text-md text-gray-800 mt-0">{product.price}€</p>
-                <div className="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
-                  <Stars number={product.rating ? product.rating : 0} />
-                </div>
+          <div className="p-3" onClick={() => openProductDetailClick(product)}>
+            <p className="text-2xl font-pompiere">{product.name}</p>
+            <ShowMoreText
+              lines={2}
+              more=""
+              less=""
+              // anchorClass="text-gold-100 ml-1"
+              className="text-lg font-pompiere w-full h-8 min-h-full "
+            >
+              {product.description}
+            </ShowMoreText>
+            <div className="flex justify-between mt-8">
+              <p className="text-md text-gray-800 mt-0">{product.price}€</p>
+              <div className="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
+                <Stars number={product.rating ? product.rating : 0} />
               </div>
             </div>
           </div>
