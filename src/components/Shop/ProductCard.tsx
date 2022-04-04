@@ -7,13 +7,13 @@ import ShowMoreText from 'react-show-more-text';
 
 interface ProductCardProps {
   product: ProductCardModel;
-  onImageClick: (product: ProductCardModel) => void;
+  openProductDetailClick: (product: ProductCardModel) => void;
   openBasket: (product: ProductCardModel, state: boolean) => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
   product,
-  onImageClick,
+  openProductDetailClick,
   openBasket,
 }) => {
   const [isCartHover, setIsCartHover] = useState(false);
@@ -27,7 +27,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               className="h-40 rounded-2xl w-full object-cover"
               src={product.images ? product.images[0] : 'TODO Default'}
               alt="product-item"
-              onClick={() => onImageClick(product)}
+              onClick={() => openProductDetailClick(product)}
             />
             <div
               onMouseEnter={() => setIsCartHover(true)}
@@ -45,7 +45,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
               />
             </div>
           </div>
-          <div className="mt-4 pl-2 mb-2" onClick={() => onImageClick(product)}>
+          <div
+            className="mt-4 pl-2 mb-2"
+            onClick={() => openProductDetailClick(product)}
+          >
             <div>
               <p className="text-2xl font-pompiere">{product.name}</p>
               <ShowMoreText
