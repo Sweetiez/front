@@ -5,7 +5,11 @@ export const fakeProducts: ProductCardModel[] = [
     id: '1',
     name: 'Tartelette daim caramel',
     price: 10,
-    images: ['https://picsum.photos/200/300', 'https://picsum.photos/200/400'],
+    images: [
+      'https://picsum.photos/1200/300',
+      'https://picsum.photos/1220/300',
+      'https://picsum.photos/4000/1600',
+    ],
     rating: 4,
     shortDescription: 'ma petite description',
     description:
@@ -41,7 +45,7 @@ export const fakeProducts: ProductCardModel[] = [
     id: '2',
     name: 'Tartelete Citron meringué',
     price: 10,
-    images: ['https://picsum.photos/200/400'],
+    images: ['https://picsum.photos/1220/300'],
     rating: 4,
     shortDescription:
       'large description large description large description large description large description large description large description large description large description',
