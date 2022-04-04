@@ -28,9 +28,8 @@ const Shop: React.FC = () => {
     setCurrentProduct(product);
   }, []);
 
-  const manageAddClick = useCallback(() => {
+  const manageCloseClick = useCallback(() => {
     setOpen(false);
-    setModalState(true);
   }, []);
 
   const fadeAnimationHandler: AnimationHandler = (
@@ -208,7 +207,7 @@ const Shop: React.FC = () => {
                         <div className="pointer-events-auto w-screen max-w-md">
                           <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl ">
                             <ProductDetailModal
-                              manageAddClick={manageAddClick}
+                              manageCloseClick={manageCloseClick}
                               product={currentProduct}
                             />
                           </div>
