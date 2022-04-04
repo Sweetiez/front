@@ -76,7 +76,7 @@ const Shop: React.FC = () => {
 
   return (
     <>
-      <div className="py-8 container w-4/5 mx-auto">
+      <div className="py-5 container w-8/12 lg:w-11/12 mx-auto">
         {products[0].images?.length === 1 ? (
           <img
             className="md:h-80 h-40 w-96 object-cover object-center rounded-3xl"
