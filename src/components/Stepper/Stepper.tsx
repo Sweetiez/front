@@ -3,7 +3,6 @@ import React from 'react';
 interface StepperProps {
   itemCount?: string;
   setItemCount: (itemCount?: string) => void;
-  small?: boolean;
 }
 
 const Stepper: React.FC<StepperProps> = ({ itemCount, setItemCount }) => {
@@ -23,10 +22,10 @@ const Stepper: React.FC<StepperProps> = ({ itemCount, setItemCount }) => {
 
   return (
     <>
-      <div className="flex flex-row h-8 w-24 rounded-lg border-gray-400 relative mr-2">
+      <div className="flex flex-row h-8 w-24 rounded-lg relative mr-2">
         <button
           onClick={handleMinus}
-          className="items-center bg-withe transform transition duration-200 hover:scale-105 text-white h-full w-20 flex rounded-lg focus:outline-none cursor-pointer"
+          className="items-center bg-withe transform transition duration-200 hover:scale-110 text-white h-full w-20 flex rounded-lg focus:outline-none cursor-pointer"
         >
           <svg
             className="h-4 w-4 w-full text-gold-100"
@@ -41,7 +40,7 @@ const Stepper: React.FC<StepperProps> = ({ itemCount, setItemCount }) => {
           </svg>
         </button>
         <input
-          className="md:p-2 p-1  text-xs md:text-base border-gray-400 focus:outline-none text-center"
+          className="md:p-2 p-1 text-xs md:text-base focus:outline-none text-center"
           type="hidden"
           onChange={(e) =>
             setItemCount(
@@ -60,7 +59,7 @@ const Stepper: React.FC<StepperProps> = ({ itemCount, setItemCount }) => {
 
         <button
           onClick={handlePlus}
-          className="items-center bg-white transform transition duration-200 hover:scale-105 text-gold-100 h-full p-1 w-20 flex rounded-lg focus:outline-none cursor-pointer"
+          className="items-center transform transition duration-200 hover:scale-110 text-gold-100 h-full p-1 w-20 flex rounded-lg focus:outline-none cursor-pointer"
         >
           <svg
             className="h-5 w-5 w-full text-gold-100 "
