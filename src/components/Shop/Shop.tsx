@@ -23,7 +23,7 @@ const Shop: React.FC = () => {
     setModalState(state);
   }, []);
 
-  const manageImageClick = useCallback((product) => {
+  const manageProductDetailClick = useCallback((product) => {
     setOpen(true);
     setCurrentProduct(product);
   }, []);
@@ -82,6 +82,7 @@ const Shop: React.FC = () => {
             className="md:h-80 h-40 w-96 object-cover object-center rounded-3xl"
             src={products[0].images[0]}
             alt="avatar"
+            onClick={manageProductDetailClick}
           />
         ) : (
           <>
@@ -96,6 +97,7 @@ const Shop: React.FC = () => {
                 animationHandler={fadeAnimationHandler}
                 interval={3000}
                 className="rounded-3xl overflow-hidden"
+                onClickItem={() => manageProductDetailClick(products[0])}
               >
                 {products[0].images.map((image: string) => (
                   <div>
@@ -123,7 +125,7 @@ const Shop: React.FC = () => {
                 <ProductCard
                   key={product.id}
                   product={product}
-                  onImageClick={manageImageClick}
+                  openProductDetailClick={manageProductDetailClick}
                   openBasket={manageBasketClick}
                 />
               ))}
