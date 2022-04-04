@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ProductCardModel from './ProductCardModel';
 import { setCart, useCart } from '../../hooks/cart/cartHook';
+import Stepper from "../Stepper/Stepper";
 
 interface QuickShopProps {
   product: ProductCardModel;
@@ -9,26 +10,13 @@ interface QuickShopProps {
 }
 
 const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
-  const [itemCount, setItemCount] = React.useState<string | undefined>('1');
+  const [itemCount, setItemCount] = useState<string | undefined>('1');
   const { t } = useTranslation();
 
   const unitPrice = product.price ? product.price : 9999999999;
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
 
-  function verifyInput() {
-    return !itemCount || isNaN(+itemCount) || +itemCount <= 0 ? '1' : itemCount;
-  }
-
-  function handlePlus() {
-    setItemCount((+verifyInput() + 1).toString());
-  }
-
-  function handleMinus() {
-    setItemCount(
-      itemCount && +itemCount <= 1 ? '1' : (+verifyInput() - 1).toString(),
-    );
-  }
 
   const price = +(itemCount ? itemCount : 1) * unitPrice;
 
@@ -45,63 +33,35 @@ const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
                 {t('quickShop.title')}
               </p>
             </div>
-            <div
+            <button
               onClick={() => {
                 setOpenedModal(false);
               }}
-              className="bg-gray-300 hover:bg-gray-500 cursor-pointer hover:text-gray-300 font-sans text-gray-500 w-8 h-8 flex items-center justify-center rounded-full"
+              className="bg-gold-100  hover: cursor-pointer hover:text-gray-300 font-sans text-gray-500 w-8 h-8 flex items-center justify-center rounded-full"
             >
-              x
-            </div>
+              <svg className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+                   strokeLinecap="round" strokeLinejoin="round">
+                <line x1="15" y1="9" x2="9" y2="15"/>
+                <line x1="9" y1="9" x2="15" y2="15"/>
+              </svg>
+
+            </button>
           </div>
 
           {/*// <!--MODAL BODY-->*/}
-          <div className="grid grid-cols-3">
-            <div className="rounded-full pt-3">
+          <div className="grid grid-cols-2 items-center mr-4">
+            <div className="pt-3">
               <img
                 className="h-40 rounded-2xl w-full object-cover"
                 src="https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg"
                 alt="product-item"
               />
             </div>
-            <div className="ml-2 col-start-2 col-end-4 w-fit h-fit">
+            <div className="text-center">
               <p className="text-xl font-bold text-gray-800">{product.name}</p>
               <p className="text-xl font-bold text-gray-800">{unitPrice} €</p>
               {/* Stepper */}
-              <div className="pb-3 h-fit w-fit">
-                <label className="w-full text-gray-700 text-sm font-semibold">
-                  {t('quickShop.counterInput')}
-                </label>
-                <div className="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
-                  <button
-                    onClick={handleMinus}
-                    className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"
-                  >
-                    <span className="m-auto text-2xl font-thin">−</span>
-                  </button>
-                  <input
-                    value={itemCount ?? ''}
-                    onChange={(e) =>
-                      setItemCount(
-                        e.target.value
-                          .trim()
-                          .match(/[\d,.]+/g)?.[0]
-                          .replace(',', '.'),
-                      )
-                    }
-                    className="text-center"
-                    onBlur={() => setItemCount(verifyInput)}
-                  />
-
-                  <button
-                    onClick={handlePlus}
-                    className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer"
-                  >
-                    <span className="m-auto text-2xl font-thin">+</span>
-                  </button>
-                </div>
-              </div>
-
+              <Stepper itemCount={itemCount} setItemCount={setItemCount}/>
               <button
                 onClick={() => {
                   setCart([
@@ -113,7 +73,7 @@ const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
                   ]);
                   setOpenedModal(false);
                 }}
-                className=" bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full"
+                className="bg-gold-100 transform transition duration-200 hover:scale-105 text-white font-bold py-2 px-4 rounded-lg"
               >
                 {t('quickShop.addFor', {
                   price,
