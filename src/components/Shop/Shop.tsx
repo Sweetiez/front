@@ -78,6 +78,7 @@ const Shop: React.FC = () => {
       <div className="py-5 container w-8/12 lg:w-11/12 mx-auto">
         {products[0].images?.length === 1 ? (
           <img
+            key="carousel"
             className="md:h-80 h-40 w-96 object-cover object-center rounded-3xl"
             src={products[0].images[0]}
             alt="avatar"
@@ -98,11 +99,12 @@ const Shop: React.FC = () => {
                 className="rounded-3xl overflow-hidden"
                 onClickItem={() => manageProductDetailClick(products[0])}
               >
-                {products[0].images.map((image: string) => (
+                {products[0].images.map((image: string, index: number) => (
                   <div>
                     <img
                       className="md:h-80 h-40 object-cover object-center xs:object-contain rounded-3xl"
                       src={image}
+                      key={index}
                       alt="avatar"
                     />
                     <p className="customLegend font-birthstone">
@@ -136,7 +138,7 @@ const Shop: React.FC = () => {
                 className="fixed z-10 inset-0 overflow-y-auto"
                 onClose={setModalState}
               >
-                <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div className="flex items-end justify-center min-h-screen w-fit pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                   <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"

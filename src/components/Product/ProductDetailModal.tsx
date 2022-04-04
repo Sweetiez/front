@@ -29,6 +29,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
         <div className="max-w overflow-hidden">
           {product.images?.length === 1 ? (
             <img
+              key={'image'}
               className="w-full h-56 object-cover object-center"
               src={product.images[0]}
               alt="avatar"
@@ -37,10 +38,11 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
             <>
               {product.images && (
                 <Carousel showThumbs={false} showStatus={false}>
-                  {product.images.map((image: string) => (
+                  {product.images.map((image: string, index: number) => (
                     <div>
                       <img
                         className="w-full h-56 object-cover object-center"
+                        key={index}
                         src={image}
                         alt="avatar"
                       />
