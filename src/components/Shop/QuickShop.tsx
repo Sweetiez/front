@@ -22,7 +22,7 @@ const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
   return (
     <>
       <div className="w-full h-full bg-white shadow-lg rounded-lg overflow-hidden pt-0">
-        <div className="absolute mt-3 mr-3 right-0">
+        <div className="absolute mt-2 mr-2 right-0">
           <button
             onClick={() => {
               setOpenedModal(false);
