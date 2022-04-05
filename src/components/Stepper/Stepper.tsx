@@ -28,7 +28,7 @@ const Stepper: React.FC<StepperProps> = ({ itemCount, setItemCount }) => {
           className="items-center bg-withe transform transition duration-200 hover:scale-110 text-white h-full w-20 flex rounded-lg focus:outline-none cursor-pointer"
         >
           <svg
-            className="h-4 w-4 w-full text-gold-100"
+            className="h-5 w-5 w-full text-gold-100"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"

@@ -96,7 +96,7 @@ const Shop: React.FC = () => {
                 swipeable={false}
                 animationHandler={fadeAnimationHandler}
                 interval={3000}
-                className="rounded-3xl overflow-hidden"
+                className="rounded-3xl overflow-hidden transform transition duration-500 hover:scale-105"
                 onClickItem={() => manageProductDetailClick(products[0])}
               >
                 {products[0].images.map((image: string, index: number) => (
