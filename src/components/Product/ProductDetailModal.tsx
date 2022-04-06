@@ -39,10 +39,9 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
               {product.images && (
                 <Carousel showThumbs={false} showStatus={false}>
                   {product.images.map((image: string, index: number) => (
-                    <div>
+                    <div key={index}>
                       <img
                         className="w-full h-56 object-cover object-center"
-                        key={index}
                         src={image}
                         alt="avatar"
                       />

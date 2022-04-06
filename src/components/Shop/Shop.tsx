@@ -100,11 +100,10 @@ const Shop: React.FC = () => {
                 onClickItem={() => manageProductDetailClick(products[0])}
               >
                 {products[0].images.map((image: string, index: number) => (
-                  <div>
+                  <div key={index}>
                     <img
                       className="md:h-80 h-40 object-cover object-center xs:object-contain rounded-3xl"
                       src={image}
-                      key={index}
                       alt="avatar"
                     />
                     <p className="customLegend font-birthstone">
