@@ -147,6 +147,12 @@ const NavMenu: React.FC = () => {
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
   const { t } = useTranslation();
+  const lottieProps = {
+    loop: true,
+    play: true,
+    animationData: cakeAnimation,
+    className: 'h-16 w-auto',
+  };
 
   return (
     <>
@@ -316,10 +322,11 @@ const NavMenu: React.FC = () => {
                 <div className="ml-4 flex lg:ml-0">
                   <span className="sr-only">Workflow</span>
                   <Lottie
-                    className="h-16 w-auto"
-                    loop={true}
-                    animationData={cakeAnimation}
-                    play={true}
+                    // className="h-16 w-auto"
+                    // loop={true}
+                    // animationData={cakeAnimation}
+                    // play={true}
+                    {...lottieProps}
                   />
                 </div>
 
