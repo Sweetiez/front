@@ -4,7 +4,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a lo
 import ProductCardModel from '../Shop/ProductCardModel';
 import Stars from '../Stars/Stars';
 import Lottie from 'react-lottie-player';
-import cooking from '../../assets/cooking.json';
+import cooking from '../../assets/lotties/cooking.json';
 import CommentCard from '../Comment/CommentCard';
 import { useTranslation } from 'react-i18next';
 import Stepper from '../Stepper/Stepper';

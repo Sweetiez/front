@@ -2,7 +2,7 @@ import { Dialog, Popover, Tab, Transition } from '@headlessui/react';
 import React, { Fragment, useState } from 'react';
 import { MenuIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
 import Lottie from 'react-lottie-player';
-import cakeAnimation from '../../assets/cakerun.json';
+import cakeAnimation from '../../assets/lotties/cakerun.json';
 import CartModal from '../Cart/CartModal';
 import { useCart } from '../../hooks/cart/cartHook';
 import { useTranslation } from 'react-i18next';
