@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ProductCardModel from './ProductCardModel';
 import Stars from '../Stars/Stars';
 import Lottie from 'react-lottie-player';
-import cartAnimation from '../../assets/cart.json';
+import cartAnimation from '../../assets/lotties/cart.json';
 import ShowMoreText from 'react-show-more-text';
 
 interface ProductCardProps {
