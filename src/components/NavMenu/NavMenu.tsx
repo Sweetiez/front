@@ -317,9 +317,9 @@ const NavMenu: React.FC = () => {
                   <span className="sr-only">Workflow</span>
                   <Lottie
                     className="h-16 w-auto"
-                    loop
+                    loop={true}
                     animationData={cakeAnimation}
-                    play
+                    play={true}
                   />
                 </div>
 
