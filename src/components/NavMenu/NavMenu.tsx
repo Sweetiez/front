@@ -1,7 +1,7 @@
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react';
 import React, { Fragment, useState } from 'react';
 import { MenuIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
-import Lottie from 'react-lottie-player';
+// import Lottie from 'react-lottie-player';
 import cakeAnimation from '../../assets/lotties/cakerun.json';
 import CartModal from '../Cart/CartModal';
 import { useCart } from '../../hooks/cart/cartHook';
@@ -320,14 +320,14 @@ const NavMenu: React.FC = () => {
 
                 {/* Logo */}
                 <div className="ml-4 flex lg:ml-0">
-                  <span className="sr-only">Workflow</span>
-                  <Lottie
-                    // className="h-16 w-auto"
-                    // loop={true}
-                    // animationData={cakeAnimation}
-                    // play={true}
-                    {...lottieProps}
-                  />
+                  {/*<span className="sr-only">Workflow</span>*/}
+                  {/*<Lottie*/}
+                  {/*  // className="h-16 w-auto"*/}
+                  {/*  // loop={true}*/}
+                  {/*  // animationData={cakeAnimation}*/}
+                  {/*  // play={true}*/}
+                  {/*  {...lottieProps}*/}
+                  {/*/>*/}
                 </div>
 
                 {/* Flyout menus */}
