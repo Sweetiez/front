@@ -1,11 +1,11 @@
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react';
 import React, { Fragment, useState } from 'react';
 import { MenuIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
-// import Lottie from 'react-lottie-player';
 import cakeAnimation from '../../assets/lotties/cakerun.json';
 import CartModal from '../Cart/CartModal';
 import { useCart } from '../../hooks/cart/cartHook';
 import { useTranslation } from 'react-i18next';
+import Lottie from 'react-lottie-player';
 
 const navigation = {
   categories: [
@@ -147,12 +147,6 @@ const NavMenu: React.FC = () => {
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
   const { t } = useTranslation();
-  const lottieProps = {
-    loop: true,
-    play: true,
-    animationData: cakeAnimation,
-    className: 'h-16 w-auto',
-  };
 
   return (
     <>
@@ -320,14 +314,14 @@ const NavMenu: React.FC = () => {
 
                 {/* Logo */}
                 <div className="ml-4 flex lg:ml-0">
-                  {/*<span className="sr-only">Workflow</span>*/}
-                  {/*<Lottie*/}
-                  {/*  // className="h-16 w-auto"*/}
-                  {/*  // loop={true}*/}
-                  {/*  // animationData={cakeAnimation}*/}
-                  {/*  // play={true}*/}
-                  {/*  {...lottieProps}*/}
-                  {/*/>*/}
+                  <span className="sr-only">Workflow</span>
+                  {/*// @ts-ignore*/}
+                  <Lottie
+                    className="h-16 w-auto"
+                    loop
+                    animationData={cakeAnimation}
+                    play
+                  />
                 </div>
 
                 {/* Flyout menus */}

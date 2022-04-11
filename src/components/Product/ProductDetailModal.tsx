@@ -23,6 +23,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
   const [itemCount, setItemCount] = useState<string | undefined>('1');
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
+
   return (
     <>
       <div className="scroll-smooth hover:scroll-auto">
@@ -58,6 +59,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
             //   className="flex justify-center items-center"
           >
             <div className="ml-4 mb-4 flex lg:ml-0">
+              {/*// @ts-ignore*/}
               <Lottie
                 className="h-16 w-auto"
                 loop

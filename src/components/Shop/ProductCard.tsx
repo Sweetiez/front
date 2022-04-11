@@ -17,12 +17,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
   openBasket,
 }) => {
   const [isCartHover, setIsCartHover] = useState(false);
-  const lottieProps = {
-    loop: true,
-    play: isCartHover,
-    animationData: cartAnimation,
-    className: 'h-8 w-auto',
-  };
 
   return (
     <>
@@ -43,12 +37,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 openBasket(product, true);
               }}
             >
+              {/*// @ts-ignore*/}
               <Lottie
-                // className="h-8 w-auto"
-                // play={isCartHover}
-                // animationData={cartAnimation}
-                // loop={true}
-                {...lottieProps}
+                className="h-8 w-auto"
+                play={isCartHover}
+                animationData={cartAnimation}
+                loop={true}
               />
             </div>
           </div>
