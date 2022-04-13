@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import ProductCardModel from './ProductCardModel';
 import { setCart, useCart } from '../../hooks/cart/cartHook';
+import Stepper from '../Stepper/Stepper';
 
 interface QuickShopProps {
   product: ProductCardModel;
@@ -8,111 +10,73 @@ interface QuickShopProps {
 }
 
 const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
-  const [itemCount, setItemCount] = React.useState<string | undefined>('1');
+  const [itemCount, setItemCount] = useState<string | undefined>('1');
+  const { t } = useTranslation();
+
   const unitPrice = product.price ? product.price : 9999999999;
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
 
-  function verifyInput() {
-    return !itemCount || isNaN(+itemCount) || +itemCount <= 0 ? '1' : itemCount;
-  }
-
-  function handlePlus() {
-    setItemCount((+verifyInput() + 1).toString());
-  }
-
-  function handleMinus() {
-    setItemCount(
-      itemCount && +itemCount <= 1 ? '1' : (+verifyInput() - 1).toString(),
-    );
-  }
+  const price = +(itemCount ? itemCount : 1) * unitPrice;
 
   return (
     <>
-      {/*// <!-- CONTAINER MODAL-->*/}
-      <div className="flex items-center justify-center">
-        {/*// <!--MODAL ITEM-->*/}
-        <div className="w-auto mx-4 p-4 rounded-xl ">
-          {/*// <!--MODAL HEADER-->*/}
-          <div className="flex justify-between items center border-b border-gray-200 py-3">
-            <div className="flex items-center justify-center">
-              <p className="text-xl font-bold text-gray-800">Panier rapide</p>
-            </div>
-            <div
-              onClick={() => {
-                setOpenedModal(false);
-              }}
-              className="bg-gray-300 hover:bg-gray-500 cursor-pointer hover:text-gray-300 font-sans text-gray-500 w-8 h-8 flex items-center justify-center rounded-full"
+      <div className="w-full h-full bg-white shadow-lg rounded-lg overflow-hidden pt-0">
+        <div className="absolute mt-2 mr-2 right-0">
+          <button
+            onClick={() => {
+              setOpenedModal(false);
+            }}
+            className="bg-gold-100 focus:outline-none transform transition duration-200 hover:scale-110 cursor-pointer hover:text-gray-300 font-sans text-gray-500 w-8 h-8 flex items-center justify-center rounded-full"
+          >
+            <svg
+              className="h-8 w-8 text-white"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              x
-            </div>
+              <line x1="15" y1="9" x2="9" y2="15" />
+              <line x1="9" y1="9" x2="15" y2="15" />
+            </svg>
+          </button>
+        </div>
+        <img
+          className="h-56 w-full object-cover"
+          src={product.images ? product.images[0] : 'TODO Default'}
+          alt=""
+        />
+
+        <div className="px-6 py-2">
+          <div className="flex items-center pb-4">
+            <h1 className="font-bold font-pompiere text-3xl">{product.name}</h1>
+            <h1 className="font-bold text-xl pl-5 pt-1">{unitPrice} €</h1>
           </div>
-
-          {/*// <!--MODAL BODY-->*/}
-          <div className="grid grid-cols-3">
-            <div className="rounded-full pt-3">
-              <img
-                className="h-40 rounded-2xl w-full object-cover"
-                src="https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg"
-                alt="product-item"
-              />
-            </div>
-            <div className="ml-2 col-start-2 col-end-4 w-fit h-fit">
-              <p className="text-xl font-bold text-gray-800">{product.name}</p>
-              <p className="text-xl font-bold text-gray-800">{unitPrice} €</p>
-              {/* Stepper */}
-              <div className="pb-3 h-fit w-fit">
-                <label className="w-full text-gray-700 text-sm font-semibold">
-                  Counter Input
-                </label>
-                <div className="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
-                  <button
-                    onClick={handleMinus}
-                    className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"
-                  >
-                    <span className="m-auto text-2xl font-thin">−</span>
-                  </button>
-                  <input
-                    value={itemCount ?? ''}
-                    onChange={(e) =>
-                      setItemCount(
-                        e.target.value
-                          .trim()
-                          .match(/[\d,.]+/g)?.[0]
-                          .replace(',', '.'),
-                      )
-                    }
-                    className="text-center"
-                    onBlur={() => setItemCount(verifyInput)}
-                  />
-
-                  <button
-                    onClick={handlePlus}
-                    className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer"
-                  >
-                    <span className="m-auto text-2xl font-thin">+</span>
-                  </button>
-                </div>
-              </div>
-
-              <button
-                onClick={() => {
-                  setCart([
-                    ...cart,
-                    {
-                      item: product,
-                      quantity: itemCount ? +itemCount : 1,
-                    },
-                  ]);
-                  setOpenedModal(false);
-                }}
-                className=" bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full"
-              >
-                Ajouter au panier pour{' '}
-                {+(itemCount ? itemCount : 1) * unitPrice} €
-              </button>
-            </div>
+          <p>{product.description}</p>
+        </div>
+        <div className="flex items-center justify-end px-4 py-2">
+          <div className="flex justify-center py-4">
+            <Stepper itemCount={itemCount} setItemCount={setItemCount} />
           </div>
+          <button
+            onClick={() => {
+              setCart([
+                ...cart,
+                {
+                  item: product,
+                  quantity: itemCount ? +itemCount : 1,
+                },
+              ]);
+              setOpenedModal(false);
+            }}
+            className="bg-gold-100 transform transition duration-200 hover:scale-105 text-white font-bold py-2 px-4 rounded-lg"
+          >
+            {t('quickShop.addFor', {
+              price,
+            })}
+          </button>
         </div>
       </div>
     </>

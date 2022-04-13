@@ -1,38 +1,43 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import ProductCardModel from './ProductCardModel';
 import Stars from '../Stars/Stars';
-import { Link } from 'react-router-dom';
-import { Transition, Dialog } from '@headlessui/react';
-import QuickShop from './QuickShop';
 import Lottie from 'react-lottie-player';
-import cartAnimation from '../../assets/cart.json';
+import cartAnimation from '../../assets/lotties/cart.json';
+import ShowMoreText from 'react-show-more-text';
 
 interface ProductCardProps {
   product: ProductCardModel;
+  openProductDetailClick: (product: ProductCardModel) => void;
+  openBasket: (product: ProductCardModel, state: boolean) => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const [modalState, setModalState] = useState(false);
+const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  openProductDetailClick,
+  openBasket,
+}) => {
   const [isCartHover, setIsCartHover] = useState(false);
 
   return (
     <>
-      <div className="relative m-3 flex flex-wrap mx-auto justify-center">
-        <div className="relative max-w-sm min-w-[340px] bg-white shadow-md rounded-2xl p-2 mx-1 my-3 cursor-pointer border">
-          <div className="overflow-x-hidden rounded-2xl relative">
+      <div className="relative my-3 mx-3 lg:mx-5 flex flex-wrap justify-center">
+        <div className="relative w-60 xl:w-64 min-w-full bg-white shadow-md rounded-2xl  py-0 my-0 cursor-pointer border transform transition duration-500 hover:scale-110 ">
+          <div className="overflow-x-hidden rounded-t-lg relative">
             <img
-              className="h-40 rounded-2xl w-full object-cover"
-              src="https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg"
+              className="h-40 w-full object-cover py-0"
+              src={product.images ? product.images[0] : 'TODO Default'}
               alt="product-item"
+              onClick={() => openProductDetailClick(product)}
             />
             <div
               onMouseEnter={() => setIsCartHover(true)}
               onMouseLeave={() => setIsCartHover(false)}
-              onClick={() => {
-                setModalState(true);
-              }}
               className="absolute right-2 top-2 bg-white rounded-full p-2 cursor-pointer group"
+              onClick={() => {
+                openBasket(product, true);
+              }}
             >
+              {/*// @ts-ignore*/}
               <Lottie
                 className="h-8 w-auto"
                 play={isCartHover}
@@ -41,88 +46,26 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               />
             </div>
           </div>
-          <div className="mt-4 pl-2 mb-2 flex justify-between ">
-            <div>
-              <p className="text-lg font-semibold text-gray-900 mb-0">
-                {product.name}
-              </p>
-
+          <div className="p-3" onClick={() => openProductDetailClick(product)}>
+            <p className="text-2xl font-pompiere">{product.name}</p>
+            <ShowMoreText
+              lines={2}
+              more=""
+              less=""
+              // anchorClass="text-gold-100 ml-1"
+              className="text-lg font-pompiere w-full h-8 min-h-full "
+            >
+              {product.description}
+            </ShowMoreText>
+            <div className="flex justify-between mt-8">
               <p className="text-md text-gray-800 mt-0">{product.price}€</p>
-            </div>
-            <div className="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
-              <Stars number={product.rating ? product.rating : 0} />
+              <div className="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
+                <Stars number={product.rating ? product.rating : 0} />
+              </div>
             </div>
           </div>
-          <Link to={'/details/' + product.id}>
-            <button
-              className="grid grid-flow-col auto-cols-max bg-gold-100 items-center text-white active:bg-pink-600 font-bold text-xs px-3 py-1 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-              type="button"
-            >
-              <span className="text-xs content-center">Découvrir</span>
-              <svg
-                className="h-6 w-6 text-white pl-1"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <line x1="3" y1="12" x2="6" y2="12" />
-                <line x1="12" y1="3" x2="12" y2="6" />
-                <line x1="7.8" y1="7.8" x2="5.6" y2="5.6" />
-                <line x1="16.2" y1="7.8" x2="18.4" y2="5.6" />
-                <line x1="7.8" y1="16.2" x2="5.6" y2="18.4" />
-                <path d="M12 12l9 3l-4 2l-2 4l-3 -9" />
-              </svg>
-            </button>
-          </Link>
         </div>
       </div>
-
-      <Transition.Root show={modalState} as={Fragment}>
-        <Dialog
-          as="div"
-          className="fixed z-10 inset-0 overflow-y-auto"
-          onClose={setModalState}
-        >
-          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-            </Transition.Child>
-            <span
-              className="hidden sm:inline-block sm:align-middle sm:h-screen"
-              aria-hidden="true"
-            >
-              &#8203;
-            </span>
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              enterTo="opacity-100 translate-y-0 sm:scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-              leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            >
-              <div className=" inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                <QuickShop product={product} setOpenedModal={setModalState} />
-              </div>
-            </Transition.Child>
-          </div>
-        </Dialog>
-      </Transition.Root>
     </>
   );
 };

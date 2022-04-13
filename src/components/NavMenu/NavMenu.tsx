@@ -1,10 +1,11 @@
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react';
 import React, { Fragment, useState } from 'react';
 import { MenuIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
-import Lottie from 'react-lottie-player';
-import cakeAnimation from '../../assets/cakerun.json';
+import cakeAnimation from '../../assets/lotties/cakerun.json';
 import CartModal from '../Cart/CartModal';
 import { useCart } from '../../hooks/cart/cartHook';
+import { useTranslation } from 'react-i18next';
+import Lottie from 'react-lottie-player';
 
 const navigation = {
   categories: [
@@ -145,6 +146,7 @@ const NavMenu: React.FC = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
+  const { t } = useTranslation();
 
   return (
     <>
@@ -217,56 +219,56 @@ const NavMenu: React.FC = () => {
                         className="pt-10 pb-8 px-4 space-y-10"
                       >
                         <div className="grid grid-cols-2 gap-x-4">
-                          {category.featured.map((item) => (
-                            <></>
-                            // <div
-                            //   key={item.name}
-                            //   className="group relative text-sm"
-                            // >
-                            //   <div className="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-hover:opacity-75">
-                            //     <img
-                            //       src={item.imageSrc}
-                            //       alt={item.imageAlt}
-                            //       className="object-center object-cover"
-                            //     />
-                            //   </div>
-                            //   <a
-                            //     href={item.href}
-                            //     className="mt-6 block font-medium text-gray-900"
-                            //   >
-                            //     <span
-                            //       className="absolute z-10 inset-0"
-                            //       aria-hidden="true"
-                            //     />
-                            //     {item.name}
-                            //   </a>
-                            //   <p aria-hidden="true" className="mt-1">
-                            //     Shop now
-                            //   </p>
-                            // </div>
-                          ))}
+                          {/*{category.featured.map((item) => (*/}
+                          {/*  <></>*/}
+                          {/*  <div*/}
+                          {/*    key={item.name}*/}
+                          {/*    className="group relative text-sm"*/}
+                          {/*  >*/}
+                          {/*    <div className="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-hover:opacity-75">*/}
+                          {/*      <img*/}
+                          {/*        src={item.imageSrc}*/}
+                          {/*        alt={item.imageAlt}*/}
+                          {/*        className="object-center object-cover"*/}
+                          {/*      />*/}
+                          {/*    </div>*/}
+                          {/*    <a*/}
+                          {/*      href={item.href}*/}
+                          {/*      className="mt-6 block font-medium text-gray-900"*/}
+                          {/*    >*/}
+                          {/*      <span*/}
+                          {/*        className="absolute z-10 inset-0"*/}
+                          {/*        aria-hidden="true"*/}
+                          {/*      />*/}
+                          {/*      {item.name}*/}
+                          {/*    </a>*/}
+                          {/*    <p aria-hidden="true" className="mt-1">*/}
+                          {/*      Shop now*/}
+                          {/*    </p>*/}
+                          {/*  </div>*/}
+                          {/*))}*/}
                         </div>
-                        {category.sections.map((section) => (
-                          <></>
-                          // <div key={section.name}>
-                          //   <p
-                          //     id={`${category.id}-${section.id}-heading-mobile`}
-                          //     className="font-medium text-gray-900"
-                          //   >
-                          //     {section.name}
-                          //   </p>
-                          //   {section.items.map((item) => (
-                          //       <li key={item.name} className="flow-root">
-                          //         <a
-                          //             href={item.href}
-                          //             className="-m-2 p-2 block text-gray-500"
-                          //         >
-                          //           {item.name}
-                          //         </a>
-                          //       </li>
-                          //   ))}
-                          // </div>
-                        ))}
+                        {/*{category.sections.map((section) => (*/}
+                        {/*  <></>*/}
+                        {/*  <div key={section.name}>*/}
+                        {/*    <p*/}
+                        {/*      id={`${category.id}-${section.id}-heading-mobile`}*/}
+                        {/*      className="font-medium text-gray-900"*/}
+                        {/*    >*/}
+                        {/*      {section.name}*/}
+                        {/*    </p>*/}
+                        {/*    {section.items.map((item) => (*/}
+                        {/*        <li key={item.name} className="flow-root">*/}
+                        {/*          <a*/}
+                        {/*              href={item.href}*/}
+                        {/*              className="-m-2 p-2 block text-gray-500"*/}
+                        {/*          >*/}
+                        {/*            {item.name}*/}
+                        {/*          </a>*/}
+                        {/*        </li>*/}
+                        {/*    ))}*/}
+                        {/*  </div>*/}
+                        {/*))}*/}
                       </Tab.Panel>
                     ))}
                   </Tab.Panels>
@@ -286,8 +288,8 @@ const NavMenu: React.FC = () => {
                 </div>
 
                 <div className="border-t border-gray-200 py-6 px-4 space-y-6">
-                  <div className="flow-root">Sign in</div>
-                  <div className="flow-root">Create account</div>
+                  <div className="flow-root">{t('menu.signIn')}</div>
+                  <div className="flow-root">{t('menu.register')}</div>
                 </div>
               </div>
             </Transition.Child>
@@ -313,6 +315,7 @@ const NavMenu: React.FC = () => {
                 {/* Logo */}
                 <div className="ml-4 flex lg:ml-0">
                   <span className="sr-only">Workflow</span>
+                  {/*// @ts-ignore*/}
                   <Lottie
                     className="h-16 w-auto"
                     loop
@@ -361,37 +364,37 @@ const NavMenu: React.FC = () => {
                                   <div className="max-w-7xl mx-auto px-8">
                                     <div className="grid grid-cols-2 gap-y-10 gap-x-8 py-16">
                                       <div className="col-start-2 grid grid-cols-2 gap-x-8">
-                                        {category.featured.map((item) => (
-                                          <></>
-                                          // <div
-                                          //   key={item.name}
-                                          //   className="group relative text-base sm:text-sm"
-                                          // >
-                                          //   <div className="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-hover:opacity-75">
-                                          //     <img
-                                          //       src={item.imageSrc}
-                                          //       alt={item.imageAlt}
-                                          //       className="object-center object-cover"
-                                          //     />
-                                          //   </div>
-                                          //   <a
-                                          //     href={item.href}
-                                          //     className="mt-6 block font-medium text-gray-900"
-                                          //   >
-                                          //     <span
-                                          //       className="absolute z-10 inset-0"
-                                          //       aria-hidden="true"
-                                          //     />
-                                          //     {item.name}
-                                          //   </a>
-                                          //   <p
-                                          //     aria-hidden="true"
-                                          //     className="mt-1"
-                                          //   >
-                                          //     Shop now
-                                          //   </p>
-                                          // </div>
-                                        ))}
+                                        {/*{category.featured.map((item) => (*/}
+                                        {/*  <></>*/}
+                                        {/*  <div*/}
+                                        {/*    key={item.name}*/}
+                                        {/*    className="group relative text-base sm:text-sm"*/}
+                                        {/*  >*/}
+                                        {/*    <div className="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-hover:opacity-75">*/}
+                                        {/*      <img*/}
+                                        {/*        src={item.imageSrc}*/}
+                                        {/*        alt={item.imageAlt}*/}
+                                        {/*        className="object-center object-cover"*/}
+                                        {/*      />*/}
+                                        {/*    </div>*/}
+                                        {/*    <a*/}
+                                        {/*      href={item.href}*/}
+                                        {/*      className="mt-6 block font-medium text-gray-900"*/}
+                                        {/*    >*/}
+                                        {/*      <span*/}
+                                        {/*        className="absolute z-10 inset-0"*/}
+                                        {/*        aria-hidden="true"*/}
+                                        {/*      />*/}
+                                        {/*      {item.name}*/}
+                                        {/*    </a>*/}
+                                        {/*    <p*/}
+                                        {/*      aria-hidden="true"*/}
+                                        {/*      className="mt-1"*/}
+                                        {/*    >*/}
+                                        {/*      Shop now*/}
+                                        {/*    </p>*/}
+                                        {/*  </div>*/}
+                                        {/*))}*/}
                                       </div>
                                       {/*<div className="row-start-1 grid grid-cols-3 gap-y-10 gap-x-8 text-sm">*/}
                                       {/*  {category.sections.map((section) => (<></>*/}
@@ -443,11 +446,11 @@ const NavMenu: React.FC = () => {
                 <div className="ml-auto flex items-center">
                   <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                     <div className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                      Sign in
+                      {t('menu.signIn')}
                     </div>
                     <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
                     <div className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                      Create account
+                      {t('menu.register')}
                     </div>
                   </div>
 

@@ -1,0 +1,28 @@
+{
+  "menu": {
+    "signIn": "Se connecter",
+    "register": "Créer un compte"
+  },
+  "quickShop": {
+    "title": "Panier Papide",
+    "counterInput": "Compteur d'item",
+    "addFor": "Ajouter au panier pour {{price}} €"
+  },
+  "cart": {
+    "title": "Votre panier",
+    "remove": "Supprimer",
+    "subtotal": "Total hors taxe",
+    "totalInfo": "Les frais d'expédition et les taxes sont calculés lors du passage à la caisse.",
+    "checkout": "Commander",
+    "or": "ou",
+    "continueShopping": "continuer les achats"
+  },
+  "productDetail": {
+    "add": "Ajouter",
+    "comment": "Commenter"
+  },
+  "comment": {
+    "showMore": "Afficher plus",
+    "report": "Signaler le commentaire"
+  }
+}

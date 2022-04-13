@@ -1,8 +1,12 @@
+import CommentCardModel from '../Comment/CommentCardModel';
+
 export default class ProductCardModel {
   id: string | undefined;
   name: string | undefined;
+  shortDescription: string | undefined;
   description: string | undefined;
   price: number | undefined;
-  image: string | undefined;
+  images: string[] | undefined;
   rating: number | undefined;
+  comments: CommentCardModel[] | undefined;
 }

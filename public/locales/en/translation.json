@@ -1,0 +1,28 @@
+{
+  "menu": {
+    "signIn": "Sign in",
+    "register": "Create account"
+  },
+  "quickShop": {
+    "title": "Quick Shop",
+    "counterInput": "Counter Input",
+    "addFor": "Add to cart for {{price}} €"
+  },
+  "cart": {
+    "title": "Your cart",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "totalInfo": "Shipping and taxes calculated at checkout.",
+    "checkout": "Checkout",
+    "or": "or",
+    "continueShopping": "Continue shopping"
+  },
+  "productDetail": {
+    "add": "Add",
+    "comment": "Comment"
+  },
+  "comment": {
+    "showMore": "Show more",
+    "report": "Report the comment"
+  }
+}
