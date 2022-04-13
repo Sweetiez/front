@@ -1,4 +1,4 @@
-FROM node:16-alpine as build-step
+FROM node:17-alpine as build-step
 
 ARG REACT_APP_API_ENDPOINT
 
