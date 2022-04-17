@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Header: React.FC = () => {
   return (
     <>
-      <div className="sticky top-0 z-40 min-w-full h-24 container bg-indigo-500 shadow">
+      <div className="sticky top-0 z-40 min-w-full h-24 container bg-beige-100 shadow">
         <div className="grid grid-cols-6 justify-between items-center h-full">
           <div />
           <div className="flex items-center -mt-8">
