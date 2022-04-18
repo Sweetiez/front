@@ -1,6 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const CheckoutCustomerInfo: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="grid grid-cols-6">
@@ -9,7 +12,7 @@ const CheckoutCustomerInfo: React.FC = () => {
             <div className="-mx-3 md:flex mb-6">
               <div className="md:w-1/2 px-3 mb-6 md:mb-0">
                 <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-                  First Name
+                  {t('checkout.customerDetail.firstName')}
                 </label>
                 <input
                   className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
@@ -21,7 +24,7 @@ const CheckoutCustomerInfo: React.FC = () => {
               </div>
               <div className="md:w-1/2 px-3">
                 <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-                  Last Name
+                  {t('checkout.customerDetail.lastName')}
                 </label>
                 <input
                   className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
@@ -35,7 +38,7 @@ const CheckoutCustomerInfo: React.FC = () => {
             <div className="-mx-3 md:flex mb-6">
               <div className="md:w-full px-3">
                 <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-                  Email
+                  {t('checkout.customerDetail.email')}
                 </label>
                 <input
                   className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
@@ -49,7 +52,7 @@ const CheckoutCustomerInfo: React.FC = () => {
             <div className="-mx-3 md:flex mb-6">
               <div className="md:w-full px-3">
                 <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-                  Phone Number
+                  {t('checkout.customerDetail.phone')}
                 </label>
                 <input
                   className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
@@ -63,7 +66,7 @@ const CheckoutCustomerInfo: React.FC = () => {
             <div className="-mx-3 md:flex mb-2">
               <div className="md:w-1/2 px-3 mb-6 md:mb-0">
                 <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-                  Street
+                  {t('checkout.customerDetail.address')}
                 </label>
                 <input
                   className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
@@ -75,7 +78,7 @@ const CheckoutCustomerInfo: React.FC = () => {
               </div>
               <div className="md:w-1/2 px-3 mb-6 md:mb-0">
                 <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-                  City
+                  {t('checkout.customerDetail.city')}
                 </label>
                 <input
                   className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
@@ -87,7 +90,7 @@ const CheckoutCustomerInfo: React.FC = () => {
               </div>
               <div className="md:w-1/2 px-3">
                 <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-                  Zip
+                  {t('checkout.customerDetail.zip')}
                 </label>
                 <input
                   className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
@@ -103,7 +106,7 @@ const CheckoutCustomerInfo: React.FC = () => {
       </div>
       <div className="grid grid-cols-6">
         <button className="col-start-3 col-end-5 bg-gold-100 transform transition duration-200 hover:scale-105 text-white font-bold py-2 px-4 rounded-lg my-9">
-          Next Step
+          {t('checkout.nextStep')}
         </button>
       </div>
     </>
