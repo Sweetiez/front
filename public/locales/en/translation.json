@@ -24,5 +24,21 @@
   "comment": {
     "showMore": "Show more",
     "report": "Report the comment"
+  },
+  "checkout" : {
+    "steps": {
+      "cart": "Cart",
+      "address": "Address",
+      "payment": "Payment",
+      "finished": "Finished"
+    },
+    "cart": {
+      "title": "Your cart",
+      "summary": "Summary",
+      "description": "Description",
+      "unitPrice": "Unit price",
+      "total": "Total"
+    },
+    "nextStep" : "Next step"
   }
 }

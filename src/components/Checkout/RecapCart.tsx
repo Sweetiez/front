@@ -1,14 +1,17 @@
 import React from 'react';
 import CartModel from '../Cart/CartModel';
+import { useTranslation } from 'react-i18next';
 
 interface RecapCartProps {
   cart: CartModel[];
 }
 const RecapCart: React.FC<RecapCartProps> = ({ cart }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col justify-start items-start dark:bg-gray-800 bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
       <p className="mb-4 text-lg md:text-xl dark:text-white font-semibold leading-6 xl:leading-5 text-gray-800">
-        Your Cart
+        {t('checkout.cart.title')}
       </p>
       {cart.map((item, index) => {
         return <RecapCartRow item={item} key={index} />;
@@ -24,6 +27,7 @@ interface RecapCartRowProps {
 }
 
 const RecapCartRow: React.FC<RecapCartRowProps> = ({ item }) => {
+  const { t } = useTranslation();
   return (
     <div className="md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
       <div className="pb-4 md:pb-8 w-full md:w-40">
@@ -44,13 +48,13 @@ const RecapCartRow: React.FC<RecapCartRowProps> = ({ item }) => {
           <div className="flex justify-start items-start flex-col space-y-2">
             <p className="text-sm dark:text-white leading-none text-gray-800">
               <span className="dark:text-gray-400 text-gray-300">
-                Description:{' '}
+                {t('checkout.cart.description')}:{' '}
               </span>{' '}
               {item.item?.description}
             </p>
             <p className="text-sm dark:text-white leading-none text-gray-800">
               <span className="dark:text-gray-400 text-gray-300">
-                Unit price:{' '}
+                {t('checkout.cart.unitPrice')}:{' '}
               </span>{' '}
               {item.item?.price} €
             </p>
