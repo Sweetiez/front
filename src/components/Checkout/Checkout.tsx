@@ -3,6 +3,7 @@ import Page from '../Page/Page';
 import CheckoutSteps from './CheckoutSteps';
 import CheckoutCustomerInfo from './CheckoutCustomerInfo';
 import CheckoutCart from './CheckoutCart';
+import CheckoutPayment from './CheckoutPayment';
 
 const Checkout: React.FC = () => {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -19,13 +20,13 @@ const Checkout: React.FC = () => {
       component = <CheckoutCart handleNext={handleNext} />;
       break;
     case 'address':
-      component = <CheckoutCustomerInfo />;
+      component = <CheckoutCustomerInfo handleNext={handleNext} />;
       break;
     case 'payment':
-      component = <CheckoutCustomerInfo />;
+      component = <CheckoutPayment />;
       break;
     case 'finished':
-      component = <CheckoutCustomerInfo />;
+      component = <CheckoutCustomerInfo handleNext={handleNext} />;
       break;
     default:
       break;
