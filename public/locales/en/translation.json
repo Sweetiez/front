@@ -25,7 +25,7 @@
     "showMore": "Show more",
     "report": "Report the comment"
   },
-  "checkout" : {
+  "checkout": {
     "steps": {
       "cart": "Cart",
       "address": "Address",
@@ -39,6 +39,15 @@
       "unitPrice": "Unit price",
       "total": "Total"
     },
-    "nextStep" : "Next step"
+    "customerDetail": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "phone": "Phone number",
+      "address": "Address",
+      "city": "City",
+      "zip": "Zip"
+    },
+    "nextStep": "Next step"
   }
 }

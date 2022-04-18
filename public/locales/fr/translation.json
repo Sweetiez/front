@@ -39,6 +39,15 @@
       "unitPrice": "Prix unitaire",
       "total": "Total"
     },
+    "customerDetail": {
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Numéro de téléphone",
+      "address": "Adresse",
+      "city": "Ville",
+      "zip": "Code postal"
+    },
     "nextStep": "Continuer"
   }
 }
