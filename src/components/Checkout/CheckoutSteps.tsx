@@ -1,10 +1,12 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface CheckoutStepsProps {
   stepName: string;
 }
 
 const CheckoutSteps: React.FC<CheckoutStepsProps> = ({ stepName }) => {
+  const { t } = useTranslation();
   const steps = ['cart', 'address', 'payment', 'finished'];
 
   const iconBgWhite =
@@ -133,7 +135,9 @@ const CheckoutSteps: React.FC<CheckoutStepsProps> = ({ stepName }) => {
             </div>
           </div>
 
-          <div className="text-xs text-center md:text-base">Cart</div>
+          <div className="text-xs text-center md:text-base">
+            {t('checkout.steps.cart')}
+          </div>
         </div>
 
         <div className="w-1/4">
@@ -175,7 +179,9 @@ const CheckoutSteps: React.FC<CheckoutStepsProps> = ({ stepName }) => {
             </div>
           </div>
 
-          <div className="text-xs text-center md:text-base">Address</div>
+          <div className="text-xs text-center md:text-base">
+            {t('checkout.steps.address')}
+          </div>
         </div>
 
         <div className="w-1/4">
@@ -229,7 +235,9 @@ const CheckoutSteps: React.FC<CheckoutStepsProps> = ({ stepName }) => {
             </div>
           </div>
 
-          <div className="text-xs text-center md:text-base">Payment</div>
+          <div className="text-xs text-center md:text-base">
+            {t('checkout.steps.payment')}
+          </div>
         </div>
 
         <div className="w-1/4">
@@ -271,7 +279,9 @@ const CheckoutSteps: React.FC<CheckoutStepsProps> = ({ stepName }) => {
             </div>
           </div>
 
-          <div className="text-xs text-center md:text-base">Finished</div>
+          <div className="text-xs text-center md:text-base">
+            {t('checkout.steps.finished')}
+          </div>
         </div>
       </div>
     </div>

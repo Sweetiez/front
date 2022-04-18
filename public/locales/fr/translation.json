@@ -24,5 +24,21 @@
   "comment": {
     "showMore": "Afficher plus",
     "report": "Signaler le commentaire"
+  },
+  "checkout": {
+    "steps": {
+      "cart": "Panier",
+      "address": "Adresse",
+      "payment": "Paiement",
+      "finished": "Terminé"
+    },
+    "cart": {
+      "title": "Votre panier",
+      "summary": "Résumé",
+      "description": "Description",
+      "unitPrice": "Prix unitaire",
+      "total": "Total"
+    },
+    "nextStep": "Continuer"
   }
 }
