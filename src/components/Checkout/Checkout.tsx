@@ -8,6 +8,13 @@ import { useCart } from '../../hooks/cart/cartHook';
 const Checkout: React.FC = () => {
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
+  const totalPrice = cart.reduce(
+    (acc, cartItem) =>
+      acc +
+      (cartItem.item?.price ? cartItem.item.price : 0) *
+        (cartItem?.quantity ? cartItem.quantity : 0),
+    0,
+  );
 
   return (
     <Page>
@@ -18,7 +25,7 @@ const Checkout: React.FC = () => {
             <div className="flex flex-col justify-start items-start w-full ">
               <RecapCart cart={cart} />
               <div className="flex justify-center flex-col md:flex-row flex-col items-stretch w-full ">
-                <RecapCartTotalPrice />
+                <RecapCartTotalPrice totalPrice={totalPrice} />
                 <>
                   <div className="flex flex-col justify-center px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 dark:bg-gray-800 space-y-6">
                     <div className="w-full flex justify-center items-center">
