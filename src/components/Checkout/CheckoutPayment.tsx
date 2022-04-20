@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { DateTime } from 'luxon';
+import { IHandleNav } from './IHandleNav';
+import { useTranslation } from 'react-i18next';
 
-const CheckoutPayment: React.FC = () => {
+const CheckoutPayment: React.FC<IHandleNav> = ({
+  handleNext,
+  handlePrevious,
+}) => {
+  const { t } = useTranslation();
   const [cardSide, setCardSide] = useState(true);
   const [cardNumber, setCardNumber] = useState('0000 0000 0000 0000');
   const [cardholder, setCardholder] = useState('Your Name');
@@ -36,131 +42,147 @@ const CheckoutPayment: React.FC = () => {
   }
 
   return (
-    <div className="grid grid-cols-6">
-      <div className="col-start-3 col-end-5 xs:col-start-1 xs:col-end-7">
-        <div
-          className="credit-card w-full shadow-lg mx-auto rounded-xl bg-white flex flex-col"
-          x-data="creditCard"
-        >
-          <header className="flex flex-col justify-center items-center">
-            {cardSide ? (
-              <div className="relative">
-                <img
-                  className="w-full h-auto"
-                  src="https://www.computop-paygate.com/Templates/imagesaboutYou_desktop/images/svg-cards/card-visa-front.png"
-                  alt="front credit card"
-                />
-                <div className="front bg-transparent text-lg w-full text-white px-12 absolute left-0 bottom-24">
-                  <p className="number mb-5 sm:text-xl">
-                    {formatCardNumber(cardNumber)}
-                  </p>
-                  <div className="flex flex-row justify-between">
-                    <p>{cardholder}</p>
-                    <div className="">
-                      <span x-text="expired.month">{expiredMonth}</span>
-                      <span x-show="expired.month !== ''">/</span>
-                      <span x-text="expired.year">{expiredYear}</span>
+    <>
+      <div className="grid grid-cols-6">
+        <div className="col-start-3 col-end-5 xs:col-start-1 xs:col-end-7">
+          <div
+            className="credit-card w-full shadow-lg mx-auto rounded-xl bg-white flex flex-col"
+            x-data="creditCard"
+          >
+            <header className="flex flex-col justify-center items-center">
+              {cardSide ? (
+                <div className="relative">
+                  <img
+                    className="w-full h-auto"
+                    src="https://www.computop-paygate.com/Templates/imagesaboutYou_desktop/images/svg-cards/card-visa-front.png"
+                    alt="front credit card"
+                  />
+                  <div className="front bg-transparent text-lg w-full text-white px-12 absolute left-0 bottom-24">
+                    <p className="number mb-5 sm:text-xl">
+                      {formatCardNumber(cardNumber)}
+                    </p>
+                    <div className="flex flex-row justify-between">
+                      <p>{cardholder}</p>
+                      <div className="">
+                        <span x-text="expired.month">{expiredMonth}</span>
+                        <span x-show="expired.month !== ''">/</span>
+                        <span x-text="expired.year">{expiredYear}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ) : (
-              <div className="relative">
-                <img
-                  className="w-full h-auto"
-                  src="https://www.computop-paygate.com/Templates/imagesaboutYou_desktop/images/svg-cards/card-visa-back.png"
-                  alt=""
-                />
-                <div className="bg-transparent text-white text-xl w-full flex justify-end absolute bottom-20 px-8  sm:bottom-24 right-0 sm:px-12">
-                  <div className="border border-white w-16 h-9 flex justify-center items-center">
-                    <p>{securityCode}</p>
+              ) : (
+                <div className="relative">
+                  <img
+                    className="w-full h-auto"
+                    src="https://www.computop-paygate.com/Templates/imagesaboutYou_desktop/images/svg-cards/card-visa-back.png"
+                    alt=""
+                  />
+                  <div className="bg-transparent text-white text-xl w-full flex justify-end absolute bottom-20 px-8  sm:bottom-24 right-0 sm:px-12">
+                    <div className="border border-white w-16 h-9 flex justify-center items-center">
+                      <p>{securityCode}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </header>
+            <main className="mt-4 p-4">
+              <h1 className="text-xl font-semibold text-gray-700 text-center">
+                Card payment
+              </h1>
+              <div className="">
+                <div className="my-3">
+                  <input
+                    type="tel"
+                    className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+                    placeholder="Card number"
+                    onSelect={() => setCardSide(true)}
+                    maxLength={16}
+                    onChange={(e) => handleCardNumerChange(e)}
+                  />
+                </div>
+                <div className="my-3">
+                  <input
+                    type="text"
+                    className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+                    placeholder="Card holder"
+                    x-model="cardholder"
+                    onSelect={() => setCardSide(true)}
+                    onChange={(e) => setCardholder(e.target.value)}
+                  />
+                </div>
+                <div className="my-3 flex flex-col">
+                  <div className="mb-2">
+                    <label className="text-gray-700">Expired</label>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    <select
+                      name=""
+                      id=""
+                      className="form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+                      x-model="expired.month"
+                      onChange={(e) => setExpiredMonth(e.target.value)}
+                    >
+                      <option value="" disabled>
+                        MM
+                      </option>
+                      {cardMonths.map((month, index) => (
+                        <option key={index} value={month}>
+                          {month}
+                        </option>
+                      ))}
+                    </select>
+                    <select
+                      name=""
+                      id=""
+                      className="form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+                      onChange={(e) => setExpiredYear(e.target.value)}
+                      defaultValue="YY"
+                    >
+                      <option value="" disabled>
+                        YY
+                      </option>
+                      {cardYears.map((year) => (
+                        <option key={year} value={year}>
+                          {year}
+                        </option>
+                      ))}
+                    </select>
+                    <input
+                      type="tel"
+                      className="block w-full col-span-2 px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+                      placeholder="Security code"
+                      onSelect={() => setCardSide(false)}
+                      onChange={(e) => setSecurityCode(e.target.value)}
+                      maxLength={3}
+                    />
                   </div>
                 </div>
               </div>
-            )}
-          </header>
-          <main className="mt-4 p-4">
-            <h1 className="text-xl font-semibold text-gray-700 text-center">
-              Card payment
-            </h1>
-            <div className="">
-              <div className="my-3">
-                <input
-                  type="text"
-                  className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-                  placeholder="Card holder"
-                  x-model="cardholder"
-                  onSelect={() => setCardSide(true)}
-                  onChange={(e) => setCardholder(e.target.value)}
-                />
-              </div>
-              <div className="my-3">
-                <input
-                  type="tel"
-                  className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-                  placeholder="Card number"
-                  onSelect={() => setCardSide(true)}
-                  maxLength={16}
-                  onChange={(e) => handleCardNumerChange(e)}
-                />
-              </div>
-              <div className="my-3 flex flex-col">
-                <div className="mb-2">
-                  <label className="text-gray-700">Expired</label>
-                </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  <select
-                    name=""
-                    id=""
-                    className="form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-                    x-model="expired.month"
-                    onChange={(e) => setExpiredMonth(e.target.value)}
-                  >
-                    <option value="" disabled>
-                      MM
-                    </option>
-                    {cardMonths.map((month, index) => (
-                      <option key={index} value={month}>
-                        {month}
-                      </option>
-                    ))}
-                  </select>
-                  <select
-                    name=""
-                    id=""
-                    className="form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-                    onChange={(e) => setExpiredYear(e.target.value)}
-                    defaultValue="YY"
-                  >
-                    <option value="" disabled>
-                      YY
-                    </option>
-                    {cardYears.map((year) => (
-                      <option key={year} value={year}>
-                        {year}
-                      </option>
-                    ))}
-                  </select>
-                  <input
-                    type="tel"
-                    className="block w-full col-span-2 px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-                    placeholder="Security code"
-                    onSelect={() => setCardSide(false)}
-                    onChange={(e) => setSecurityCode(e.target.value)}
-                    maxLength={3}
-                  />
-                </div>
-              </div>
-            </div>
-          </main>
-          <footer className="mt-6 p-4">
-            <button className="submit-button px-4 py-3 rounded-full bg-blue-300 text-blue-900 focus:ring focus:outline-none w-full text-xl font-semibold transition-colors">
-              Pay now
-            </button>
-          </footer>
+            </main>
+            <footer className="mt-6 p-4">
+              <button className="submit-button px-4 py-3 rounded-full bg-blue-300 text-blue-900 focus:ring focus:outline-none w-full text-xl font-semibold transition-colors">
+                Pay now
+              </button>
+            </footer>
+          </div>
         </div>
       </div>
-    </div>
+      <div className="grid grid-cols-6">
+        <button
+          onClick={handlePrevious}
+          className="col-start-3 col-end-4 bg-gray-400 transform transition duration-200 hover:scale-105 text-white font-bold py-2 px-4 rounded-lg my-9"
+        >
+          {t('checkout.previousStep')}
+        </button>
+        <button
+          onClick={handleNext}
+          className="col-start-4 col-end-5 bg-gold-100 transform transition duration-200 hover:scale-105 text-white font-bold py-2 px-4 rounded-lg my-9"
+        >
+          {t('checkout.nextStep')}
+        </button>
+      </div>
+    </>
   );
 };
 

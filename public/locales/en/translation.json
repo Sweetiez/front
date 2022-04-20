@@ -48,6 +48,8 @@
       "city": "City",
       "zip": "Zip"
     },
-    "nextStep": "Next step"
+    "nextStep": "Next step",
+    "previousStep": "Previous step",
+    "backToShop": "Back to shop"
   }
 }

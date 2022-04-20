@@ -1,8 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { IHandleNext } from './IHandleNext';
+import { IHandleNav } from './IHandleNav';
 
-const CheckoutCustomerInfo: React.FC<IHandleNext> = ({ handleNext }) => {
+const CheckoutCustomerInfo: React.FC<IHandleNav> = ({
+  handleNext,
+  handlePrevious,
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -107,8 +110,14 @@ const CheckoutCustomerInfo: React.FC<IHandleNext> = ({ handleNext }) => {
       </div>
       <div className="grid grid-cols-6">
         <button
+          onClick={handlePrevious}
+          className="col-start-3 col-end-4 bg-gray-400 transform transition duration-200 hover:scale-105 text-white font-bold py-2 px-4 rounded-lg my-9"
+        >
+          {t('checkout.previousStep')}
+        </button>
+        <button
           onClick={handleNext}
-          className="col-start-3 col-end-5 bg-gold-100 transform transition duration-200 hover:scale-105 text-white font-bold py-2 px-4 rounded-lg my-9"
+          className="col-start-4 col-end-5 bg-gold-100 transform transition duration-200 hover:scale-105 text-white font-bold py-2 px-4 rounded-lg my-9"
         >
           {t('checkout.nextStep')}
         </button>
