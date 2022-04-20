@@ -48,6 +48,9 @@
       "city": "Ville",
       "zip": "Code postal"
     },
+    "success": {
+      "title": "Félicitations, votre commande a été validée !"
+    },
     "nextStep": "Continuer",
     "previousStep": "Retour",
     "backToShop": "Retourner au magasin"

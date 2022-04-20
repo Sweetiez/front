@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 const CheckoutSuccess: React.FC = () => {
   const { t } = useTranslation();
+
   return (
     <>
       <div className="grid grid-cols-6">
@@ -20,7 +21,7 @@ const CheckoutSuccess: React.FC = () => {
               loop={false}
             />
             <p className="text-4xl pt-8 font-pompiere content-center">
-              Félicitations, votre commande a été validée !
+              {t('checkout.success.title')}
             </p>
           </div>
           {/*// @ts-ignore*/}
