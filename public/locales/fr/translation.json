@@ -48,6 +48,8 @@
       "city": "Ville",
       "zip": "Code postal"
     },
-    "nextStep": "Continuer"
+    "nextStep": "Continuer",
+    "previousStep": "Retour",
+    "backToShop": "Retourner au magasin"
   }
 }

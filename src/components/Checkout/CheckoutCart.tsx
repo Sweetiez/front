@@ -3,9 +3,9 @@ import { useCart } from '../../hooks/cart/cartHook';
 import { useTranslation } from 'react-i18next';
 import RecapCart from './RecapCart';
 import RecapCartTotalPrice from './RecapCartTotalPrice';
-import { IHandleNext } from './IHandleNext';
+import { IHandleNav } from './IHandleNav';
 
-const CheckoutCart: React.FC<IHandleNext> = ({ handleNext }) => {
+const CheckoutCart: React.FC<IHandleNav> = ({ handleNext }) => {
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
   const { t } = useTranslation();

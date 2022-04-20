@@ -4,6 +4,7 @@ import CheckoutSteps from './CheckoutSteps';
 import CheckoutCustomerInfo from './CheckoutCustomerInfo';
 import CheckoutCart from './CheckoutCart';
 import CheckoutPayment from './CheckoutPayment';
+import CheckoutSuccess from './CheckoutSuccess';
 
 const Checkout: React.FC = () => {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -13,6 +14,10 @@ const Checkout: React.FC = () => {
     setActiveStep(activeStep + 1);
   };
 
+  const handleBack = () => {
+    setActiveStep(activeStep - 1);
+  };
+
   let component;
 
   switch (steps[activeStep]) {
@@ -20,13 +25,20 @@ const Checkout: React.FC = () => {
       component = <CheckoutCart handleNext={handleNext} />;
       break;
     case 'address':
-      component = <CheckoutCustomerInfo handleNext={handleNext} />;
+      component = (
+        <CheckoutCustomerInfo
+          handleNext={handleNext}
+          handlePrevious={handleBack}
+        />
+      );
       break;
     case 'payment':
-      component = <CheckoutPayment />;
+      component = (
+        <CheckoutPayment handleNext={handleNext} handlePrevious={handleBack} />
+      );
       break;
     case 'finished':
-      component = <CheckoutCustomerInfo handleNext={handleNext} />;
+      component = <CheckoutSuccess />;
       break;
     default:
       break;
