@@ -44,6 +44,7 @@
       "lastName": "Last name",
       "email": "Email",
       "phone": "Phone number",
+      "pickupDate": "Order pick-up date",
       "address": "Address",
       "city": "City",
       "zip": "Zip"

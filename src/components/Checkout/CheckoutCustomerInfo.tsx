@@ -46,7 +46,7 @@ const CheckoutCustomerInfo: React.FC<IHandleNav> = ({
                 </label>
                 <input
                   className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
-                  id="grid-password"
+                  id="grid-mail"
                   type="email"
                   placeholder="email@example.com"
                   required={true}
@@ -63,6 +63,19 @@ const CheckoutCustomerInfo: React.FC<IHandleNav> = ({
                   id="grid-password"
                   type="tel"
                   placeholder="06.00.00.00.00"
+                  required={true}
+                />
+              </div>
+            </div>
+            <div className="-mx-3 md:flex mb-6">
+              <div className="md:w-full px-3">
+                <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
+                  {t('checkout.customerDetail.pickupDate')}
+                </label>
+                <input
+                  className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
+                  id="grid-pickup-date"
+                  type="date"
                   required={true}
                 />
               </div>
