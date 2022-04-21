@@ -44,7 +44,7 @@ const CheckoutPayment: React.FC<IHandleNav> = ({
   return (
     <>
       <div className="grid grid-cols-6">
-        <div className="col-start-3 col-end-5 xs:col-start-1 xs:col-end-7">
+        <div className="xl:col-start-3 xl:col-end-5 md:col-start-2 md:col-end-6  col-start-1 col-end-7">
           <div
             className="credit-card w-full shadow-lg mx-auto rounded-xl bg-white flex flex-col"
             x-data="creditCard"
@@ -57,8 +57,8 @@ const CheckoutPayment: React.FC<IHandleNav> = ({
                     src="https://www.computop-paygate.com/Templates/imagesaboutYou_desktop/images/svg-cards/card-visa-front.png"
                     alt="front credit card"
                   />
-                  <div className="front bg-transparent text-lg w-full text-white px-12 absolute left-0 bottom-24">
-                    <p className="number mb-5 sm:text-xl">
+                  <div className="front bg-transparent text-lg w-full text-white px-12 absolute left-0  bottom-1/4">
+                    <p className="mb-5 text-xl ">
                       {formatCardNumber(cardNumber)}
                     </p>
                     <div className="flex flex-row justify-between">
