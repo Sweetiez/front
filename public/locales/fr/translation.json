@@ -1,4 +1,9 @@
 {
+  "navigation": {
+    "sweets": "Mignardises",
+    "recipes": "Recettes",
+    "events": "Événements"
+  },
   "menu": {
     "signIn": "Se connecter",
     "register": "Créer un compte"

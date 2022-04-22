@@ -1,4 +1,9 @@
 {
+  "navigation": {
+    "sweets": "Sweets",
+    "recipes": "Recipes",
+    "events": "Events"
+  },
   "menu": {
     "signIn": "Sign in",
     "register": "Create account"
