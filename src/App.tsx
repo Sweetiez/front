@@ -3,6 +3,7 @@ import './App.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Landing from './components/Landing';
+import Checkout from "./components/Checkout/Checkout";
 
 function App() {
   const queryClient = new QueryClient();
@@ -13,6 +14,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Landing />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
         </Router>
       </QueryClientProvider>

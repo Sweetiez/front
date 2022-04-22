@@ -24,5 +24,36 @@
   "comment": {
     "showMore": "Show more",
     "report": "Report the comment"
+  },
+  "checkout": {
+    "steps": {
+      "cart": "Cart",
+      "address": "Address",
+      "payment": "Payment",
+      "finished": "Finished"
+    },
+    "cart": {
+      "title": "Your cart",
+      "summary": "Summary",
+      "description": "Description",
+      "unitPrice": "Unit price",
+      "total": "Total"
+    },
+    "customerDetail": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "phone": "Phone number",
+      "pickupDate": "Order pick-up date",
+      "address": "Address",
+      "city": "City",
+      "zip": "Zip"
+    },
+    "success": {
+      "title": "Thank you for your order!"
+    },
+    "nextStep": "Next step",
+    "previousStep": "Previous step",
+    "backToShop": "Back to shop"
   }
 }

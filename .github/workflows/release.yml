@@ -30,3 +30,9 @@ jobs:
             tags: |
               ${{ secrets.DOCKERHUB_USERNAME }}/front:latest
               ${{ secrets.DOCKERHUB_USERNAME }}/front:${{ steps.get_tag.outputs.tag }}
+
+        - name: Deploy on DEV server
+          uses: fjogeleit/http-request-action@master
+          with:
+            url: ${{ secrets.WEBHOOK_DEV_SERVER_URL }}
+            method: POST
