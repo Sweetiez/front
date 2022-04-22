@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import RecipeModel from './RecipeModel';
+import Stars from '../Stars/Stars';
 
 interface RecipeCardProps {
   recipe: RecipeModel;
@@ -25,6 +26,9 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
               <p className="font-normal text-gray-700 mb-3">
                 {recipe.description}
               </p>
+            </div>
+            <div className="absolute bottom-0 right-0 p-5">
+              <Stars number={recipe.rating ? recipe.rating : 0} />
             </div>
           </Link>
         </div>
