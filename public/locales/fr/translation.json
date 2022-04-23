@@ -60,5 +60,15 @@
     "nextStep": "Continuer",
     "previousStep": "Retour",
     "backToShop": "Retourner au magasin"
+  },
+  "recipes": {
+    "totalTime": "Temps total",
+    "preparationTime": "Préparation",
+    "sleepTime": "Repos",
+    "cookingTime": "Cuisson",
+    "cost": "Coût",
+    "level": "Niveau",
+    "portions": "Personnes",
+    "steps": "Préparation"
   }
 }

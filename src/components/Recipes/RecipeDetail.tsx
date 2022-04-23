@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useRecipeDetail } from '../../hooks/recipes/recipesHooks';
 import Stars from '../Stars/Stars';
 import { RecipeStep } from './RecipeModel';
+import { useTranslation } from 'react-i18next';
 
 interface RecipeStepProps {
   step: RecipeStep | undefined;
@@ -28,6 +29,7 @@ const RecipeStepComponent: React.FC<RecipeStepProps> = ({ step }) => {
 };
 
 const RecipeDetail: React.FC = () => {
+  const { t } = useTranslation();
   let { id } = useParams();
   const { data: recipe } = useRecipeDetail(id ? id : '');
 
@@ -70,7 +72,7 @@ const RecipeDetail: React.FC = () => {
                 <thead className="font-bold">
                   <tr>
                     <th colSpan={3}>
-                      {`Temps total : ${
+                      {`${t('recipes.totalTime')} : ${
                         recipe?.totalTime ? recipe.totalTime : 0
                       } min`}
                     </th>
@@ -78,9 +80,9 @@ const RecipeDetail: React.FC = () => {
                 </thead>
                 <tbody>
                   <tr className="font-bold">
-                    <td>Préparation</td>
-                    <td>Repos</td>
-                    <td>Cuisson</td>
+                    <td>{t('recipes.preparationTime')} </td>
+                    <td>{t('recipes.sleepTime')}</td>
+                    <td>{t('recipes.cookingTime')}</td>
                   </tr>
                   <tr>
                     <td>
@@ -92,12 +94,21 @@ const RecipeDetail: React.FC = () => {
                 </tbody>
               </table>
               <Stars number={recipe?.rating ? recipe.rating : 2.5} />
-              <p>Coût : {recipe?.cost ? recipe.cost : 0} €</p>
-              <p>Niveau : {recipe?.level ? recipe.level : ''}</p>
-              <p>Personnes : {recipe?.portions ? recipe.portions : 0}</p>
+              <p>
+                {t('recipes.cost')} : {recipe?.cost ? recipe.cost : 0} €
+              </p>
+              <p>
+                {t('recipes.level')} : {recipe?.level ? recipe.level : ''}
+              </p>
+              <p>
+                {t('recipes.portions')} :{' '}
+                {recipe?.portions ? recipe.portions : 0}
+              </p>
             </div>
             <div className="col-start-1 col-end-4 my-5">
-              <span className="font-birthstone text-4xl">Préparation</span>
+              <span className="font-birthstone text-4xl">
+                {t('recipes.steps')}
+              </span>
             </div>
 
             {recipe?.steps?.map((step: RecipeStep, index: number) => (
