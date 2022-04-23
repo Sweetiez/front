@@ -68,9 +68,13 @@ const RecipeDetail: React.FC = () => {
             <div className="mx-3 col-start-3 col-end-4">
               <table className="w-full table-fixed bg-gray-200 rounded mb-2">
                 <thead className="font-bold">
-                  {`Temps total : ${
-                    recipe?.totalTime ? recipe.totalTime : 0
-                  } min`}
+                  <tr>
+                    <th colSpan={3}>
+                      {`Temps total : ${
+                        recipe?.totalTime ? recipe.totalTime : 0
+                      } min`}
+                    </th>
+                  </tr>
                 </thead>
                 <tbody>
                   <tr className="font-bold">
