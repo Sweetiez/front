@@ -2,6 +2,7 @@ import { Dialog } from '@headlessui/react';
 import React from 'react';
 import { useCart, setCart } from '../../hooks/cart/cartHook';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 interface CartModalProps {
   setOpenedModal: (openedModal: boolean) => void;
@@ -117,9 +118,11 @@ const CartModal: React.FC<CartModalProps> = ({ setOpenedModal }) => {
         </div>
         <p className="mt-0.5 text-sm text-gray-500">{t('cart.totalInfo')}</p>
         <div className="mt-6">
-          <div className="flex items-center justify-center rounded-md border border-transparent bg-gold-100 px-6 py-3 text-base font-medium text-white shadow-sm transform transition duration-200 hover:scale-105">
-            {t('cart.checkout')}
-          </div>
+          <Link to="/checkout">
+            <div className="flex items-center justify-center rounded-md border border-transparent bg-gold-100 px-6 py-3 text-base font-medium text-white shadow-sm transform transition duration-200 hover:scale-105">
+              {t('cart.checkout')}
+            </div>
+          </Link>
         </div>
         <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
           <p>

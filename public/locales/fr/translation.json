@@ -1,4 +1,9 @@
 {
+  "navigation": {
+    "sweets": "Mignardises",
+    "recipes": "Recettes",
+    "events": "Événements"
+  },
   "menu": {
     "signIn": "Se connecter",
     "register": "Créer un compte"
@@ -24,5 +29,46 @@
   "comment": {
     "showMore": "Afficher plus",
     "report": "Signaler le commentaire"
+  },
+  "checkout": {
+    "steps": {
+      "cart": "Panier",
+      "address": "Adresse",
+      "payment": "Paiement",
+      "finished": "Terminé"
+    },
+    "cart": {
+      "title": "Votre panier",
+      "summary": "Résumé",
+      "description": "Description",
+      "unitPrice": "Prix unitaire",
+      "total": "Total"
+    },
+    "customerDetail": {
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Numéro de téléphone",
+      "pickupDate": "Date de récupération de la commande",
+      "address": "Adresse",
+      "city": "Ville",
+      "zip": "Code postal"
+    },
+    "success": {
+      "title": "Félicitations, votre commande a été validée !"
+    },
+    "nextStep": "Continuer",
+    "previousStep": "Retour",
+    "backToShop": "Retourner au magasin"
+  },
+  "recipes": {
+    "totalTime": "Temps total",
+    "preparationTime": "Préparation",
+    "sleepTime": "Repos",
+    "cookingTime": "Cuisson",
+    "cost": "Coût",
+    "level": "Niveau",
+    "portions": "Personnes",
+    "steps": "Préparation"
   }
 }
