@@ -12,13 +12,12 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
     <>
       <div className="relative my-5 mx-5 flex flex-wrap justify-center">
         <div className="relative min-w-full shadow-md rounded-2xl py-0 my-0 cursor-pointer transform transition duration-500 hover:scale-110 ">
-          <Link to="">
+          <Link to={'/recipes/' + recipe.id}>
             <img
               className="rounded-t-lg"
-              src={recipe.image}
+              src={recipe.images ? recipe.images[0] : ''}
               alt="recipe_image"
             />
-
             <div className="p-5">
               <h5 className="text-gray-900 font-bold text-2xl tracking-tight mb-2">
                 {recipe.name}

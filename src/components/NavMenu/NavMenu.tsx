@@ -71,8 +71,9 @@ const NavMenu: React.FC = () => {
                 </div>
 
                 <div className="border-t border-gray-200 py-6 px-4 space-y-6">
-                  {navigation.pages.map((page) => (
+                  {navigation.pages.map((page, index) => (
                     <Link
+                      key={index}
                       to={page.link}
                       className="-m-2 p-2 block font-medium text-gray-900 font-birthstone text-2xl"
                     >
