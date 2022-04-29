@@ -6,6 +6,7 @@ import Landing from './components/Landing';
 import Checkout from './components/Checkout/Checkout';
 import Recipes from './components/Recipes/Recipes';
 import RecipeDetail from './components/Recipes/RecipeDetail';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
   const queryClient = new QueryClient();
@@ -19,6 +20,7 @@ function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/recipes" element={<Recipes />} />
             <Route path="/recipes/:id" element={<RecipeDetail />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
       </QueryClientProvider>

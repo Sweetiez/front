@@ -4,7 +4,7 @@ import getSvg from '../../assets/icons';
 interface ButtonProps {
   label?: string;
   svg?: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const LabelButton: React.FC<ButtonProps> = ({ label, svg, onClick }) => {
