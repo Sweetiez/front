@@ -9,6 +9,7 @@ import CommentCard from '../Comment/CommentCard';
 import { useTranslation } from 'react-i18next';
 import Stepper from '../Stepper/Stepper';
 import { setCart, useCart } from '../../hooks/cart/cartHook';
+import LabelButton from '../Button/LabelButton';
 
 interface ProductModalProps {
   manageCloseClick: () => void;
@@ -23,6 +24,17 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
   const [itemCount, setItemCount] = useState<string | undefined>('1');
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
+
+  const manageAdd = () => {
+    setCart([
+      ...cart,
+      {
+        item: product,
+        quantity: itemCount ? +itemCount : 1,
+      },
+    ]);
+    manageCloseClick();
+  };
 
   return (
     <>
@@ -53,11 +65,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
             </>
           )}
 
-          <div
-            className="flex justify-around items-center
-            //                px-6 py-1 bg-white shadow-sm"
-            //   className="flex justify-center items-center"
-          >
+          <div className="flex justify-around items-center px-6 py-1 bg-white shadow-sm">
             <div className="ml-4 mb-4 flex lg:ml-0">
               {/*// @ts-ignore*/}
               <Lottie
@@ -69,46 +77,13 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
             </div>
             <h1 className="mx-3 font-semibold text-lg">{product.price}€</h1>
             {/* Stepper */}
-            <div className="flex justify-center">
+            <div className="flex justify-center ">
               <Stepper itemCount={itemCount} setItemCount={setItemCount} />
-              <button
-                className="grid grid-cols-2 r-0 bg-gold-100 transform transition duration-200 hover:scale-105 items-center text-white font-bold text-xs px-3 py-1 rounded-lg shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
-                type="button"
-                // onClick={() => manageAddClick()}
-                onClick={() => {
-                  setCart([
-                    ...cart,
-                    {
-                      item: product,
-                      quantity: itemCount ? +itemCount : 1,
-                    },
-                  ]);
-                  manageCloseClick();
-                }}
-              >
-                <span className="text-xs content-center">
-                  {t('productDetail.add')}
-                </span>
-                <svg
-                  className="h-6 w-6 pl-1"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                  stroke="currentColor"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" />
-                  <line x1="3" y1="12" x2="6" y2="12" />
-                  <line x1="12" y1="3" x2="12" y2="6" />
-                  <line x1="7.8" y1="7.8" x2="5.6" y2="5.6" />
-                  <line x1="16.2" y1="7.8" x2="18.4" y2="5.6" />
-                  <line x1="7.8" y1="16.2" x2="5.6" y2="18.4" />
-                  <path d="M12 12l9 3l-4 2l-2 4l-3 -9" />
-                </svg>
-              </button>
+              <LabelButton
+                label={t('productDetail.add')}
+                svg="add"
+                onClick={manageAdd}
+              />
             </div>
           </div>
           <div className="py-4 px-6">
@@ -124,34 +99,12 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
               {product.description}
             </p>
 
-            <div className="flex justify-end">
-              <button
-                data-tip="test"
-                data-for="test"
-                className="grid grid-flow-col auto-cols-max transform transition duration-200 hover:scale-105 r-0 mt-4 bg-gold-100 items-center text-white font-bold text-xs px-3 py-1 rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-2 mb-1 ease-linear transition-all duration-150"
-                type="button"
-              >
-                <span className="text-xs content-center">
-                  {t('productDetail.comment')}
-                </span>
-                <svg
-                  className="h-6 w-6 pl-1"
-                  width="17"
-                  height="17"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M12 19l7-7 3 3-7 7-3-3z" />
-                  <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
-                  <path d="M2 2l7.586 7.586" />
-                  <circle cx="11" cy="11" r="2" />
-                </svg>
-              </button>
+            <div className="flex justify-end mt-4">
+              <LabelButton
+                svg="pen"
+                label={t('productDetail.comment')}
+                onClick={() => {}}
+              />
             </div>
             {product.comments!.map((comment) => (
               <CommentCard key={comment.id} comment={comment} />
