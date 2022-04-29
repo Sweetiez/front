@@ -4,6 +4,11 @@
     "recipes": "Recipes",
     "events": "Events"
   },
+  "notFound": {
+    "title": "Sorry we couldn't find this page.",
+    "subtitle": "But dont worry, you can find plenty of other thing on our homepage.",
+    "backToHome": "Go back to homepage"
+  },
   "menu": {
     "signIn": "Sign in",
     "register": "Create account"

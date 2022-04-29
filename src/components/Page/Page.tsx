@@ -1,19 +1,19 @@
 import { ReactElement } from 'react';
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from './Header';
+import Footer from './Footer';
 
 interface PageProps {
-    children: React.ReactElement | ReactElement[];
+  children: React.ReactElement | ReactElement[];
 }
 
 const Page: React.FC<PageProps> = ({ children }) => {
-    return (
-        <div className="min-h-screen min-w-screen">
-            <Header />
-            {children}
-            <Footer />
-        </div>
-    );
+  return (
+    <div className="flex flex-col h-screen justify-between">
+      <Header />
+      {children}
+      <Footer />
+    </div>
+  );
 };
 
 export default Page;
