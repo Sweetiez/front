@@ -33,11 +33,11 @@ const Shop: React.FC = () => {
 
   return (
     <>
-      <div className="py-5 container w-8/12 lg:w-11/12 mx-auto">
+      <div className="pb-5">
         {products[0].images?.length === 1 ? (
           <img
             key="carousel"
-            className="md:h-80 h-40 w-96 object-cover object-center rounded-3xl"
+            className="md:h-80 h-40 w-96 object-cover object-center"
             src={products[0].images[0]}
             alt="avatar"
             onClick={manageProductDetailClick}
@@ -54,13 +54,13 @@ const Shop: React.FC = () => {
                 swipeable={false}
                 animationHandler={fadeAnimationHandler}
                 interval={3000}
-                className="rounded-3xl overflow-hidden transform transition duration-500 hover:scale-105"
+                className="overflow-hidden"
                 onClickItem={() => manageProductDetailClick(products[0])}
               >
                 {products[0].images.map((image: string, index: number) => (
                   <div key={index}>
                     <img
-                      className="md:h-80 h-40 object-cover object-center xs:object-contain rounded-3xl"
+                      className="md:h-80 h-40 object-cover object-center xs:object-contain"
                       src={image}
                       alt="avatar"
                     />
