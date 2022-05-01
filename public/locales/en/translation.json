@@ -13,6 +13,17 @@
     "signIn": "Sign in",
     "register": "Create account"
   },
+  "authentication": {
+    "Login": {
+      "title": "Already registered? Sign In",
+      "email": "Email",
+      "password": "Password",
+      "forgotPassword": "Forgot Password?",
+      "signIn": "Sign In",
+      "noAccount": "Don't have an account?",
+      "register": "Registration"
+    }
+  },
   "quickShop": {
     "title": "Quick Shop",
     "counterInput": "Counter Input",

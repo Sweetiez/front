@@ -13,6 +13,17 @@
     "signIn": "Se connecter",
     "register": "Créer un compte"
   },
+  "authentication": {
+    "login": {
+      "title": "Déjà inscrit ? Connectez-vous",
+      "email": "Adresse email",
+      "password": "Mot de passe",
+      "forgotPassword": "Mot de passe oublié?",
+      "signIn": "Se connecter",
+      "noAccount": "Vous n'avez pas de compte?",
+      "register": "Inscription"
+    }
+  },
   "quickShop": {
     "title": "Panier Papide",
     "counterInput": "Compteur d'item",
