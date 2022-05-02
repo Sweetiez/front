@@ -1,5 +1,5 @@
 import { Dialog, Popover, Transition } from '@headlessui/react';
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 import { MenuIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
 import cakeAnimation from '../../assets/lotties/cakerun.json';
 import CartModal from '../Cart/CartModal';
@@ -7,7 +7,10 @@ import { useCart } from '../../hooks/cart/cartHook';
 import { useTranslation } from 'react-i18next';
 import Lottie from 'react-lottie-player';
 import { Link } from 'react-router-dom';
-import Login from '../Login/Login';
+import LoginForm from '../Authentication/LoginForm';
+import RegisterForm from '../Authentication/RegisterForm';
+import modalContentEnum from './ModalContentEnum';
+import ForgottenPasswordForm from '../Authentication/ForgottenPasswordForm';
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
@@ -15,11 +18,33 @@ function classNames(...classes: any[]) {
 
 const NavMenu: React.FC = () => {
   const [open, setOpen] = useState(false);
+  const [AuthModalState, setAuthModalState] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [modalState, setModalState] = useState(modalContentEnum.LOGIN);
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
   const { t } = useTranslation();
-  const [AuthModalState, setAuthModalState] = useState(false);
+
+  const manageModalContentClick = useCallback(() => {
+    setAuthModalState(true);
+    setModalState(modalContentEnum.LOGIN);
+  }, []);
+
+  let modalContent;
+  switch (modalState) {
+    case modalContentEnum.LOGIN:
+      modalContent = <LoginForm setModalContent={setModalState} />;
+      break;
+    case modalContentEnum.REGISTER:
+      modalContent = <RegisterForm setModalContent={setModalState} />;
+      break;
+    case modalContentEnum.FORGOTTEN_PASSWORD:
+      modalContent = <ForgottenPasswordForm setModalContent={setModalState} />;
+      break;
+    default:
+      modalContent = <LoginForm setModalContent={setModalState} />;
+  }
+
   const navigation = {
     pages: [
       { name: t('navigation.sweets'), link: '/' },
@@ -157,7 +182,7 @@ const NavMenu: React.FC = () => {
                   <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                     <div
                       className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                      onClick={() => setAuthModalState(true)}
+                      onClick={() => manageModalContentClick()}
                     >
                       {t('menu.signIn')}
                     </div>
@@ -223,7 +248,7 @@ const NavMenu: React.FC = () => {
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <div className=" inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                <Login />
+                {modalContent}
               </div>
             </Transition.Child>
           </div>

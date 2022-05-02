@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import ModalContent from '../NavMenu/ModalContentEnum';
 
-const Login: React.FC = () => {
+interface LoginProps {
+  setModalContent: (content: ModalContent) => void;
+}
+
+const LoginForm: React.FC<LoginProps> = ({ setModalContent }) => {
   const { t } = useTranslation();
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePassword = () => {
@@ -25,7 +30,7 @@ const Login: React.FC = () => {
         </div>
         <div className="mb-1 flex items-center ">
           <input
-            className="shadow appearance-none -mr-8 border-gray-400 border-red rounded w-full py-2 px-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold-100 focus:border-transparent"
+            className="shadow appearance-none -mr-8 border-gray-400 rounded w-full py-2 px-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold-100 focus:border-transparent"
             id="password"
             type={passwordShown ? 'text' : 'password'}
             placeholder={t('authentication.login.password')}
@@ -72,13 +77,14 @@ const Login: React.FC = () => {
           <a
             className="inline-block hover:text-gold-100 text-sm text-blue"
             href="#"
+            onClick={() => setModalContent(ModalContent.FORGOTTEN_PASSWORD)}
           >
             {t('authentication.login.forgotPassword')}
           </a>
         </div>
         <div className="flex justify-center">
           <button
-            className="bg-gold-100 hover:bg-blue-dark text-white font-bold py-2 px-12 rounded"
+            className="bg-gold-100 hover:bg-blue-dark text-white font-bold py-2 px-12 rounded transform transition duration-200 hover:scale-105"
             type="button"
           >
             {t('authentication.login.signIn')}
@@ -87,7 +93,11 @@ const Login: React.FC = () => {
       </div>
       <div className="flex justify-center border-t py-4">
         <span>{t('authentication.login.noAccount')}</span>
-        <a className="ml-1 hover:text-gold-100 underline" href="#">
+        <a
+          className="ml-1 hover:text-gold-100 underline"
+          href="#"
+          onClick={() => setModalContent(ModalContent.REGISTER)}
+        >
           {t('authentication.login.register')}
         </a>
       </div>
@@ -95,4 +105,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default LoginForm;

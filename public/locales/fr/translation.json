@@ -22,6 +22,24 @@
       "signIn": "Se connecter",
       "noAccount": "Vous n'avez pas de compte?",
       "register": "Inscription"
+    },
+    "register": {
+      "title": "Nouveau client ? Inscrivez-vous",
+      "lastname": "Nom",
+      "firstname": "Prénom",
+      "email": "Adresse email",
+      "password": "Mot de passe",
+      "agree": "J'accepte les",
+      "cgu": "conditions générales",
+      "signUp": "S'inscrire",
+      "haveAccount": "Vous avez déjà un compte?",
+      "signIn": "Connexion"
+    },
+    "forgottenPassword": {
+      "title": "Mot de passe oublié ?",
+      "email": "Adresse email",
+      "singIn": "Connectez-vous",
+      "submit": "Récupérer mon mot de passe"
     }
   },
   "quickShop": {

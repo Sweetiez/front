@@ -14,7 +14,7 @@
     "register": "Create account"
   },
   "authentication": {
-    "Login": {
+    "login": {
       "title": "Already registered? Sign In",
       "email": "Email",
       "password": "Password",
@@ -22,6 +22,24 @@
       "signIn": "Sign In",
       "noAccount": "Don't have an account?",
       "register": "Registration"
+    },
+    "register": {
+      "title": "New customer? Sign up",
+      "lastname": "Last name",
+      "firstname": "First name",
+      "email": "Email",
+      "password": "Password",
+      "agree": "I agree with the",
+      "cgu": "general conditions",
+      "signUp": "Sign up",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in"
+    },
+    "forgottenPassword": {
+      "title": "Forgotten your password?",
+      "email": "Email",
+      "singIn": "Log in",
+      "submit": "Recover my password"
     }
   },
   "quickShop": {
