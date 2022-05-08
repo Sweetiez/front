@@ -74,13 +74,13 @@ const LoginForm: React.FC<LoginProps> = ({ setModalContent }) => {
           </svg>
         </div>
         <div className="flex items-center justify-end mb-8">
-          <a
-            className="inline-block hover:text-gold-100 text-sm text-blue"
-            href="#"
+          <button
+            className="underline text-sm background-transparent ml-1 outline-none hover:text-gold-100 focus:outline-none"
+            type="button"
             onClick={() => setModalContent(ModalContent.FORGOTTEN_PASSWORD)}
           >
             {t('authentication.login.forgotPassword')}
-          </a>
+          </button>
         </div>
         <div className="flex justify-center">
           <button
@@ -93,13 +93,13 @@ const LoginForm: React.FC<LoginProps> = ({ setModalContent }) => {
       </div>
       <div className="flex justify-center border-t py-4">
         <span>{t('authentication.login.noAccount')}</span>
-        <a
-          className="ml-1 hover:text-gold-100 underline"
-          href="#"
+        <button
+          className="underline background-transparent ml-1 outline-none hover:text-gold-100 focus:outline-none"
+          type="button"
           onClick={() => setModalContent(ModalContent.REGISTER)}
         >
           {t('authentication.login.register')}
-        </a>
+        </button>
       </div>
     </>
   );

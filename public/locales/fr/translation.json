@@ -29,11 +29,19 @@
       "firstname": "Prénom",
       "email": "Adresse email",
       "password": "Mot de passe",
+      "confirmPassword": "Confirmer mot de passe",
       "agree": "J'accepte les",
       "cgu": "conditions générales",
       "signUp": "S'inscrire",
       "haveAccount": "Vous avez déjà un compte?",
-      "signIn": "Connexion"
+      "signIn": "Connexion",
+      "error": {
+        "lastname": "Le nom doit contenir entre 2 et 24 caractères",
+        "firstname": "Le prénom doit contenir entre 2 et 24 caractères",
+        "passwordConfirmed": "Les mots de passe ne correspondent pas",
+        "passwordLength": "Le mot de passe doit contenir plus de 8 caractères",
+        "passwordFormat": "Le mot de passe doit contenir au moins une minuscule, une majuscule et un chiffre"
+      }
     },
     "forgottenPassword": {
       "title": "Mot de passe oublié ?",

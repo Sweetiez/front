@@ -11,6 +11,7 @@ import LoginForm from '../Authentication/LoginForm';
 import RegisterForm from '../Authentication/RegisterForm';
 import modalContentEnum from './ModalContentEnum';
 import ForgottenPasswordForm from '../Authentication/ForgottenPasswordForm';
+import ModalContentEnum from './ModalContentEnum';
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
@@ -25,9 +26,9 @@ const NavMenu: React.FC = () => {
   const cart = cartData ? cartData : [];
   const { t } = useTranslation();
 
-  const manageModalContentClick = useCallback(() => {
+  const manageModalContentClick = useCallback((content) => {
     setAuthModalState(true);
-    setModalState(modalContentEnum.LOGIN);
+    setModalState(content);
   }, []);
 
   let modalContent;
@@ -182,12 +183,19 @@ const NavMenu: React.FC = () => {
                   <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                     <div
                       className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                      onClick={() => manageModalContentClick()}
+                      onClick={() =>
+                        manageModalContentClick(ModalContentEnum.LOGIN)
+                      }
                     >
                       {t('menu.signIn')}
                     </div>
                     <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                    <div className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                    <div
+                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                      onClick={() =>
+                        manageModalContentClick(ModalContentEnum.REGISTER)
+                      }
+                    >
                       {t('menu.register')}
                     </div>
                   </div>

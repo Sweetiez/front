@@ -29,11 +29,19 @@
       "firstname": "First name",
       "email": "Email",
       "password": "Password",
+      "confirmPassword": "Confirm password",
       "agree": "I agree with the",
       "cgu": "general conditions",
       "signUp": "Sign up",
       "haveAccount": "Already have an account?",
-      "signIn": "Sign in"
+      "signIn": "Sign in",
+      "error": {
+        "lastname": "Lastname must contain between 2 and 24 characters",
+        "firstname": "Firstname must contain between 2 and 24 characters",
+        "passwordConfirmed": "Passwords not matching",
+        "passwordLength": "The password must contain more than 8 characters",
+        "passwordFormat": "The password must contain at least one lower case letter, one upper case letter and one number"
+      }
     },
     "forgottenPassword": {
       "title": "Forgotten your password?",

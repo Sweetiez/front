@@ -22,7 +22,7 @@ const ForgottenPasswordForm: React.FC<ForgottenPasswordProps> = ({
           <input
             className="shadow appearance-none border-gray-400 rounded w-full py-2 px-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold-100 focus:border-transparent"
             id="email"
-            type="text"
+            type="email"
             placeholder={t('authentication.forgottenPassword.email')}
           />
         </div>
@@ -36,13 +36,13 @@ const ForgottenPasswordForm: React.FC<ForgottenPasswordProps> = ({
         </div>
       </div>
       <div className="flex justify-center border-t py-4">
-        <a
-          className="ml-1 hover:text-gold-100 underline"
-          href="#"
+        <button
+          className="underline background-transparent ml-1 outline-none hover:text-gold-100 focus:outline-none"
+          type="button"
           onClick={() => setModalContent(ModalContent.LOGIN)}
         >
           {t('authentication.forgottenPassword.singIn')}
-        </a>
+        </button>
       </div>
     </>
   );
