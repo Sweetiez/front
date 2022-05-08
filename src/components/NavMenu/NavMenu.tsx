@@ -1,5 +1,5 @@
 import { Dialog, Popover, Transition } from '@headlessui/react';
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 import { MenuIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
 import cakeAnimation from '../../assets/lotties/cakerun.json';
 import CartModal from '../Cart/CartModal';
@@ -7,6 +7,11 @@ import { useCart } from '../../hooks/cart/cartHook';
 import { useTranslation } from 'react-i18next';
 import Lottie from 'react-lottie-player';
 import { Link } from 'react-router-dom';
+import LoginForm from '../Authentication/LoginForm';
+import RegisterForm from '../Authentication/RegisterForm';
+import modalContentEnum from './ModalContentEnum';
+import ForgottenPasswordForm from '../Authentication/ForgottenPasswordForm';
+import ModalContentEnum from './ModalContentEnum';
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
@@ -14,10 +19,32 @@ function classNames(...classes: any[]) {
 
 const NavMenu: React.FC = () => {
   const [open, setOpen] = useState(false);
+  const [AuthModalState, setAuthModalState] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [modalState, setModalState] = useState(modalContentEnum.LOGIN);
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
   const { t } = useTranslation();
+
+  const manageModalContentClick = useCallback((content) => {
+    setAuthModalState(true);
+    setModalState(content);
+  }, []);
+
+  let modalContent;
+  switch (modalState) {
+    case modalContentEnum.LOGIN:
+      modalContent = <LoginForm setModalContent={setModalState} />;
+      break;
+    case modalContentEnum.REGISTER:
+      modalContent = <RegisterForm setModalContent={setModalState} />;
+      break;
+    case modalContentEnum.FORGOTTEN_PASSWORD:
+      modalContent = <ForgottenPasswordForm setModalContent={setModalState} />;
+      break;
+    default:
+      modalContent = <LoginForm setModalContent={setModalState} />;
+  }
 
   const navigation = {
     pages: [
@@ -154,11 +181,21 @@ const NavMenu: React.FC = () => {
 
                 <div className="ml-auto flex items-center">
                   <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                    <div className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                    <div
+                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                      onClick={() =>
+                        manageModalContentClick(ModalContentEnum.LOGIN)
+                      }
+                    >
                       {t('menu.signIn')}
                     </div>
                     <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                    <div className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                    <div
+                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                      onClick={() =>
+                        manageModalContentClick(ModalContentEnum.REGISTER)
+                      }
+                    >
                       {t('menu.register')}
                     </div>
                   </div>
@@ -185,6 +222,46 @@ const NavMenu: React.FC = () => {
           </nav>
         </header>
       </div>
+      <Transition.Root show={AuthModalState} as={Fragment}>
+        <Dialog
+          as="div"
+          className="fixed z-10 inset-0 overflow-y-auto"
+          onClose={setAuthModalState}
+        >
+          <div className="flex items-end justify-center min-h-screen w-fit pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+            </Transition.Child>
+            <span
+              className="hidden sm:inline-block sm:align-middle sm:h-screen"
+              aria-hidden="true"
+            >
+              &#8203;
+            </span>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              enterTo="opacity-100 translate-y-0 sm:scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+              leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            >
+              <div className=" inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                {modalContent}
+              </div>
+            </Transition.Child>
+          </div>
+        </Dialog>
+      </Transition.Root>
       <Transition.Root show={cartOpen} as={Fragment}>
         <Dialog
           as="div"
