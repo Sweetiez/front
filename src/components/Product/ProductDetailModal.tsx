@@ -1,25 +1,29 @@
 import React, { useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
-import ProductCardModel from '../Shop/ProductCardModel';
 import Stars from '../Stars/Stars';
 import Lottie from 'react-lottie-player';
 import cooking from '../../assets/lotties/cooking.json';
-import CommentCard from '../Comment/CommentCard';
 import { useTranslation } from 'react-i18next';
 import Stepper from '../Stepper/Stepper';
 import { setCart, useCart } from '../../hooks/cart/cartHook';
 import LabelButton from '../Button/LabelButton';
+import { useSweetDetails } from '../../hooks/products/sweets/sweetsHooks';
+import CommentCard from '../Comment/CommentCard';
 
 interface ProductModalProps {
   manageCloseClick: () => void;
-  product: ProductCardModel;
+  productId: string;
 }
 
 const ProductDetailModal: React.FC<ProductModalProps> = ({
   manageCloseClick,
-  product,
+  productId,
 }) => {
+  const {
+    data: sweetData,
+  } = useSweetDetails(productId);
+  const product = sweetData ? sweetData : undefined;
   const { t } = useTranslation();
   const [itemCount, setItemCount] = useState<string | undefined>('1');
   const { data: cartData } = useCart();
@@ -40,18 +44,18 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
     <>
       <div className="scroll-smooth hover:scroll-auto">
         <div className="max-w overflow-hidden">
-          {product.images?.length === 1 ? (
+          {product?.images?.length === 1 ? (
             <img
               key={'image'}
               className="w-full h-56 object-cover object-center"
-              src={product.images[0]}
+              src={product?.images[0]}
               alt="avatar"
             />
           ) : (
             <>
-              {product.images && (
+              {product?.images && (
                 <Carousel showThumbs={false} showStatus={false}>
-                  {product.images.map((image: string, index: number) => (
+                  {product?.images.map((image: string, index: number) => (
                     <div key={index}>
                       <img
                         className="w-full h-56 object-cover object-center"
@@ -75,7 +79,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 play
               />
             </div>
-            <h1 className="mx-3 font-semibold text-lg">{product.price}€</h1>
+            <h1 className="mx-3 font-semibold text-lg">{product?.price} €</h1>
             {/* Stepper */}
             <div className="flex justify-center ">
               <Stepper itemCount={itemCount} setItemCount={setItemCount} />
@@ -89,14 +93,14 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
           <div className="py-4 px-6">
             <div className="flex justify-between items-center">
               <h1 className="text-4xl font-bold text-gray-800 font-birthstone">
-                {product.name}
+                {product?.name}
               </h1>
             </div>
             <div className="flex flex-col-reverse justify-end mb-1 mr-4 group cursor-pointer">
-              <Stars number={product.rating ? product.rating : 0} />
+              <Stars number={product?.rating ? product.rating : 0} />
             </div>
             <p className="py-2 pt-10 text-xl text-gray-700 font-pompiere font-size-16">
-              {product.description}
+              {product?.description}
             </p>
 
             <div className="flex justify-end mt-4">
@@ -106,7 +110,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 onClick={() => {}}
               />
             </div>
-            {product.comments!.map((comment) => (
+            {product?.comments!.map((comment) => (
               <CommentCard key={comment.id} comment={comment} />
             ))}
           </div>

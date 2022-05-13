@@ -7,6 +7,7 @@ import Checkout from './components/Checkout/Checkout';
 import Recipes from './components/Recipes/Recipes';
 import RecipeDetail from './components/Recipes/RecipeDetail';
 import NotFound from './components/NotFound/NotFound';
+import {ReactQueryDevtools} from "react-query/devtools";
 
 function App() {
   const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </div>
   );

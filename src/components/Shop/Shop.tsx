@@ -1,16 +1,20 @@
 import React, { Fragment, useCallback, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import ProductCard from './ProductCard';
-import { fakeProducts } from '../../assets/FakeProducts';
 import ProductDetailModal from '../Product/ProductDetailModal';
 import QuickShop from './QuickShop';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import '../../assets/css/_carousel.css';
 import { fadeAnimationHandler } from '../../assets/animations/CarouselAnimation';
+import { useStoreList } from '../../hooks/products/sweets/sweetsHooks';
+import { fakeProducts } from '../../assets/FakeProducts';
 
 const Shop: React.FC = () => {
-  const products = fakeProducts;
+  const {
+    data: sweetData,
+  } = useStoreList();
+  const products = sweetData ? sweetData : fakeProducts;
   const [open, setOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(products[0]); // default value?
   const [modalState, setModalState] = useState(false);
@@ -28,8 +32,6 @@ const Shop: React.FC = () => {
   const manageCloseClick = useCallback(() => {
     setOpen(false);
   }, []);
-
-
 
   return (
     <>
@@ -167,7 +169,9 @@ const Shop: React.FC = () => {
                           <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl ">
                             <ProductDetailModal
                               manageCloseClick={manageCloseClick}
-                              product={currentProduct}
+                              productId={
+                                currentProduct.id ? currentProduct.id : ''
+                              }
                             />
                           </div>
                         </div>
