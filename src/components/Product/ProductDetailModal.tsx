@@ -21,10 +21,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
   productId,
 }) => {
   const {
-    isLoading: isSweetsLoading,
-    isError: isSweetsError,
     data: sweetData,
-    error,
   } = useSweetDetails(productId);
   const product = sweetData ? sweetData : undefined;
   const { t } = useTranslation();

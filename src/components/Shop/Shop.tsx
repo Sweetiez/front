@@ -12,10 +12,7 @@ import { fakeProducts } from '../../assets/FakeProducts';
 
 const Shop: React.FC = () => {
   const {
-    isLoading: isSweetsLoading,
-    isError: isSweetsError,
     data: sweetData,
-    error,
   } = useStoreList();
   const products = sweetData ? sweetData : fakeProducts;
   const [open, setOpen] = useState(false);
