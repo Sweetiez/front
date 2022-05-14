@@ -4,9 +4,51 @@
     "recipes": "Recettes",
     "events": "Événements"
   },
+  "notFound": {
+    "title": "Désolé, nous n'avons pas pu trouver cette page.",
+    "subtitle": "Mais ne vous inquiétez pas, vous pouvez trouver beaucoup d'autres choses sur notre page d'accueil.",
+    "backToHome": "Revenir à l'accueil"
+  },
   "menu": {
     "signIn": "Se connecter",
     "register": "Créer un compte"
+  },
+  "authentication": {
+    "login": {
+      "title": "Déjà inscrit ? Connectez-vous",
+      "email": "Adresse email",
+      "password": "Mot de passe",
+      "forgotPassword": "Mot de passe oublié?",
+      "signIn": "Se connecter",
+      "noAccount": "Vous n'avez pas de compte?",
+      "register": "Inscription"
+    },
+    "register": {
+      "title": "Nouveau client ? Inscrivez-vous",
+      "lastname": "Nom",
+      "firstname": "Prénom",
+      "email": "Adresse email",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmer mot de passe",
+      "agree": "J'accepte les",
+      "cgu": "conditions générales",
+      "signUp": "S'inscrire",
+      "haveAccount": "Vous avez déjà un compte?",
+      "signIn": "Connexion",
+      "error": {
+        "lastname": "Le nom doit contenir entre 2 et 24 caractères",
+        "firstname": "Le prénom doit contenir entre 2 et 24 caractères",
+        "passwordConfirmed": "Les mots de passe ne correspondent pas",
+        "passwordLength": "Le mot de passe doit contenir plus de 8 caractères",
+        "passwordFormat": "Le mot de passe doit contenir au moins une minuscule, une majuscule et un chiffre"
+      }
+    },
+    "forgottenPassword": {
+      "title": "Mot de passe oublié ?",
+      "email": "Adresse email",
+      "singIn": "Connectez-vous",
+      "submit": "Récupérer mon mot de passe"
+    }
   },
   "quickShop": {
     "title": "Panier Papide",

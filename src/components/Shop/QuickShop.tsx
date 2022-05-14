@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import ProductCardModel from './ProductCardModel';
 import { setCart, useCart } from '../../hooks/cart/cartHook';
 import Stepper from '../Stepper/Stepper';
+import LabelButton from '../Button/LabelButton';
 
 interface QuickShopProps {
   product: ProductCardModel;
@@ -18,6 +19,17 @@ const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
   const cart = cartData ? cartData : [];
 
   const price = +(itemCount ? itemCount : 1) * unitPrice;
+
+  const manageAdd = () => {
+    setCart([
+      ...cart,
+      {
+        item: product,
+        quantity: itemCount ? +itemCount : 1,
+      },
+    ]);
+    setOpenedModal(false);
+  };
 
   return (
     <>
@@ -60,23 +72,12 @@ const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
           <div className="flex justify-center py-4">
             <Stepper itemCount={itemCount} setItemCount={setItemCount} />
           </div>
-          <button
-            onClick={() => {
-              setCart([
-                ...cart,
-                {
-                  item: product,
-                  quantity: itemCount ? +itemCount : 1,
-                },
-              ]);
-              setOpenedModal(false);
-            }}
-            className="bg-gold-100 transform transition duration-200 hover:scale-105 text-white font-bold py-2 px-4 rounded-lg"
-          >
-            {t('quickShop.addFor', {
+          <LabelButton
+            onClick={manageAdd}
+            label={t('quickShop.addFor', {
               price,
             })}
-          </button>
+          />
         </div>
       </div>
     </>

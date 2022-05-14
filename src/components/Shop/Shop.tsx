@@ -1,16 +1,20 @@
 import React, { Fragment, useCallback, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import ProductCard from './ProductCard';
-import { fakeProducts } from '../../assets/FakeProducts';
 import ProductDetailModal from '../Product/ProductDetailModal';
 import QuickShop from './QuickShop';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import '../../assets/css/_carousel.css';
 import { fadeAnimationHandler } from '../../assets/animations/CarouselAnimation';
+import { useStoreList } from '../../hooks/products/sweets/sweetsHooks';
+import { fakeProducts } from '../../assets/FakeProducts';
 
 const Shop: React.FC = () => {
-  const products = fakeProducts;
+  const {
+    data: sweetData,
+  } = useStoreList();
+  const products = sweetData ? sweetData : fakeProducts;
   const [open, setOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(products[0]); // default value?
   const [modalState, setModalState] = useState(false);
@@ -29,15 +33,13 @@ const Shop: React.FC = () => {
     setOpen(false);
   }, []);
 
-
-
   return (
     <>
-      <div className="py-5 container w-8/12 lg:w-11/12 mx-auto">
+      <div className="pb-5">
         {products[0].images?.length === 1 ? (
           <img
             key="carousel"
-            className="md:h-80 h-40 w-96 object-cover object-center rounded-3xl"
+            className="md:h-80 h-40 w-96 object-cover object-center"
             src={products[0].images[0]}
             alt="avatar"
             onClick={manageProductDetailClick}
@@ -54,13 +56,13 @@ const Shop: React.FC = () => {
                 swipeable={false}
                 animationHandler={fadeAnimationHandler}
                 interval={3000}
-                className="rounded-3xl overflow-hidden transform transition duration-500 hover:scale-105"
+                className="overflow-hidden"
                 onClickItem={() => manageProductDetailClick(products[0])}
               >
                 {products[0].images.map((image: string, index: number) => (
                   <div key={index}>
                     <img
-                      className="md:h-80 h-40 object-cover object-center xs:object-contain rounded-3xl"
+                      className="md:h-80 h-40 object-cover object-center xs:object-contain"
                       src={image}
                       alt="avatar"
                     />
@@ -167,7 +169,9 @@ const Shop: React.FC = () => {
                           <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl ">
                             <ProductDetailModal
                               manageCloseClick={manageCloseClick}
-                              product={currentProduct}
+                              productId={
+                                currentProduct.id ? currentProduct.id : ''
+                              }
                             />
                           </div>
                         </div>
