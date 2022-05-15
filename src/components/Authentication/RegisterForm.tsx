@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import ModalContent from '../NavMenu/ModalContentEnum';
 import Label from '../utils/Label';
 import TextButton from './TextButton';
+import Title from './Title';
 
 interface RegisterProps {
   setModalContent: (content: ModalContent) => void;
@@ -73,11 +74,7 @@ const RegisterForm: React.FC<RegisterProps> = ({ setModalContent }) => {
   return (
     <>
       <div className="px-8 md:px-20 pt-6 pb-8 mb-4 flex flex-col">
-        <div className="py-6">
-          <span className="font-bold font-pompiere text-3xl">
-            {t('authentication.register.title')}
-          </span>
-        </div>
+        <Title label={t('authentication.register.title')} />
         <form onSubmit={registerUser}>
           <div className="mb-4">
             <input
