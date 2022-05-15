@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ModalContent from '../NavMenu/ModalContentEnum';
 import Label from '../utils/Label';
+import TextButton from './TextButton';
 
 interface RegisterProps {
   setModalContent: (content: ModalContent) => void;
@@ -217,12 +218,12 @@ const RegisterForm: React.FC<RegisterProps> = ({ setModalContent }) => {
             />
             <span className="ml-2 text-sm font-semibold">
               {t('authentication.register.agree')}
-              <button
-                className="background-transparent font-semibold ml-1 outline-none text-gold-100 focus:outline-none"
-                type="button"
-              >
-                {t('authentication.register.cgu')}
-              </button>
+              <TextButton
+                setModalContent={() => setModalContent(ModalContent.LOGIN)}
+                label={t('authentication.register.cgu')}
+                color={'text-gold-100'}
+                bold={true}
+              />
             </span>
           </div>
           <div className="flex justify-center mb-2">
@@ -240,13 +241,13 @@ const RegisterForm: React.FC<RegisterProps> = ({ setModalContent }) => {
       </div>
 
       <div className="flex justify-center border-t py-4">
-        <button
-          className="underline background-transparent ml-1 outline-none hover:text-gold-100 focus:outline-none"
-          type="button"
-          onClick={() => setModalContent(ModalContent.LOGIN)}
-        >
-          {t('authentication.register.signIn')}
-        </button>
+        <span>{t('authentication.register.haveAccount')}</span>
+        <TextButton
+          setModalContent={() => setModalContent(ModalContent.LOGIN)}
+          label={t('authentication.register.signIn')}
+          underline={true}
+          small={true}
+        />
       </div>
     </>
   );

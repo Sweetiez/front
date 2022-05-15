@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ModalContent from '../NavMenu/ModalContentEnum';
+import TextButton from './TextButton';
 
 interface LoginProps {
   setModalContent: (content: ModalContent) => void;
@@ -24,7 +25,7 @@ const LoginForm: React.FC<LoginProps> = ({ setModalContent }) => {
           <input
             className="shadow appearance-none border-gray-400 rounded w-full py-2 px-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold-100 focus:border-transparent"
             id="email"
-            type="text"
+            type="email"
             placeholder={t('authentication.login.email')}
           />
         </div>
@@ -74,13 +75,14 @@ const LoginForm: React.FC<LoginProps> = ({ setModalContent }) => {
           </svg>
         </div>
         <div className="flex items-center justify-end mb-8">
-          <button
-            className="underline text-sm background-transparent ml-1 outline-none hover:text-gold-100 focus:outline-none"
-            type="button"
-            onClick={() => setModalContent(ModalContent.FORGOTTEN_PASSWORD)}
-          >
-            {t('authentication.login.forgotPassword')}
-          </button>
+          <TextButton
+            setModalContent={() =>
+              setModalContent(ModalContent.FORGOTTEN_PASSWORD)
+            }
+            label={t('authentication.login.forgotPassword')}
+            small={true}
+            underline={true}
+          />
         </div>
         <div className="flex justify-center">
           <button
@@ -93,13 +95,12 @@ const LoginForm: React.FC<LoginProps> = ({ setModalContent }) => {
       </div>
       <div className="flex justify-center border-t py-4">
         <span>{t('authentication.login.noAccount')}</span>
-        <button
-          className="underline background-transparent ml-1 outline-none hover:text-gold-100 focus:outline-none"
-          type="button"
-          onClick={() => setModalContent(ModalContent.REGISTER)}
-        >
-          {t('authentication.login.register')}
-        </button>
+        <TextButton
+          setModalContent={() => setModalContent(ModalContent.REGISTER)}
+          label={t('authentication.login.register')}
+          small={true}
+          underline={true}
+        />
       </div>
     </>
   );

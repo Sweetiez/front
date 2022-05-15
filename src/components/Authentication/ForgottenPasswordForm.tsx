@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import ModalContent from '../NavMenu/ModalContentEnum';
+import TextButton from './TextButton';
 
 interface ForgottenPasswordProps {
   setModalContent: (content: ModalContent) => void;
@@ -36,13 +37,12 @@ const ForgottenPasswordForm: React.FC<ForgottenPasswordProps> = ({
         </div>
       </div>
       <div className="flex justify-center border-t py-4">
-        <button
-          className="underline background-transparent ml-1 outline-none hover:text-gold-100 focus:outline-none"
-          type="button"
-          onClick={() => setModalContent(ModalContent.LOGIN)}
-        >
-          {t('authentication.forgottenPassword.singIn')}
-        </button>
+        <TextButton
+          setModalContent={() => setModalContent(ModalContent.LOGIN)}
+          label={t('authentication.login.signIn')}
+          small={true}
+          underline={true}
+        />
       </div>
     </>
   );
