@@ -11,9 +11,7 @@ import { useStoreList } from '../../hooks/products/sweets/sweetsHooks';
 import { fakeProducts } from '../../assets/FakeProducts';
 
 const Shop: React.FC = () => {
-  const {
-    data: sweetData,
-  } = useStoreList();
+  const { data: sweetData } = useStoreList();
   const products = sweetData ? sweetData : fakeProducts;
   const [open, setOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(products[0]); // default value?
@@ -139,7 +137,7 @@ const Shop: React.FC = () => {
               <Transition.Root show={open} as={Fragment}>
                 <Dialog
                   as="div"
-                  className="z-50 fixed inset-0 overflow-hidden"
+                  className="z-40 fixed inset-0 overflow-hidden"
                   onClose={setOpen}
                 >
                   <div className="absolute inset-0 overflow-hidden">

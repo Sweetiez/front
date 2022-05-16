@@ -1,5 +1,5 @@
 import { Dialog, Popover, Transition } from '@headlessui/react';
-import React, { Fragment, useMemo, useState } from 'react';
+import React, { Fragment, useCallback, useMemo, useState } from 'react';
 import { MenuIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
 import cakeAnimation from '../../assets/lotties/cakerun.json';
 import CartModal from '../Cart/CartModal';
@@ -11,6 +11,7 @@ import LoginForm from '../Authentication/LoginForm';
 import RegisterForm from '../Authentication/RegisterForm';
 import ForgottenPasswordForm from '../Authentication/ForgottenPasswordForm';
 import ModalContent from './ModalContentEnum';
+import Modal from '../utils/Modal';
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
@@ -32,6 +33,10 @@ const NavMenu: React.FC = () => {
     setAuthModalState(true);
     setModalState(content);
   };
+
+  const manageCloseAuthModal = useCallback(() => {
+    setAuthModalState(false);
+  }, []);
 
   let modalContent = useMemo(() => {
     switch (modalState) {
@@ -114,9 +119,7 @@ const NavMenu: React.FC = () => {
                 <div className="border-t border-gray-200 py-6 px-4 space-y-6">
                   <div
                     className="flow-root"
-                    onClick={() =>
-                      manageModalContentClick(ModalContent.LOGIN)
-                    }
+                    onClick={() => manageModalContentClick(ModalContent.LOGIN)}
                   >
                     {t('menu.signIn')}
                   </div>
@@ -236,46 +239,11 @@ const NavMenu: React.FC = () => {
           </nav>
         </header>
       </div>
-      <Transition.Root show={AuthModalState} as={Fragment}>
-        <Dialog
-          as="div"
-          className="fixed z-10 inset-0 overflow-y-auto"
-          onClose={setAuthModalState}
-        >
-          <div className="flex items-end justify-center min-h-screen w-fit pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-            </Transition.Child>
-            <span
-              className="hidden sm:inline-block sm:align-middle sm:h-screen"
-              aria-hidden="true"
-            >
-              &#8203;
-            </span>
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              enterTo="opacity-100 translate-y-0 sm:scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-              leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            >
-              <div className=" inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                {modalContent}
-              </div>
-            </Transition.Child>
-          </div>
-        </Dialog>
-      </Transition.Root>
+      <Modal
+        modalContent={modalContent}
+        modalState={AuthModalState}
+        setModalState={manageCloseAuthModal}
+      />
       <Transition.Root show={cartOpen} as={Fragment}>
         <Dialog
           as="div"

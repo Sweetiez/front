@@ -70,7 +70,19 @@
   },
   "comment": {
     "showMore": "Afficher plus",
-    "report": "Signaler le commentaire"
+    "report": "Signaler le commentaire",
+    "form": {
+      "title": "Écrire un avis client",
+      "placeholder": "Donnez votre avis . . .",
+      "character": "Caractère",
+      "characters": "Caractères",
+      "max": "Maximum",
+      "submit": "Envoyer",
+      "error": {
+        "rating": "Vous devez attribuer une note",
+        "maxLength": "Votre commentaire doit contenir maximun"
+      }
+    }
   },
   "checkout": {
     "steps": {
