@@ -79,6 +79,7 @@
       "max": "Maximum",
       "submit": "Envoyer",
       "error": {
+        "rating": "Vous devez attribuer une note",
         "maxLength": "Votre commentaire doit contenir maximun"
       }
     }

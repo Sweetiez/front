@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Title from '../Authentication/Title';
 import Stars from '../Stars/Stars';
@@ -11,10 +11,21 @@ const CommentForm: React.FC<CommentFormProps> = () => {
   const [comment, setComment] = useState('');
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
+  const [rating, setRating] = useState(0);
   const maxCharacters = 280;
   const postComment = async (event: any) => {
     event.preventDefault();
+    if (rating === 0) {
+      setMessage(t('comment.form.error.rating'));
+      setStatus('Error');
+      return;
+    }
+    setMessage(t(''));
+    setStatus('');
   };
+  const handleStartClick = useCallback((rating) => {
+    setRating(rating);
+  }, []);
   const handleCommentChange = (event: any) => {
     if (event.target.value.length <= maxCharacters) {
       setComment(event.target.value);
@@ -37,7 +48,7 @@ const CommentForm: React.FC<CommentFormProps> = () => {
         <Title label={t('comment.form.title')} />
         <form onSubmit={postComment}>
           <div className="mb-2">
-            <Stars number={0} active={true} />
+            <Stars number={rating} manageRating={handleStartClick} />
           </div>
 
           <div className="mb-4">
