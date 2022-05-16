@@ -1,5 +1,5 @@
 import { Dialog, Popover, Transition } from '@headlessui/react';
-import React, { Fragment, useCallback, useState } from 'react';
+import React, { Fragment, useMemo, useState } from 'react';
 import { MenuIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
 import cakeAnimation from '../../assets/lotties/cakerun.json';
 import CartModal from '../Cart/CartModal';
@@ -9,9 +9,8 @@ import Lottie from 'react-lottie-player';
 import { Link } from 'react-router-dom';
 import LoginForm from '../Authentication/LoginForm';
 import RegisterForm from '../Authentication/RegisterForm';
-import modalContentEnum from './ModalContentEnum';
 import ForgottenPasswordForm from '../Authentication/ForgottenPasswordForm';
-import ModalContentEnum from './ModalContentEnum';
+import ModalContent from './ModalContentEnum';
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
@@ -21,30 +20,31 @@ const NavMenu: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [AuthModalState, setAuthModalState] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
-  const [modalState, setModalState] = useState(modalContentEnum.LOGIN);
+  const [modalState, setModalState] = useState<ModalContent>(
+    ModalContent.LOGIN,
+  );
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
   const { t } = useTranslation();
 
-  const manageModalContentClick = useCallback((content) => {
+  const manageModalContentClick = (content: ModalContent) => {
+    setOpen(false);
     setAuthModalState(true);
     setModalState(content);
-  }, []);
+  };
 
-  let modalContent;
-  switch (modalState) {
-    case modalContentEnum.LOGIN:
-      modalContent = <LoginForm setModalContent={setModalState} />;
-      break;
-    case modalContentEnum.REGISTER:
-      modalContent = <RegisterForm setModalContent={setModalState} />;
-      break;
-    case modalContentEnum.FORGOTTEN_PASSWORD:
-      modalContent = <ForgottenPasswordForm setModalContent={setModalState} />;
-      break;
-    default:
-      modalContent = <LoginForm setModalContent={setModalState} />;
-  }
+  let modalContent = useMemo(() => {
+    switch (modalState) {
+      case ModalContent.LOGIN:
+        return <LoginForm setModalContent={setModalState} />;
+      case ModalContent.REGISTER:
+        return <RegisterForm setModalContent={setModalState} />;
+      case ModalContent.FORGOTTEN_PASSWORD:
+        return <ForgottenPasswordForm setModalContent={setModalState} />;
+      default:
+        return <LoginForm setModalContent={setModalState} />;
+    }
+  }, [modalState]);
 
   const navigation = {
     pages: [
@@ -112,8 +112,22 @@ const NavMenu: React.FC = () => {
                 </div>
 
                 <div className="border-t border-gray-200 py-6 px-4 space-y-6">
-                  <div className="flow-root">{t('menu.signIn')}</div>
-                  <div className="flow-root">{t('menu.register')}</div>
+                  <div
+                    className="flow-root"
+                    onClick={() =>
+                      manageModalContentClick(ModalContent.LOGIN)
+                    }
+                  >
+                    {t('menu.signIn')}
+                  </div>
+                  <div
+                    className="flow-root"
+                    onClick={() =>
+                      manageModalContentClick(ModalContent.REGISTER)
+                    }
+                  >
+                    {t('menu.register')}
+                  </div>
                 </div>
               </div>
             </Transition.Child>
@@ -184,7 +198,7 @@ const NavMenu: React.FC = () => {
                     <div
                       className="text-sm font-medium text-gray-700 hover:text-gray-800"
                       onClick={() =>
-                        manageModalContentClick(ModalContentEnum.LOGIN)
+                        manageModalContentClick(ModalContent.LOGIN)
                       }
                     >
                       {t('menu.signIn')}
@@ -193,7 +207,7 @@ const NavMenu: React.FC = () => {
                     <div
                       className="text-sm font-medium text-gray-700 hover:text-gray-800"
                       onClick={() =>
-                        manageModalContentClick(ModalContentEnum.REGISTER)
+                        manageModalContentClick(ModalContent.REGISTER)
                       }
                     >
                       {t('menu.register')}
