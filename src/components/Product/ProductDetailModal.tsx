@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import Stars from '../Stars/Stars';
@@ -10,6 +10,8 @@ import { setCart, useCart } from '../../hooks/cart/cartHook';
 import LabelButton from '../Button/LabelButton';
 import { useSweetDetails } from '../../hooks/products/sweets/sweetsHooks';
 import CommentCard from '../Comment/CommentCard';
+import Modal from '../utils/Modal';
+import CommentForm from '../Comment/CommentForm';
 
 interface ProductModalProps {
   manageCloseClick: () => void;
@@ -20,14 +22,17 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
   manageCloseClick,
   productId,
 }) => {
-  const {
-    data: sweetData,
-  } = useSweetDetails(productId);
+  const { data: sweetData } = useSweetDetails(productId);
   const product = sweetData ? sweetData : undefined;
   const { t } = useTranslation();
   const [itemCount, setItemCount] = useState<string | undefined>('1');
+  const [CommentModalState, setCommentModalState] = useState(false);
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
+
+  const commentCloseClick = useCallback(() => {
+    setCommentModalState(false);
+  }, []);
 
   const manageAdd = () => {
     setCart([
@@ -107,13 +112,18 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
               <LabelButton
                 svg="pen"
                 label={t('productDetail.comment')}
-                onClick={() => {}}
+                onClick={() => setCommentModalState(true)}
               />
             </div>
             {product?.comments!.map((comment) => (
               <CommentCard key={comment.id} comment={comment} />
             ))}
           </div>
+          <Modal
+            modalState={CommentModalState}
+            setModalState={commentCloseClick}
+            modalContent={<CommentForm />}
+          />
         </div>
       </div>
     </>
