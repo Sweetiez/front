@@ -70,7 +70,18 @@
   },
   "comment": {
     "showMore": "Show more",
-    "report": "Report the comment"
+    "report": "Report the comment",
+    "form": {
+      "title": "Write a customer review",
+      "placeholder": "Give your feedback . . .",
+      "character": "Character",
+      "characters": "Characters",
+      "max": "Maximum",
+      "submit": "Submit",
+      "error": {
+        "maxLength": "Your comment must contain a maximum of"
+      }
+    }
   },
   "checkout": {
     "steps": {
