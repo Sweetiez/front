@@ -1,9 +1,17 @@
 import React from 'react';
 
-const SkeletonCarousel = () => {
+interface SkeletonCarouselProps {
+  height?: String;
+}
+
+const SkeletonCarousel: React.FC<SkeletonCarouselProps> = ({ height }) => {
   return (
     <>
-      <div className="w-full h-56 animate-pulse bg-gray-200" />
+      <div
+        className={`w-full ${
+          height ? height : 'h-56'
+        } animate-pulse bg-gray-200`}
+      />
     </>
   );
 };

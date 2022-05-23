@@ -9,12 +9,13 @@ import '../../assets/css/_carousel.css';
 import { fadeAnimationHandler } from '../../assets/animations/CarouselAnimation';
 import { useStoreList } from '../../hooks/products/sweets/sweetsHooks';
 import { fakeProducts } from '../../assets/FakeProducts';
+import SkeletonShop from '../utils/Skeleton/SkeletonShop';
 
 const Shop: React.FC = () => {
-  const { data: sweetData } = useStoreList();
-  const products = sweetData ? sweetData : fakeProducts;
+  const { data: sweetData, isLoading: isSweetLoading } = useStoreList();
+  const products = sweetData && sweetData.length !== 0 ? sweetData : [];
   const [open, setOpen] = useState(false);
-  const [currentProduct, setCurrentProduct] = useState(products[0]); // default value?
+  const [currentProduct, setCurrentProduct] = useState(fakeProducts[0]); // default value?
   const [modalState, setModalState] = useState(false);
 
   const manageBasketClick = useCallback((product, state) => {
@@ -30,6 +31,8 @@ const Shop: React.FC = () => {
   const manageCloseClick = useCallback(() => {
     setOpen(false);
   }, []);
+
+  if (isSweetLoading || products.length === 0) return <SkeletonShop />;
 
   return (
     <>
@@ -86,6 +89,7 @@ const Shop: React.FC = () => {
                   openProductDetailClick={manageProductDetailClick}
                   openBasket={manageBasketClick}
                 />
+                // <SkeletonCard/>
               ))}
             </div>
             {/*Modal Cart*/}
