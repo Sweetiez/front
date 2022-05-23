@@ -5,7 +5,7 @@ import SkeletonCarousel from './SkeletonCarousel';
 const SkeletonShop = () => {
   const cards = [];
   for (let i = 0; i < 10; i++) {
-    cards.push(<SkeletonCard key={i} />);
+    cards.push(<SkeletonCard key={i} hasPrice={true} />);
   }
   return (
     <>
