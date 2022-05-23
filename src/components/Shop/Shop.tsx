@@ -40,7 +40,7 @@ const Shop: React.FC = () => {
         {products[0].images?.length === 1 ? (
           <img
             key="carousel"
-            className="md:h-80 h-40 w-96 object-cover object-center"
+            className="md:h-80 h-40 w-full object-cover object-center"
             src={products[0].images[0]}
             alt="avatar"
             onClick={manageProductDetailClick}
@@ -89,7 +89,6 @@ const Shop: React.FC = () => {
                   openProductDetailClick={manageProductDetailClick}
                   openBasket={manageBasketClick}
                 />
-                // <SkeletonCard/>
               ))}
             </div>
             {/*Modal Cart*/}
