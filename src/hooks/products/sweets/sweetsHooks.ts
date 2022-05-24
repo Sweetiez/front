@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { commonRequest } from '../../utils/request';
+import { commonRequest } from '../../common/request';
 import ProductCardModel from '../../../components/Shop/ProductCardModel';
 import ProductDetailModel from '../../../components/Product/ProductDetailModel';
 import BannerModel from '../../../components/Shop/BannerModel';

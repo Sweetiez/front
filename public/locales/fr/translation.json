@@ -11,7 +11,13 @@
   },
   "menu": {
     "signIn": "Se connecter",
-    "register": "Créer un compte"
+    "register": "Créer un compte",
+    "welcome": "Bienvenue",
+    "userMenu": {
+      "myAccount": "Mon compte",
+      "myOrders": "Mes commandes",
+      "logout": "Déconnexion"
+    }
   },
   "authentication": {
     "login": {
@@ -21,7 +27,10 @@
       "forgotPassword": "Mot de passe oublié?",
       "signIn": "Se connecter",
       "noAccount": "Vous n'avez pas de compte?",
-      "register": "Inscription"
+      "register": "Inscription",
+      "error": {
+        "invalidFields": "L'email ou le password n'est pas valide"
+      }
     },
     "register": {
       "title": "Nouveau client ? Inscrivez-vous",

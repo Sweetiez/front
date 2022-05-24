@@ -3,19 +3,52 @@ import { useTranslation } from 'react-i18next';
 import ModalContent from '../NavMenu/ModalContentEnum';
 import TextButton from './TextButton';
 import Title from './Title';
+import LoginRequest from '../../hooks/auth/requests/LoginRequest';
+import { login } from '../../hooks/auth/register';
+import { useToken } from '../../hooks/auth/token';
+import Label from '../utils/Label';
 
 interface LoginProps {
   setModalContent: (content: ModalContent) => void;
+  setModalState: () => void;
 }
 
-const LoginForm: React.FC<LoginProps> = ({ setModalContent }) => {
+const LoginForm: React.FC<LoginProps> = ({
+  setModalContent,
+  setModalState,
+}) => {
   const { t } = useTranslation();
   const [passwordShown, setPasswordShown] = useState(false);
+  const { setToken } = useToken();
+  const [status, setStatus] = useState('');
+  const [message, setMessage] = useState('');
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
+
   const signInUser = async (event: any) => {
     event.preventDefault();
+
+    const request = new LoginRequest(
+      event.target.email.value,
+      event.target.password.value,
+    );
+
+    if (request.username?.trim() === '' || request.password?.trim() === '') {
+      setMessage(t('authentication.login.error.invalidFields'));
+      setStatus('Error');
+      return;
+    }
+
+    try {
+      const response = await login(request);
+      setToken(response);
+      setModalState();
+    } catch (e) {
+      setMessage(t('authentication.login.error.invalidFields'));
+      setStatus('Error');
+      return;
+    }
   };
   return (
     <>
@@ -86,6 +119,9 @@ const LoginForm: React.FC<LoginProps> = ({ setModalContent }) => {
               small={true}
               underline={true}
             />
+          </div>
+          <div className="flex justify-center mb-2">
+            <Label status={status} message={message} />
           </div>
           <div className="flex justify-center">
             <button
