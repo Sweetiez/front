@@ -1,5 +1,11 @@
 import { Dialog, Popover, Transition } from '@headlessui/react';
-import React, { Fragment, useCallback, useMemo, useState } from 'react';
+import React, {
+  Fragment,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react';
+import '../../assets/css/_user-menu.css';
 import { MenuIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
 import cakeAnimation from '../../assets/lotties/cakerun.json';
 import CartModal from '../Cart/CartModal';
@@ -11,7 +17,10 @@ import LoginForm from '../Authentication/LoginForm';
 import RegisterForm from '../Authentication/RegisterForm';
 import ForgottenPasswordForm from '../Authentication/ForgottenPasswordForm';
 import ModalContent from './ModalContentEnum';
+import AuthMenu from './AuthMenu';
+import UserMenu from './UserMenu';
 import Modal from '../utils/Modal';
+import { useTokenAvailable } from '../../hooks/auth/tokenHook';
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
@@ -25,8 +34,20 @@ const NavMenu: React.FC = () => {
     ModalContent.LOGIN,
   );
   const { data: cartData } = useCart();
+  const { data: isTokenAvailable } = useTokenAvailable();
   const cart = cartData ? cartData : [];
   const { t } = useTranslation();
+
+  const AuthSectionContent = isTokenAvailable ? (
+    <UserMenu />
+  ) : (
+    <AuthMenu
+      setLoginModalState={() => manageModalContentClick(ModalContent.LOGIN)}
+      setRegisterModalState={() =>
+        manageModalContentClick(ModalContent.REGISTER)
+      }
+    />
+  );
 
   const manageModalContentClick = (content: ModalContent) => {
     setOpen(false);
@@ -41,15 +62,25 @@ const NavMenu: React.FC = () => {
   let modalContent = useMemo(() => {
     switch (modalState) {
       case ModalContent.LOGIN:
-        return <LoginForm setModalContent={setModalState} />;
+        return (
+          <LoginForm
+            setModalContent={setModalState}
+            setModalState={manageCloseAuthModal}
+          />
+        );
       case ModalContent.REGISTER:
         return <RegisterForm setModalContent={setModalState} />;
       case ModalContent.FORGOTTEN_PASSWORD:
         return <ForgottenPasswordForm setModalContent={setModalState} />;
       default:
-        return <LoginForm setModalContent={setModalState} />;
+        return (
+          <LoginForm
+            setModalContent={setModalState}
+            setModalState={manageCloseAuthModal}
+          />
+        );
     }
-  }, [modalState]);
+  }, [modalState, manageCloseAuthModal]);
 
   const navigation = {
     pages: [
@@ -196,26 +227,29 @@ const NavMenu: React.FC = () => {
                   </div>
                 </Popover.Group>
 
+                {/*<div className="ml-auto flex items-center">*/}
+                {/*  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">*/}
+                {/*    <div*/}
+                {/*      className="text-sm font-medium text-gray-700 hover:text-gray-800"*/}
+                {/*      onClick={() =>*/}
+                {/*        manageModalContentClick(ModalContent.LOGIN)*/}
+                {/*      }*/}
+                {/*    >*/}
+                {/*      {t('menu.signIn')}*/}
+                {/*    </div>*/}
+                {/*    <span className="h-6 w-px bg-gray-200" aria-hidden="true" />*/}
+                {/*    <div*/}
+                {/*      className="text-sm font-medium text-gray-700 hover:text-gray-800"*/}
+                {/*      onClick={() =>*/}
+                {/*        manageModalContentClick(ModalContent.REGISTER)*/}
+                {/*      }*/}
+                {/*    >*/}
+                {/*      {t('menu.register')}*/}
+                {/*    </div>*/}
+                {/*  </div>*/}
+
                 <div className="ml-auto flex items-center">
-                  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                    <div
-                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                      onClick={() =>
-                        manageModalContentClick(ModalContent.LOGIN)
-                      }
-                    >
-                      {t('menu.signIn')}
-                    </div>
-                    <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                    <div
-                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                      onClick={() =>
-                        manageModalContentClick(ModalContent.REGISTER)
-                      }
-                    >
-                      {t('menu.register')}
-                    </div>
-                  </div>
+                  {AuthSectionContent}
 
                   {/* Cart */}
                   <div className="ml-4 flow-root lg:ml-6">

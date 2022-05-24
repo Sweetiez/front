@@ -11,7 +11,13 @@
   },
   "menu": {
     "signIn": "Sign in",
-    "register": "Create account"
+    "register": "Create account",
+    "welcome": "Welcome",
+    "userMenu": {
+      "myAccount": "My account",
+      "myOrders": "My orders",
+      "logout": "Logout"
+    }
   },
   "authentication": {
     "login": {
@@ -21,7 +27,10 @@
       "forgotPassword": "Forgot Password?",
       "signIn": "Sign In",
       "noAccount": "Don't have an account?",
-      "register": "Registration"
+      "register": "Registration",
+      "error": {
+        "invalidFields": "The email or password is invalid"
+      }
     },
     "register": {
       "title": "New customer? Sign up",
