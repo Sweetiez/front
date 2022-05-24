@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import { commonRequest } from '../../utils/request';
 import ProductCardModel from '../../../components/Shop/ProductCardModel';
 import ProductDetailModel from '../../../components/Product/ProductDetailModel';
-import BannerModel from "../../../components/Shop/BannerModel";
+import BannerModel from '../../../components/Shop/BannerModel';
 
 export function useStoreList() {
   return useQuery<ProductCardModel[], Error>(`published-sweets`, async () => {
@@ -28,9 +28,9 @@ export function useSweetDetails(id: string) {
 
 export function useSweetBanner() {
   return useQuery<BannerModel[], Error>(`banner`, async () => {
-      const { data } = await commonRequest({
-        url: `sweets/banner`,
-      });
-      return data;
+    const { data } = await commonRequest({
+      url: `sweets/banner`,
+    });
+    return data;
   });
 }
