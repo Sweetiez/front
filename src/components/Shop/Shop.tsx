@@ -6,7 +6,6 @@ import QuickShop from './QuickShop';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import '../../assets/css/_carousel.css';
-import { fadeAnimationHandler } from '../../assets/animations/CarouselAnimation';
 import {
   useStoreList,
   useSweetBanner,
@@ -55,16 +54,16 @@ const Shop: React.FC = () => {
             {bannerData && (
               <Carousel
                 showThumbs={false}
-                // showArrows={false}
+                showArrows={false}
                 showStatus={false}
-                // autoPlay={true}
-                // infiniteLoop={true}
+                autoPlay={true}
+                infiniteLoop={true}
+                animationHandler="fade"
                 swipeable={false}
-                animationHandler={fadeAnimationHandler}
                 interval={3000}
-                className="overflow-hidden"
-                // onClickItem={(index) => manageProductDetailClick(bannerData[index])}
-                onClickItem={(index) => console.log(bannerData[index])}
+                onClickItem={(index) =>
+                  manageProductDetailClick(bannerData[index])
+                }
               >
                 {bannerData?.map((bannerModel: BannerModel, index: number) => (
                   <div key={index}>
