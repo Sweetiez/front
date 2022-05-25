@@ -1,10 +1,5 @@
-import { Dialog, Popover, Transition } from '@headlessui/react';
-import React, {
-  Fragment,
-  useCallback,
-  useMemo,
-  useState,
-} from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import React, { Fragment, useCallback, useMemo, useState } from 'react';
 import '../../assets/css/_user-menu.css';
 import { MenuIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
 import cakeAnimation from '../../assets/lotties/cakerun.json';
@@ -22,9 +17,9 @@ import UserMenu from './UserMenu';
 import Modal from '../utils/Modal';
 import { useTokenAvailable } from '../../hooks/auth/tokenHook';
 
-function classNames(...classes: any[]) {
-  return classes.filter(Boolean).join(' ');
-}
+// function classNames(...classes: any[]) {
+//   return classes.filter(Boolean).join(' ');
+// }
 
 const NavMenu: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -92,7 +87,7 @@ const NavMenu: React.FC = () => {
 
   return (
     <>
-      <div className="bg-white z-10">
+      <div className="sticky top-8 bg-white z-10">
         {/* Mobile menu */}
         <Transition.Root show={open} as={Fragment}>
           <Dialog
@@ -197,56 +192,28 @@ const NavMenu: React.FC = () => {
                 </div>
 
                 {/* Flyout menus */}
-                <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
+                {/*<Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">*/}
+                <div className="hidden lg:ml-8 lg:block lg:self-stretch">
                   <div className="h-full flex space-x-8">
                     {navigation.pages.map((page) => (
-                      <Popover key={page.name} className="flex">
-                        {({ open }) => (
-                          <>
-                            <Link
-                              to={page.link}
-                              className="relative z-10 flex items-center text-sm font-medium border-b-2 -mb-px pt-px font-birthstone text-2xl"
-                            >
-                              <div className="relative flex">
-                                <Popover.Button
-                                  className={classNames(
-                                    open
-                                      ? 'border-indigo-600 text-indigo-600'
-                                      : 'border-transparent text-gray-700 hover:text-gray-800',
-                                    '',
-                                  )}
-                                >
-                                  {page.name}
-                                </Popover.Button>
-                              </div>
-                            </Link>
-                          </>
-                        )}
-                      </Popover>
+                      // <Popover key={page.name} className="flex">
+                      <div key={page.name} className="flex">
+                        {/*{({ open }) => (*/}
+                        <>
+                          <Link
+                            to={page.link}
+                            className="relative z-10 flex items-center font-medium border-b-2 -mb-px pt-px font-birthstone text-2xl hover:text-gold-100"
+                          >
+                            <div className="relative flex">
+                              <div>{page.name}</div>
+                            </div>
+                          </Link>
+                        </>
+                        {/*)}*/}
+                      </div>
                     ))}
                   </div>
-                </Popover.Group>
-
-                {/*<div className="ml-auto flex items-center">*/}
-                {/*  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">*/}
-                {/*    <div*/}
-                {/*      className="text-sm font-medium text-gray-700 hover:text-gray-800"*/}
-                {/*      onClick={() =>*/}
-                {/*        manageModalContentClick(ModalContent.LOGIN)*/}
-                {/*      }*/}
-                {/*    >*/}
-                {/*      {t('menu.signIn')}*/}
-                {/*    </div>*/}
-                {/*    <span className="h-6 w-px bg-gray-200" aria-hidden="true" />*/}
-                {/*    <div*/}
-                {/*      className="text-sm font-medium text-gray-700 hover:text-gray-800"*/}
-                {/*      onClick={() =>*/}
-                {/*        manageModalContentClick(ModalContent.REGISTER)*/}
-                {/*      }*/}
-                {/*    >*/}
-                {/*      {t('menu.register')}*/}
-                {/*    </div>*/}
-                {/*  </div>*/}
+                </div>
 
                 <div className="ml-auto flex items-center">
                   {AuthSectionContent}
@@ -257,10 +224,12 @@ const NavMenu: React.FC = () => {
                       onClick={() => setCartOpen(true)}
                       className="group -m-2 p-2 flex items-center"
                     >
-                      <ShoppingBagIcon
-                        className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
-                        aria-hidden="true"
-                      />
+                      <button>
+                        <ShoppingBagIcon
+                          className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                          aria-hidden="true"
+                        />
+                      </button>
                       <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
                         {cart.length}
                       </span>
