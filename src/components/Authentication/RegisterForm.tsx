@@ -7,6 +7,9 @@ import Title from './Title';
 import '../../assets/css/_phone-input.css';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
+import RegisterRequest from '../../hooks/auth/requests/RegisterRequest';
+import { register } from '../../hooks/auth/register';
+import {wait} from "@testing-library/user-event/dist/utils";
 
 interface RegisterProps {
   setModalContent: (content: ModalContent) => void;
@@ -73,6 +76,24 @@ const RegisterForm: React.FC<RegisterProps> = ({ setModalContent }) => {
 
     setMessage('');
     setStatus('');
+
+    const request = new RegisterRequest(
+      event.target.lastname.value,
+      event.target.firstname.value,
+      event.target.email.value,
+      event.target.phone.value,
+      event.target.password.value,
+    );
+    try {
+      await register(request);
+      setMessage(t('authentication.register.api_responses.success'));
+      setStatus('Success');
+      await wait(2000);
+      setModalContent(ModalContent.LOGIN);
+    } catch (e) {
+        setMessage(t('authentication.register.api_responses.failure'));
+        setStatus('Error');
+    }
   };
 
   return (
@@ -110,6 +131,7 @@ const RegisterForm: React.FC<RegisterProps> = ({ setModalContent }) => {
 
           <div className="mb-4">
             <PhoneInput
+              id="phone"
               defaultCountry="FR"
               placeholder="Phone number"
               value={value}
