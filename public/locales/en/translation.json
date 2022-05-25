@@ -50,6 +50,10 @@
         "passwordConfirmed": "Passwords not matching",
         "passwordLength": "The password must contain more than 8 characters",
         "passwordFormat": "The password must contain at least one lower case letter, one upper case letter and one number"
+      },
+      "api_responses": {
+        "success": "Your account has been created",
+        "failure": "An error occured while creating your account"
       }
     },
     "forgottenPassword": {
