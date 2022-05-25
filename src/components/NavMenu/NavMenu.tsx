@@ -1,10 +1,5 @@
 import { Dialog, Popover, Transition } from '@headlessui/react';
-import React, {
-  Fragment,
-  useCallback,
-  useMemo,
-  useState,
-} from 'react';
+import React, { Fragment, useCallback, useMemo, useState } from 'react';
 import '../../assets/css/_user-menu.css';
 import { MenuIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
 import cakeAnimation from '../../assets/lotties/cakerun.json';
@@ -92,7 +87,7 @@ const NavMenu: React.FC = () => {
 
   return (
     <>
-      <div className="bg-white z-10">
+      <div className="sticky top-8 bg-white z-10">
         {/* Mobile menu */}
         <Transition.Root show={open} as={Fragment}>
           <Dialog
