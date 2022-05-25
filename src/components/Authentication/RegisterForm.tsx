@@ -86,12 +86,12 @@ const RegisterForm: React.FC<RegisterProps> = ({ setModalContent }) => {
     );
     try {
       await register(request);
-      setMessage(t('authentication.register.api_responses.success'));
+      setMessage(t('authentication.register.apiResponses.success'));
       setStatus('Success');
       await wait(2000);
       setModalContent(ModalContent.LOGIN);
     } catch (e) {
-      setMessage(t('authentication.register.api_responses.failure'));
+      setMessage(t('authentication.register.apiResponses.failure'));
       setStatus('Error');
     }
   };

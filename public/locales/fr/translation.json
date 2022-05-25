@@ -51,7 +51,7 @@
         "passwordLength": "Le mot de passe doit contenir plus de 8 caractères",
         "passwordFormat": "Le mot de passe doit contenir au moins une minuscule, une majuscule et un chiffre"
       },
-      "api_responses": {
+      "apiResponses": {
         "success": "Votre compte a bien été créé",
         "failure": "Une erreur est survenue lors de la création de votre compte"
       }
@@ -94,6 +94,9 @@
       "error": {
         "rating": "Vous devez attribuer une note",
         "maxLength": "Votre commentaire doit contenir maximun"
+      },
+      "apiResponses": {
+        "failure": "Une erreur est survenue lors du traitement de votre évaluation"
       }
     }
   },
