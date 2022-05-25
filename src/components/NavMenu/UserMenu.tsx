@@ -1,11 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useProfile } from '../../hooks/user/users';
+import { logout } from '../../hooks/auth/logout';
 
 const UserMenu = () => {
   const { t } = useTranslation();
+  const profile = useProfile();
 
-  function removeToken() {
-    localStorage.removeItem('access_token');
+  function handleLogout() {
+    logout();
   }
 
   return (
@@ -16,7 +19,7 @@ const UserMenu = () => {
       <div className="group inline-block">
         <button className="outline-none focus:outline-none px-3 py-1 bg-white rounded-sm flex items-center min-w-32">
           <span className="font-medium text-gray-900 font-birthstone text-2xl p-2 block">
-            Fenda
+            {profile?.name}
           </span>
           <span>
             <svg
@@ -37,7 +40,7 @@ const UserMenu = () => {
           </li>
           <li
             className="rounded-sm px-3 py-1 hover:bg-gray-100 font-birthstone text-2xl"
-            onClick={removeToken}
+            onClick={handleLogout}
           >
             {t('menu.userMenu.logout')}
           </li>
