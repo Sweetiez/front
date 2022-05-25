@@ -4,6 +4,9 @@ import ModalContent from '../NavMenu/ModalContentEnum';
 import Label from '../utils/Label';
 import TextButton from './TextButton';
 import Title from './Title';
+import '../../assets/css/_phone-input.css';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
 
 interface RegisterProps {
   setModalContent: (content: ModalContent) => void;
@@ -11,6 +14,7 @@ interface RegisterProps {
 
 const RegisterForm: React.FC<RegisterProps> = ({ setModalContent }) => {
   const { t } = useTranslation();
+  const [value, setValue] = useState<any>();
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordConfirmedShown, setPasswordConfirmedShown] = useState(false);
   const [status, setStatus] = useState('');
@@ -103,6 +107,16 @@ const RegisterForm: React.FC<RegisterProps> = ({ setModalContent }) => {
               required={true}
             />
           </div>
+
+          <div className="mb-4">
+            <PhoneInput
+              defaultCountry="FR"
+              placeholder="Phone number"
+              value={value}
+              onChange={setValue}
+            />
+          </div>
+
           <div className="mb-4 flex items-center">
             <input
               className="shadow appearance-none -mr-8 border-gray-400 rounded w-full py-2 px-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold-100 focus:border-transparent"
