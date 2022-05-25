@@ -11,3 +11,7 @@
   font-size: 36px;
   text-align: center;
 }
+
+.carousel.carousel-slider li.slide.selected {
+  z-index: 0 !important;
+}

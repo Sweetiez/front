@@ -1,5 +1,11 @@
 import { Dialog, Popover, Transition } from '@headlessui/react';
-import React, { Fragment, useCallback, useState } from 'react';
+import React, {
+  Fragment,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react';
+import '../../assets/css/_user-menu.css';
 import { MenuIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
 import cakeAnimation from '../../assets/lotties/cakerun.json';
 import CartModal from '../Cart/CartModal';
@@ -9,9 +15,12 @@ import Lottie from 'react-lottie-player';
 import { Link } from 'react-router-dom';
 import LoginForm from '../Authentication/LoginForm';
 import RegisterForm from '../Authentication/RegisterForm';
-import modalContentEnum from './ModalContentEnum';
 import ForgottenPasswordForm from '../Authentication/ForgottenPasswordForm';
-import ModalContentEnum from './ModalContentEnum';
+import ModalContent from './ModalContentEnum';
+import AuthMenu from './AuthMenu';
+import UserMenu from './UserMenu';
+import Modal from '../utils/Modal';
+import { useTokenAvailable } from '../../hooks/auth/tokenHook';
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
@@ -21,30 +30,57 @@ const NavMenu: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [AuthModalState, setAuthModalState] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
-  const [modalState, setModalState] = useState(modalContentEnum.LOGIN);
+  const [modalState, setModalState] = useState<ModalContent>(
+    ModalContent.LOGIN,
+  );
   const { data: cartData } = useCart();
+  const { data: isTokenAvailable } = useTokenAvailable();
   const cart = cartData ? cartData : [];
   const { t } = useTranslation();
 
-  const manageModalContentClick = useCallback((content) => {
+  const AuthSectionContent = isTokenAvailable ? (
+    <UserMenu />
+  ) : (
+    <AuthMenu
+      setLoginModalState={() => manageModalContentClick(ModalContent.LOGIN)}
+      setRegisterModalState={() =>
+        manageModalContentClick(ModalContent.REGISTER)
+      }
+    />
+  );
+
+  const manageModalContentClick = (content: ModalContent) => {
+    setOpen(false);
     setAuthModalState(true);
     setModalState(content);
+  };
+
+  const manageCloseAuthModal = useCallback(() => {
+    setAuthModalState(false);
   }, []);
 
-  let modalContent;
-  switch (modalState) {
-    case modalContentEnum.LOGIN:
-      modalContent = <LoginForm setModalContent={setModalState} />;
-      break;
-    case modalContentEnum.REGISTER:
-      modalContent = <RegisterForm setModalContent={setModalState} />;
-      break;
-    case modalContentEnum.FORGOTTEN_PASSWORD:
-      modalContent = <ForgottenPasswordForm setModalContent={setModalState} />;
-      break;
-    default:
-      modalContent = <LoginForm setModalContent={setModalState} />;
-  }
+  let modalContent = useMemo(() => {
+    switch (modalState) {
+      case ModalContent.LOGIN:
+        return (
+          <LoginForm
+            setModalContent={setModalState}
+            setModalState={manageCloseAuthModal}
+          />
+        );
+      case ModalContent.REGISTER:
+        return <RegisterForm setModalContent={setModalState} />;
+      case ModalContent.FORGOTTEN_PASSWORD:
+        return <ForgottenPasswordForm setModalContent={setModalState} />;
+      default:
+        return (
+          <LoginForm
+            setModalContent={setModalState}
+            setModalState={manageCloseAuthModal}
+          />
+        );
+    }
+  }, [modalState, manageCloseAuthModal]);
 
   const navigation = {
     pages: [
@@ -112,8 +148,20 @@ const NavMenu: React.FC = () => {
                 </div>
 
                 <div className="border-t border-gray-200 py-6 px-4 space-y-6">
-                  <div className="flow-root">{t('menu.signIn')}</div>
-                  <div className="flow-root">{t('menu.register')}</div>
+                  <div
+                    className="flow-root"
+                    onClick={() => manageModalContentClick(ModalContent.LOGIN)}
+                  >
+                    {t('menu.signIn')}
+                  </div>
+                  <div
+                    className="flow-root"
+                    onClick={() =>
+                      manageModalContentClick(ModalContent.REGISTER)
+                    }
+                  >
+                    {t('menu.register')}
+                  </div>
                 </div>
               </div>
             </Transition.Child>
@@ -179,26 +227,29 @@ const NavMenu: React.FC = () => {
                   </div>
                 </Popover.Group>
 
+                {/*<div className="ml-auto flex items-center">*/}
+                {/*  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">*/}
+                {/*    <div*/}
+                {/*      className="text-sm font-medium text-gray-700 hover:text-gray-800"*/}
+                {/*      onClick={() =>*/}
+                {/*        manageModalContentClick(ModalContent.LOGIN)*/}
+                {/*      }*/}
+                {/*    >*/}
+                {/*      {t('menu.signIn')}*/}
+                {/*    </div>*/}
+                {/*    <span className="h-6 w-px bg-gray-200" aria-hidden="true" />*/}
+                {/*    <div*/}
+                {/*      className="text-sm font-medium text-gray-700 hover:text-gray-800"*/}
+                {/*      onClick={() =>*/}
+                {/*        manageModalContentClick(ModalContent.REGISTER)*/}
+                {/*      }*/}
+                {/*    >*/}
+                {/*      {t('menu.register')}*/}
+                {/*    </div>*/}
+                {/*  </div>*/}
+
                 <div className="ml-auto flex items-center">
-                  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                    <div
-                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                      onClick={() =>
-                        manageModalContentClick(ModalContentEnum.LOGIN)
-                      }
-                    >
-                      {t('menu.signIn')}
-                    </div>
-                    <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                    <div
-                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                      onClick={() =>
-                        manageModalContentClick(ModalContentEnum.REGISTER)
-                      }
-                    >
-                      {t('menu.register')}
-                    </div>
-                  </div>
+                  {AuthSectionContent}
 
                   {/* Cart */}
                   <div className="ml-4 flow-root lg:ml-6">
@@ -222,46 +273,11 @@ const NavMenu: React.FC = () => {
           </nav>
         </header>
       </div>
-      <Transition.Root show={AuthModalState} as={Fragment}>
-        <Dialog
-          as="div"
-          className="fixed z-10 inset-0 overflow-y-auto"
-          onClose={setAuthModalState}
-        >
-          <div className="flex items-end justify-center min-h-screen w-fit pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-            </Transition.Child>
-            <span
-              className="hidden sm:inline-block sm:align-middle sm:h-screen"
-              aria-hidden="true"
-            >
-              &#8203;
-            </span>
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              enterTo="opacity-100 translate-y-0 sm:scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-              leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            >
-              <div className=" inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                {modalContent}
-              </div>
-            </Transition.Child>
-          </div>
-        </Dialog>
-      </Transition.Root>
+      <Modal
+        modalContent={modalContent}
+        modalState={AuthModalState}
+        setModalState={manageCloseAuthModal}
+      />
       <Transition.Root show={cartOpen} as={Fragment}>
         <Dialog
           as="div"

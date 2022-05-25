@@ -6,17 +6,20 @@ import QuickShop from './QuickShop';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import '../../assets/css/_carousel.css';
-import { fadeAnimationHandler } from '../../assets/animations/CarouselAnimation';
-import { useStoreList } from '../../hooks/products/sweets/sweetsHooks';
+import {
+  useStoreList,
+  useSweetBanner,
+} from '../../hooks/products/sweets/sweetsHooks';
 import { fakeProducts } from '../../assets/FakeProducts';
+import SkeletonShop from '../utils/Skeleton/SkeletonShop';
+import BannerModel from './BannerModel';
 
 const Shop: React.FC = () => {
-  const {
-    data: sweetData,
-  } = useStoreList();
-  const products = sweetData ? sweetData : fakeProducts;
+  const { data: sweetData, isLoading: isSweetLoading } = useStoreList();
+  const { data: bannerData } = useSweetBanner();
+  const products = sweetData && sweetData.length !== 0 ? sweetData : [];
   const [open, setOpen] = useState(false);
-  const [currentProduct, setCurrentProduct] = useState(products[0]); // default value?
+  const [currentProduct, setCurrentProduct] = useState(fakeProducts[0]); // default value?
   const [modalState, setModalState] = useState(false);
 
   const manageBasketClick = useCallback((product, state) => {
@@ -33,41 +36,44 @@ const Shop: React.FC = () => {
     setOpen(false);
   }, []);
 
+  if (isSweetLoading || products.length === 0) return <SkeletonShop />;
+
   return (
     <>
       <div className="pb-5">
-        {products[0].images?.length === 1 ? (
+        {bannerData?.length === 1 ? (
           <img
             key="carousel"
-            className="md:h-80 h-40 w-96 object-cover object-center"
-            src={products[0].images[0]}
+            className="md:h-80 h-40 w-full object-cover object-center"
+            src={bannerData[0]?.images}
             alt="avatar"
             onClick={manageProductDetailClick}
           />
         ) : (
           <>
-            {products[0].images && (
+            {bannerData && (
               <Carousel
                 showThumbs={false}
                 showArrows={false}
                 showStatus={false}
                 autoPlay={true}
                 infiniteLoop={true}
+                animationHandler="fade"
                 swipeable={false}
-                animationHandler={fadeAnimationHandler}
                 interval={3000}
-                className="overflow-hidden"
-                onClickItem={() => manageProductDetailClick(products[0])}
+                onClickItem={(index) =>
+                  manageProductDetailClick(bannerData[index])
+                }
               >
-                {products[0].images.map((image: string, index: number) => (
+                {bannerData?.map((bannerModel: BannerModel, index: number) => (
                   <div key={index}>
                     <img
                       className="md:h-80 h-40 object-cover object-center xs:object-contain"
-                      src={image}
+                      src={bannerModel.images}
                       alt="avatar"
                     />
                     <p className="customLegend font-birthstone">
-                      Tartelette daim caramel
+                      {bannerModel.name}
                     </p>
                   </div>
                 ))}
@@ -139,7 +145,7 @@ const Shop: React.FC = () => {
               <Transition.Root show={open} as={Fragment}>
                 <Dialog
                   as="div"
-                  className="z-50 fixed inset-0 overflow-hidden"
+                  className="z-40 fixed inset-0 overflow-hidden"
                   onClose={setOpen}
                 >
                   <div className="absolute inset-0 overflow-hidden">

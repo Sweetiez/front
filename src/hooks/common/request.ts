@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { getToken } from '../token';
+import { getToken } from '../auth/token';
 
 const client = axios.create({
   baseURL: process.env.REACT_APP_API_ENDPOINT,
@@ -34,4 +34,17 @@ const commonRequest = (options: AxiosRequestConfig) => {
     .catch(onError);
 };
 
-export { authenticatedRequest, commonRequest };
+const loginRequest = (options: AxiosRequestConfig) => {
+  const onSuccess = (response: any) => response.headers['authorization'];
+  const onError = (error: any) => {
+    throw error;
+    // optionaly catch errors and add some additional logging here
+    // return error;
+  };
+
+  return client({ timeout: 5000, ...options })
+    .then(onSuccess)
+    .catch(onError);
+};
+
+export { authenticatedRequest, commonRequest, loginRequest };

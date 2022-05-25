@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ModalContent from '../NavMenu/ModalContentEnum';
 import Label from '../utils/Label';
+import TextButton from './TextButton';
+import Title from './Title';
+import '../../assets/css/_phone-input.css';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
+import RegisterRequest from '../../hooks/auth/requests/RegisterRequest';
+import { register } from '../../hooks/auth/register';
+import { wait } from '@testing-library/user-event/dist/utils';
 
 interface RegisterProps {
   setModalContent: (content: ModalContent) => void;
@@ -9,6 +17,7 @@ interface RegisterProps {
 
 const RegisterForm: React.FC<RegisterProps> = ({ setModalContent }) => {
   const { t } = useTranslation();
+  const [value, setValue] = useState<any>();
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordConfirmedShown, setPasswordConfirmedShown] = useState(false);
   const [status, setStatus] = useState('');
@@ -67,16 +76,30 @@ const RegisterForm: React.FC<RegisterProps> = ({ setModalContent }) => {
 
     setMessage('');
     setStatus('');
+
+    const request = new RegisterRequest(
+      event.target.lastname.value,
+      event.target.firstname.value,
+      event.target.email.value,
+      event.target.phone.value,
+      event.target.password.value,
+    );
+    try {
+      await register(request);
+      setMessage(t('authentication.register.api_responses.success'));
+      setStatus('Success');
+      await wait(2000);
+      setModalContent(ModalContent.LOGIN);
+    } catch (e) {
+      setMessage(t('authentication.register.api_responses.failure'));
+      setStatus('Error');
+    }
   };
 
   return (
     <>
       <div className="px-8 md:px-20 pt-6 pb-8 mb-4 flex flex-col">
-        <div className="py-6">
-          <span className="font-bold font-pompiere text-3xl">
-            {t('authentication.register.title')}
-          </span>
-        </div>
+        <Title label={t('authentication.register.title')} />
         <form onSubmit={registerUser}>
           <div className="mb-4">
             <input
@@ -105,6 +128,17 @@ const RegisterForm: React.FC<RegisterProps> = ({ setModalContent }) => {
               required={true}
             />
           </div>
+
+          <div className="mb-4">
+            <PhoneInput
+              id="phone"
+              defaultCountry="FR"
+              placeholder="Phone number"
+              value={value}
+              onChange={setValue}
+            />
+          </div>
+
           <div className="mb-4 flex items-center">
             <input
               className="shadow appearance-none -mr-8 border-gray-400 rounded w-full py-2 px-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold-100 focus:border-transparent"
@@ -217,12 +251,12 @@ const RegisterForm: React.FC<RegisterProps> = ({ setModalContent }) => {
             />
             <span className="ml-2 text-sm font-semibold">
               {t('authentication.register.agree')}
-              <button
-                className="background-transparent font-semibold ml-1 outline-none text-gold-100 focus:outline-none"
-                type="button"
-              >
-                {t('authentication.register.cgu')}
-              </button>
+              <TextButton
+                setModalContent={() => setModalContent(ModalContent.LOGIN)}
+                label={t('authentication.register.cgu')}
+                color={'text-gold-100'}
+                bold={true}
+              />
             </span>
           </div>
           <div className="flex justify-center mb-2">
@@ -240,13 +274,13 @@ const RegisterForm: React.FC<RegisterProps> = ({ setModalContent }) => {
       </div>
 
       <div className="flex justify-center border-t py-4">
-        <button
-          className="underline background-transparent ml-1 outline-none hover:text-gold-100 focus:outline-none"
-          type="button"
-          onClick={() => setModalContent(ModalContent.LOGIN)}
-        >
-          {t('authentication.register.signIn')}
-        </button>
+        <span>{t('authentication.register.haveAccount')}</span>
+        <TextButton
+          setModalContent={() => setModalContent(ModalContent.LOGIN)}
+          label={t('authentication.register.signIn')}
+          underline={true}
+          small={true}
+        />
       </div>
     </>
   );

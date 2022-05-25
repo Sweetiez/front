@@ -4,6 +4,7 @@ import Stars from '../Stars/Stars';
 import Lottie from 'react-lottie-player';
 import cartAnimation from '../../assets/lotties/cart.json';
 import ShowMoreText from 'react-show-more-text';
+import getSvg from '../../assets/icons';
 
 interface ProductCardProps {
   product: ProductCardModel;
@@ -23,12 +24,19 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <div className="relative my-3 mx-3 lg:mx-5 flex flex-wrap justify-center">
         <div className="relative w-60 xl:w-64 min-w-full bg-white shadow-md rounded-2xl  py-0 my-0 cursor-pointer border transform transition duration-500 hover:scale-110 ">
           <div className="overflow-x-hidden rounded-t-lg relative">
-            <img
-              className="h-40 w-full object-cover py-0"
-              src={product.images ? product.images[0] : 'TODO Default'}
-              alt="product-item"
-              onClick={() => openProductDetailClick(product)}
-            />
+            {product.images && product.images[0] !== '' ? (
+              <img
+                className="h-40 w-full object-cover py-0"
+                src={product.images ? product.images[0] : 'TODO Default'}
+                alt="product-item"
+                onClick={() => openProductDetailClick(product)}
+              />
+            ) : (
+              <div className="h-40 w-full bg-gray-200 flex justify-center items-center">
+                <div className="h-8 w-8 ">{getSvg('noImage')}</div>
+              </div>
+            )}
+
             <div
               onMouseEnter={() => setIsCartHover(true)}
               onMouseLeave={() => setIsCartHover(false)}
