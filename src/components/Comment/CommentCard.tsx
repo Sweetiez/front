@@ -25,15 +25,13 @@ const CommentCard: React.FC<CommentCardModelProps> = ({ comment }) => {
           >
             {comment.content}
           </ShowMoreText>
-          <div className="flex justify-between items-center">
-            <div className="mt-4 flex items-center space-x-4 py-2">
-              <div className="text-xs font-semibold">
-                {comment.author} •{' '}
-                <span className="font-normal">{comment.date}</span>
-              </div>
-              <div className="flex justify-end text-xs transform transition duration-200 hover:text-gold-100">
-                <span>{t('comment.report')}</span>
-              </div>
+          <div className="mt-4 flex justify-between items-center space-x-4 py-2">
+            <div className="font-semibold">
+              {comment.author} •{' '}
+              <span className="font-normal">{comment.date}</span>
+            </div>
+            <div className="flex justify-end text-xs transform transition duration-200 hover:text-gold-100">
+              <span>{t('comment.report')}</span>
             </div>
           </div>
         </div>
