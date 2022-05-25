@@ -11,7 +11,7 @@ export default class RegisterRequest {
     email: string,
     phone: string,
     password: string,
-  ){
+  ) {
     this.email = email;
     this.password = password;
     this.firstName = firstName;
