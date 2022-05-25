@@ -3,15 +3,28 @@ import { useTranslation } from 'react-i18next';
 import Title from '../Authentication/Title';
 import Stars from '../Stars/Stars';
 import Label from '../utils/Label';
+import EvaluationsRequest from '../../hooks/evaluations/requests/evaluationsRequest';
+import { createEvaluation } from '../../hooks/evaluations/evaluations';
+import { useQueryClient } from 'react-query';
+import CommentType from './CommentTypeEnum';
 
-interface CommentFormProps {}
+interface CommentFormProps {
+  type: CommentType;
+  subject: string;
+  setModalState: () => void;
+}
 
-const CommentForm: React.FC<CommentFormProps> = () => {
+const CommentForm: React.FC<CommentFormProps> = ({
+  type,
+  subject,
+  setModalState,
+}) => {
   const { t } = useTranslation();
   const [comment, setComment] = useState('');
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
   const [rating, setRating] = useState(0);
+  const queryClient = useQueryClient();
   const maxCharacters = 280;
   const postComment = async (event: any) => {
     event.preventDefault();
@@ -22,6 +35,25 @@ const CommentForm: React.FC<CommentFormProps> = () => {
     }
     setMessage(t(''));
     setStatus('');
+
+    const request = new EvaluationsRequest(
+      '7e5ca0f1-a874-4807-aae1-7184b44d7046',
+      subject,
+      event.target.content.value,
+      rating,
+    );
+
+    try {
+      await createEvaluation(request);
+      if (type === CommentType.SWEET)
+        await queryClient.invalidateQueries(`sweets-${subject}`);
+      if (type === CommentType.SWEET)
+        await queryClient.invalidateQueries(`recipe-${subject}`);
+      setModalState();
+    } catch (e) {
+      setMessage(t('comment.form.apiResponses.failure'));
+      setStatus('Error');
+    }
   };
   const handleStartClick = useCallback((rating) => {
     setRating(rating);
@@ -53,6 +85,7 @@ const CommentForm: React.FC<CommentFormProps> = () => {
 
           <div className="mb-4">
             <textarea
+              id="content"
               className="h-32 w-full shadow appearance-none border-gray-400 placeholder-gray-400 rounded overflow-auto resize-none focus:ring-2 focus:ring-gold-100 focus:border-transparent focus:outline-none text-black p-2"
               placeholder={t('comment.form.placeholder')}
               value={comment}
