@@ -9,7 +9,7 @@ import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import RegisterRequest from '../../hooks/auth/requests/RegisterRequest';
 import { register } from '../../hooks/auth/register';
-import {wait} from "@testing-library/user-event/dist/utils";
+import { wait } from '@testing-library/user-event/dist/utils';
 
 interface RegisterProps {
   setModalContent: (content: ModalContent) => void;
@@ -91,8 +91,8 @@ const RegisterForm: React.FC<RegisterProps> = ({ setModalContent }) => {
       await wait(2000);
       setModalContent(ModalContent.LOGIN);
     } catch (e) {
-        setMessage(t('authentication.register.api_responses.failure'));
-        setStatus('Error');
+      setMessage(t('authentication.register.api_responses.failure'));
+      setStatus('Error');
     }
   };
 

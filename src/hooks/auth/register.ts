@@ -1,6 +1,6 @@
 import { commonRequest, loginRequest } from '../common/request';
 import LoginRequest from './requests/LoginRequest';
-import RegisterRequest from "./requests/RegisterRequest";
+import RegisterRequest from './requests/RegisterRequest';
 
 const login = async (request: LoginRequest): Promise<string> => {
   const token = await loginRequest({
@@ -14,9 +14,7 @@ const login = async (request: LoginRequest): Promise<string> => {
   return token.slice(7);
 };
 
-const register = async (
-request: RegisterRequest
-): Promise<any> => {
+const register = async (request: RegisterRequest): Promise<any> => {
   const { data } = await commonRequest({
     url: `/auth/subscribe`,
     method: 'POST',
