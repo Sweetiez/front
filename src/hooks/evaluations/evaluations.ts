@@ -1,6 +1,6 @@
 import { authenticatedRequest } from '../common/request';
 import EvaluationsRequest from './requests/evaluationsRequest';
-import ReportEvaluationRequest from "./requests/reportEvaluationRequest";
+import ReportEvaluationRequest from './requests/reportEvaluationRequest';
 
 const createEvaluation = async (request: EvaluationsRequest): Promise<any> => {
   const { data } = await authenticatedRequest({
