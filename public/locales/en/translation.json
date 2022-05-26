@@ -51,7 +51,7 @@
         "passwordLength": "The password must contain more than 8 characters",
         "passwordFormat": "The password must contain at least one lower case letter, one upper case letter and one number"
       },
-      "api_responses": {
+      "apiResponses": {
         "success": "Your account has been created",
         "failure": "An error occured while creating your account"
       }
@@ -83,7 +83,26 @@
   },
   "comment": {
     "showMore": "Show more",
-    "report": "Report the comment",
+    "report":{
+      "label": "Report the comment",
+      "reason": {
+        "choose": "Choose a reason",
+        "uncivil": "Uncivil, rude or vulgar",
+        "discrimination": "Discrimination",
+        "localBusiness": "Third party deal site",
+        "illegalContent": "Contains illegal content or activity",
+        "other": "Other..."
+      },
+      "form": {
+        "title": "Select a reason",
+        "error": {
+          "notSelected": "Please select a reason of report"
+        },
+        "apiResponses": {
+          "failure": "An error occurred while processing your report"
+        }
+      }
+    },
     "form": {
       "title": "Write a customer review",
       "placeholder": "Give your feedback . . .",
@@ -94,6 +113,9 @@
       "error": {
         "rating": "You must assign a score",
         "maxLength": "Your comment must contain a maximum of"
+      },
+      "apiResponses": {
+        "failure": "An error occurred while processing your evaluation"
       }
     }
   },

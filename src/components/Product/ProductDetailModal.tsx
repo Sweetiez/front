@@ -13,6 +13,8 @@ import CommentCard from '../Comment/CommentCard';
 import Modal from '../utils/Modal';
 import CommentForm from '../Comment/CommentForm';
 import SkeletonProductDetail from '../utils/Skeleton/SkeletonProductDetail';
+import { useTokenAvailable } from '../../hooks/auth/tokenHook';
+import CommentType from '../Comment/CommentTypeEnum';
 
 interface ProductModalProps {
   manageCloseClick: () => void;
@@ -24,6 +26,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
   productId,
 }) => {
   const { data: sweetData } = useSweetDetails(productId);
+  const { data: isTokenAvailable } = useTokenAvailable();
   const product = sweetData ? sweetData : undefined;
   const { t } = useTranslation();
   const [itemCount, setItemCount] = useState<string | undefined>('1');
@@ -113,20 +116,34 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
               </p>
 
               <div className="flex justify-end mt-4">
-                <LabelButton
-                  svg="pen"
-                  label={t('productDetail.comment')}
-                  onClick={() => setCommentModalState(true)}
-                />
+                {isTokenAvailable ? (
+                  <LabelButton
+                    svg="pen"
+                    label={t('productDetail.comment')}
+                    onClick={() => setCommentModalState(true)}
+                  />
+                ) : (
+                  <></>
+                )}
               </div>
-              {product?.comments!.map((comment) => (
-                <CommentCard key={comment.id} comment={comment} />
-              ))}
+              {product?.comments!.map((comment) =>
+                comment.content !== '' ? (
+                  <CommentCard key={comment.id} comment={comment} />
+                ) : (
+                  ''
+                ),
+              )}
             </div>
             <Modal
               modalState={CommentModalState}
               setModalState={commentCloseClick}
-              modalContent={<CommentForm />}
+              modalContent={
+                <CommentForm
+                  subject={productId}
+                  setModalState={commentCloseClick}
+                  type={CommentType.SWEET}
+                />
+              }
             />
           </div>
         </div>
