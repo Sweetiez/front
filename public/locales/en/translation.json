@@ -83,7 +83,26 @@
   },
   "comment": {
     "showMore": "Show more",
-    "report": "Report the comment",
+    "report":{
+      "label": "Report the comment",
+      "reason": {
+        "choose": "Choose a reason",
+        "uncivil": "Uncivil, rude or vulgar",
+        "discrimination": "Discrimination",
+        "localBusiness": "Third party deal site",
+        "illegalContent": "Contains illegal content or activity",
+        "other": "Other..."
+      },
+      "form": {
+        "title": "Select a reason",
+        "error": {
+          "notSelected": "Please select a reason of report"
+        },
+        "apiResponses": {
+          "failure": "An error occurred while processing your report"
+        }
+      }
+    },
     "form": {
       "title": "Write a customer review",
       "placeholder": "Give your feedback . . .",
