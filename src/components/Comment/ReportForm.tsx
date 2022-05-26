@@ -55,7 +55,12 @@ const ReportForm: React.FC<ReportFormProps> = ({
   const postReport = async (event: any) => {
     event.preventDefault();
 
-    if (select === 'notSelected' || select === undefined) {
+    let content;
+    if (select === 'other') {
+      content = event.target.content.value;
+    }
+
+    if (select === 'notSelected' || select === undefined || (select === 'other' && !content)) {
       setMessage(t('comment.report.form.error.notSelected'));
       setStatus('Error');
       return;
@@ -65,6 +70,7 @@ const ReportForm: React.FC<ReportFormProps> = ({
       select,
       profile?.customer_id,
       evaluationId,
+      content,
     );
 
     try {
