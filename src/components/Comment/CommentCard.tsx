@@ -13,6 +13,12 @@ interface CommentCardModelProps {
 const CommentCard: React.FC<CommentCardModelProps> = ({ comment }) => {
   const { t } = useTranslation();
   const [ReportCommentModalState, setReportCommentModalState] = useState(false);
+  let commentDate;
+  if(comment.date) {
+    const [year, month, day] = comment.date.split('-');
+    commentDate = [day, month, year].join('/');
+  }
+
   const ReportCommentCloseClick = useCallback(() => {
     setReportCommentModalState(false);
   }, []);
@@ -31,10 +37,10 @@ const CommentCard: React.FC<CommentCardModelProps> = ({ comment }) => {
           >
             {comment.content}
           </ShowMoreText>
-          <div className="mt-4 flex justify-between items-center space-x-4 py-2">
+          <div className="mt-4 flex justify-between items-center space-x-4 py-2 text-xs">
             <div className="font-semibold">
               {comment.authorName} •{' '}
-              <span className="font-normal">{comment.date}</span>
+              <span className="font-normal">{commentDate ? commentDate : ""}</span>
             </div>
             <div className="flex justify-end text-xs transform transition duration-200 hover:text-gold-100">
               <span onClick={() => setReportCommentModalState(true)}>
