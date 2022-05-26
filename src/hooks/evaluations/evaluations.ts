@@ -1,5 +1,6 @@
 import { authenticatedRequest } from '../common/request';
 import EvaluationsRequest from './requests/evaluationsRequest';
+import ReportEvaluationRequest from "./requests/reportEvaluationRequest";
 
 const createEvaluation = async (request: EvaluationsRequest): Promise<any> => {
   const { data } = await authenticatedRequest({
@@ -11,4 +12,16 @@ const createEvaluation = async (request: EvaluationsRequest): Promise<any> => {
   return data;
 };
 
-export { createEvaluation };
+const reportEvaluation = async (
+  request: ReportEvaluationRequest,
+): Promise<any> => {
+  const { data } = await authenticatedRequest({
+    url: `/reports`,
+    method: 'POST',
+    data: request,
+  });
+
+  return data;
+};
+
+export { createEvaluation, reportEvaluation };

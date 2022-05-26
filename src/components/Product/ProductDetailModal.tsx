@@ -126,9 +126,13 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                   <></>
                 )}
               </div>
-              {product?.comments!.map((comment) => (
-                <CommentCard key={comment.id} comment={comment} />
-              ))}
+              {product?.comments!.map((comment) =>
+                comment.content !== '' ? (
+                  <CommentCard key={comment.id} comment={comment} />
+                ) : (
+                  ''
+                ),
+              )}
             </div>
             <Modal
               modalState={CommentModalState}

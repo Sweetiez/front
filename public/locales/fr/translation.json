@@ -83,7 +83,26 @@
   },
   "comment": {
     "showMore": "Afficher plus",
-    "report": "Signaler le commentaire",
+    "report": {
+      "label": "Signaler le commentaire",
+      "reason": {
+        "choose": "Choisissez une raison",
+        "uncivil": "Incivil, grossier ou vulgaire",
+        "discrimination": "Discrimination",
+        "localBusiness": "Site d'offres de tiers",
+        "illegalContent": "Contient des contenus ou des activités illégaux",
+        "other": "Autre..."
+      },
+      "form": {
+        "title": "Selectionner un motif",
+        "error": {
+          "notSelected": "Veuillez sélectionner un motif"
+        },
+        "apiResponses": {
+          "failure": "Une erreur s'est produite lors du traitement de votre rapport"
+        }
+      }
+    },
     "form": {
       "title": "Écrire un avis client",
       "placeholder": "Donnez votre avis . . .",
