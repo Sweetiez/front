@@ -1,0 +1,44 @@
+import CartModel from '../../../components/Cart/CartModel';
+
+export default class CreateOrderRequest {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  pickupDate: string;
+  products: ProductOrderRequest[];
+
+  constructor(
+    firstName: string,
+    lastName: string,
+    email: string,
+    phone: string,
+    pickupDate: string,
+    cart: CartModel[],
+  ) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.phone = phone;
+    this.pickupDate = pickupDate;
+    this.products = cart.map((item) => {
+      return new ProductOrderRequest(
+        item?.item?.id ? item.item.id : '',
+        'SWEET',
+        item?.quantity ? item.quantity : -1,
+      );
+    });
+  }
+}
+
+class ProductOrderRequest {
+  productId: string;
+  type: string;
+  quantity: number;
+
+  constructor(productId: string, type: string, quantity: number) {
+    this.productId = productId;
+    this.type = type;
+    this.quantity = quantity;
+  }
+}
