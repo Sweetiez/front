@@ -47,7 +47,7 @@ const Shop: React.FC = () => {
             className="md:h-80 h-40 w-full object-cover object-center"
             src={bannerData[0]?.images}
             alt="avatar"
-            onClick={manageProductDetailClick}
+            onClick={() => manageProductDetailClick(bannerData[0])}
           />
         ) : (
           <>
