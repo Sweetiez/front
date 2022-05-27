@@ -1,4 +1,5 @@
 import CommentCardModel from '../Comment/CommentCardModel';
+import EvaluationModel from './EvaluationModel';
 
 export default class ProductDetailModel {
   id: string | undefined;
@@ -6,6 +7,6 @@ export default class ProductDetailModel {
   description: string | undefined;
   price: number | undefined;
   images: string[] | undefined;
-  rating: number | undefined;
+  evaluation: EvaluationModel | undefined;
   comments: CommentCardModel[] | undefined;
 }
