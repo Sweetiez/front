@@ -7,6 +7,7 @@ import LoginRequest from '../../hooks/auth/requests/LoginRequest';
 import { login } from '../../hooks/auth/register';
 import { useToken } from '../../hooks/auth/token';
 import Label from '../utils/Label';
+import {useRefreshToken} from "../../hooks/auth/refreshToken";
 
 interface LoginProps {
   setModalContent: (content: ModalContent) => void;
@@ -20,6 +21,7 @@ const LoginForm: React.FC<LoginProps> = ({
   const { t } = useTranslation();
   const [passwordShown, setPasswordShown] = useState(false);
   const { setToken } = useToken();
+  const { setRefreshToken } = useRefreshToken();
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
   const togglePassword = () => {
@@ -42,7 +44,8 @@ const LoginForm: React.FC<LoginProps> = ({
 
     try {
       const response = await login(request);
-      setToken(response);
+      setToken(response.token);
+      setRefreshToken(response.refreshToken);
       setModalState();
     } catch (e) {
       setMessage(t('authentication.login.error.invalidFields'));
