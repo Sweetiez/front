@@ -13,6 +13,7 @@ import {
 import { fakeProducts } from '../../assets/FakeProducts';
 import SkeletonShop from '../utils/Skeleton/SkeletonShop';
 import BannerModel from './BannerModel';
+import FilterMenu from "../FilterMenu/FilterMenu";
 
 const Shop: React.FC = () => {
   const { data: sweetData, isLoading: isSweetLoading } = useStoreList();
@@ -40,7 +41,7 @@ const Shop: React.FC = () => {
 
   return (
     <>
-      <div className="pb-5">
+      <div className="">
         {bannerData?.length === 1 ? (
           <img
             key="carousel"
@@ -81,6 +82,10 @@ const Shop: React.FC = () => {
             )}
           </>
         )}
+      </div>
+
+      <div>
+        <FilterMenu />
       </div>
 
       <div className="flex justify-center">
