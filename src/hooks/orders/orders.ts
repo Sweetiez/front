@@ -9,3 +9,31 @@ export async function createAnOrder(request: CreateOrderRequest) {
   });
   return data;
 }
+
+export async function createPaymentIntent(orderId: string) {
+  const { data } = await commonRequest({
+    url: `/order/payment-intent/${orderId}`,
+    method: 'POST',
+  });
+  return data;
+}
+
+export async function confirmPayment(orderId: string) {
+  const { data } = await commonRequest({
+    url: `/order/payment-success/${orderId}`,
+    method: 'POST',
+  });
+  return data;
+}
+
+export function storeTempEmail(email: string) {
+  localStorage.setItem('tempEmail', email);
+}
+
+export function getTempEmail() {
+  return localStorage.getItem('tempEmail');
+}
+
+export function removeTempEmail() {
+  localStorage.removeItem('tempEmail');
+}

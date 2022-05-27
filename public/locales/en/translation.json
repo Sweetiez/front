@@ -83,7 +83,7 @@
   },
   "comment": {
     "showMore": "Show more",
-    "report":{
+    "report": {
       "label": "Report the comment",
       "reason": {
         "choose": "Choose a reason",
@@ -142,6 +142,9 @@
       "address": "Address",
       "city": "City",
       "zip": "Zip"
+    },
+    "payment": {
+      "payButton": "Pay now"
     },
     "success": {
       "title": "Thank you for your order!"

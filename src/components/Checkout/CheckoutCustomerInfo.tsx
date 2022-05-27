@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IHandleNav } from './IHandleNav';
 import { getCart } from '../../hooks/cart/cartHook';
 import CreateOrderRequest from '../../hooks/orders/requests/CreateOrderRequest';
-import {createAnOrder} from "../../hooks/orders/orders";
+import { createAnOrder, storeTempEmail } from '../../hooks/orders/orders';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutCustomerInfo: React.FC<IHandleNav> = ({ handlePrevious }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const [disabledButton, setDisabledButton] = useState(false);
 
   async function handleOrderSubmit(event: any) {
     event.preventDefault();
+    setDisabledButton(true);
     const cart = getCart();
 
     const request = new CreateOrderRequest(
@@ -20,9 +25,11 @@ const CheckoutCustomerInfo: React.FC<IHandleNav> = ({ handlePrevious }) => {
       event.target.pickupDate.value,
       cart,
     );
-
     const response = await createAnOrder(request);
-    console.log(response);
+
+    storeTempEmail(request.email);
+
+    navigate(`/checkout/${response.orderId}`);
   }
 
   return (
@@ -104,6 +111,7 @@ const CheckoutCustomerInfo: React.FC<IHandleNav> = ({ handlePrevious }) => {
         <div className="grid grid-cols-6">
           <button
             type="button"
+            disabled={disabledButton}
             onClick={handlePrevious}
             className="col-start-3 col-end-4 bg-gray-400 transform transition duration-200 hover:scale-105 text-white font-bold py-2 px-4 rounded-lg my-9"
           >
@@ -111,6 +119,7 @@ const CheckoutCustomerInfo: React.FC<IHandleNav> = ({ handlePrevious }) => {
           </button>
           <button
             type="submit"
+            disabled={disabledButton}
             className="col-start-4 col-end-5 bg-gold-100 transform transition duration-200 hover:scale-105 text-white font-bold py-2 px-4 rounded-lg my-9"
           >
             {t('checkout.nextStep')}
