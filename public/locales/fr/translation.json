@@ -159,5 +159,15 @@
     "level": "Niveau",
     "portions": "Personnes",
     "steps": "Préparation"
+  },
+  "filters": {
+    "filtersMenu": {
+      "sweets": "Mignardises",
+      "trays": "Plateaux",
+      "moreFilters": "Plus de Filtres"
+    },
+    "filtersModal": {
+      "title": "Sélection des filtres"
+    }
   }
 }

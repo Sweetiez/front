@@ -41,3 +41,8 @@
 .nav-link-ltr:hover::before {
   width: 100%;
 }
+
+.rc-slider-handle-dragging {
+  border-color: #dba970 !important;
+  box-shadow: 0 0 0 2px #dba970 !important;
+}
