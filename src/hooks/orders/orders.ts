@@ -12,15 +12,7 @@ export async function createAnOrder(request: CreateOrderRequest) {
 
 export async function createPaymentIntent(orderId: string) {
   const { data } = await commonRequest({
-    url: `/order/payment-intent/${orderId}`,
-    method: 'POST',
-  });
-  return data;
-}
-
-export async function confirmPayment(orderId: string) {
-  const { data } = await commonRequest({
-    url: `/order/payment-success/${orderId}`,
+    url: `/payment/intent/${orderId}`,
     method: 'POST',
   });
   return data;

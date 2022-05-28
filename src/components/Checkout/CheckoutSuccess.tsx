@@ -4,7 +4,6 @@ import cookingOrderAnimation from '../../assets/lotties/cooking-order.json';
 import sparklesAnimation from '../../assets/lotties/sparkles.json';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
-import { confirmPayment, removeTempEmail } from '../../hooks/orders/orders';
 import CheckoutSteps from './CheckoutSteps';
 import Page from '../Page/Page';
 
@@ -18,14 +17,7 @@ const CheckoutSuccess: React.FC = () => {
 
     if (isSuccess === 'succeeded') {
       // Confirm the payment of the order
-      (async () => {
-        const response = await confirmPayment(orderId ? orderId : '');
-        if (response.status === 'PAID') {
-          // Remove cart
-          localStorage.removeItem('cart');
-          removeTempEmail();
-        }
-      })();
+      console.log('Payment confirmed');
     }
   }, [orderId]);
 
