@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useProfile } from '../../hooks/user/users';
 import { logout } from '../../hooks/auth/logout';
+import { Link } from 'react-router-dom';
 
 const UserMenu = () => {
   const { t } = useTranslation();
@@ -32,18 +33,24 @@ const UserMenu = () => {
           </span>
         </button>
         <ul className="bg-white border rounded-lg transform scale-0 group-hover:scale-100 absolute transition duration-150 ease-in-out origin-top min-w-32">
-          <li className="rounded-sm px-3 py-1 hover:bg-gray-100 font-birthstone text-2xl">
-            {t('menu.userMenu.myAccount')}
-          </li>
-          <li className="rounded-sm px-3 py-1 hover:bg-gray-100 font-birthstone text-2xl">
-            {t('menu.userMenu.myOrders')}
-          </li>
-          <li
-            className="rounded-sm px-3 py-1 hover:bg-gray-100 font-birthstone text-2xl"
-            onClick={handleLogout}
-          >
-            {t('menu.userMenu.logout')}
-          </li>
+          <button>
+            <Link to="/user/profile">
+              <li className="rounded-sm px-3 py-1 hover:bg-gray-100 font-birthstone text-2xl">
+                {t('menu.userMenu.myAccount')}
+              </li>
+            </Link>
+            <Link to="/user/order">
+              <li className="rounded-sm px-3 py-1 hover:bg-gray-100 font-birthstone text-2xl">
+                {t('menu.userMenu.myOrders')}
+              </li>
+            </Link>
+            <li
+              className="rounded-sm px-3 py-1 hover:bg-gray-100 font-birthstone text-2xl"
+              onClick={handleLogout}
+            >
+              {t('menu.userMenu.logout')}
+            </li>
+          </button>
         </ul>
       </div>
     </>

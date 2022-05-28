@@ -10,6 +10,7 @@ import NotFound from './components/NotFound/NotFound';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import HandleCheckoutStripePayment from './components/Checkout/HandleCheckoutStripePayment';
 import CheckoutSuccess from './components/Checkout/CheckoutSuccess';
+import Orders from './components/Order/Orders';
 
 function App() {
   const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ function App() {
             />
             <Route path="/recipes" element={<Recipes />} />
             <Route path="/recipes/:id" element={<RecipeDetail />} />
+            <Route path="/user/order" element={<Orders />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
