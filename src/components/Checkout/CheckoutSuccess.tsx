@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import CheckoutSteps from './CheckoutSteps';
 import Page from '../Page/Page';
+import { removeTempEmail } from '../../hooks/orders/orders';
 
 const CheckoutSuccess: React.FC = () => {
   let { orderId } = useParams();
@@ -17,7 +18,8 @@ const CheckoutSuccess: React.FC = () => {
 
     if (isSuccess === 'succeeded') {
       // Confirm the payment of the order
-      console.log('Payment confirmed');
+      removeTempEmail();
+      localStorage.removeItem('cart');
     }
   }, [orderId]);
 
