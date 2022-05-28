@@ -83,7 +83,7 @@
   },
   "comment": {
     "showMore": "Show more",
-    "report":{
+    "report": {
       "label": "Report the comment",
       "reason": {
         "choose": "Choose a reason",
@@ -159,5 +159,15 @@
     "level": "Level",
     "portions": "Portions",
     "steps": "Steps"
+  },
+  "filters": {
+    "filtersMenu": {
+      "sweets": "Sweets",
+      "trays": "Trays",
+      "moreFilters": "More Filters"
+    },
+    "filtersModal": {
+      "title": "Selecting filters"
+    }
   }
 }
