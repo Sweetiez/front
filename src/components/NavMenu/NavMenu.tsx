@@ -79,7 +79,7 @@ const NavMenu: React.FC = () => {
 
   const navigation = {
     pages: [
-      { name: t('navigation.sweets'), link: '/' },
+      { name: t('navigation.shop'), link: '/' },
       { name: t('navigation.recipes'), link: '/recipes' },
       { name: t('navigation.events'), link: '/events' },
     ],
