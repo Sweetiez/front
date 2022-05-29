@@ -189,13 +189,13 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
               reset={reset}
             />
           </div>
-          <div className="mb-8">
-            <div className="mb-4">
-              <span className="font-semibold font-pompiere text-2xl">
-                {t('filters.filtersModal.allergens')}
-              </span>
-            </div>
-          </div>
+          {/*<div className="mb-8">*/}
+          {/*  <div className="mb-4">*/}
+          {/*    <span className="font-semibold font-pompiere text-2xl">*/}
+          {/*      {t('filters.filtersModal.allergens')}*/}
+          {/*    </span>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
         </div>
       </div>
       <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
