@@ -6,11 +6,17 @@ import '../../assets/css/_filter-menu.css';
 import { Dialog, Transition } from '@headlessui/react';
 import FiltersModal from './FiltersModal';
 import { useTranslation } from 'react-i18next';
+import { FilterType } from '../Shop/Shop';
 
-const FilterMenu = () => {
+interface Props {
+  setFilters: (filter: FilterType) => void;
+  filters: FilterType;
+}
+
+const FilterMenu = ({ setFilters, filters }: Props) => {
   const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState(1);
-  const [filtersOpen, setFiltersOpenOpen] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const navigationOptions = [
     {
@@ -53,7 +59,7 @@ const FilterMenu = () => {
           <button
             className="ease-linear transform transition-all font-semibold duration-300 hover:scale-105 ml-3.5 grid grid-flow-col auto-cols-max outline-none r-0 items-center text-black text-xs pl-3 py-1 focus:outline-none mr-2 mb-1"
             type="button"
-            onClick={() => setFiltersOpenOpen(true)}
+            onClick={() => setFiltersOpen(true)}
           >
             <Lottie className="h-4 w-auto" loop animationData={filter} play />
             <span className="ml-2 text-xs content-center font-pompiere text-xl">
@@ -66,7 +72,7 @@ const FilterMenu = () => {
         <Dialog
           as="div"
           className="z-50 fixed inset-0 overflow-hidden"
-          onClose={setFiltersOpenOpen}
+          onClose={setFiltersOpen}
         >
           <div className="absolute inset-0 overflow-hidden">
             <Transition.Child
@@ -93,7 +99,11 @@ const FilterMenu = () => {
               >
                 <div className="pointer-events-auto w-screen max-w-md">
                   <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
-                    <FiltersModal setOpenedModal={setFiltersOpenOpen} />
+                    <FiltersModal
+                      setOpenedModal={setFiltersOpen}
+                      setFilters={setFilters}
+                      filters={filters}
+                    />
                   </div>
                 </div>
               </Transition.Child>

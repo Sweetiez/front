@@ -4,13 +4,51 @@ import { useTranslation } from 'react-i18next';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { handleRender } from './TooltipsSlider';
+import { FilterType } from '../Shop/Shop';
+import FilterCheckboxItem from './FilterCheckboxItem';
 
 interface FiltersModalProps {
   setOpenedModal: (openedModal: boolean) => void;
+  setFilters: (filter: FilterType) => void;
+  filters: FilterType;
 }
 
-const FiltersModal: React.FC<FiltersModalProps> = ({ setOpenedModal }) => {
+const FiltersModal: React.FC<FiltersModalProps> = ({
+  setOpenedModal,
+  setFilters,
+  filters,
+}) => {
   const { t } = useTranslation();
+
+  const handleSliderRatingChange = (nextValues: number | number[]) => {
+    const newFilters = { ...filters };
+    newFilters.ratings = Array.isArray(nextValues)
+      ? [...nextValues]
+      : [nextValues, nextValues];
+    setFilters(newFilters);
+  };
+  const handleSliderPriceChange = (nextValues: number | number[]) => {
+    const newFilters = { ...filters };
+    newFilters.price = Array.isArray(nextValues)
+      ? [...nextValues]
+      : [nextValues, nextValues];
+    setFilters(newFilters);
+  };
+
+  const handleCheckboxChange = (value: boolean, name: string) => {
+    const newFilters = { ...filters };
+    const exists = filters.category?.includes(name);
+    if (exists && !value && newFilters.category) {
+      newFilters.category = newFilters.category.filter(
+        (filter) => filter !== name,
+      );
+    } else if (value && newFilters.category) {
+      newFilters.category = [...newFilters.category, name];
+    } else {
+      newFilters.category = [name];
+    }
+    setFilters(newFilters);
+  };
 
   return (
     <>
@@ -56,7 +94,7 @@ const FiltersModal: React.FC<FiltersModalProps> = ({ setOpenedModal }) => {
                 allowCross={false}
                 min={0}
                 max={5}
-                defaultValue={[0, 5]}
+                defaultValue={filters.ratings ? filters.ratings : [0, 5]}
                 marks={{ 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5 }}
                 trackStyle={[
                   { backgroundColor: '#dba970' },
@@ -70,6 +108,7 @@ const FiltersModal: React.FC<FiltersModalProps> = ({ setOpenedModal }) => {
                 railStyle={{ backgroundColor: '#a1a1aa' }}
                 dotStyle={{ borderColor: '#dba970' }}
                 activeDotStyle={{ borderColor: '#dba970' }}
+                onChange={handleSliderRatingChange}
               />
             </div>
           </div>
@@ -83,7 +122,7 @@ const FiltersModal: React.FC<FiltersModalProps> = ({ setOpenedModal }) => {
                 allowCross={false}
                 min={0}
                 max={200}
-                defaultValue={[0, 200]}
+                defaultValue={filters.price ? filters.price : [0, 200]}
                 marks={{
                   0: 0 + '€',
                   50: 50 + '€',
@@ -91,6 +130,7 @@ const FiltersModal: React.FC<FiltersModalProps> = ({ setOpenedModal }) => {
                   150: 150 + '€',
                   200: 200 + '€',
                 }}
+                onChange={handleSliderPriceChange}
                 handleRender={handleRender}
                 trackStyle={[
                   { backgroundColor: '#dba970' },
@@ -114,30 +154,21 @@ const FiltersModal: React.FC<FiltersModalProps> = ({ setOpenedModal }) => {
                 Catégorie
               </span>
             </div>
-            <div className="mb-2">
-              <input
-                type="checkbox"
-                className="appearance-none border-gray-400 text-gold-100 focus:ring-gold-100 rounded"
-                required={true}
-              />
-              <span className="ml-2 text-sm">Sucrée</span>
-            </div>
-            <div className="mb-2">
-              <input
-                type="checkbox"
-                className="appearance-none border-gray-400 text-gold-100 focus:ring-gold-100 rounded"
-                required={true}
-              />
-              <span className="ml-2 text-sm">Salée</span>
-            </div>
-            <div className="mb-4">
-              <input
-                type="checkbox"
-                className="appearance-none border-gray-400 text-gold-100 focus:ring-gold-100 rounded"
-                required={true}
-              />
-              <span className="ml-2 text-sm">Mixte</span>
-            </div>
+            <FilterCheckboxItem
+              name={'SWEET'}
+              onChange={handleCheckboxChange}
+              initialCheck={filters.category?.includes('SWEET') || false}
+            />
+            <FilterCheckboxItem
+              name={'SALTY'}
+              onChange={handleCheckboxChange}
+              initialCheck={filters.category?.includes('SALTY') || false}
+            />
+            <FilterCheckboxItem
+              name={'MIXED'}
+              onChange={handleCheckboxChange}
+              initialCheck={filters.category?.includes('MIXED') || false}
+            />
           </div>
           <div className="mb-8">
             <div className="mb-4">
