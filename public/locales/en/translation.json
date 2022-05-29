@@ -164,10 +164,15 @@
     "filtersMenu": {
       "sweets": "Sweets",
       "trays": "Trays",
-      "moreFilters": "More Filters"
+      "moreFilters": "More Filters",
+      "noResults": "No products matching your search"
     },
     "filtersModal": {
-      "title": "Selecting filters"
+      "title": "Selecting filters",
+      "rating": "Rating",
+      "price": "Price",
+      "categories": "Categories",
+      "allergens": "Allergens"
     },
     "flavors": {
       "SWEET": "Sweet",

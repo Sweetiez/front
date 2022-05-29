@@ -84,7 +84,9 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
         <div className="p-10">
           <div className="mt-8 mb-10">
             <div className="mb-4">
-              <span className="font-semibold font-pompiere text-2xl">Note</span>
+              <span className="font-semibold font-pompiere text-2xl">
+                {t('filters.filtersModal.rating')}
+              </span>
             </div>
             <div className="px-2">
               <Slider
@@ -114,7 +116,9 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
           </div>
           <div className="mt-8 mb-10">
             <div className="mb-4">
-              <span className="font-semibold font-pompiere text-2xl">Prix</span>
+              <span className="font-semibold font-pompiere text-2xl">
+                {t('filters.filtersModal.price')}
+              </span>
             </div>
             <div className="px-2">
               <Slider
@@ -151,7 +155,7 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
           <div className="mb-8">
             <div className="mb-4">
               <span className="font-semibold font-pompiere text-2xl">
-                Catégorie
+                {t('filters.filtersModal.categories')}
               </span>
             </div>
             <FilterCheckboxItem
@@ -173,7 +177,7 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
           <div className="mb-8">
             <div className="mb-4">
               <span className="font-semibold font-pompiere text-2xl">
-                Allergènes
+                {t('filters.filtersModal.allergens')}
               </span>
             </div>
           </div>
