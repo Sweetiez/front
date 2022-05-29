@@ -172,7 +172,8 @@
       "rating": "Rating",
       "price": "Price",
       "categories": "Categories",
-      "allergens": "Allergens"
+      "allergens": "Allergens",
+      "resetFilters": "Reset filters"
     },
     "flavors": {
       "SWEET": "Sweet",
