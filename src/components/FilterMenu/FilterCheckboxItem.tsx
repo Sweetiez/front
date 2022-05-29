@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'rc-slider/assets/index.css';
 import { useTranslation } from 'react-i18next';
 
@@ -6,15 +6,21 @@ interface FilterCheckboxItemProps {
   name: string;
   onChange: (value: boolean, name: string) => void;
   initialCheck: boolean;
+  reset: boolean;
 }
 
 const FilterCheckboxItem: React.FC<FilterCheckboxItemProps> = ({
   onChange,
   name,
   initialCheck,
+  reset,
 }) => {
   const [checked, setChecked] = useState<boolean>(initialCheck);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    setChecked(false);
+  }, [reset]);
 
   const handleCheck = () => {
     onChange(!checked, name);

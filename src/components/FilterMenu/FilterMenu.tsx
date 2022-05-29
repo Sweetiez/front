@@ -18,8 +18,6 @@ const FilterMenu = ({ setFilters, filters }: Props) => {
   const [activeFilter, setActiveFilter] = useState(1);
   const [filtersOpen, setFiltersOpen] = useState(false);
 
-  console.log('Filters', filters);
-
   const navigationOptions = [
     {
       index: 1,

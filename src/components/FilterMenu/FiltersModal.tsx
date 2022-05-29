@@ -1,5 +1,5 @@
 import { Dialog } from '@headlessui/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -19,6 +19,7 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
   filters,
 }) => {
   const { t } = useTranslation();
+  const [reset, setReset] = useState<boolean>(false);
 
   const handleSliderRatingChange = (nextValues: number | number[]) => {
     const newFilters = { ...filters };
@@ -49,6 +50,15 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
     }
     setFilters(newFilters);
   };
+
+  function resetFilters() {
+    const newFilters = { ...filters };
+    delete newFilters.ratings;
+    delete newFilters.price;
+    delete newFilters.category;
+    setReset(!reset);
+    setFilters(newFilters);
+  }
 
   return (
     <>
@@ -96,7 +106,8 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
                 allowCross={false}
                 min={0}
                 max={5}
-                defaultValue={filters.ratings ? filters.ratings : [0, 5]}
+                value={filters.ratings ? filters.ratings : [0, 5]}
+                // defaultValue={filters.ratings ? filters.ratings : [0, 5]}
                 marks={{ 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5 }}
                 trackStyle={[
                   { backgroundColor: '#dba970' },
@@ -126,7 +137,8 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
                 allowCross={false}
                 min={0}
                 max={200}
-                defaultValue={filters.price ? filters.price : [0, 200]}
+                value={filters.price ? filters.price : [0, 200]}
+                // defaultValue={filters.price ? filters.price : [0, 200]}
                 marks={{
                   0: 0 + '€',
                   50: 50 + '€',
@@ -162,16 +174,19 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
               name={'SWEET'}
               onChange={handleCheckboxChange}
               initialCheck={filters.category?.includes('SWEET') || false}
+              reset={reset}
             />
             <FilterCheckboxItem
               name={'SALTY'}
               onChange={handleCheckboxChange}
               initialCheck={filters.category?.includes('SALTY') || false}
+              reset={reset}
             />
             <FilterCheckboxItem
               name={'MIXED'}
               onChange={handleCheckboxChange}
               initialCheck={filters.category?.includes('MIXED') || false}
+              reset={reset}
             />
           </div>
           <div className="mb-8">
@@ -181,6 +196,17 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
               </span>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
+        <div className="my-2">
+          <button
+            className="flex items-center justify-center rounded-md border border-transparent bg-gold-100 w-full py-3 text-base font-medium text-white shadow-sm transform transition duration-200 hover:scale-105"
+            type="button"
+            onClick={resetFilters}
+          >
+            {t('filters.filtersModal.resetFilters')}
+          </button>
         </div>
       </div>
     </>
