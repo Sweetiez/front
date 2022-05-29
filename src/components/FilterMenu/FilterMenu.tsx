@@ -18,6 +18,8 @@ const FilterMenu = ({ setFilters, filters }: Props) => {
   const [activeFilter, setActiveFilter] = useState(1);
   const [filtersOpen, setFiltersOpen] = useState(false);
 
+  console.log('Filters', filters);
+
   const navigationOptions = [
     {
       index: 1,
@@ -63,8 +65,13 @@ const FilterMenu = ({ setFilters, filters }: Props) => {
           >
             <Lottie className="h-4 w-auto" loop animationData={filter} play />
             <span className="ml-2 text-xs content-center font-pompiere text-xl">
-              More Filters
+              {t('filters.filtersMenu.moreFilters')}
             </span>
+            {Object.keys(filters).length !== 0 ? (
+              <span className="absolute top-2 right-0 inline-block w-2 h-2 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full"></span>
+            ) : (
+              <></>
+            )}
           </button>
         </ul>
       </nav>

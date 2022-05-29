@@ -164,10 +164,15 @@
     "filtersMenu": {
       "sweets": "Mignardises",
       "trays": "Plateaux",
-      "moreFilters": "Plus de Filtres"
+      "moreFilters": "Plus de Filtres",
+      "noResults": "Aucun produits ne correspond à votre recherche"
     },
     "filtersModal": {
-      "title": "Sélection des filtres"
+      "title": "Sélection des filtres",
+      "rating": "Note",
+      "price": "Prix",
+      "categories": "Catégories",
+      "allergens": "Allergènes"
     },
     "flavors": {
       "SWEET": "Sucrée",
