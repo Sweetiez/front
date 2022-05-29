@@ -168,6 +168,11 @@
     },
     "filtersModal": {
       "title": "Sélection des filtres"
+    },
+    "flavors": {
+      "SWEET": "Sucrée",
+      "SALTY": "Salée",
+      "MIXED": "Mixte"
     }
   }
 }

@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useState } from 'react';
+import React, { Fragment, useCallback, useMemo, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import ProductCard from './ProductCard';
 import ProductDetailModal from '../Product/ProductDetailModal';
@@ -13,15 +13,58 @@ import {
 import { fakeProducts } from '../../assets/FakeProducts';
 import SkeletonShop from '../utils/Skeleton/SkeletonShop';
 import BannerModel from './BannerModel';
-import FilterMenu from "../FilterMenu/FilterMenu";
+import FilterMenu from '../FilterMenu/FilterMenu';
+
+export interface FilterType {
+  ratings?: number[];
+  price?: number[];
+  category?: string[];
+  allergen?: string[];
+}
 
 const Shop: React.FC = () => {
-  const { data: sweetData, isLoading: isSweetLoading } = useStoreList();
-  const { data: bannerData } = useSweetBanner();
-  const products = sweetData && sweetData.length !== 0 ? sweetData : [];
   const [open, setOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(fakeProducts[0]); // default value?
   const [modalState, setModalState] = useState(false);
+  const [filters, setFilters] = useState<FilterType>({});
+  const { data: sweetData, isLoading: isSweetLoading } = useStoreList();
+  const { data: bannerData } = useSweetBanner();
+
+  // const products = useFilteredStoreList(filters, sweetData || []);
+  const products = useMemo(() => {
+    if (!sweetData) return [];
+    let newData = [...sweetData];
+    if (filters.ratings) {
+      newData = newData.filter((product) => {
+        return !!(
+          product.rating &&
+          filters.ratings &&
+          product.rating >= filters.ratings[0] &&
+          product.rating <= filters.ratings[1]
+        );
+      });
+    }
+    if (filters.price) {
+      newData = newData.filter((product) => {
+        return !!(
+          product.price &&
+          filters.price &&
+          product.price >= filters.price[0] &&
+          product.price <= filters.price[1]
+        );
+      });
+    }
+    if (filters.category && filters.category.length > 0) {
+      newData = newData.filter((product) => {
+        return !!(
+          product.flavor &&
+          filters.category &&
+          filters.category.includes(product.flavor)
+        );
+      });
+    }
+    return newData;
+  }, [filters, sweetData]);
 
   const manageBasketClick = useCallback((product, state) => {
     setCurrentProduct(product);
@@ -37,7 +80,7 @@ const Shop: React.FC = () => {
     setOpen(false);
   }, []);
 
-  if (isSweetLoading || products.length === 0) return <SkeletonShop />;
+  if (isSweetLoading) return <SkeletonShop />;
 
   return (
     <>
@@ -85,21 +128,28 @@ const Shop: React.FC = () => {
       </div>
 
       <div>
-        <FilterMenu />
+        <FilterMenu setFilters={setFilters} filters={filters} />
       </div>
 
       <div className="flex justify-center">
         <div className="grid grid-cols-5">
           <div className="col-start-1 col-end-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 grid-rows-2">
-              {products.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  openProductDetailClick={manageProductDetailClick}
-                  openBasket={manageBasketClick}
-                />
-              ))}
+              {products.length === 0 ? (
+                <div> NO DATA </div>
+              ) : (
+                <>
+                  {' '}
+                  {products.map((product) => (
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                      openProductDetailClick={manageProductDetailClick}
+                      openBasket={manageBasketClick}
+                    />
+                  ))}
+                </>
+              )}
             </div>
             {/*Modal Cart*/}
             <Transition.Root show={modalState} as={Fragment}>
