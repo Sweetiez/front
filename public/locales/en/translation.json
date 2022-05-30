@@ -162,5 +162,11 @@
     "level": "Level",
     "portions": "Portions",
     "steps": "Steps"
+  },
+  "orders": {
+    "title": "Yours Orders",
+    "createdAt": "Ordered on",
+    "pickupDate": "Order scheduled for",
+    "totalPrice": "Total price :"
   }
 }

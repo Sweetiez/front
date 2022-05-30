@@ -162,5 +162,11 @@
     "level": "Niveau",
     "portions": "Personnes",
     "steps": "Préparation"
+  },
+  "orders": {
+    "title": "Vos commandes",
+    "createdAt": "Commandé le",
+    "pickupDate": "Commande prévue pour le",
+    "totalPrice": "Prix total :"
   }
 }
