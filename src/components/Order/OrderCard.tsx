@@ -1,27 +1,94 @@
-import React from 'react';
+import React, { useState } from 'react';
 import OrderModel from './OrderModel';
+import OrderedProductModel from './OrderedProductModel';
+import Lottie from 'react-lottie-player';
+import paidAnimation from '../../assets/lotties/paid.json';
+import readyAnimation from '../../assets/lotties/ready.json';
+import deliveryAnimation from '../../assets/lotties/delivery.json';
 
 interface OrderCardProps {
   order: OrderModel;
 }
 
 const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
+  const [isLottieHover, setIsLottieHover] = useState(false);
+
+  function formatDate(date: string) {
+    const [year, month, day] = date.split('-');
+    return [day, month, year].join('/');
+  }
   return (
-    <div className="col-start-1 col-end-3 relative my-3 mx-3 lg:mx-5 flex flex-wrap justify-center">
-      <div className="relative w-60 xl:w-96 min-w-full bg-white shadow-md rounded-2xl  py-0 my-0 cursor-pointer border transform transition duration-500 hover:scale-110 ">
-        <div className="overflow-x-hidden rounded-t-lg relative">
-          <div className="bg-indigo-500">
-            {order.createdAt} - {order.firstName}{' '}
+    <>
+      <div
+        className="mx-auto p-6 bg-white border my-2 rounded"
+        onMouseEnter={() => setIsLottieHover(true)}
+        onMouseLeave={() => setIsLottieHover(false)}
+      >
+        <div className="flex justify-between ">
+          <h3 className="font-semibold">
+            {order.createdAt ? (
+              'Commande passé le : ' + formatDate(order.createdAt)
+            ) : (
+              <></>
+            )}
+          </h3>
+          <div>
+            {order.status}
+            {order.status === 'CREATED' ? (
+              <Lottie
+                className="h-8 w-8"
+                play={isLottieHover}
+                animationData={deliveryAnimation}
+                loop={true}
+              />
+            ) : order.status === 'PAID' ? (
+              <Lottie
+                className="h-8 w-8"
+                loop
+                animationData={paidAnimation}
+                play={isLottieHover}
+              />
+            ) : order.status === 'READY' ? (
+              <Lottie
+                className="h-8 w-8"
+                // className="h-auto w-auto"
+                loop
+                animationData={readyAnimation}
+                play={isLottieHover}
+              />
+            ) : (
+              <></>
+            )}
           </div>
-          <div className="flex justify-between">
-            <p>Nombre de produits : {order.products?.length}</p>
-            <p>{order.totalPrice} €</p>
-          </div>
-          <p>Pickup date: {order.pickupDate}</p>
-          <p>Order status: {order.status}</p>
+        </div>
+        <div>
+          <p>
+            {order?.products!.map((product: OrderedProductModel) => (
+              <>
+                <span>{product.name + ' ×  ' + product.quantity}</span>
+                <br />
+              </>
+            ))}
+          </p>
+        </div>
+        <div className="flex justify-end">{order.totalPrice + '€'}</div>
+        <div className="flex justify-end">
+          {order.pickupDate ? (
+            'Commande prévu pour le : ' +
+            (
+              <span className="font-semibold">
+                {formatDate(order.pickupDate)}
+              </span>
+            )
+          ) : (
+            <></>
+          )}
         </div>
       </div>
-    </div>
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
+    </>
   );
 };
 

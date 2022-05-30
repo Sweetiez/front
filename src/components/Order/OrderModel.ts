@@ -1,3 +1,5 @@
+import OrderedProductModel from './OrderedProductModel';
+
 export default class OrderModel {
   id: string | undefined;
   firstName: string | undefined;
@@ -6,7 +8,7 @@ export default class OrderModel {
   phone: string | undefined;
   createdAt: string | undefined;
   pickupDate: string | undefined;
-  products: [] | undefined;
+  products: OrderedProductModel[] | undefined;
   status: string | undefined;
   totalPrice: number | undefined;
 }
