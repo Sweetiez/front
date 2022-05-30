@@ -3,8 +3,6 @@ import Page from '../Page/Page';
 import CheckoutSteps from './CheckoutSteps';
 import CheckoutCustomerInfo from './CheckoutCustomerInfo';
 import CheckoutCart from './CheckoutCart';
-import CheckoutPayment from './CheckoutPayment';
-import CheckoutSuccess from './CheckoutSuccess';
 
 const Checkout: React.FC = () => {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -32,14 +30,14 @@ const Checkout: React.FC = () => {
         />
       );
       break;
-    case 'payment':
-      component = (
-        <CheckoutPayment handleNext={handleNext} handlePrevious={handleBack} />
-      );
-      break;
-    case 'finished':
-      component = <CheckoutSuccess />;
-      break;
+    // case 'payment':
+    //   component = (
+    //     <CheckoutPayment handleNext={handleNext} handlePrevious={handleBack} />
+    //   );
+    //   break;
+    // case 'finished':
+    //   component = <CheckoutSuccess />;
+    //   break;
     default:
       break;
   }

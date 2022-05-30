@@ -143,6 +143,9 @@
       "city": "Ville",
       "zip": "Code postal"
     },
+    "payment": {
+      "payButton": "Payer"
+    },
     "success": {
       "title": "Félicitations, votre commande a été validée !"
     },
@@ -160,6 +163,12 @@
     "portions": "Personnes",
     "steps": "Préparation"
   },
+  "orders": {
+    "title": "Vos commandes",
+    "createdAt": "Commandé le",
+    "pickupDate": "Commande prévue pour le",
+    "totalPrice": "Prix total :"
+  }
   "filters": {
     "filtersMenu": {
       "sweets": "Mignardises",
