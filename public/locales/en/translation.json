@@ -1,6 +1,6 @@
 {
   "navigation": {
-    "sweets": "Sweets",
+    "shop": "Shop",
     "recipes": "Recipes",
     "events": "Events"
   },
@@ -83,7 +83,7 @@
   },
   "comment": {
     "showMore": "Show more",
-    "report":{
+    "report": {
       "label": "Report the comment",
       "reason": {
         "choose": "Choose a reason",
@@ -143,6 +143,9 @@
       "city": "City",
       "zip": "Zip"
     },
+    "payment": {
+      "payButton": "Pay now"
+    },
     "success": {
       "title": "Thank you for your order!"
     },
@@ -159,5 +162,32 @@
     "level": "Level",
     "portions": "Portions",
     "steps": "Steps"
+  },
+  "orders": {
+    "title": "Yours Orders",
+    "createdAt": "Ordered on",
+    "pickupDate": "Order scheduled for",
+    "totalPrice": "Total price :"
+  },
+  "filters": {
+    "filtersMenu": {
+      "sweets": "Sweets",
+      "trays": "Trays",
+      "moreFilters": "More Filters",
+      "noResults": "No products matching your search"
+    },
+    "filtersModal": {
+      "title": "Selecting filters",
+      "rating": "Rating",
+      "price": "Price",
+      "categories": "Categories",
+      "allergens": "Allergens",
+      "resetFilters": "Reset filters"
+    },
+    "flavors": {
+      "SWEET": "Sweet",
+      "SALTY": "Salty",
+      "MIXED": "Mixed"
+    }
   }
 }

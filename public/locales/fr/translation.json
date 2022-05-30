@@ -1,6 +1,6 @@
 {
   "navigation": {
-    "sweets": "Mignardises",
+    "shop": "Boutique",
     "recipes": "Recettes",
     "events": "Événements"
   },
@@ -143,6 +143,9 @@
       "city": "Ville",
       "zip": "Code postal"
     },
+    "payment": {
+      "payButton": "Payer"
+    },
     "success": {
       "title": "Félicitations, votre commande a été validée !"
     },
@@ -159,5 +162,32 @@
     "level": "Niveau",
     "portions": "Personnes",
     "steps": "Préparation"
+  },
+  "orders": {
+    "title": "Vos commandes",
+    "createdAt": "Commandé le",
+    "pickupDate": "Commande prévue pour le",
+    "totalPrice": "Prix total :"
+  },
+  "filters": {
+    "filtersMenu": {
+      "sweets": "Mignardises",
+      "trays": "Plateaux",
+      "moreFilters": "Plus de Filtres",
+      "noResults": "Aucun produits ne correspond à votre recherche"
+    },
+    "filtersModal": {
+      "title": "Sélection des filtres",
+      "rating": "Note",
+      "price": "Prix",
+      "categories": "Catégories",
+      "allergens": "Allergènes",
+      "resetFilters": "Réinitialiser les filtres"
+    },
+    "flavors": {
+      "SWEET": "Sucrée",
+      "SALTY": "Salée",
+      "MIXED": "Mixte"
+    }
   }
 }

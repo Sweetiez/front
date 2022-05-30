@@ -26,7 +26,10 @@ jobs:
           uses: docker/build-push-action@v2
           with:
             push: true
-            build-args: REACT_APP_API_ENDPOINT=${{ secrets.SWEETIEZ_API_ENDPOINT }}
+            build-args: |
+              REACT_APP_API_ENDPOINT=${{ secrets.SWEETIEZ_API_ENDPOINT }}
+              REACT_APP_BASE_URL=${{ secrets.SWEETIEZ_APP_BASE_URL }}
+              REACT_APP_STRIPE_PUBLISHABLE_KEY=${{ secrets.SWEETIEZ_STRIPE_PUBLISHABLE_KEY }}
             tags: |
               ${{ secrets.DOCKERHUB_USERNAME }}/front:latest
               ${{ secrets.DOCKERHUB_USERNAME }}/front:${{ steps.get_tag.outputs.tag }}

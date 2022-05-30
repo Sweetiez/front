@@ -109,7 +109,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 </h1>
               </div>
               <div className="flex flex-col-reverse justify-end mb-1 mr-4 group cursor-pointer">
-                <Stars number={product?.rating ? product.rating : 0} />
+                <Stars number={product?.evaluation && product?.evaluation.mark ? product.evaluation.mark : 0} />
               </div>
               <p className="py-2 pt-10 text-xl text-gray-700 font-pompiere font-size-16">
                 {product?.description}

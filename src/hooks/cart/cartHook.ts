@@ -5,13 +5,17 @@ export function useCart() {
   return useQuery<CartModel[], Error>(
     `cart`,
     async () => {
-      const cart = localStorage.getItem('cart');
-      return cart ? JSON.parse(cart) : [];
+      return getCart();
     },
     {
       refetchInterval: 500,
     },
   );
+}
+
+export function getCart(): CartModel[] {
+  const cart = localStorage.getItem('cart');
+  return cart ? JSON.parse(cart) : [];
 }
 
 export function setCart(cart: CartModel[]): void {
