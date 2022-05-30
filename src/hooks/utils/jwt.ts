@@ -5,3 +5,7 @@ export function parseJwt(token: string): ParsedToken {
   const base64 = base64Url.replace('-', '+').replace('_', '/');
   return JSON.parse(window.atob(base64));
 }
+
+export function cleanToken(token: string): string {
+  return token.slice(7);
+}

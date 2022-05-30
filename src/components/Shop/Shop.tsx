@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useState } from 'react';
+import React, { Fragment, useCallback, useMemo, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import ProductCard from './ProductCard';
 import ProductDetailModal from '../Product/ProductDetailModal';
@@ -13,14 +13,85 @@ import {
 import { fakeProducts } from '../../assets/FakeProducts';
 import SkeletonShop from '../utils/Skeleton/SkeletonShop';
 import BannerModel from './BannerModel';
+import FilterMenu from '../FilterMenu/FilterMenu';
+import { useTranslation } from 'react-i18next';
+
+export interface FilterType {
+  ratings?: number[];
+  price?: number[];
+  category?: string[];
+  allergen?: string[];
+}
 
 const Shop: React.FC = () => {
-  const { data: sweetData, isLoading: isSweetLoading } = useStoreList();
-  const { data: bannerData } = useSweetBanner();
-  const products = sweetData && sweetData.length !== 0 ? sweetData : [];
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(fakeProducts[0]); // default value?
   const [modalState, setModalState] = useState(false);
+  const [filters, setFilters] = useState<FilterType>({});
+  const { data: sweetData, isLoading: isSweetLoading } = useStoreList();
+  const { data: bannerData } = useSweetBanner();
+  const minRating = 0;
+  const maxRating = 5;
+  const minPrice = 0;
+  const maxPrice = 200;
+
+  // const products = useFilteredStoreList(filters, sweetData || []);
+  const products = useMemo(() => {
+    if (!sweetData) return [];
+    let newData = [...sweetData];
+    if (filters.ratings) {
+      newData = newData.filter((product) => {
+        if (
+          filters.ratings &&
+          minRating === filters.ratings[0] &&
+          maxRating === filters.ratings[1]
+        ) {
+          delete filters.ratings;
+          // eslint-disable-next-line array-callback-return
+          return;
+        }
+
+        return !!(
+          product.rating &&
+          filters.ratings &&
+          product.rating >= filters.ratings[0] &&
+          product.rating <= filters.ratings[1]
+        );
+      });
+    }
+    if (filters.price) {
+      newData = newData.filter((product) => {
+        if (
+          filters.price &&
+          minPrice === filters.price[0] &&
+          maxPrice === filters.price[1]
+        ) {
+          delete filters.price;
+          // eslint-disable-next-line array-callback-return
+          return;
+        }
+        return !!(
+          product.price &&
+          filters.price &&
+          product.price >= filters.price[0] &&
+          product.price <= filters.price[1]
+        );
+      });
+    }
+    if (filters.category && filters.category.length > 0) {
+      newData = newData.filter((product) => {
+        return !!(
+          product.flavor &&
+          filters.category &&
+          filters.category.includes(product.flavor)
+        );
+      });
+    } else {
+      delete filters.category;
+    }
+    return newData;
+  }, [filters, sweetData]);
 
   const manageBasketClick = useCallback((product, state) => {
     setCurrentProduct(product);
@@ -36,11 +107,11 @@ const Shop: React.FC = () => {
     setOpen(false);
   }, []);
 
-  if (isSweetLoading || products.length === 0) return <SkeletonShop />;
+  if (isSweetLoading) return <SkeletonShop />;
 
   return (
     <>
-      <div className="pb-5">
+      <div>
         {bannerData?.length === 1 ? (
           <img
             key="carousel"
@@ -83,112 +154,124 @@ const Shop: React.FC = () => {
         )}
       </div>
 
+      <div>
+        <FilterMenu setFilters={setFilters} filters={filters} />
+      </div>
       <div className="flex justify-center">
-        <div className="grid grid-cols-5">
-          <div className="col-start-1 col-end-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 grid-rows-2">
-              {products.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  openProductDetailClick={manageProductDetailClick}
-                  openBasket={manageBasketClick}
-                />
-              ))}
+        {products.length === 0 ? (
+          <div className="flex justify-center">
+            <span className="font-pompiere text-3xl p-40">
+              {t('filters.filtersMenu.noResults')}
+            </span>
+          </div>
+        ) : (
+          <>
+            <div className="grid grid-cols-5">
+              <div className="col-start-1 col-end-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 grid-rows-2">
+                  {' '}
+                  {products.map((product) => (
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                      openProductDetailClick={manageProductDetailClick}
+                      openBasket={manageBasketClick}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
-            {/*Modal Cart*/}
-            <Transition.Root show={modalState} as={Fragment}>
-              <Dialog
-                as="div"
-                className="fixed z-10 inset-0 overflow-y-auto"
-                onClose={setModalState}
+          </>
+        )}
+
+        {/*Modal Cart*/}
+        <Transition.Root show={modalState} as={Fragment}>
+          <Dialog
+            as="div"
+            className="fixed z-10 inset-0 overflow-y-auto"
+            onClose={setModalState}
+          >
+            <div className="flex items-end justify-center min-h-screen w-fit pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
               >
-                <div className="flex items-end justify-center min-h-screen w-fit pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+              </Transition.Child>
+              <span
+                className="hidden sm:inline-block sm:align-middle sm:h-screen"
+                aria-hidden="true"
+              >
+                &#8203;
+              </span>
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              >
+                <div className=" inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                  <QuickShop
+                    product={currentProduct}
+                    setOpenedModal={setModalState}
+                  />
+                </div>
+              </Transition.Child>
+            </div>
+          </Dialog>
+        </Transition.Root>
+        {/*Modal Sidebar left*/}
+        <div className="pointer-events-none fixed inset-y-0 left-0 flex max-w-full pl-10">
+          <Transition.Root show={open} as={Fragment}>
+            <Dialog
+              as="div"
+              className="z-40 fixed inset-0 overflow-hidden"
+              onClose={setOpen}
+            >
+              <div className="absolute inset-0 overflow-hidden">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-in-out duration-500"
+                  enterFrom="opacity-0"
+                  enterTo="opacity-100"
+                  leave="ease-in-out duration-500"
+                  leaveFrom="opacity-100"
+                  leaveTo="opacity-0"
+                >
+                  <Dialog.Overlay className="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                </Transition.Child>
+
+                <div className="pointer-events-none fixed inset-y-0 left-0 flex max-w-full pr-10">
                   <Transition.Child
                     as={Fragment}
-                    enter="ease-out duration-300"
-                    enterFrom="opacity-0"
-                    enterTo="opacity-100"
-                    leave="ease-in duration-200"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0"
+                    enter="transform transition ease-in-out duration-500 sm:duration-700"
+                    enterTo="translate-x-0"
+                    enterFrom="-translate-x-full"
+                    leave="transform transition ease-in-out duration-500 sm:duration-700"
+                    leaveTo="-translate-x-full"
+                    leaveFrom="translate-x-0"
                   >
-                    <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-                  </Transition.Child>
-                  <span
-                    className="hidden sm:inline-block sm:align-middle sm:h-screen"
-                    aria-hidden="true"
-                  >
-                    &#8203;
-                  </span>
-                  <Transition.Child
-                    as={Fragment}
-                    enter="ease-out duration-300"
-                    enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    enterTo="opacity-100 translate-y-0 sm:scale-100"
-                    leave="ease-in duration-200"
-                    leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                  >
-                    <div className=" inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                      <QuickShop
-                        product={currentProduct}
-                        setOpenedModal={setModalState}
-                      />
+                    <div className="pointer-events-auto w-screen max-w-md">
+                      <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl ">
+                        <ProductDetailModal
+                          manageCloseClick={manageCloseClick}
+                          productId={currentProduct.id ? currentProduct.id : ''}
+                        />
+                      </div>
                     </div>
                   </Transition.Child>
                 </div>
-              </Dialog>
-            </Transition.Root>
-            {/*Modal Sidebar left*/}
-            <div className="pointer-events-none fixed inset-y-0 left-0 flex max-w-full pl-10">
-              <Transition.Root show={open} as={Fragment}>
-                <Dialog
-                  as="div"
-                  className="z-40 fixed inset-0 overflow-hidden"
-                  onClose={setOpen}
-                >
-                  <div className="absolute inset-0 overflow-hidden">
-                    <Transition.Child
-                      as={Fragment}
-                      enter="ease-in-out duration-500"
-                      enterFrom="opacity-0"
-                      enterTo="opacity-100"
-                      leave="ease-in-out duration-500"
-                      leaveFrom="opacity-100"
-                      leaveTo="opacity-0"
-                    >
-                      <Dialog.Overlay className="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-                    </Transition.Child>
-
-                    <div className="pointer-events-none fixed inset-y-0 left-0 flex max-w-full pr-10">
-                      <Transition.Child
-                        as={Fragment}
-                        enter="transform transition ease-in-out duration-500 sm:duration-700"
-                        enterTo="translate-x-0"
-                        enterFrom="-translate-x-full"
-                        leave="transform transition ease-in-out duration-500 sm:duration-700"
-                        leaveTo="-translate-x-full"
-                        leaveFrom="translate-x-0"
-                      >
-                        <div className="pointer-events-auto w-screen max-w-md">
-                          <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl ">
-                            <ProductDetailModal
-                              manageCloseClick={manageCloseClick}
-                              productId={
-                                currentProduct.id ? currentProduct.id : ''
-                              }
-                            />
-                          </div>
-                        </div>
-                      </Transition.Child>
-                    </div>
-                  </div>
-                </Dialog>
-              </Transition.Root>
-            </div>
-          </div>
-          <div />
+              </div>
+            </Dialog>
+          </Transition.Root>
         </div>
       </div>
     </>

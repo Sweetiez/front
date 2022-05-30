@@ -7,9 +7,9 @@
   width: 90%;
   border-radius: 10px;
   color: #ffff;
-  padding: 10px;
   font-size: 36px;
   text-align: center;
+  background-color: rgb(0, 0,0 ,0.3);
 }
 
 .carousel.carousel-slider li.slide.selected {
