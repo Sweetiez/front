@@ -19,7 +19,9 @@ const FilterCheckboxItem: React.FC<FilterCheckboxItemProps> = ({
   const { t } = useTranslation();
 
   useEffect(() => {
-    setChecked(false);
+    if (reset) {
+      setChecked(false);
+    }
   }, [reset]);
 
   const handleCheck = () => {
