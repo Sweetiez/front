@@ -35,8 +35,6 @@ const Shop: React.FC = () => {
   const maxRating = 5;
   const minPrice = 0;
   const maxPrice = 200;
-
-  // const products = useFilteredStoreList(filters, sweetData || []);
   const products = useMemo(() => {
     if (!sweetData) return [];
     let newData = [...sweetData];
@@ -48,8 +46,7 @@ const Shop: React.FC = () => {
           maxRating === filters.ratings[1]
         ) {
           delete filters.ratings;
-          // eslint-disable-next-line array-callback-return
-          return;
+          return product;
         }
 
         return !!(
@@ -68,8 +65,7 @@ const Shop: React.FC = () => {
           maxPrice === filters.price[1]
         ) {
           delete filters.price;
-          // eslint-disable-next-line array-callback-return
-          return;
+          return product;
         }
         return !!(
           product.price &&
