@@ -39,41 +39,35 @@ const Shop: React.FC = () => {
     if (!sweetData) return [];
     let newData = [...sweetData];
     if (filters.ratings) {
-      newData = newData.filter((product) => {
-        if (
-          filters.ratings &&
-          minRating === filters.ratings[0] &&
-          maxRating === filters.ratings[1]
-        ) {
-          delete filters.ratings;
-          return product;
-        }
-
-        return !!(
-          product.rating &&
-          filters.ratings &&
-          product.rating >= filters.ratings[0] &&
-          product.rating <= filters.ratings[1]
-        );
-      });
+      if (
+        minRating === filters.ratings[0] &&
+        maxRating === filters.ratings[1]
+      ) {
+        delete filters.ratings;
+      } else {
+        newData = newData.filter((product) => {
+          return !!(
+            product.rating &&
+            filters.ratings &&
+            product.rating >= filters.ratings[0] &&
+            product.rating <= filters.ratings[1]
+          );
+        });
+      }
     }
     if (filters.price) {
-      newData = newData.filter((product) => {
-        if (
-          filters.price &&
-          minPrice === filters.price[0] &&
-          maxPrice === filters.price[1]
-        ) {
-          delete filters.price;
-          return product;
-        }
-        return !!(
-          product.price &&
-          filters.price &&
-          product.price >= filters.price[0] &&
-          product.price <= filters.price[1]
-        );
-      });
+      if (minPrice === filters.price[0] && maxPrice === filters.price[1]) {
+        delete filters.price;
+      } else {
+        newData = newData.filter((product) => {
+          return !!(
+            product.price &&
+            filters.price &&
+            product.price >= filters.price[0] &&
+            product.price <= filters.price[1]
+          );
+        });
+      }
     }
     if (filters.category && filters.category.length > 0) {
       newData = newData.filter((product) => {
