@@ -133,7 +133,7 @@ const NavMenu: React.FC = () => {
                     <Link
                       key={index}
                       to={page.link}
-                      className="-m-2 p-2 block font-medium text-gray-900 font-birthstone text-2xl"
+                      className="-m-2 p-2 block font-medium hover:text-gold-100 font-birthstone text-2xl"
                     >
                       <div key={page.name} className="flow-root">
                         <a href={page.link}>{page.name}</a>
@@ -142,22 +142,32 @@ const NavMenu: React.FC = () => {
                   ))}
                 </div>
 
-                <div className="border-t border-gray-200 py-6 px-4 space-y-6">
-                  <div
-                    className="flow-root"
-                    onClick={() => manageModalContentClick(ModalContent.LOGIN)}
-                  >
-                    {t('menu.signIn')}
+                {isTokenAvailable ? (
+                  <></>
+                ) : (
+                  <div className="border-t border-gray-200 py-6 px-4 space-y-6">
+                    <div
+                      className="flow-root"
+                      onClick={() =>
+                        manageModalContentClick(ModalContent.LOGIN)
+                      }
+                    >
+                      <span className="font-birthstone text-2xl hover:text-gold-100 font-medium cursor-pointer">
+                        {t('menu.signIn')}
+                      </span>
+                    </div>
+                    <div
+                      className="flow-root"
+                      onClick={() =>
+                        manageModalContentClick(ModalContent.REGISTER)
+                      }
+                    >
+                      <span className="font-birthstone text-2xl hover:text-gold-100 font-medium cursor-pointer">
+                        {t('menu.register')}
+                      </span>
+                    </div>
                   </div>
-                  <div
-                    className="flow-root"
-                    onClick={() =>
-                      manageModalContentClick(ModalContent.REGISTER)
-                    }
-                  >
-                    {t('menu.register')}
-                  </div>
-                </div>
+                )}
               </div>
             </Transition.Child>
           </Dialog>
