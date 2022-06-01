@@ -147,7 +147,9 @@ const NavMenu: React.FC = () => {
                     className="flow-root"
                     onClick={() => manageModalContentClick(ModalContent.LOGIN)}
                   >
-                    {t('menu.signIn')}
+                    <span className="font-birthstone hover:gold-100">
+                      {t('menu.signIn')}
+                    </span>
                   </div>
                   <div
                     className="flow-root"
