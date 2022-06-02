@@ -7,6 +7,9 @@ module.exports = {
         birthstone: ["'Birthstone', cursive"],
         pompiere: ["'Pompiere', cursive"],
       },
+      fontSize: {
+        xxs: '.60rem',
+      },
       colors: {
         brown: {
           50: '#fdf8f6',
