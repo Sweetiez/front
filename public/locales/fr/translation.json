@@ -169,6 +169,11 @@
     "pickupDate": "Commande prévue pour le",
     "totalPrice": "Prix total :"
   },
+  "profile": {
+    "noPhone": "non renseigné",
+    "editPassword": "modifier son password",
+    "edit": "éditer"
+  },
   "filters": {
     "filtersMenu": {
       "sweets": "Mignardises",

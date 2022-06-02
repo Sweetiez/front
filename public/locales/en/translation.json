@@ -169,6 +169,11 @@
     "pickupDate": "Order scheduled for",
     "totalPrice": "Total price :"
   },
+  "profile": {
+    "noPhone": "missing",
+    "changePassword": "change password",
+    "edit": "edit"
+  },
   "filters": {
     "filtersMenu": {
       "sweets": "Sweets",

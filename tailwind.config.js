@@ -29,6 +29,10 @@ module.exports = {
         beige: {
           100: '#F5F5DC',
         },
+        grayBlue: {
+          200: '#94A3B8',
+          400: '#475569'
+        }
       },
     },
   },
