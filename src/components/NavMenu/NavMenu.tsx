@@ -16,7 +16,6 @@ import AuthMenu from './AuthMenu';
 import UserMenu from './UserMenu';
 import Modal from '../utils/Modal';
 import { useTokenAvailable } from '../../hooks/auth/tokenHook';
-import '../../assets/css/utils.css';
 
 // function classNames(...classes: any[]) {
 //   return classes.filter(Boolean).join(' ');
