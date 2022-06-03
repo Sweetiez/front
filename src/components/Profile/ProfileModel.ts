@@ -3,4 +3,5 @@ export default class ProfileModel {
   lastName: string | undefined;
   email: string | undefined;
   phone: string | undefined;
+  loyalty: number | undefined;
 }

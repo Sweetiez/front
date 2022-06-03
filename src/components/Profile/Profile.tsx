@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import NavMenu from '../NavMenu/NavMenu';
 import Page from '../Page/Page';
 import { useTranslation } from 'react-i18next';
 import { useUserProfile } from '../../hooks/user/users';
 import crown from '../../assets/lotties/crown.json';
 import Lottie from 'react-lottie-player';
+import Modal from '../utils/Modal';
+import ChangePasswordForm from './ChangePasswordForm';
+import EditProfileForm from "./EditProfileForm";
 
 const Profile: React.FC = () => {
   const { t } = useTranslation();
   const { data: profileData } = useUserProfile();
-
+  const [changePasswordModalState, setChangePasswordModalState] = useState(false);
+  const [editProfileModalState, setEditProfileModalState] = useState(false);
+  const changePasswordCloseClick = useCallback(() => {
+    setChangePasswordModalState(false);
+  }, []);
+  const editProfileCloseClick = useCallback(() => {
+    setEditProfileModalState(false);
+  }, []);
   return (
     <Page>
       <NavMenu />
@@ -54,7 +64,10 @@ const Profile: React.FC = () => {
             </span>
           </div>
           <div className="flex justify-center mt-10">
-            <div className="flex text-grayBlue-200 hover:text-gold-100 cursor-pointer p-2">
+            <div
+              className="flex text-grayBlue-200 hover:text-gold-100 cursor-pointer p-2"
+              onClick={() => setChangePasswordModalState(true)}
+            >
               <svg
                 className="h-4 w-4"
                 fill="none"
@@ -69,10 +82,12 @@ const Profile: React.FC = () => {
                 />
               </svg>
               <span className="text-xs pl-0.5">
-                {t('profile.changePassword')}
+                {t('profile.forms.editPassword.btn')}
               </span>
             </div>
-            <div className="flex text-grayBlue-200 hover:text-gold-100 cursor-pointer p-2">
+            <div className="flex text-grayBlue-200 hover:text-gold-100 cursor-pointer p-2"
+              onClick={() => setEditProfileModalState(true)}
+            >
               <svg
                 className="h-4 w-4"
                 viewBox="0 0 24 24"
@@ -87,17 +102,27 @@ const Profile: React.FC = () => {
                 <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
                 <line x1="16" y1="5" x2="19" y2="8" />
               </svg>
-              <span className="text-xs pl-0.5">{t('profile.edit')}</span>
+              <span className="text-xs pl-0.5">{t('profile.forms.editProfile.btn')}</span>
             </div>
           </div>
           <div className="py-10 border-t border-blueGray-200 text-center">
             <div className="">
               <Lottie className="h-20 w-auto" loop animationData={crown} play />
-              <span>74 points de fidélité</span>
+              <span>{profileData?.loyalty ? profileData?.loyalty + ' ' + t('profile.loyaltyPoint') : 0 + ' ' + t('profile.loyaltyPoint') }</span>
             </div>
           </div>
         </div>
       </div>
+      <Modal
+        modalContent={<ChangePasswordForm />}
+        modalState={changePasswordModalState}
+        setModalState={changePasswordCloseClick}
+      />
+      <Modal
+          modalContent={<EditProfileForm profile={profileData}/>}
+          modalState={editProfileModalState}
+          setModalState={editProfileCloseClick}
+      />
     </Page>
   );
 };
