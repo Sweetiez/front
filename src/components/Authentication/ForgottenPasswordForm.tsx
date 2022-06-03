@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import ModalContent from '../NavMenu/ModalContentEnum';
 import TextButton from './TextButton';
-import Title from './Title';
+import Title from '../utils/Title';
 
 interface ForgottenPasswordProps {
   setModalContent: (content: ModalContent) => void;

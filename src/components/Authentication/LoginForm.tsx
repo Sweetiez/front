@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ModalContent from '../NavMenu/ModalContentEnum';
 import TextButton from './TextButton';
-import Title from './Title';
+import Title from '../utils/Title';
 import LoginRequest from '../../hooks/auth/requests/LoginRequest';
 import { login } from '../../hooks/auth/register';
 import { useToken } from '../../hooks/auth/token';
@@ -66,7 +66,7 @@ const LoginForm: React.FC<LoginProps> = ({
               placeholder={t('authentication.login.email')}
             />
           </div>
-          <div className="mb-1 flex items-center ">
+          <div className="mb-1 flex items-center">
             <input
               className="shadow appearance-none -mr-8 border-gray-400 rounded w-full py-2 px-3 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold-100 focus:border-transparent"
               id="password"

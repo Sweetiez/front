@@ -171,8 +171,19 @@
   },
   "profile": {
     "noPhone": "missing",
-    "changePassword": "change password",
-    "edit": "edit"
+    "loyaltyPoint": "loyalty point",
+    "loyaltyPoints": "loyalty points",
+    "forms": {
+      "validate": "Validate",
+      "editPassword": {
+        "btn": "change password",
+        "title": "Choose a new password"
+      },
+      "editProfile": {
+        "btn": "edit",
+        "title": "Edit yours profile"
+      }
+    }
   },
   "filters": {
     "filtersMenu": {

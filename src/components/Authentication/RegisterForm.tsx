@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import ModalContent from '../NavMenu/ModalContentEnum';
 import Label from '../utils/Label';
 import TextButton from './TextButton';
-import Title from './Title';
+import Title from '../utils/Title';
 import '../../assets/css/_phone-input.css';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';

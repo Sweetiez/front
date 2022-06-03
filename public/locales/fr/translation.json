@@ -171,8 +171,19 @@
   },
   "profile": {
     "noPhone": "non renseigné",
-    "editPassword": "modifier son password",
-    "edit": "éditer"
+    "loyaltyPoint": "point de fidélité",
+    "loyaltyPoints": "points de fidélité",
+    "forms": {
+      "validate": "Valider",
+      "editPassword": {
+        "btn": "modifier son password",
+        "title": "Choisir un nouveau password"
+      },
+      "editProfile": {
+        "btn": "éditer",
+        "title": "Editer votre profile"
+      }
+    }
   },
   "filters": {
     "filtersMenu": {
