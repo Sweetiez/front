@@ -6,6 +6,7 @@ import ProfileModel from "./ProfileModel";
 import Label from "../utils/Label";
 import UpdateProfileRequest from "../../hooks/user/requests/UpdateProfileRequest";
 import {updateProfile} from "../../hooks/user/users";
+import {useQueryClient} from "react-query";
 
 interface EditProfileFormProps {
     profile?: ProfileModel;
@@ -15,6 +16,7 @@ interface EditProfileFormProps {
 const EditProfileForm: React.FC<EditProfileFormProps> = ({profile, manageCloseModal}) => {
     const { t } = useTranslation();
     const [value, setValue] = useState<any>(profile?.phone);
+    const queryClient = useQueryClient();
     const [status, setStatus] = useState('');
     const [message, setMessage] = useState('');
 
@@ -48,6 +50,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({profile, manageCloseMo
         );
         try {
             await updateProfile(request);
+            await queryClient.invalidateQueries(`user-my-profile`);
             manageCloseModal()
         } catch (e) {
             setMessage(t('authentication.register.apiResponses.failure'));
