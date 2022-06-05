@@ -31,7 +31,7 @@ const authenticatedRequest = (options: AxiosRequestConfig) => {
         });
     }
     // optionally catch errors and add some additional logging here
-    return error;
+    throw error;
   };
 
   return client({ timeout: 5000, ...options })

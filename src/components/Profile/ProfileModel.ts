@@ -1,4 +1,5 @@
 export default class ProfileModel {
+  id: string | undefined;
   firstName: string | undefined;
   lastName: string | undefined;
   email: string | undefined;

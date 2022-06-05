@@ -177,7 +177,19 @@
       "validate": "Valider",
       "editPassword": {
         "btn": "modifier son password",
-        "title": "Choisir un nouveau password"
+        "title": "Choisir un nouveau password",
+        "currentPassword": "Mot de passe actuel",
+        "newPassword": "Nouveau mot de passe",
+        "confirmNewPassword": "Confirmer nouveau mot de passe",
+        "error": {
+          "newPasswordLength": "Le nouveau mot de passe doit contenir plus de 8 caractères",
+          "newPasswordFormat": "Le nouveau mot de passe doit contenir au moins une minuscule, une majuscule et un chiffre",
+          "newPasswordConfirmed": "Les mots de passe ne correspondent pas"
+        },
+        "apiResponses": {
+          "success": "Votre mot de passe a été modifié",
+          "failure": "Une erreur s'est produite dans la modification de votre mot de passe"
+        }
       },
       "editProfile": {
         "btn": "éditer",
