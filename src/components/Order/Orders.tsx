@@ -17,8 +17,8 @@ const Orders: React.FC = () => {
           {t('orders.title')}
         </div>
         <div className="flex flex-col justify-center">
-          {orderData?.map((order, index) => (
-            <OrderCard key={index} order={order} />
+          {orderData?.map((order) => (
+            <OrderCard key={order.id} order={order} />
           ))}
         </div>
       </div>
