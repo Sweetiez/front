@@ -114,12 +114,12 @@ const Profile: React.FC = () => {
         </div>
       </div>
       <Modal
-        modalContent={<ChangePasswordForm />}
+        modalContent={<ChangePasswordForm profile={profileData} manageCloseModal={changePasswordCloseClick}/>}
         modalState={changePasswordModalState}
         setModalState={changePasswordCloseClick}
       />
       <Modal
-          modalContent={<EditProfileForm profile={profileData}/>}
+          modalContent={<EditProfileForm profile={profileData} manageCloseModal={editProfileCloseClick}/>}
           modalState={editProfileModalState}
           setModalState={editProfileCloseClick}
       />

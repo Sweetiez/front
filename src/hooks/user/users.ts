@@ -4,6 +4,8 @@ import { parseJwt } from '../utils/jwt';
 import UserProfile from './UserProfile';
 import { authenticatedRequest } from '../common/request';
 import ProfileModel from '../../components/Profile/ProfileModel';
+import UpdateProfileRequest from './requests/UpdateProfileRequest';
+import UpdatePasswordRequest from './requests/UpdatePasswordRequest';
 
 export function useProfile(): UserProfile | undefined {
   const { token } = useToken();
@@ -31,3 +33,23 @@ export function useUserProfile() {
     return data;
   });
 }
+
+const updateProfile = async (request: UpdateProfileRequest): Promise<any> => {
+  const { data } = await authenticatedRequest({
+    url: `/user/me`,
+    method: 'PUT',
+    data: request,
+  });
+
+  return data;
+};
+
+const updatePassword = async (request: UpdatePasswordRequest): Promise<any> => {
+  return await authenticatedRequest({
+    url: `/auth/me/password`,
+    method: 'PUT',
+    data: request,
+  });
+};
+
+export { updateProfile, updatePassword };
