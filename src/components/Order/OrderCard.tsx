@@ -33,7 +33,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
               <></>
             )}
           </h3>
-          <div className="flex justify-end">
+          <h3>
             {order.pickupDate ? (
               <>
                 {t('orders.pickupDate')} : {formatDate(order.pickupDate)}{' '}
@@ -41,7 +41,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
             ) : (
               <></>
             )}
-          </div>
+          </h3>
         </div>
         <div className="flex items-center justify-end">
           {order.status}
