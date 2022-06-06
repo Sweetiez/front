@@ -242,7 +242,7 @@ const NavMenu: React.FC = () => {
                       className="group -m-2 p-2 flex items-center"
                     >
                       <button
-                        className="ease-linear transform transition-all font-semibold duration-300 hover:scale-105 ml-3.5 grid grid-flow-col auto-cols-max outline-none r-0 items-center text-black text-xs pl-3 py-1 focus:outline-none mr-2 mb-1"
+                        className="ease-linear transform transition-all font-semibold duration-300 hover:scale-105 grid grid-flow-col auto-cols-max outline-none r-0 items-center text-black text-xs py-1 focus:outline-none mb-1"
                         type="button"
                       >
                         <ShoppingBagIcon

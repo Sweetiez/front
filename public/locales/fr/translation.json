@@ -167,7 +167,8 @@
     "title": "Vos commandes",
     "createdAt": "Commandé le",
     "pickupDate": "Commande prévue pour le",
-    "totalPrice": "Prix total :"
+    "totalPrice": "Prix total :",
+    "noResults": "Vous n'avez pas passé de commande"
   },
   "profile": {
     "noPhone": "non renseigné",
