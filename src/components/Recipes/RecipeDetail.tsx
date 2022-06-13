@@ -6,7 +6,7 @@ import { fadeAnimationHandler } from '../../assets/animations/CarouselAnimation'
 import { useParams } from 'react-router-dom';
 import { useRecipeDetail } from '../../hooks/recipes/recipesHooks';
 import Stars from '../Stars/Stars';
-import { RecipeStep } from './RecipeModel';
+import { RecipeStep } from './models/RecipeModel';
 import { useTranslation } from 'react-i18next';
 import SkeletonRecipeDetail from '../utils/Skeleton/SkeletonRecipeDetail';
 
@@ -20,7 +20,7 @@ const RecipeStepComponent: React.FC<RecipeStepProps> = ({ step }) => {
       <div className="flex col-start-1 col-end-4 border-b border-gray-200 mb-4">
         <div className=" w-1/6 text-center">
           <span className="mx-auto text-4xl font-birthstone text-gold-100">
-            {step?.number}.
+            {step?.order}.
           </span>
         </div>
         <div className="w-5/6 font-pompiere text-2xl">{step?.description}</div>
@@ -44,7 +44,7 @@ const RecipeDetail: React.FC = () => {
           <div className="col-start-2 col-end-5">
             <div className="place-content-center h-auto mt-2">
               <h1 className="text-center font-birthstone text-4xl font-bold">
-                {recipe?.name}
+                {recipe?.title}
               </h1>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 pt-4">
@@ -77,7 +77,13 @@ const RecipeDetail: React.FC = () => {
                     <tr>
                       <th colSpan={3}>
                         {`${t('recipes.totalTime')} : ${
-                          recipe?.totalTime ? recipe.totalTime : 0
+                          Number(
+                            recipe?.preparationTime
+                              ? recipe.preparationTime
+                              : 0,
+                          ) +
+                          Number(recipe?.chillTime ? recipe.chillTime : 0) +
+                          Number(recipe?.cookTime ? recipe.cookTime : 0)
                         } min`}
                       </th>
                     </tr>
@@ -93,10 +99,8 @@ const RecipeDetail: React.FC = () => {
                         {recipe?.preparationTime ? recipe.preparationTime : 0}{' '}
                         min
                       </td>
-                      <td>{recipe?.sleepTime ? recipe.sleepTime : 0} min</td>
-                      <td>
-                        {recipe?.cookingTime ? recipe.cookingTime : 0} min
-                      </td>
+                      <td>{recipe?.chillTime ? recipe.chillTime : 0} min</td>
+                      <td>{recipe?.cookTime ? recipe.cookTime : 0} min</td>
                     </tr>
                   </tbody>
                 </table>
@@ -105,11 +109,11 @@ const RecipeDetail: React.FC = () => {
                   {t('recipes.cost')} : {recipe?.cost ? recipe.cost : 0} €
                 </p>
                 <p>
-                  {t('recipes.level')} : {recipe?.level ? recipe.level : ''}
+                  {t('recipes.level')} :{' '}
+                  {recipe?.difficulty ? recipe.difficulty : ''}
                 </p>
                 <p>
-                  {t('recipes.portions')} :{' '}
-                  {recipe?.portions ? recipe.portions : 0}
+                  {t('recipes.portions')} : {recipe?.people ? recipe.people : 0}
                 </p>
               </div>
               <div className="col-start-1 col-end-4 my-5">
