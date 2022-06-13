@@ -207,7 +207,14 @@ const NavMenu: React.FC = () => {
                   <div className="h-full flex space-x-8">
                     {navigation.pages.map((page) => (
                       // <Popover key={page.name} className="flex">
-                      <div key={page.name} className="flex">
+                      <div
+                        key={page.name}
+                        className={`flex ${
+                          window.location.pathname === page.link
+                            ? 'text-gold-100'
+                            : ''
+                        }`}
+                      >
                         {/*{({ open }) => (*/}
                         <>
                           <Link
@@ -234,15 +241,22 @@ const NavMenu: React.FC = () => {
                       onClick={() => setCartOpen(true)}
                       className="group -m-2 p-2 flex items-center"
                     >
-                      <button>
+                      <button
+                        className="ease-linear transform transition-all font-semibold duration-300 hover:scale-105 grid grid-flow-col auto-cols-max outline-none r-0 items-center text-black text-xs py-1 focus:outline-none mb-1"
+                        type="button"
+                      >
                         <ShoppingBagIcon
-                          className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                          className="flex-shrink-0 h-6 w-6 group-hover:text-gold-100"
                           aria-hidden="true"
                         />
+                        {cart.length !== 0 ? (
+                          <span className="absolute top-1 right-0 inline-flex items-center justify-center px-1.5 py-1 text-xxs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-gold-100 rounded-full">
+                            {cart.length < 100 ? cart.length : '99+'}
+                          </span>
+                        ) : (
+                          <></>
+                        )}
                       </button>
-                      <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                        {cart.length}
-                      </span>
                       <span className="sr-only">items in cart, view bag</span>
                     </div>
                   </div>

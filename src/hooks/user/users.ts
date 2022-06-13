@@ -2,6 +2,10 @@ import { useToken } from '../auth/token';
 import { useQuery } from 'react-query';
 import { parseJwt } from '../utils/jwt';
 import UserProfile from './UserProfile';
+import { authenticatedRequest } from '../common/request';
+import ProfileModel from '../../components/Profile/ProfileModel';
+import UpdateProfileRequest from './requests/UpdateProfileRequest';
+import UpdatePasswordRequest from './requests/UpdatePasswordRequest';
 
 export function useProfile(): UserProfile | undefined {
   const { token } = useToken();
@@ -19,3 +23,33 @@ export function useProfile(): UserProfile | undefined {
     return undefined;
   }
 }
+
+export function useUserProfile() {
+  return useQuery<ProfileModel, Error>(`user-my-profile`, async () => {
+    const { data } = await authenticatedRequest({
+      url: `user/me`,
+    });
+
+    return data;
+  });
+}
+
+const updateProfile = async (request: UpdateProfileRequest): Promise<any> => {
+  const { data } = await authenticatedRequest({
+    url: `/user/me`,
+    method: 'PUT',
+    data: request,
+  });
+
+  return data;
+};
+
+const updatePassword = async (request: UpdatePasswordRequest): Promise<any> => {
+  return await authenticatedRequest({
+    url: `/auth/me/password`,
+    method: 'PUT',
+    data: request,
+  });
+};
+
+export { updateProfile, updatePassword };

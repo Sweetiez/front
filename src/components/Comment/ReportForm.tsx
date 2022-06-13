@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Title from '../Authentication/Title';
+import Title from '../utils/Title';
 import TextArea from './TextArea';
 import { reportEvaluation } from '../../hooks/evaluations/evaluations';
 import ReportEvaluationRequest from '../../hooks/evaluations/requests/reportEvaluationRequest';

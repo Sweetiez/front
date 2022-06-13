@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Title from '../Authentication/Title';
+import Title from '../utils/Title';
 import Stars from '../Stars/Stars';
 import Label from '../utils/Label';
 import EvaluationsRequest from '../../hooks/evaluations/requests/evaluationsRequest';

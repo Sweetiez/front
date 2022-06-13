@@ -167,7 +167,36 @@
     "title": "Yours Orders",
     "createdAt": "Ordered on",
     "pickupDate": "Order scheduled for",
-    "totalPrice": "Total price :"
+    "totalPrice": "Total price :",
+    "noResults": "You have not placed an order"
+  },
+  "profile": {
+    "noPhone": "missing",
+    "loyaltyPoint": "loyalty point",
+    "loyaltyPoints": "loyalty points",
+    "forms": {
+      "validate": "Validate",
+      "editPassword": {
+        "btn": "change password",
+        "title": "Choose a new password",
+        "currentPassword": "Current password",
+        "newPassword": "New password",
+        "confirmNewPassword": "Confirm new password",
+        "error": {
+          "newPasswordLength": "The new password must contain more than 8 characters",
+          "newPasswordFormat": "The new password must contain at least one lower case letter, one upper case letter and one number",
+          "newPasswordConfirmed": "Passwords not matching"
+        },
+        "apiResponses": {
+          "success": "Your password has been modified",
+          "failure": "An error has occurred in the changing your password"
+        }
+      },
+      "editProfile": {
+        "btn": "edit",
+        "title": "Edit yours profile"
+      }
+    }
   },
   "filters": {
     "filtersMenu": {
