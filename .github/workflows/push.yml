@@ -50,7 +50,7 @@ jobs:
         uses: wagoid/commitlint-github-action@v4.1.1
 
   devpublish:
-    name: Publish new release
+    name: Publish on dev
     needs: [lint, build, docker, commitlint]
     if: github.ref == 'refs/heads/develop' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
