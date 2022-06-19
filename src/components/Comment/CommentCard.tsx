@@ -27,7 +27,7 @@ const CommentCard: React.FC<CommentCardModelProps> = ({ comment }) => {
       <div className="bg-white max-w rounded-2xl px-6 py-2 mt-2 shadow-lg transition duration-500 transform transition duration-200 hover:scale-105">
         <div className="mt-4">
           <div className="flex flex-col-reverse justify-end mb-1 mr-4 group cursor-pointer">
-            <Stars number={comment.rating ? comment.rating : 0} />
+            <Stars number={comment.mark ? comment.mark : 0} />
           </div>
           <ShowMoreText
             lines={5}
@@ -39,7 +39,7 @@ const CommentCard: React.FC<CommentCardModelProps> = ({ comment }) => {
           </ShowMoreText>
           <div className="mt-4 flex justify-between items-center space-x-4 py-2 text-xs">
             <div className="font-semibold">
-              {comment.authorName} •{' '}
+              {comment.voter?.name} •{' '}
               <span className="font-normal">{commentDate ? commentDate : ""}</span>
             </div>
             <div className="flex justify-end text-xs transform transition duration-200 hover:text-gold-100">

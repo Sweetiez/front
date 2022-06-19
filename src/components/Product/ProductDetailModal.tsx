@@ -109,7 +109,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 </h1>
               </div>
               <div className="flex flex-col-reverse justify-end mb-1 mr-4 group cursor-pointer">
-                <Stars number={product?.evaluation && product?.evaluation.mark ? product.evaluation.mark : 0} />
+                <Stars number={product?.valuation && product?.valuation?.mark ? product?.valuation?.mark : 0} />
               </div>
               <p className="py-2 pt-10 text-xl text-gray-700 font-pompiere font-size-16">
                 {product?.description}
@@ -126,7 +126,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                   <></>
                 )}
               </div>
-              {product?.comments!.map((comment) =>
+              {product?.valuation?.comments!.map((comment) =>
                 comment.content !== '' ? (
                   <CommentCard key={comment.id} comment={comment} />
                 ) : (
