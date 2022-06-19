@@ -1,12 +1,14 @@
-import CommentCardModel from '../Comment/CommentCardModel';
 import EvaluationModel from './EvaluationModel';
 
 export default class ProductDetailModel {
   id: string | undefined;
   name: string | undefined;
-  description: string | undefined;
   price: number | undefined;
+  unitPerPackage: number | undefined;
+  description: string | undefined;
   images: string[] | undefined;
-  evaluation: EvaluationModel | undefined;
-  comments: CommentCardModel[] | undefined;
+  ingredients: string[] | undefined;
+  diets: string[] | undefined;
+  allergens: string[] | undefined;
+  valuation: EvaluationModel | undefined;
 }
