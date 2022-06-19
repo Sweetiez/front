@@ -42,12 +42,9 @@ const Shop: React.FC = () => {
   const maxPrice = 200;
 
   const products = useMemo(() => {
-
     const data = productType === SWEETS ? sweetData : trayData;
     if (!data) return [];
     let newData = [...data];
-
-    console.log(newData);
 
     if (filters.ratings) {
       if (
