@@ -7,31 +7,29 @@ import { Dialog, Transition } from '@headlessui/react';
 import FiltersModal from './FiltersModal';
 import { useTranslation } from 'react-i18next';
 import { FilterType } from '../Shop/Shop';
+import {SWEETS, TRAYS} from "./ProductType";
 
 interface Props {
   setFilters: (filter: FilterType) => void;
   filters: FilterType;
+  dataManager: (productType: number) => void;
+  productType: number;
 }
 
-const FilterMenu = ({ setFilters, filters }: Props) => {
+const FilterMenu = ({ setFilters, filters, dataManager, productType }: Props) => {
   const { t } = useTranslation();
-  const [activeFilter, setActiveFilter] = useState(1);
   const [filtersOpen, setFiltersOpen] = useState(false);
 
   const navigationOptions = [
     {
-      index: 1,
-      option: t('filters.filtersMenu.sweets'),
-    },
-    {
-      index: 2,
+      index: TRAYS,
       option: t('filters.filtersMenu.trays'),
     },
+    {
+      index: SWEETS,
+      option: t('filters.filtersMenu.sweets'),
+    },
   ];
-
-  function setActiveFilterMenu(index: number) {
-    setActiveFilter(index);
-  }
 
   return (
     <>
@@ -43,12 +41,12 @@ const FilterMenu = ({ setFilters, filters }: Props) => {
                 <li key={option}>
                   <button
                     className={`${
-                      activeFilter === index
+                      productType === index
                         ? 'active'
                         : 'nav-link nav-link-ltr'
                     } background-transparent font-semibold outline-none hover:text-gold-100 focus:outline-none font-pompiere text-xl`}
                     type="button"
-                    onClick={() => setActiveFilterMenu(index)}
+                    onClick={() => dataManager(index)}
                   >
                     {option}
                   </button>

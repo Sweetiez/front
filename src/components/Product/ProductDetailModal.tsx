@@ -1,19 +1,19 @@
-import React, { useCallback, useState } from 'react';
-import { Carousel } from 'react-responsive-carousel';
+import React, {useCallback, useState} from 'react';
+import {Carousel} from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import Stars from '../Stars/Stars';
 import Lottie from 'react-lottie-player';
 import cooking from '../../assets/lotties/cooking.json';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import Stepper from '../Stepper/Stepper';
-import { setCart, useCart } from '../../hooks/cart/cartHook';
+import {setCart, useCart} from '../../hooks/cart/cartHook';
 import LabelButton from '../Button/LabelButton';
-import { useSweetDetails } from '../../hooks/products/sweets/sweetsHooks';
+import {useSweetDetails} from '../../hooks/products/sweets/sweetsHooks';
 import CommentCard from '../Comment/CommentCard';
 import Modal from '../utils/Modal';
 import CommentForm from '../Comment/CommentForm';
 import SkeletonProductDetail from '../utils/Skeleton/SkeletonProductDetail';
-import { useTokenAvailable } from '../../hooks/auth/tokenHook';
+import {useTokenAvailable} from '../../hooks/auth/tokenHook';
 import CommentType from '../Comment/CommentTypeEnum';
 
 interface ProductModalProps {

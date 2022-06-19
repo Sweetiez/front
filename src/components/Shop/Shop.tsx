@@ -15,6 +15,7 @@ import SkeletonShop from '../utils/Skeleton/SkeletonShop';
 import BannerModel from './BannerModel';
 import FilterMenu from '../FilterMenu/FilterMenu';
 import { useTranslation } from 'react-i18next';
+import {SWEETS, TRAYS} from "../FilterMenu/ProductType";
 
 export interface FilterType {
   ratings?: number[];
@@ -29,16 +30,25 @@ const Shop: React.FC = () => {
   const [currentProduct, setCurrentProduct] = useState(fakeProducts[0]); // default value?
   const [modalState, setModalState] = useState(false);
   const [filters, setFilters] = useState<FilterType>({});
-  const { data: sweetData, isLoading: isSweetLoading } = useStoreList();
+  const { data: sweetData, isLoading: isSweetLoading } = useStoreList('sweets');
+  const { data: trayData, isLoading: isTrayLoading } = useStoreList('trays');
+  const [productType, setProductType] = useState(TRAYS);
+  const dataManager = useCallback((productType) => { setProductType(productType)}, []);
+
   const { data: bannerData } = useSweetBanner();
   const minRating = 0;
   const maxRating = 5;
   const minPrice = 0;
   const maxPrice = 200;
+
   const products = useMemo(() => {
-    console.log(sweetData)
-    if (!sweetData) return [];
-    let newData = [...sweetData];
+
+    const data = productType === SWEETS ? sweetData : trayData;
+    if (!data) return [];
+    let newData = [...data];
+
+    console.log(newData);
+
     if (filters.ratings) {
       if (
         minRating === filters.ratings[0] &&
@@ -82,7 +92,7 @@ const Shop: React.FC = () => {
       delete filters.category;
     }
     return newData;
-  }, [filters, sweetData]);
+  }, [filters, sweetData, trayData, productType]);
 
   const manageBasketClick = useCallback((product, state) => {
     setCurrentProduct(product);
@@ -98,7 +108,7 @@ const Shop: React.FC = () => {
     setOpen(false);
   }, []);
 
-  if (isSweetLoading) return <SkeletonShop />;
+  if (productType === SWEETS ? isSweetLoading : isTrayLoading) return <SkeletonShop />;
 
   return (
     <>
@@ -146,7 +156,7 @@ const Shop: React.FC = () => {
       </div>
 
       <div>
-        <FilterMenu setFilters={setFilters} filters={filters} />
+        <FilterMenu setFilters={setFilters} filters={filters} dataManager={dataManager} productType={productType}/>
       </div>
       <div className="flex justify-center">
         {products.length === 0 ? (
