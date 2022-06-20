@@ -16,7 +16,7 @@ export const fakeProducts: ProductCardModel[] = [
     // shortDescription: 'ma petite description',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci alias aliquam culpa, delectus expedita fugit ipsum laboriosam maiores maxime numquam reprehenderit, rerum sint unde vero! Accusamus id quod repudiandae?',
-    highlight: 'COMMON',// comments: [
+    highlight: 'COMMON', // comments: [
     //   {
     //     id: '1',
     //     author: 'Aymeric',

@@ -79,7 +79,11 @@
   },
   "productDetail": {
     "add": "Add",
-    "comment": "Comment"
+    "comment": "Comment",
+    "ingredients": "Ingredients",
+    "sweets": "Sweets",
+    "allergens": "Allergens",
+    "diets": "Diets"
   },
   "comment": {
     "showMore": "Show more",

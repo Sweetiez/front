@@ -1,4 +1,4 @@
-import CommentCardModel from "../Comment/CommentCardModel";
+import CommentCardModel from '../Comment/CommentCardModel';
 
 export default class EvaluationModel {
   mark: number | undefined;

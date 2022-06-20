@@ -1,4 +1,4 @@
-import {Voter} from "./Voter";
+import { Voter } from './Voter';
 
 export default class CommentCardModel {
   id: string | undefined;

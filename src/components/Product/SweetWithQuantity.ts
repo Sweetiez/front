@@ -1,6 +1,6 @@
-import SweetDetailModel from "./SweetDetailModel";
+import SweetDetailModel from './SweetDetailModel';
 
 export class SweetWithQuantity {
-    sweet: SweetDetailModel | undefined;
-    quantity: number | undefined;
+  sweet: SweetDetailModel | undefined;
+  quantity: number | undefined;
 }

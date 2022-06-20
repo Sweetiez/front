@@ -15,7 +15,9 @@ import CommentForm from '../Comment/CommentForm';
 import SkeletonProductDetail from '../utils/Skeleton/SkeletonProductDetail';
 import {useTokenAvailable} from '../../hooks/auth/tokenHook';
 import CommentType from '../Comment/CommentTypeEnum';
-import {TRAYS} from "../FilterMenu/ProductType";
+import {SWEETS, TRAYS} from '../FilterMenu/ProductType';
+import SweetDetailModel from './SweetDetailModel';
+import TrayDetailModel from "./TrayDetailModel";
 
 interface ProductModalProps {
   manageCloseClick: () => void;
@@ -23,8 +25,15 @@ interface ProductModalProps {
   productType: number;
 }
 
-const ProductDetailModal: React.FC<ProductModalProps> = ({ manageCloseClick, productId, productType }) => {
-  const { data: productData } = useProductDetails(productId,  productType === TRAYS ? 'trays' : 'sweets');
+const ProductDetailModal: React.FC<ProductModalProps> = ({
+  manageCloseClick,
+  productId,
+  productType,
+}) => {
+  const { data: productData } = useProductDetails(
+    productId,
+    productType === TRAYS ? 'trays' : 'sweets',
+  );
   const { data: isTokenAvailable } = useTokenAvailable();
   const product = productData ? productData : undefined;
   const { t } = useTranslation();
@@ -48,7 +57,11 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({ manageCloseClick, pro
     manageCloseClick();
   };
 
-  const showStars = product && product?.valuation && product?.valuation?.mark && product?.valuation?.mark > 0;
+  const showStars =
+    product &&
+    product?.valuation &&
+    product?.valuation?.mark &&
+    product?.valuation?.mark > 0;
   return (
     <>
       {!product ? (
@@ -92,8 +105,17 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({ manageCloseClick, pro
                 />
               </div>
               <div>
-                <h1 className="mx-3 font-semibold text-lg">{product?.packagedPrice} €</h1>
-                <span className="font-pompiere text-xs">({t('productPackage', {unit: product?.unitPerPackage, 'price': product?.price})})</span>
+                <h1 className="mx-3 font-semibold text-lg">
+                  {product?.packagedPrice} €
+                </h1>
+                <span className="font-pompiere text-xs">
+                  (
+                  {t('productPackage', {
+                    unit: product?.unitPerPackage,
+                    price: product?.price,
+                  })}
+                  )
+                </span>
               </div>
               {/* Stepper */}
               <div className="flex justify-center ">
@@ -110,14 +132,72 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({ manageCloseClick, pro
                 <h1 className="text-4xl font-bold text-gray-800 font-birthstone">
                   {product?.name}
                 </h1>
+                {showStars ? (
+                    <div className="flex pt-2 flex-col-reverse justify-end mb-1 mr-4 group cursor-pointer">
+                      <Stars
+                          number={
+                            product && product?.valuation && product?.valuation?.mark
+                                ? product?.valuation?.mark
+                                : 0
+                          }
+                      />
+                    </div>
+                ) : (
+                    <></>
+                )}
               </div>
-              {showStars ? <div className="flex flex-col-reverse justify-end mb-1 mr-4 group cursor-pointer">
-                <Stars number={product && product?.valuation && product?.valuation?.mark ? product?.valuation?.mark : 0} />
-              </div> : <></> }
 
-              <p className="py-2 pt-10 text-xl text-gray-700 font-pompiere font-size-16">
+              <p className="py-2 pt-6 text-xl text-gray-700 font-pompiere font-size-16">
                 {product?.description}
               </p>
+
+              {productType === SWEETS ? (
+                <div>
+                  <h1 className="text-3xl pt-2 font-bold text-gray-800 font-birthstone">
+                    {t('productDetail.ingredients')}
+                  </h1>
+                  <p className="py-2 pt-2 text-xl text-gray-700 font-pompiere font-size-16">
+                    {(product as SweetDetailModel).ingredients?.join(', ')}
+                  </p>
+                </div>
+              ) : (
+                <></>
+              )}
+
+              {productType === TRAYS ? (
+                  <div>
+                    <h1 className="text-3xl font-bold text-gray-800 font-birthstone">
+                      {t('productDetail.sweets')}
+                    </h1>
+                    <p className="py-2 pt-4 text-xl text-gray-700 font-pompiere font-size-16">
+                      {(product as TrayDetailModel).sweets}
+                    </p>
+                  </div>
+              ) : (
+                  <></>
+              )}
+
+              <div>
+                <h1 className="text-3xl pt-2 font-bold text-gray-800 font-birthstone">
+                  {t('productDetail.diets')}
+                </h1>
+                <p className="py-2 pt-2 text-xl text-gray-700 font-pompiere font-size-16">
+                  {(product as SweetDetailModel).diets
+                      ?.map(allergen => (allergen[0].toUpperCase() + allergen.substring(1).toLowerCase()))
+                      ?.join(', ')}
+                </p>
+              </div>
+
+              <div>
+                <h1 className="text-3xl pt-2 font-bold text-gray-800 font-birthstone">
+                  {t('productDetail.allergens')}
+                </h1>
+                <p className="py-2 pt-2 text-xl text-gray-700 font-pompiere font-size-16">
+                  {(product as SweetDetailModel).allergens
+                      ?.map(allergen => (allergen[0].toUpperCase() + allergen.substring(1).toLowerCase()))
+                      ?.join(', ')}
+                </p>
+              </div>
 
               <div className="flex justify-end mt-4">
                 {isTokenAvailable ? (

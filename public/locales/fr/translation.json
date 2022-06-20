@@ -79,7 +79,11 @@
   },
   "productDetail": {
     "add": "Ajouter",
-    "comment": "Commenter"
+    "comment": "Commenter",
+    "ingredients": "Ingrédients",
+    "sweets": "Mignardises",
+    "allergens": "Allergènes",
+    "diets": "Diètes"
   },
   "comment": {
     "showMore": "Afficher plus",

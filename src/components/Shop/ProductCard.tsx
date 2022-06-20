@@ -78,7 +78,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               {product.description}
             </ShowMoreText>
             <div className="flex justify-between mt-8">
-              <p className="text-md text-gray-800 mt-0">{product.price}€</p>
+              <p className="text-md text-gray-800 mt-0">{product.price} €</p>
               {showStars ? <div className="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
                 <Stars number={product && product?.rating ? product?.rating : 0} />
               </div> : <></> }
