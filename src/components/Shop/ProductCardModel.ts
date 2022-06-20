@@ -7,4 +7,5 @@ export default class ProductCardModel {
   images: string[] | undefined;
   rating: number | undefined;
   highlight: string | undefined;
+  unitPerPackage: number | undefined;
 }

@@ -1,10 +1,9 @@
-import { Dialog } from '@headlessui/react';
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, {useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import { handleRender } from './TooltipsSlider';
-import { FilterType } from '../Shop/Shop';
+import {handleRender} from './TooltipsSlider';
+import {FilterType} from '../Shop/Shop';
 import FilterCheckboxItem from './FilterCheckboxItem';
 
 interface FiltersModalProps {
@@ -64,9 +63,7 @@ const FiltersModal: React.FC<FiltersModalProps> = ({
     <>
       <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
         <div className="flex items-start justify-between">
-          <Dialog.Title className="text-3xl font-pompiere text-gray-900">
-            {t('filters.filtersModal.title')}{' '}
-          </Dialog.Title>
+          {t('filters.filtersModal.title')}{' '}
 
           <div className="absolute mr-3 right-0">
             <button

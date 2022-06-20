@@ -1,10 +1,11 @@
 import EvaluationModel from './EvaluationModel';
 
-export default class ProductDetailModel {
+export default class SweetDetailModel {
   id: string | undefined;
   name: string | undefined;
   price: number | undefined;
   unitPerPackage: number | undefined;
+  packagedPrice: number | undefined;
   description: string | undefined;
   images: string[] | undefined;
   ingredients: string[] | undefined;

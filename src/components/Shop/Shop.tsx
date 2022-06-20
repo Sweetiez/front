@@ -1,21 +1,19 @@
-import React, { Fragment, useCallback, useMemo, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
+import React, {Fragment, useCallback, useMemo, useState} from 'react';
+import {Dialog, Transition} from '@headlessui/react';
 import ProductCard from './ProductCard';
 import ProductDetailModal from '../Product/ProductDetailModal';
 import QuickShop from './QuickShop';
-import { Carousel } from 'react-responsive-carousel';
+import {Carousel} from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import '../../assets/css/_carousel.css';
-import {
-  useStoreList,
-  useSweetBanner,
-} from '../../hooks/products/sweets/sweetsHooks';
-import { fakeProducts } from '../../assets/FakeProducts';
+import {useStoreList, useProductBanner,} from '../../hooks/products/sweets/sweetsHooks';
+import {fakeProducts} from '../../assets/FakeProducts';
 import SkeletonShop from '../utils/Skeleton/SkeletonShop';
 import BannerModel from './BannerModel';
 import FilterMenu from '../FilterMenu/FilterMenu';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import {SWEETS, TRAYS} from "../FilterMenu/ProductType";
+import ProductCardModel from "./ProductCardModel";
 
 export interface FilterType {
   ratings?: number[];
@@ -33,9 +31,9 @@ const Shop: React.FC = () => {
   const { data: sweetData, isLoading: isSweetLoading } = useStoreList('sweets');
   const { data: trayData, isLoading: isTrayLoading } = useStoreList('trays');
   const [productType, setProductType] = useState(TRAYS);
-  const dataManager = useCallback((productType) => { setProductType(productType)}, []);
+  const dataManager = useCallback((productType) => { setProductType(productType) }, []);
 
-  const { data: bannerData } = useSweetBanner();
+  const { data: bannerData } = useProductBanner();
   const minRating = 0;
   const maxRating = 5;
   const minPrice = 0;
@@ -96,10 +94,20 @@ const Shop: React.FC = () => {
     setModalState(state);
   }, []);
 
-  const manageProductDetailClick = useCallback((product) => {
+  const manageProductDetailClick = useCallback((product: ProductCardModel | BannerModel) => {
+    if (product instanceof BannerModel) {
+      if (sweetData && trayData) {
+        const sweetIds = sweetData.map(item => item.id);
+        const products = sweetIds.includes(product.id) ? sweetData : trayData;
+        const optionalProduct = products.find(p => p.id === product.id);
+
+        product = (optionalProduct) ? optionalProduct : fakeProducts[0];
+      }
+      else product = fakeProducts[0];
+    }
     setOpen(true);
     setCurrentProduct(product);
-  }, []);
+  }, [sweetData, trayData]);
 
   const manageCloseClick = useCallback(() => {
     setOpen(false);
@@ -262,6 +270,7 @@ const Shop: React.FC = () => {
                         <ProductDetailModal
                           manageCloseClick={manageCloseClick}
                           productId={currentProduct.id ? currentProduct.id : ''}
+                          productType={productType}
                         />
                       </div>
                     </div>

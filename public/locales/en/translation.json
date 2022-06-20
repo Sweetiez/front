@@ -218,5 +218,6 @@
       "SALTY": "Salty",
       "MIXED": "Mixed"
     }
-  }
+  },
+  "productPackage": "Set of {{unit}} at the unit price of {{price}}€"
 }

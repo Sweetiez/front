@@ -8,26 +8,25 @@ import {useTranslation} from 'react-i18next';
 import Stepper from '../Stepper/Stepper';
 import {setCart, useCart} from '../../hooks/cart/cartHook';
 import LabelButton from '../Button/LabelButton';
-import {useSweetDetails} from '../../hooks/products/sweets/sweetsHooks';
+import {useProductDetails} from '../../hooks/products/sweets/sweetsHooks';
 import CommentCard from '../Comment/CommentCard';
 import Modal from '../utils/Modal';
 import CommentForm from '../Comment/CommentForm';
 import SkeletonProductDetail from '../utils/Skeleton/SkeletonProductDetail';
 import {useTokenAvailable} from '../../hooks/auth/tokenHook';
 import CommentType from '../Comment/CommentTypeEnum';
+import {TRAYS} from "../FilterMenu/ProductType";
 
 interface ProductModalProps {
   manageCloseClick: () => void;
   productId: string;
+  productType: number;
 }
 
-const ProductDetailModal: React.FC<ProductModalProps> = ({
-  manageCloseClick,
-  productId,
-}) => {
-  const { data: sweetData } = useSweetDetails(productId);
+const ProductDetailModal: React.FC<ProductModalProps> = ({ manageCloseClick, productId, productType }) => {
+  const { data: productData } = useProductDetails(productId,  productType === TRAYS ? 'trays' : 'sweets');
   const { data: isTokenAvailable } = useTokenAvailable();
-  const product = sweetData ? sweetData : undefined;
+  const product = productData ? productData : undefined;
   const { t } = useTranslation();
   const [itemCount, setItemCount] = useState<string | undefined>('1');
   const [CommentModalState, setCommentModalState] = useState(false);
@@ -49,6 +48,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
     manageCloseClick();
   };
 
+  const showStars = product && product?.valuation && product?.valuation?.mark && product?.valuation?.mark > 0;
   return (
     <>
       {!product ? (
@@ -91,7 +91,10 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                   play
                 />
               </div>
-              <h1 className="mx-3 font-semibold text-lg">{product?.price} €</h1>
+              <div>
+                <h1 className="mx-3 font-semibold text-lg">{product?.packagedPrice} €</h1>
+                <span className="font-pompiere text-xs">({t('productPackage', {unit: product?.unitPerPackage, 'price': product?.price})})</span>
+              </div>
               {/* Stepper */}
               <div className="flex justify-center ">
                 <Stepper itemCount={itemCount} setItemCount={setItemCount} />
@@ -108,9 +111,10 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                   {product?.name}
                 </h1>
               </div>
-              <div className="flex flex-col-reverse justify-end mb-1 mr-4 group cursor-pointer">
-                <Stars number={product?.valuation && product?.valuation?.mark ? product?.valuation?.mark : 0} />
-              </div>
+              {showStars ? <div className="flex flex-col-reverse justify-end mb-1 mr-4 group cursor-pointer">
+                <Stars number={product && product?.valuation && product?.valuation?.mark ? product?.valuation?.mark : 0} />
+              </div> : <></> }
+
               <p className="py-2 pt-10 text-xl text-gray-700 font-pompiere font-size-16">
                 {product?.description}
               </p>
@@ -126,7 +130,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                   <></>
                 )}
               </div>
-              {product?.valuation?.comments!.map((comment) =>
+              {product?.valuation?.comments?.map((comment) =>
                 comment.content !== '' ? (
                   <CommentCard key={comment.id} comment={comment} />
                 ) : (

@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import { commonRequest } from '../../common/request';
 import ProductCardModel from '../../../components/Shop/ProductCardModel';
-import ProductDetailModel from '../../../components/Product/ProductDetailModel';
+import SweetDetailModel from '../../../components/Product/SweetDetailModel';
 import BannerModel from '../../../components/Shop/BannerModel';
 
 export function useStoreList() {
@@ -15,7 +15,7 @@ export function useStoreList() {
 }
 
 export function useTrayDetails(id: string) {
-  return useQuery<ProductDetailModel, Error>(`trays-${id}`, async () => {
+  return useQuery<SweetDetailModel, Error>(`trays-${id}`, async () => {
     if (id) {
       const { data } = await commonRequest({
         url: `trays/${id}`,
