@@ -35,13 +35,14 @@ export function useProductDetails(id: string, type: string) {
 
 export function useProductBanner() {
   return useQuery<BannerModel[], Error>(`banner`, async () => {
-    const { sweets } = await commonRequest({
+    const { data: sweets } = await commonRequest({
       url: `sweets/banner`,
     });
 
-    const { trays } = await commonRequest({
-      url: `sweets/banner`,
+    const { data: trays } = await commonRequest({
+      url: `trays/banner`,
     });
-    return sweets + trays;
+
+    return [...sweets, ...trays];
   });
 }

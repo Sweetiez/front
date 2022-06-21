@@ -8,4 +8,5 @@ export default class ProductCardModel {
   rating: number | undefined;
   highlight: string | undefined;
   unitPerPackage: number | undefined;
+  type: string | undefined;
 }

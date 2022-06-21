@@ -7,7 +7,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import FiltersModal from './FiltersModal';
 import { useTranslation } from 'react-i18next';
 import { FilterType } from '../Shop/Shop';
-import {SWEETS, TRAYS} from "./ProductType";
+import {SWEET_INDEX, TRAY_INDEX} from "./ProductType";
 
 interface Props {
   setFilters: (filter: FilterType) => void;
@@ -22,11 +22,11 @@ const FilterMenu = ({ setFilters, filters, dataManager, productType }: Props) =>
 
   const navigationOptions = [
     {
-      index: TRAYS,
+      index: TRAY_INDEX,
       option: t('filters.filtersMenu.trays'),
     },
     {
-      index: SWEETS,
+      index: SWEET_INDEX,
       option: t('filters.filtersMenu.sweets'),
     },
   ];

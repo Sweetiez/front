@@ -15,14 +15,14 @@ import CommentForm from '../Comment/CommentForm';
 import SkeletonProductDetail from '../utils/Skeleton/SkeletonProductDetail';
 import { useTokenAvailable } from '../../hooks/auth/tokenHook';
 import CommentType from '../Comment/CommentTypeEnum';
-import { SWEETS, TRAYS } from '../FilterMenu/ProductType';
+import {SWEET_TYPE, TRAY_TYPE} from '../FilterMenu/ProductType';
 import SweetDetailModel from './SweetDetailModel';
 import TrayDetailModel from './TrayDetailModel';
 
 interface ProductModalProps {
   manageCloseClick: () => void;
   productId: string;
-  productType: number;
+  productType: string;
 }
 
 const ProductDetailModal: React.FC<ProductModalProps> = ({
@@ -32,7 +32,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
 }) => {
   const { data: productData } = useProductDetails(
     productId,
-    productType === TRAYS ? 'trays' : 'sweets',
+    productType === TRAY_TYPE ? 'trays' : 'sweets',
   );
   const { data: isTokenAvailable } = useTokenAvailable();
   const product = productData ? productData : undefined;
@@ -160,7 +160,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 {product?.description}
               </p>
 
-              {productType === SWEETS ? (
+              {productType === SWEET_TYPE ? (
                 <div>
                   <h1 className="text-3xl pt-2 font-bold text-gray-800 font-birthstone">
                     {t('productDetail.ingredients')}
@@ -173,7 +173,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 <></>
               )}
 
-              {productType === TRAYS ? (
+              {productType === TRAY_TYPE ? (
                 <div>
                   <h1 className="text-3xl font-bold text-gray-800 font-birthstone">
                     {t('productDetail.sweets')}

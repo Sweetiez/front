@@ -16,7 +16,9 @@ export const fakeProducts: ProductCardModel[] = [
     // shortDescription: 'ma petite description',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci alias aliquam culpa, delectus expedita fugit ipsum laboriosam maiores maxime numquam reprehenderit, rerum sint unde vero! Accusamus id quod repudiandae?',
-    highlight: 'COMMON', // comments: [
+    highlight: 'COMMON',
+    type: 'sweet',
+    // comments: [
     //   {
     //     id: '1',
     //     author: 'Aymeric',
@@ -55,6 +57,7 @@ export const fakeProducts: ProductCardModel[] = [
     //   'large description large description large description large description large description large description large description large description large description',
     description: 'This is a test description',
     highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '2',
@@ -78,6 +81,7 @@ export const fakeProducts: ProductCardModel[] = [
     description:
       'This is a test large description This is a test large description',
     highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '3',
@@ -99,6 +103,7 @@ export const fakeProducts: ProductCardModel[] = [
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
     highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '4',
@@ -120,6 +125,7 @@ export const fakeProducts: ProductCardModel[] = [
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
     highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '5',
@@ -141,6 +147,7 @@ export const fakeProducts: ProductCardModel[] = [
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
     highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '6',
@@ -162,6 +169,7 @@ export const fakeProducts: ProductCardModel[] = [
     rating: 3,
     description: 'This is a test description',
     highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '7',
@@ -183,6 +191,7 @@ export const fakeProducts: ProductCardModel[] = [
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
     highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '8',
@@ -204,6 +213,7 @@ export const fakeProducts: ProductCardModel[] = [
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
     highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '9',
@@ -225,6 +235,7 @@ export const fakeProducts: ProductCardModel[] = [
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
     highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '10',
@@ -246,6 +257,7 @@ export const fakeProducts: ProductCardModel[] = [
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
     highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '11',
@@ -267,6 +279,7 @@ export const fakeProducts: ProductCardModel[] = [
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
     highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '12',
@@ -288,6 +301,7 @@ export const fakeProducts: ProductCardModel[] = [
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
     highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '13',
