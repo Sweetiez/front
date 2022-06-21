@@ -58,15 +58,20 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div>
           <div className="p-3" onClick={() => openProductDetailClick(product)}>
             <div className="relative">
-              <span className="text-2xl font-pompiere">
-                {product.name}
-              </span>
-              {product && product?.unitPerPackage && product.unitPerPackage > 1 ? <span className="absolute font-pompiere inline-flex items-center justify-center px-3 py-2 inset-y-0 right-0 text-xl font-bold
-                              leading-none text-white bg-gold-100 rounded-full">
-                x{product.unitPerPackage}
-              </span> : <></>}
+              <span className="text-2xl font-pompiere">{product.name}</span>
+              {product &&
+              product?.unitPerPackage &&
+              product.unitPerPackage > 1 ? (
+                <span
+                  className="absolute font-pompiere inline-flex items-center justify-center px-3 py-2 inset-y-0 right-0 text-xl font-bold
+                              leading-none text-white bg-gold-100 rounded-full"
+                >
+                  x{product.unitPerPackage}
+                </span>
+              ) : (
+                <></>
+              )}
             </div>
-
 
             <ShowMoreText
               lines={2}
@@ -79,9 +84,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
             </ShowMoreText>
             <div className="flex justify-between mt-8">
               <p className="text-md text-gray-800 mt-0">{product.price} €</p>
-              {showStars ? <div className="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
-                <Stars number={product && product?.rating ? product?.rating : 0} />
-              </div> : <></> }
+              {showStars ? (
+                <div className="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
+                  <Stars
+                    number={product && product?.rating ? product?.rating : 0}
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
               {/*<div className="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">*/}
               {/*  <Stars number={product.rating ? product.rating : 0} />*/}
               {/*</div>*/}

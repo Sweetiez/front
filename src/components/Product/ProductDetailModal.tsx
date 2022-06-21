@@ -1,23 +1,23 @@
-import React, {useCallback, useState} from 'react';
-import {Carousel} from 'react-responsive-carousel';
+import React, { useCallback, useState } from 'react';
+import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import Stars from '../Stars/Stars';
 import Lottie from 'react-lottie-player';
 import cooking from '../../assets/lotties/cooking.json';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import Stepper from '../Stepper/Stepper';
-import {setCart, useCart} from '../../hooks/cart/cartHook';
+import { setCart, useCart } from '../../hooks/cart/cartHook';
 import LabelButton from '../Button/LabelButton';
-import {useProductDetails} from '../../hooks/products/sweets/sweetsHooks';
+import { useProductDetails } from '../../hooks/products/sweets/sweetsHooks';
 import CommentCard from '../Comment/CommentCard';
 import Modal from '../utils/Modal';
 import CommentForm from '../Comment/CommentForm';
 import SkeletonProductDetail from '../utils/Skeleton/SkeletonProductDetail';
-import {useTokenAvailable} from '../../hooks/auth/tokenHook';
+import { useTokenAvailable } from '../../hooks/auth/tokenHook';
 import CommentType from '../Comment/CommentTypeEnum';
-import {SWEETS, TRAYS} from '../FilterMenu/ProductType';
+import { SWEETS, TRAYS } from '../FilterMenu/ProductType';
 import SweetDetailModel from './SweetDetailModel';
-import TrayDetailModel from "./TrayDetailModel";
+import TrayDetailModel from './TrayDetailModel';
 
 interface ProductModalProps {
   manageCloseClick: () => void;
@@ -106,16 +106,23 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
               </div>
               <div>
                 <h1 className="mx-3 font-semibold text-lg">
-                  {product?.packagedPrice} €
+                  {(product as TrayDetailModel)
+                    ? product?.price
+                    : product?.packagedPrice}{' '}
+                  €
                 </h1>
-                <span className="font-pompiere text-xs">
-                  (
-                  {t('productPackage', {
-                    unit: product?.unitPerPackage,
-                    price: product?.price,
-                  })}
-                  )
-                </span>
+                {(product as SweetDetailModel).ingredients ? (
+                  <span className="font-pompiere text-xs">
+                    (
+                    {t('productPackage', {
+                      unit: product?.unitPerPackage,
+                      price: product?.price,
+                    })}
+                    )
+                  </span>
+                ) : (
+                  <></>
+                )}
               </div>
               {/* Stepper */}
               <div className="flex justify-center ">
@@ -133,17 +140,19 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                   {product?.name}
                 </h1>
                 {showStars ? (
-                    <div className="flex pt-2 flex-col-reverse justify-end mb-1 mr-4 group cursor-pointer">
-                      <Stars
-                          number={
-                            product && product?.valuation && product?.valuation?.mark
-                                ? product?.valuation?.mark
-                                : 0
-                          }
-                      />
-                    </div>
+                  <div className="flex pt-2 flex-col-reverse justify-end mb-1 mr-4 group cursor-pointer">
+                    <Stars
+                      number={
+                        product &&
+                        product?.valuation &&
+                        product?.valuation?.mark
+                          ? product?.valuation?.mark
+                          : 0
+                      }
+                    />
+                  </div>
                 ) : (
-                    <></>
+                  <></>
                 )}
               </div>
 
@@ -165,16 +174,26 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
               )}
 
               {productType === TRAYS ? (
-                  <div>
-                    <h1 className="text-3xl font-bold text-gray-800 font-birthstone">
-                      {t('productDetail.sweets')}
-                    </h1>
+                <div>
+                  <h1 className="text-3xl font-bold text-gray-800 font-birthstone">
+                    {t('productDetail.sweets')}
+                  </h1>
+                  <div className="relative">
                     <p className="py-2 pt-4 text-xl text-gray-700 font-pompiere font-size-16">
-                      {(product as TrayDetailModel).sweets}
+                      {(product as TrayDetailModel).sweets?.map(
+                        (sweetQty) => sweetQty.sweet?.name,
+                      )}
+                    </p>
+                    <p className="absolute py-2 pt-4 text-xl text-gray-700 font-pompiere font-size-16 inset-y-0 right-10">
+                      x
+                      {(product as TrayDetailModel).sweets?.map(
+                        (sweetQty) => sweetQty.quantity,
+                      )}
                     </p>
                   </div>
+                </div>
               ) : (
-                  <></>
+                <></>
               )}
 
               <div>
@@ -183,8 +202,12 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 </h1>
                 <p className="py-2 pt-2 text-xl text-gray-700 font-pompiere font-size-16">
                   {(product as SweetDetailModel).diets
-                      ?.map(allergen => (allergen[0].toUpperCase() + allergen.substring(1).toLowerCase()))
-                      ?.join(', ')}
+                    ?.map(
+                      (allergen) =>
+                        allergen[0].toUpperCase() +
+                        allergen.substring(1).toLowerCase(),
+                    )
+                    ?.join(', ')}
                 </p>
               </div>
 
@@ -194,8 +217,12 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 </h1>
                 <p className="py-2 pt-2 text-xl text-gray-700 font-pompiere font-size-16">
                   {(product as SweetDetailModel).allergens
-                      ?.map(allergen => (allergen[0].toUpperCase() + allergen.substring(1).toLowerCase()))
-                      ?.join(', ')}
+                    ?.map(
+                      (allergen) =>
+                        allergen[0].toUpperCase() +
+                        allergen.substring(1).toLowerCase(),
+                    )
+                    ?.join(', ')}
                 </p>
               </div>
 
