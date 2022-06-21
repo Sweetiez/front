@@ -18,7 +18,7 @@ const CartModal: React.FC<CartModalProps> = ({ setOpenedModal }) => {
       (cartItem.item?.price ? cartItem.item.price : 0) *
         (cartItem?.quantity ? cartItem.quantity : 0),
     0,
-  );
+  ).toFixed(2);
 
   function removeFromCart(id: string) {
     cart.map((cartItem) => {
