@@ -13,6 +13,8 @@ export function useStoreList(productType: string) {
         url: `${productType}/published`,
       });
 
+      data.forEach((p: ProductCardModel) => (p.type = productType));
+
       return data;
     },
   );

@@ -7,7 +7,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import FiltersModal from './FiltersModal';
 import { useTranslation } from 'react-i18next';
 import { FilterType } from '../Shop/Shop';
-import {SWEET_INDEX, TRAY_INDEX} from "./ProductType";
+import {SWEET_INDEX, TRAY_INDEX} from "../Product/ProductType";
 
 interface Props {
   setFilters: (filter: FilterType) => void;

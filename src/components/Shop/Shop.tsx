@@ -1,19 +1,22 @@
-import React, {Fragment, useCallback, useMemo, useState} from 'react';
-import {Dialog, Transition} from '@headlessui/react';
+import React, { Fragment, useCallback, useMemo, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
 import ProductCard from './ProductCard';
 import ProductDetailModal from '../Product/ProductDetailModal';
 import QuickShop from './QuickShop';
-import {Carousel} from 'react-responsive-carousel';
+import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import '../../assets/css/_carousel.css';
-import {useProductBanner, useStoreList,} from '../../hooks/products/sweets/sweetsHooks';
-import {fakeProducts} from '../../assets/FakeProducts';
+import {
+  useProductBanner,
+  useStoreList,
+} from '../../hooks/products/sweets/sweetsHooks';
+import { fakeProducts } from '../../assets/FakeProducts';
 import SkeletonShop from '../utils/Skeleton/SkeletonShop';
 import BannerModel from './BannerModel';
 import FilterMenu from '../FilterMenu/FilterMenu';
-import {useTranslation} from 'react-i18next';
-import ProductCardModel from "./ProductCardModel";
-import {SWEET_INDEX, TRAY_INDEX} from "../FilterMenu/ProductType";
+import { useTranslation } from 'react-i18next';
+import ProductCardModel from './ProductCardModel';
+import { SWEET_INDEX, TRAY_INDEX } from '../Product/ProductType';
 
 export interface FilterType {
   ratings?: number[];
@@ -31,7 +34,9 @@ const Shop: React.FC = () => {
   const { data: sweetData, isLoading: isSweetLoading } = useStoreList('sweets');
   const { data: trayData, isLoading: isTrayLoading } = useStoreList('trays');
   const [productType, setProductType] = useState(TRAY_INDEX);
-  const dataManager = useCallback((productType) => { setProductType(productType) }, []);
+  const dataManager = useCallback((productType) => {
+    setProductType(productType);
+  }, []);
 
   const { data: bannerData } = useProductBanner();
   const minRating = 0;
@@ -94,25 +99,29 @@ const Shop: React.FC = () => {
     setModalState(state);
   }, []);
 
-  const manageProductDetailClick = useCallback((product: ProductCardModel | BannerModel) => {
-    if (product as BannerModel) {
-      if (sweetData && trayData) {
-        const sweetIds = sweetData.map(item => item.id);
-        const products = sweetIds.includes(product.id) ? sweetData : trayData;
-        const optionalProduct = products.find(p => p.id === product.id);
+  const manageProductDetailClick = useCallback(
+    (product: ProductCardModel | BannerModel) => {
+      if (product as BannerModel) {
+        if (sweetData && trayData) {
+          const sweetIds = sweetData.map((item) => item.id);
+          const products = sweetIds.includes(product.id) ? sweetData : trayData;
+          const optionalProduct = products.find((p) => p.id === product.id);
 
-        product = (optionalProduct) ? optionalProduct : fakeProducts[0];
+          product = optionalProduct ? optionalProduct : fakeProducts[0];
+        }
       }
-    }
-    setOpen(true);
-    setCurrentProduct(product as ProductCardModel);
-  }, [sweetData, trayData]);
+      setOpen(true);
+      setCurrentProduct(product as ProductCardModel);
+    },
+    [sweetData, trayData],
+  );
 
   const manageCloseClick = useCallback(() => {
     setOpen(false);
   }, []);
 
-  if (productType === SWEET_INDEX ? isSweetLoading : isTrayLoading) return <SkeletonShop />;
+  if (productType === SWEET_INDEX ? isSweetLoading : isTrayLoading)
+    return <SkeletonShop />;
 
   return (
     <>
@@ -129,13 +138,15 @@ const Shop: React.FC = () => {
           <>
             {bannerData && (
               <Carousel
+                className="fade"
                 showThumbs={false}
                 showArrows={false}
                 showStatus={false}
                 autoPlay={true}
                 infiniteLoop={true}
                 animationHandler="fade"
-                swipeable={false}
+                verticalSwipe='natural'
+                swipeable={true}
                 interval={3000}
                 onClickItem={(index) =>
                   manageProductDetailClick(bannerData[index])
@@ -160,7 +171,12 @@ const Shop: React.FC = () => {
       </div>
 
       <div>
-        <FilterMenu setFilters={setFilters} filters={filters} dataManager={dataManager} productType={productType}/>
+        <FilterMenu
+          setFilters={setFilters}
+          filters={filters}
+          dataManager={dataManager}
+          productType={productType}
+        />
       </div>
       <div className="flex justify-center">
         {products.length === 0 ? (
@@ -269,7 +285,9 @@ const Shop: React.FC = () => {
                         <ProductDetailModal
                           manageCloseClick={manageCloseClick}
                           productId={currentProduct.id ? currentProduct.id : ''}
-                          productType={currentProduct.type ? currentProduct.type : ''}
+                          productType={
+                            currentProduct.type ? currentProduct.type : ''
+                          }
                         />
                       </div>
                     </div>

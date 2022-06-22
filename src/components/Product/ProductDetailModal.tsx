@@ -15,7 +15,7 @@ import CommentForm from '../Comment/CommentForm';
 import SkeletonProductDetail from '../utils/Skeleton/SkeletonProductDetail';
 import { useTokenAvailable } from '../../hooks/auth/tokenHook';
 import CommentType from '../Comment/CommentTypeEnum';
-import {SWEET_TYPE, TRAY_TYPE} from '../FilterMenu/ProductType';
+import {SWEET_TYPE, TRAY_TYPE} from './ProductType';
 import SweetDetailModel from './SweetDetailModel';
 import TrayDetailModel from './TrayDetailModel';
 
