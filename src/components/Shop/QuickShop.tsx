@@ -18,7 +18,7 @@ const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
 
-  const price = (+(itemCount ? itemCount : 1) * unitPrice).toFixed(2);
+  const price = ((itemCount ? +itemCount : 1) * unitPrice).toFixed(2);
 
   const manageAdd = () => {
     const item = cart.find(it => it.item?.id === product?.id);
