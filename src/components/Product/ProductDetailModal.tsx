@@ -47,13 +47,16 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
   }, []);
 
   const manageAdd = () => {
-    setCart([
-      ...cart,
-      {
-        item: product,
-        quantity: itemCount ? +itemCount : 1,
-      },
-    ]);
+    const item = cart.find(it => it.item?.id === product?.id);
+
+    if (item && item.quantity) {
+      item.quantity += itemCount ? +itemCount : 1;
+    }
+    else {
+      cart.push({ item: product, quantity: itemCount ? +itemCount : 1 });
+    }
+
+    setCart(cart);
     manageCloseClick();
   };
 
@@ -106,9 +109,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
               </div>
               <div>
                 <h1 className="mx-3 font-semibold text-lg">
-                  {(product as TrayDetailModel)
-                    ? product?.price
-                    : product?.packagedPrice}{' '}
+                  {product.packagedPrice ? product.packagedPrice : (product.price ? product.price : 1)}
                   €
                 </h1>
                 {(product as SweetDetailModel).ingredients ? (
