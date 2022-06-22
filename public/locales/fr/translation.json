@@ -221,7 +221,7 @@
       "SWEET": "Sucrée",
       "SALTY": "Salée",
       "MIXED": "Mixte"
-    },
-    "productPackage": "Lot de {{unit}} au prix unitaire de {{price}}€"
-  }
+    }
+  },
+  "productPackage": "Lot de {{unit}} au prix unitaire de {{price}} €"
 }

@@ -15,9 +15,10 @@ import CommentForm from '../Comment/CommentForm';
 import SkeletonProductDetail from '../utils/Skeleton/SkeletonProductDetail';
 import { useTokenAvailable } from '../../hooks/auth/tokenHook';
 import CommentType from '../Comment/CommentTypeEnum';
-import {SWEET_TYPE, TRAY_TYPE} from './ProductType';
+import { SWEET_TYPE, TRAY_TYPE } from './ProductType';
 import SweetDetailModel from './SweetDetailModel';
 import TrayDetailModel from './TrayDetailModel';
+import ShowMoreText from 'react-show-more-text';
 
 interface ProductModalProps {
   manageCloseClick: () => void;
@@ -47,12 +48,11 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
   }, []);
 
   const manageAdd = () => {
-    const item = cart.find(it => it.item?.id === product?.id);
+    const item = cart.find((it) => it.item?.id === product?.id);
 
     if (item && item.quantity) {
       item.quantity += itemCount ? +itemCount : 1;
-    }
-    else {
+    } else {
       cart.push({ item: product, quantity: itemCount ? +itemCount : 1 });
     }
 
@@ -109,7 +109,11 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
               </div>
               <div>
                 <h1 className="mx-3 font-semibold text-lg">
-                  {product.packagedPrice ? product.packagedPrice : (product.price ? product.price : 1)}
+                  {product.packagedPrice
+                    ? product.packagedPrice
+                    : product.price
+                    ? product.price
+                    : 1}
                   €
                 </h1>
                 {(product as SweetDetailModel).ingredients ? (
@@ -158,7 +162,14 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
               </div>
 
               <p className="py-2 pt-6 text-xl text-gray-700 font-pompiere font-size-16">
-                {product?.description}
+                <ShowMoreText
+                  lines={5}
+                  more={t('comment.showMore')}
+                  less=""
+                  anchorClass="text-gold-100 ml-1"
+                >
+                  {product.description}
+                </ShowMoreText>
               </p>
 
               {productType === SWEET_TYPE ? (
