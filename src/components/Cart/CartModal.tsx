@@ -1,8 +1,7 @@
-import { Dialog } from '@headlessui/react';
 import React from 'react';
-import { useCart, setCart } from '../../hooks/cart/cartHook';
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import {setCart, useCart} from '../../hooks/cart/cartHook';
+import {useTranslation} from 'react-i18next';
+import {Link} from 'react-router-dom';
 
 interface CartModalProps {
   setOpenedModal: (openedModal: boolean) => void;
@@ -19,16 +18,16 @@ const CartModal: React.FC<CartModalProps> = ({ setOpenedModal }) => {
       (cartItem.item?.price ? cartItem.item.price : 0) *
         (cartItem?.quantity ? cartItem.quantity : 0),
     0,
-  );
+  ).toFixed(2);
 
   function removeFromCart(id: string) {
-    // eslint-disable-next-line array-callback-return
     cart.map((cartItem) => {
+      let updatedCart = cart;
       if (cartItem.item!.id === id) {
-        cart.splice(cart.indexOf(cartItem), 1);
+        updatedCart = cart.splice(cart.indexOf(cartItem), 1);
       }
+      return updatedCart;
     });
-    // setCartItems(cartItems);
     setCart(cart);
   }
 
@@ -36,9 +35,9 @@ const CartModal: React.FC<CartModalProps> = ({ setOpenedModal }) => {
     <>
       <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
         <div className="flex items-start justify-between">
-          <Dialog.Title className="text-3xl font-pompiere text-gray-900">
+          <span className="text-3xl font-pompiere text-gray-900">
             {t('cart.title')}{' '}
-          </Dialog.Title>
+          </span>
           <div className="absolute mr-3 right-0">
             <button
               onClick={() => {

@@ -79,7 +79,11 @@
   },
   "productDetail": {
     "add": "Add",
-    "comment": "Comment"
+    "comment": "Comment",
+    "ingredients": "Ingredients",
+    "sweets": "Sweets",
+    "allergens": "Allergens",
+    "diets": "Diets"
   },
   "comment": {
     "showMore": "Show more",
@@ -218,5 +222,6 @@
       "SALTY": "Salty",
       "MIXED": "Mixed"
     }
-  }
+  },
+  "productPackage": "Set of {{unit}} at the unit price of {{price}}€"
 }

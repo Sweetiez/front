@@ -5,6 +5,7 @@ export const fakeProducts: ProductCardModel[] = [
     id: '1',
     name: 'Tartelette daim caramel',
     price: 10,
+    unitPerPackage: 5,
     images: [
       'https://picsum.photos/1200/300',
       'https://picsum.photos/1220/300',
@@ -15,6 +16,8 @@ export const fakeProducts: ProductCardModel[] = [
     // shortDescription: 'ma petite description',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci alias aliquam culpa, delectus expedita fugit ipsum laboriosam maiores maxime numquam reprehenderit, rerum sint unde vero! Accusamus id quod repudiandae?',
+    highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '1',
@@ -46,12 +49,15 @@ export const fakeProducts: ProductCardModel[] = [
     id: '2',
     name: 'Tartelete Citron meringué',
     price: 10,
+    unitPerPackage: 5,
     flavor: 'Sucrée',
     images: ['https://picsum.photos/1220/300'],
     rating: 4,
     // shortDescription:
     //   'large description large description large description large description large description large description large description large description large description',
     description: 'This is a test description',
+    highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '2',
@@ -66,6 +72,7 @@ export const fakeProducts: ProductCardModel[] = [
     id: '3',
     name: 'Mi-cuit chocolat',
     price: 10,
+    unitPerPackage: 5,
     flavor: 'Salée',
     images: ['https://picsum.photos/200/500'],
     rating: 4,
@@ -73,6 +80,8 @@ export const fakeProducts: ProductCardModel[] = [
     //   'ma moyenne description ma moyenne description ma moyenne description',
     description:
       'This is a test large description This is a test large description',
+    highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '3',
@@ -87,11 +96,14 @@ export const fakeProducts: ProductCardModel[] = [
     id: '4',
     name: 'Crème brûlée',
     price: 10,
+    unitPerPackage: 5,
     images: ['https://picsum.photos/200/600'],
     rating: 5,
     flavor: 'Sucrée',
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
+    highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '4',
@@ -106,11 +118,14 @@ export const fakeProducts: ProductCardModel[] = [
     id: '5',
     name: 'Product 5',
     price: 10,
+    unitPerPackage: 5,
     flavor: 'Sucrée',
     images: ['https://picsum.photos/200/700'],
     rating: 1,
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
+    highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '5',
@@ -125,11 +140,14 @@ export const fakeProducts: ProductCardModel[] = [
     id: '6',
     name: 'Product 6',
     price: 10,
+    unitPerPackage: 5,
     flavor: 'Sucrée',
     images: ['https://picsum.photos/200/800'],
     rating: 2,
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
+    highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '6',
@@ -144,11 +162,14 @@ export const fakeProducts: ProductCardModel[] = [
     id: '7',
     name: 'Product 7',
     price: 10,
+    unitPerPackage: 5,
     flavor: 'Sucrée',
     // shortDescription: 'ma petite description',
     images: ['https://picsum.photos/200/900'],
     rating: 3,
     description: 'This is a test description',
+    highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '7',
@@ -163,11 +184,14 @@ export const fakeProducts: ProductCardModel[] = [
     id: '8',
     name: 'Product 8',
     price: 10,
+    unitPerPackage: 5,
     flavor: 'Sucrée',
     images: ['https://picsum.photos/200/300'],
     rating: 3.3,
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
+    highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '8',
@@ -182,11 +206,14 @@ export const fakeProducts: ProductCardModel[] = [
     id: '9',
     name: 'Product 9',
     price: 10,
+    unitPerPackage: 5,
     flavor: 'Sucrée',
     images: ['https://picsum.photos/200/300'],
     rating: 4,
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
+    highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '9',
@@ -201,11 +228,14 @@ export const fakeProducts: ProductCardModel[] = [
     id: '10',
     name: 'Product 10',
     price: 10,
+    unitPerPackage: 5,
     flavor: 'Mixte',
     images: ['https://picsum.photos/200/200'],
     rating: 4.5,
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
+    highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '10',
@@ -221,10 +251,13 @@ export const fakeProducts: ProductCardModel[] = [
     name: 'Product 11',
     flavor: 'Mixte',
     price: 10,
+    unitPerPackage: 5,
     images: ['https://picsum.photos/100/300'],
     rating: 0,
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
+    highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '11',
@@ -239,11 +272,14 @@ export const fakeProducts: ProductCardModel[] = [
     id: '12',
     name: 'Product 12',
     price: 10,
+    unitPerPackage: 5,
     flavor: 'Mixte',
     images: ['https://picsum.photos/300/300'],
     rating: 1,
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
+    highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '12',
@@ -258,11 +294,14 @@ export const fakeProducts: ProductCardModel[] = [
     id: '13',
     name: 'Product 13',
     price: 10,
+    unitPerPackage: 5,
     flavor: 'Mixte',
     images: ['https://picsum.photos/400/300'],
     rating: 2,
     // shortDescription: 'ma petite description',
     description: 'This is a test description',
+    highlight: 'COMMON',
+    type: 'sweet',
     // comments: [
     //   {
     //     id: '13',

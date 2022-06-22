@@ -4,6 +4,7 @@ import ProductCardModel from './ProductCardModel';
 import { setCart, useCart } from '../../hooks/cart/cartHook';
 import Stepper from '../Stepper/Stepper';
 import LabelButton from '../Button/LabelButton';
+import ShowMoreText from 'react-show-more-text';
 
 interface QuickShopProps {
   product: ProductCardModel;
@@ -18,16 +19,18 @@ const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
 
-  const price = +(itemCount ? itemCount : 1) * unitPrice;
+  const price = ((itemCount ? +itemCount : 1) * unitPrice).toFixed(2);
 
   const manageAdd = () => {
-    setCart([
-      ...cart,
-      {
-        item: product,
-        quantity: itemCount ? +itemCount : 1,
-      },
-    ]);
+    const item = cart.find((it) => it.item?.id === product?.id);
+
+    if (item && item.quantity) {
+      item.quantity += itemCount ? +itemCount : 1;
+    } else {
+      cart.push({ item: product, quantity: itemCount ? +itemCount : 1 });
+    }
+
+    setCart(cart);
     setOpenedModal(false);
   };
 
@@ -66,7 +69,14 @@ const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
             <h1 className="font-bold font-pompiere text-3xl">{product.name}</h1>
             <h1 className="font-bold text-xl pl-5 pt-1">{unitPrice} €</h1>
           </div>
-          <p>{product.description}</p>
+          <ShowMoreText
+            lines={5}
+            more={t('comment.showMore')}
+            less=""
+            anchorClass="text-gold-100 ml-1"
+          >
+            {product.description}
+          </ShowMoreText>
         </div>
         <div className="flex items-center justify-end px-4 py-2">
           <div className="flex justify-center py-4">

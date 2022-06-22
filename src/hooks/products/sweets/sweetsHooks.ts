@@ -1,36 +1,50 @@
 import { useQuery } from 'react-query';
 import { commonRequest } from '../../common/request';
 import ProductCardModel from '../../../components/Shop/ProductCardModel';
-import ProductDetailModel from '../../../components/Product/ProductDetailModel';
+import SweetDetailModel from '../../../components/Product/SweetDetailModel';
 import BannerModel from '../../../components/Shop/BannerModel';
+import TrayDetailModel from '../../../components/Product/TrayDetailModel';
 
-export function useStoreList() {
-  return useQuery<ProductCardModel[], Error>(`published-sweets`, async () => {
-    const { data } = await commonRequest({
-      url: `sweets/published`,
-    });
-
-    return data;
-  });
-}
-
-export function useSweetDetails(id: string) {
-  return useQuery<ProductDetailModel, Error>(`sweets-${id}`, async () => {
-    if (id) {
+export function useStoreList(productType: string) {
+  return useQuery<ProductCardModel[], Error>(
+    `published-${productType}`,
+    async () => {
       const { data } = await commonRequest({
-        url: `sweets/${id}`,
+        url: `${productType}/published`,
       });
 
+      data.forEach((p: ProductCardModel) => (p.type = productType));
+
       return data;
-    }
-  });
+    },
+  );
 }
 
-export function useSweetBanner() {
+export function useProductDetails(id: string, type: string) {
+  return useQuery<SweetDetailModel | TrayDetailModel, Error>(
+    `${type}-${id}`,
+    async () => {
+      if (id && type) {
+        const { data } = await commonRequest({
+          url: `${type}/${id}`,
+        });
+
+        return data;
+      }
+    },
+  );
+}
+
+export function useProductBanner() {
   return useQuery<BannerModel[], Error>(`banner`, async () => {
-    const { data } = await commonRequest({
+    const { data: sweets } = await commonRequest({
       url: `sweets/banner`,
     });
-    return data;
+
+    const { data: trays } = await commonRequest({
+      url: `trays/banner`,
+    });
+
+    return [...sweets, ...trays];
   });
 }

@@ -79,7 +79,11 @@
   },
   "productDetail": {
     "add": "Ajouter",
-    "comment": "Commenter"
+    "comment": "Commenter",
+    "ingredients": "Ingrédients",
+    "sweets": "Mignardises",
+    "allergens": "Allergènes",
+    "diets": "Diètes"
   },
   "comment": {
     "showMore": "Afficher plus",
@@ -218,5 +222,6 @@
       "SALTY": "Salée",
       "MIXED": "Mixte"
     }
-  }
+  },
+  "productPackage": "Lot de {{unit}} au prix unitaire de {{price}} €"
 }

@@ -14,7 +14,7 @@ const Socials: React.FC<SocialColorProps> = ({ color }) => {
 
   return (
     <>
-      <div className="overflow-visible">
+      <div className="flex overflow-visible">
         <a href="#!" type="button" className={colorClass}>
           <svg
             aria-hidden="true"

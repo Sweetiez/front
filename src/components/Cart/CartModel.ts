@@ -1,7 +1,8 @@
-import ProductDetailModel from '../Product/ProductDetailModel';
+import SweetDetailModel from '../Product/SweetDetailModel';
 import ProductCardModel from '../Shop/ProductCardModel';
+import TrayDetailModel from '../Product/TrayDetailModel';
 
 export default class CartModel {
-  item: ProductDetailModel | ProductCardModel | undefined;
+  item: SweetDetailModel | TrayDetailModel | ProductCardModel | undefined;
   quantity: number | undefined;
 }
