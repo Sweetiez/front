@@ -1,14 +1,14 @@
-import React, {useCallback, useState} from 'react';
-import {useTranslation} from 'react-i18next';
+import React, { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Title from '../utils/Title';
 import Stars from '../Stars/Stars';
 import Label from '../utils/Label';
 import EvaluationsRequest from '../../hooks/evaluations/requests/evaluationsRequest';
-import {createEvaluation} from '../../hooks/evaluations/evaluations';
-import {useQueryClient} from 'react-query';
+import { createEvaluation } from '../../hooks/evaluations/evaluations';
+import { useQueryClient } from 'react-query';
 import CommentType from './CommentTypeEnum';
 import TextArea from './TextArea';
-import {useProfile} from '../../hooks/user/users';
+import { useProfile } from '../../hooks/user/users';
 
 interface CommentFormProps {
   type: CommentType;
@@ -46,10 +46,14 @@ const CommentForm: React.FC<CommentFormProps> = ({
 
     try {
       await createEvaluation(request);
-      if (type === CommentType.SWEET)
+      if (type === CommentType.SWEET) {
         await queryClient.invalidateQueries(`sweets-${subject}`);
-      if (type === CommentType.TRAY)
+        await queryClient.invalidateQueries(`published-sweets`);
+      }
+      if (type === CommentType.TRAY) {
         await queryClient.invalidateQueries(`trays-${subject}`);
+        await queryClient.invalidateQueries(`published-trays`);
+      }
       if (type === CommentType.SWEET)
         await queryClient.invalidateQueries(`recipe-${subject}`);
       setModalState();
@@ -58,9 +62,12 @@ const CommentForm: React.FC<CommentFormProps> = ({
       setStatus('Error');
     }
   };
-  const handleStartClick = useCallback((rating: ((prevState: number) => number) | number) => {
-    setRating(rating);
-  }, []);
+  const handleStartClick = useCallback(
+    (rating: ((prevState: number) => number) | number) => {
+      setRating(rating);
+    },
+    [],
+  );
   return (
     <>
       <div className="px-8 md:px-20 pt-6 pb-8 mb-4 flex flex-col">

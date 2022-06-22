@@ -161,7 +161,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 )}
               </div>
 
-              <p className="py-2 pt-6 text-xl text-gray-700 font-pompiere font-size-16">
+              <div className="py-2 pt-6 text-xl text-gray-700 font-pompiere font-size-16">
                 <ShowMoreText
                   lines={5}
                   more={t('comment.showMore')}
@@ -170,7 +170,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 >
                   {product.description}
                 </ShowMoreText>
-              </p>
+              </div>
 
               {productType === SWEET_TYPE ? (
                 <div>
@@ -264,7 +264,11 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 <CommentForm
                   subject={productId}
                   setModalState={commentCloseClick}
-                  type={CommentType.SWEET}
+                  type={
+                    productType === SWEET_TYPE
+                      ? CommentType.SWEET
+                      : CommentType.TRAY
+                  }
                 />
               }
             />
