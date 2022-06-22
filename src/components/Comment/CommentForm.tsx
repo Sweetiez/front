@@ -48,6 +48,8 @@ const CommentForm: React.FC<CommentFormProps> = ({
       await createEvaluation(request);
       if (type === CommentType.SWEET)
         await queryClient.invalidateQueries(`sweets-${subject}`);
+      if (type === CommentType.TRAY)
+        await queryClient.invalidateQueries(`trays-${subject}`);
       if (type === CommentType.SWEET)
         await queryClient.invalidateQueries(`recipe-${subject}`);
       setModalState();
