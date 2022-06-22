@@ -5,6 +5,7 @@ import CommentCardModel from './CommentCardModel';
 import { useTranslation } from 'react-i18next';
 import Modal from '../utils/Modal';
 import ReportForm from './ReportForm';
+import i18n from "i18next";
 
 interface CommentCardModelProps {
   comment: CommentCardModel;
@@ -15,8 +16,8 @@ const CommentCard: React.FC<CommentCardModelProps> = ({ comment }) => {
   const [ReportCommentModalState, setReportCommentModalState] = useState(false);
   let commentDate;
   if(comment.date) {
-    const [year, month, day] = comment.date.split('-');
-    commentDate = [day, month, year].join('/');
+    const [year, month, day] = comment.date.split('T')[0].split('-');
+    commentDate = i18n.language === 'en-US' ? [year, month, day].join('-') : [day, month, year].join('/');
   }
 
   const ReportCommentCloseClick = useCallback(() => {

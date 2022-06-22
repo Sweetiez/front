@@ -138,15 +138,13 @@ const Shop: React.FC = () => {
           <>
             {bannerData && (
               <Carousel
-                className="fade"
                 showThumbs={false}
                 showArrows={false}
                 showStatus={false}
                 autoPlay={true}
                 infiniteLoop={true}
                 animationHandler="fade"
-                verticalSwipe='natural'
-                swipeable={true}
+                swipeable={false}
                 interval={3000}
                 onClickItem={(index) =>
                   manageProductDetailClick(bannerData[index])

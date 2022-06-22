@@ -17,10 +17,6 @@ import UserMenu from './UserMenu';
 import Modal from '../utils/Modal';
 import { useTokenAvailable } from '../../hooks/auth/tokenHook';
 
-// function classNames(...classes: any[]) {
-//   return classes.filter(Boolean).join(' ');
-// }
-
 const NavMenu: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [AuthModalState, setAuthModalState] = useState(false);
