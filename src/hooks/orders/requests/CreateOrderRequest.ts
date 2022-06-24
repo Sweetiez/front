@@ -24,7 +24,7 @@ export default class CreateOrderRequest {
     this.products = cart.map((item) => {
       return new ProductOrderRequest(
         item?.item?.id ? item.item.id : '',
-        'SWEET',
+        item?.type ? item.type : '',
         item?.quantity ? item.quantity : -1,
       );
     });

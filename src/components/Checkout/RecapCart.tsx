@@ -70,7 +70,7 @@ const RecapCartRow: React.FC<RecapCartRowProps> = ({ item }) => {
           <p className="text-base dark:text-white xl:text-lg font-semibold leading-6 text-gray-800">
             {
               // @ts-ignore
-              item.quantity * item.item.price
+              (item.quantity * item.item.price).toFixed(2)
             }{' '}
             €
           </p>

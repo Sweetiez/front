@@ -48,7 +48,7 @@ const RecapCartTotalPrice: React.FC<RecapCartTotalPriceProps> = ({
           Total
         </p>
         <p className="text-base dark:text-gray-300 font-semibold leading-4 text-gray-600">
-          {totalPrice} €
+          {totalPrice.toFixed(2)} €
         </p>
       </div>
     </div>
