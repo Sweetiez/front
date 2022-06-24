@@ -53,7 +53,11 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
     if (item && item.quantity) {
       item.quantity += itemCount ? +itemCount : 1;
     } else {
-      cart.push({ item: product, quantity: itemCount ? +itemCount : 1 });
+      cart.push({
+        item: product,
+        type: productType === 'trays' ? 'TRAY' : 'SWEET',
+        quantity: itemCount ? +itemCount : 1,
+      });
     }
 
     setCart(cart);
