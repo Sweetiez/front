@@ -126,8 +126,10 @@ const Profile: React.FC = () => {
                     play
                   />
                   <span>
-                    {profileData?.loyalty
-                      ? profileData?.loyalty + ' ' + t('profile.loyaltyPoint')
+                    {profileData?.loyaltyPoints
+                      ? profileData?.loyaltyPoints +
+                        ' ' +
+                        t('profile.loyaltyPoint')
                       : 0 + ' ' + t('profile.loyaltyPoint')}
                   </span>
                 </div>
