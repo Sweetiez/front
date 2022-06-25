@@ -101,6 +101,8 @@ const CheckoutCustomerInfo: React.FC<IHandleNav> = ({ handlePrevious }) => {
                     className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
                     id="pickupDate"
                     type="date"
+                    // disable past dates + 3 days from today (+4 because it's include today)
+                    min={new Date(Date.now() + 4 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
                     required={true}
                   />
                 </div>
