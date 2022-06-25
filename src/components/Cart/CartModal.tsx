@@ -1,7 +1,7 @@
 import React from 'react';
-import {setCart, useCart} from '../../hooks/cart/cartHook';
-import {useTranslation} from 'react-i18next';
-import {Link} from 'react-router-dom';
+import { setCart, useCart } from '../../hooks/cart/cartHook';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 interface CartModalProps {
   setOpenedModal: (openedModal: boolean) => void;
@@ -12,13 +12,15 @@ const CartModal: React.FC<CartModalProps> = ({ setOpenedModal }) => {
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
 
-  const totalPrice = cart.reduce(
-    (acc, cartItem) =>
-      acc +
-      (cartItem.item?.price ? cartItem.item.price : 0) *
-        (cartItem?.quantity ? cartItem.quantity : 0),
-    0,
-  ).toFixed(2);
+  const totalPrice = cart
+    .reduce(
+      (acc, cartItem) =>
+        acc +
+        (cartItem.item?.price ? cartItem.item.price : 0) *
+          (cartItem?.quantity ? cartItem.quantity : 0),
+      0,
+    )
+    .toFixed(2);
 
   function removeFromCart(id: string) {
     cart.map((cartItem) => {
@@ -89,11 +91,9 @@ const CartModal: React.FC<CartModalProps> = ({ setOpenedModal }) => {
                       <div className="flex">
                         <button
                           onClick={() => {
-                            console.log(itemCart.item);
                             removeFromCart(
                               itemCart.item?.id ? itemCart.item.id : '',
                             );
-                            console.log(itemCart.item?.id);
                           }}
                           type="button"
                           className="font-medium text-gold-100 hover:text-gray-400 focus:outline-none"

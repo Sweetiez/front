@@ -7,11 +7,14 @@ import { IHandleNav } from './IHandleNav';
 import Lottie from 'react-lottie-player';
 import emptyCart from '../../assets/lotties/empty-cart.json';
 import { Link } from 'react-router-dom';
+import RewardSelector from './rewards/RewardSelector';
+import { useTokenAvailable } from '../../hooks/auth/tokenHook';
 
 const CheckoutCart: React.FC<IHandleNav> = ({ handleNext }) => {
-  const { data: cartData } = useCart();
-  const cart = cartData ? cartData : [];
   const { t } = useTranslation();
+  const { data: cartData } = useCart();
+  const { data: isTokenAvailable } = useTokenAvailable();
+  const cart = cartData ? cartData : [];
   const totalPrice = cart.reduce(
     (acc, cartItem) =>
       acc +
@@ -29,6 +32,7 @@ const CheckoutCart: React.FC<IHandleNav> = ({ handleNext }) => {
               <RecapCart cart={cart} />
               <div className="flex justify-center flex-col md:flex-row flex-col items-stretch w-full ">
                 <RecapCartTotalPrice totalPrice={totalPrice} />
+                {isTokenAvailable ? <RewardSelector /> : <></>}
                 <>
                   <div className="flex flex-col justify-center px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 dark:bg-gray-800 space-y-6">
                     <div className="w-full flex justify-center items-center">

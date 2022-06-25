@@ -136,7 +136,17 @@
       "description": "Description",
       "unitPrice": "Unit price",
       "total": "Total",
-      "empty": "Your cart is empty 😭"
+      "empty": "Your cart is empty 😭",
+      "rewards": {
+        "title": "Rewards",
+        "button": "Select a reward",
+        "modal_title": "You have",
+        "modal_subtitle": "Select a reward",
+        "modal_loyalty_pts": "loyalty points",
+        "modal_points": "points",
+        "modal_button": "Select",
+        "modal_button_none": "No rewards"
+      }
     },
     "customerDetail": {
       "firstName": "First name",

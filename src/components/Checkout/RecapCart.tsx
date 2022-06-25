@@ -37,7 +37,7 @@ const RecapCartRow: React.FC<RecapCartRowProps> = ({ item }) => {
             // @ts-ignore
             item.item?.images[0]
           }
-          alt="dress"
+          alt="product-img"
         />
       </div>
       <div className="border-b border-gray-200 md:flex-row flex-col flex justify-between items-start w-full pb-8 space-y-4 md:space-y-0">
@@ -61,9 +61,7 @@ const RecapCartRow: React.FC<RecapCartRowProps> = ({ item }) => {
           </div>
         </div>
         <div className="flex justify-between space-x-8 items-start w-full">
-          <p className="text-base dark:text-white xl:text-lg leading-6">
-            {/*$36.00 <span className="text-red-300 line-through"> $45.00</span>*/}
-          </p>
+          <p className="text-base dark:text-white xl:text-lg leading-6"></p>
           <p className="text-base dark:text-white xl:text-lg leading-6 text-gray-800">
             x{item.quantity}
           </p>
