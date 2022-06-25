@@ -71,8 +71,8 @@
   "cart": {
     "title": "Votre panier",
     "remove": "Supprimer",
-    "subtotal": "Total hors taxe",
-    "totalInfo": "Les frais d'expédition et les taxes sont calculés lors du passage à la caisse.",
+    "subtotal": "Total toutes taxes",
+    "totalInfo": "Une facture vous sera envoyée à l'adresse email que vous avez renseignée lors de la commande.",
     "checkout": "Commander",
     "or": "ou",
     "continueShopping": "continuer les achats"
@@ -136,7 +136,7 @@
       "description": "Description",
       "unitPrice": "Prix unitaire",
       "total": "Total",
-      "empty": "Votre panier est vide"
+      "empty": "Votre panier est vide 😭"
     },
     "customerDetail": {
       "firstName": "Prénom",
