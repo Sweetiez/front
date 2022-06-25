@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 import RecapCart from './RecapCart';
 import RecapCartTotalPrice from './RecapCartTotalPrice';
 import { IHandleNav } from './IHandleNav';
-import Lottie from "react-lottie-player";
-import emptyCart from "../../assets/lotties/empty-cart.json";
-import {Link} from "react-router-dom";
+import Lottie from 'react-lottie-player';
+import emptyCart from '../../assets/lotties/empty-cart.json';
+import { Link } from 'react-router-dom';
 
 const CheckoutCart: React.FC<IHandleNav> = ({ handleNext }) => {
   const { data: cartData } = useCart();
@@ -50,16 +50,16 @@ const CheckoutCart: React.FC<IHandleNav> = ({ handleNext }) => {
           <div className="grid grid-cols-6">
             <div className="row-start-1 col-start-3 col-end-5">
               <div className="relative">
-                <p className="text-4xl pt-8 font-pompiere content-center">
+                <p className="text-4xl py-4 font-pompiere content-center">
                   {t('checkout.cart.empty')}
                 </p>
               </div>
               {/*// @ts-ignore*/}
               <Lottie
-                  className="h-auto w-auto"
-                  play={true}
-                  animationData={emptyCart}
-                  loop={true}
+                className="h-auto w-auto"
+                play={true}
+                animationData={emptyCart}
+                loop={true}
               />
             </div>
           </div>
@@ -68,7 +68,6 @@ const CheckoutCart: React.FC<IHandleNav> = ({ handleNext }) => {
               <Link to="/">{t('checkout.backToShop')}</Link>
             </button>
           </div>
-
         </>
       )}
     </>
