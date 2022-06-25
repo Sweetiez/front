@@ -136,7 +136,17 @@
       "description": "Description",
       "unitPrice": "Prix unitaire",
       "total": "Total",
-      "empty": "Votre panier est vide 😭"
+      "empty": "Votre panier est vide 😭",
+      "rewards": {
+        "title": "Récompenses",
+        "button": "Sélectionner une récompense",
+        "modal_title": "Vous avez",
+        "modal_subtitle": "Sélectionnez une récompense",
+        "modal_loyalty_pts": "points de fidélité",
+        "modal_points": "points",
+        "modal_button": "Sélectionner",
+        "modal_button_none": "Aucune récompense"
+      }
     },
     "customerDetail": {
       "firstName": "Prénom",
