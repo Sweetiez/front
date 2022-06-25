@@ -7,6 +7,7 @@ export default class CreateOrderRequest {
   phone: string;
   pickupDate: string;
   products: ProductOrderRequest[];
+  rewardId: string;
 
   constructor(
     firstName: string,
@@ -15,6 +16,7 @@ export default class CreateOrderRequest {
     phone: string,
     pickupDate: string,
     cart: CartModel[],
+    rewardId: string,
   ) {
     this.firstName = firstName;
     this.lastName = lastName;
@@ -28,6 +30,7 @@ export default class CreateOrderRequest {
         item?.quantity ? item.quantity : -1,
       );
     });
+    this.rewardId = rewardId;
   }
 }
 
