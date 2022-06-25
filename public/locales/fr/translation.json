@@ -135,7 +135,8 @@
       "summary": "Résumé",
       "description": "Description",
       "unitPrice": "Prix unitaire",
-      "total": "Total"
+      "total": "Total",
+      "empty": "Votre panier est vide"
     },
     "customerDetail": {
       "firstName": "Prénom",

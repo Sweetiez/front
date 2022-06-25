@@ -135,7 +135,8 @@
       "summary": "Summary",
       "description": "Description",
       "unitPrice": "Unit price",
-      "total": "Total"
+      "total": "Total",
+      "empty": "Your cart is empty"
     },
     "customerDetail": {
       "firstName": "First name",
