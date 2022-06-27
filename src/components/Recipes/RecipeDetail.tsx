@@ -68,14 +68,14 @@ const RecipeDetail: React.FC = () => {
             </Carousel>
           </div>
           <div className="px-4 md:px-20">
-            <div className="flex flex-col md:flex-row md:justify-center md:gap-12 gap-4 py-4">
+            <div className="flex flex-col md:flex-row md:justify-evenly gap-4 py-4">
               <div className="max-w-lg">
                 <span className="font-birthstone flex justify-center text-4xl">
                   {t('recipes.description')}
                 </span>
-                <p>{recipe?.description}</p>
+                <p className="font-pompiere text-2xl">{recipe?.description}</p>
               </div>
-              <div className="bg-white max-w-md rounded-2xl shadow mt-2">
+              <div className="bg-white max-w-md rounded-2xl h-60 shadow mt-2">
                 <div className="bg-gray-200 rounded-t-2xl">
                   <span className="flex justify-center pt-1">
                     {`${t('recipes.totalTime')} : ${
