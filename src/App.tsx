@@ -12,6 +12,7 @@ import HandleCheckoutStripePayment from './components/Checkout/HandleCheckoutStr
 import CheckoutSuccess from './components/Checkout/CheckoutSuccess';
 import Orders from './components/Order/Orders';
 import Profile from './components/Profile/Profile';
+import Privacy from "./components/Privacy";
 
 function App() {
   const queryClient = new QueryClient();
@@ -34,7 +35,8 @@ function App() {
               <Route path="/recipes" element={<Recipes />} />
               <Route path="/recipes/:id" element={<RecipeDetail />} />
               <Route path="/user/profile" element={<Profile />} />
-              <Route path="/user/order" element={<Orders />} />
+                <Route path="/user/order" element={<Orders />} />
+                <Route path="/privacy" element={<Privacy />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Router>
