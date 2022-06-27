@@ -7,6 +7,7 @@ export default class CreateOrderRequest {
   phone: string;
   pickupDate: string;
   products: ProductOrderRequest[];
+  rewardId: string;
 
   constructor(
     firstName: string,
@@ -15,6 +16,7 @@ export default class CreateOrderRequest {
     phone: string,
     pickupDate: string,
     cart: CartModel[],
+    rewardId: string,
   ) {
     this.firstName = firstName;
     this.lastName = lastName;
@@ -24,10 +26,11 @@ export default class CreateOrderRequest {
     this.products = cart.map((item) => {
       return new ProductOrderRequest(
         item?.item?.id ? item.item.id : '',
-        'SWEET',
+        item?.type ? item.type : '',
         item?.quantity ? item.quantity : -1,
       );
     });
+    this.rewardId = rewardId;
   }
 }
 

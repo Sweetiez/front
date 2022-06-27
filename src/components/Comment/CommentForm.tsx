@@ -46,8 +46,14 @@ const CommentForm: React.FC<CommentFormProps> = ({
 
     try {
       await createEvaluation(request);
-      if (type === CommentType.SWEET)
+      if (type === CommentType.SWEET) {
         await queryClient.invalidateQueries(`sweets-${subject}`);
+        await queryClient.invalidateQueries(`published-sweets`);
+      }
+      if (type === CommentType.TRAY) {
+        await queryClient.invalidateQueries(`trays-${subject}`);
+        await queryClient.invalidateQueries(`published-trays`);
+      }
       if (type === CommentType.SWEET)
         await queryClient.invalidateQueries(`recipe-${subject}`);
       setModalState();
@@ -56,9 +62,12 @@ const CommentForm: React.FC<CommentFormProps> = ({
       setStatus('Error');
     }
   };
-  const handleStartClick = useCallback((rating) => {
-    setRating(rating);
-  }, []);
+  const handleStartClick = useCallback(
+    (rating: ((prevState: number) => number) | number) => {
+      setRating(rating);
+    },
+    [],
+  );
   return (
     <>
       <div className="px-8 md:px-20 pt-6 pb-8 mb-4 flex flex-col">

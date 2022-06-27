@@ -71,15 +71,19 @@
   "cart": {
     "title": "Votre panier",
     "remove": "Supprimer",
-    "subtotal": "Total hors taxe",
-    "totalInfo": "Les frais d'expédition et les taxes sont calculés lors du passage à la caisse.",
+    "subtotal": "Total toutes taxes",
+    "totalInfo": "Une facture vous sera envoyée à l'adresse email que vous avez renseignée lors de la commande.",
     "checkout": "Commander",
     "or": "ou",
     "continueShopping": "continuer les achats"
   },
   "productDetail": {
     "add": "Ajouter",
-    "comment": "Commenter"
+    "comment": "Commenter",
+    "ingredients": "Ingrédients",
+    "sweets": "Mignardises",
+    "allergens": "Allergènes",
+    "diets": "Diètes"
   },
   "comment": {
     "showMore": "Afficher plus",
@@ -131,7 +135,18 @@
       "summary": "Résumé",
       "description": "Description",
       "unitPrice": "Prix unitaire",
-      "total": "Total"
+      "total": "Total",
+      "empty": "Votre panier est vide 😭",
+      "rewards": {
+        "title": "Récompenses",
+        "button": "Sélectionner une récompense",
+        "modal_title": "Vous avez",
+        "modal_subtitle": "Sélectionnez une récompense",
+        "modal_loyalty_pts": "points de fidélité",
+        "modal_points": "points",
+        "modal_button": "Sélectionner",
+        "modal_button_none": "Aucune récompense"
+      }
     },
     "customerDetail": {
       "firstName": "Prénom",
@@ -218,5 +233,6 @@
       "SALTY": "Salée",
       "MIXED": "Mixte"
     }
-  }
+  },
+  "productPackage": "Lot de {{unit}} au prix unitaire de {{price}} €"
 }

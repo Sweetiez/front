@@ -5,11 +5,12 @@ import { getCart } from '../../hooks/cart/cartHook';
 import CreateOrderRequest from '../../hooks/orders/requests/CreateOrderRequest';
 import { createAnOrder, storeTempEmail } from '../../hooks/orders/orders';
 import { useNavigate } from 'react-router-dom';
+import { useSelectedReward } from '../../hooks/rewards/rewardsHook';
 
 const CheckoutCustomerInfo: React.FC<IHandleNav> = ({ handlePrevious }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
+  const { data: selectedReward } = useSelectedReward();
   const [disabledButton, setDisabledButton] = useState(false);
 
   async function handleOrderSubmit(event: any) {
@@ -24,6 +25,7 @@ const CheckoutCustomerInfo: React.FC<IHandleNav> = ({ handlePrevious }) => {
       event.target.phone.value,
       event.target.pickupDate.value,
       cart,
+      selectedReward?.id ? selectedReward.id : '',
     );
     const response = await createAnOrder(request);
 
@@ -101,6 +103,12 @@ const CheckoutCustomerInfo: React.FC<IHandleNav> = ({ handlePrevious }) => {
                     className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
                     id="pickupDate"
                     type="date"
+                    // disable past dates + 3 days from today (+4 because it's include today)
+                    min={
+                      new Date(Date.now() + 4 * 24 * 60 * 60 * 1000)
+                        .toISOString()
+                        .split('T')[0]
+                    }
                     required={true}
                   />
                 </div>

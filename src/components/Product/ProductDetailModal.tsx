@@ -8,26 +8,35 @@ import { useTranslation } from 'react-i18next';
 import Stepper from '../Stepper/Stepper';
 import { setCart, useCart } from '../../hooks/cart/cartHook';
 import LabelButton from '../Button/LabelButton';
-import { useSweetDetails } from '../../hooks/products/sweets/sweetsHooks';
+import { useProductDetails } from '../../hooks/products/sweets/sweetsHooks';
 import CommentCard from '../Comment/CommentCard';
 import Modal from '../utils/Modal';
 import CommentForm from '../Comment/CommentForm';
 import SkeletonProductDetail from '../utils/Skeleton/SkeletonProductDetail';
 import { useTokenAvailable } from '../../hooks/auth/tokenHook';
 import CommentType from '../Comment/CommentTypeEnum';
+import { SWEET_TYPE, TRAY_TYPE } from './ProductType';
+import SweetDetailModel from './SweetDetailModel';
+import TrayDetailModel from './TrayDetailModel';
+import ShowMoreText from 'react-show-more-text';
 
 interface ProductModalProps {
   manageCloseClick: () => void;
   productId: string;
+  productType: string;
 }
 
 const ProductDetailModal: React.FC<ProductModalProps> = ({
   manageCloseClick,
   productId,
+  productType,
 }) => {
-  const { data: sweetData } = useSweetDetails(productId);
+  const { data: productData } = useProductDetails(
+    productId,
+    productType === TRAY_TYPE ? 'trays' : 'sweets',
+  );
   const { data: isTokenAvailable } = useTokenAvailable();
-  const product = sweetData ? sweetData : undefined;
+  const product = productData ? productData : undefined;
   const { t } = useTranslation();
   const [itemCount, setItemCount] = useState<string | undefined>('1');
   const [CommentModalState, setCommentModalState] = useState(false);
@@ -39,16 +48,27 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
   }, []);
 
   const manageAdd = () => {
-    setCart([
-      ...cart,
-      {
+    const item = cart.find((it) => it.item?.id === product?.id);
+
+    if (item && item.quantity) {
+      item.quantity += itemCount ? +itemCount : 1;
+    } else {
+      cart.push({
         item: product,
+        type: productType === 'trays' ? 'TRAY' : 'SWEET',
         quantity: itemCount ? +itemCount : 1,
-      },
-    ]);
+      });
+    }
+
+    setCart(cart);
     manageCloseClick();
   };
 
+  const showStars =
+    product &&
+    product?.valuation &&
+    product?.valuation?.mark &&
+    product?.valuation?.mark > 0;
   return (
     <>
       {!product ? (
@@ -91,7 +111,28 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                   play
                 />
               </div>
-              <h1 className="mx-3 font-semibold text-lg">{product?.price} €</h1>
+              <div>
+                <h1 className="mx-3 font-semibold text-lg">
+                  {product.packagedPrice
+                    ? product.packagedPrice
+                    : product.price
+                    ? product.price
+                    : 1}
+                  €
+                </h1>
+                {(product as SweetDetailModel).ingredients ? (
+                  <span className="font-pompiere text-xs">
+                    (
+                    {t('productPackage', {
+                      unit: product?.unitPerPackage,
+                      price: product?.price,
+                    })}
+                    )
+                  </span>
+                ) : (
+                  <></>
+                )}
+              </div>
               {/* Stepper */}
               <div className="flex justify-center ">
                 <Stepper itemCount={itemCount} setItemCount={setItemCount} />
@@ -107,13 +148,99 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 <h1 className="text-4xl font-bold text-gray-800 font-birthstone">
                   {product?.name}
                 </h1>
+                {showStars ? (
+                  <div className="flex pt-2 flex-col-reverse justify-end mb-1 mr-4 group cursor-pointer">
+                    <Stars
+                      number={
+                        product &&
+                        product?.valuation &&
+                        product?.valuation?.mark
+                          ? product?.valuation?.mark
+                          : 0
+                      }
+                    />
+                  </div>
+                ) : (
+                  <></>
+                )}
               </div>
-              <div className="flex flex-col-reverse justify-end mb-1 mr-4 group cursor-pointer">
-                <Stars number={product?.evaluation && product?.evaluation.mark ? product.evaluation.mark : 0} />
+
+              <div className="py-2 pt-6 text-xl text-gray-700 font-pompiere font-size-16">
+                <ShowMoreText
+                  lines={5}
+                  more={t('comment.showMore')}
+                  less=""
+                  anchorClass="text-gold-100 ml-1"
+                >
+                  {product.description}
+                </ShowMoreText>
               </div>
-              <p className="py-2 pt-10 text-xl text-gray-700 font-pompiere font-size-16">
-                {product?.description}
-              </p>
+
+              {productType === SWEET_TYPE ? (
+                <div>
+                  <h1 className="text-3xl pt-2 font-bold text-gray-800 font-birthstone">
+                    {t('productDetail.ingredients')}
+                  </h1>
+                  <p className="py-2 pt-2 text-xl text-gray-700 font-pompiere font-size-16">
+                    {(product as SweetDetailModel).ingredients?.join(', ')}
+                  </p>
+                </div>
+              ) : (
+                <></>
+              )}
+
+              {productType === TRAY_TYPE ? (
+                <div>
+                  <h1 className="text-3xl font-bold text-gray-800 font-birthstone">
+                    {t('productDetail.sweets')}
+                  </h1>
+                  <div className="relative">
+                    <p className="py-2 pt-4 text-xl text-gray-700 font-pompiere font-size-16">
+                      {(product as TrayDetailModel).sweets?.map(
+                        (sweetQty) => sweetQty.sweet?.name,
+                      )}
+                    </p>
+                    <p className="absolute py-2 pt-4 text-xl text-gray-700 font-pompiere font-size-16 inset-y-0 right-10">
+                      x
+                      {(product as TrayDetailModel).sweets?.map(
+                        (sweetQty) => sweetQty.quantity,
+                      )}
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <></>
+              )}
+
+              <div>
+                <h1 className="text-3xl pt-2 font-bold text-gray-800 font-birthstone">
+                  {t('productDetail.diets')}
+                </h1>
+                <p className="py-2 pt-2 text-xl text-gray-700 font-pompiere font-size-16">
+                  {(product as SweetDetailModel).diets
+                    ?.map(
+                      (allergen) =>
+                        allergen[0].toUpperCase() +
+                        allergen.substring(1).toLowerCase(),
+                    )
+                    ?.join(', ')}
+                </p>
+              </div>
+
+              <div>
+                <h1 className="text-3xl pt-2 font-bold text-gray-800 font-birthstone">
+                  {t('productDetail.allergens')}
+                </h1>
+                <p className="py-2 pt-2 text-xl text-gray-700 font-pompiere font-size-16">
+                  {(product as SweetDetailModel).allergens
+                    ?.map(
+                      (allergen) =>
+                        allergen[0].toUpperCase() +
+                        allergen.substring(1).toLowerCase(),
+                    )
+                    ?.join(', ')}
+                </p>
+              </div>
 
               <div className="flex justify-end mt-4">
                 {isTokenAvailable ? (
@@ -126,7 +253,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                   <></>
                 )}
               </div>
-              {product?.comments!.map((comment) =>
+              {product?.valuation?.comments?.map((comment) =>
                 comment.content !== '' ? (
                   <CommentCard key={comment.id} comment={comment} />
                 ) : (
@@ -141,7 +268,11 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                 <CommentForm
                   subject={productId}
                   setModalState={commentCloseClick}
-                  type={CommentType.SWEET}
+                  type={
+                    productType === SWEET_TYPE
+                      ? CommentType.SWEET
+                      : CommentType.TRAY
+                  }
                 />
               }
             />

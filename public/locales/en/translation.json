@@ -72,14 +72,18 @@
     "title": "Your cart",
     "remove": "Remove",
     "subtotal": "Subtotal",
-    "totalInfo": "Shipping and taxes calculated at checkout.",
+    "totalInfo": "An invoice will be sent to the email address you provided when ordering.",
     "checkout": "Checkout",
     "or": "or",
     "continueShopping": "Continue shopping"
   },
   "productDetail": {
     "add": "Add",
-    "comment": "Comment"
+    "comment": "Comment",
+    "ingredients": "Ingredients",
+    "sweets": "Sweets",
+    "allergens": "Allergens",
+    "diets": "Diets"
   },
   "comment": {
     "showMore": "Show more",
@@ -131,7 +135,18 @@
       "summary": "Summary",
       "description": "Description",
       "unitPrice": "Unit price",
-      "total": "Total"
+      "total": "Total",
+      "empty": "Your cart is empty 😭",
+      "rewards": {
+        "title": "Rewards",
+        "button": "Select a reward",
+        "modal_title": "You have",
+        "modal_subtitle": "Select a reward",
+        "modal_loyalty_pts": "loyalty points",
+        "modal_points": "points",
+        "modal_button": "Select",
+        "modal_button_none": "No rewards"
+      }
     },
     "customerDetail": {
       "firstName": "First name",
@@ -218,5 +233,6 @@
       "SALTY": "Salty",
       "MIXED": "Mixed"
     }
-  }
+  },
+  "productPackage": "Set of {{unit}} at the unit price of {{price}}€"
 }

@@ -73,10 +73,19 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
         <div>
           {order?.products!.map((product: OrderedProductModel, index) => (
             <div key={index}>
-              <span >{product.name + ' ×  ' + product.quantity}</span>
+              <span>{product.name + ' ×  ' + product.quantity}</span>
               <br />
             </div>
           ))}
+          {order?.rewardName?.trim() !== '' ? (
+            <div>
+              <span>
+                🎁 {order?.rewardName} - {order?.rewardProductName}
+              </span>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="flex justify-end">
           <span className="text-gold-100 mr-1">{t('orders.totalPrice')}</span>
