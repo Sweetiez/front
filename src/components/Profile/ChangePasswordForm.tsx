@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import Title from '../utils/Title';
 import PasswordInput from '../utils/PasswordInput';
 import Label from '../utils/Label';
-import UpdatePasswordRequest from '../../hooks/user/requests/UpdatePasswordRequest';
+import ChangePasswordRequest from '../../hooks/user/requests/ChangePasswordRequest';
 import ProfileModel from './ProfileModel';
 import { updatePassword } from '../../hooks/user/users';
 import { wait } from '@testing-library/user-event/dist/utils';
@@ -53,7 +53,7 @@ const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
     setMessage('');
     setStatus('');
 
-    const request = new UpdatePasswordRequest(
+    const request = new ChangePasswordRequest(
       profile?.email,
       event.target.currentPassword.value,
       event.target.newPassword.value,
