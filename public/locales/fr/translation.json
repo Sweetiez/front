@@ -176,7 +176,8 @@
     "cost": "Coût",
     "level": "Niveau",
     "portions": "Personnes",
-    "steps": "Préparation"
+    "steps": "Préparation",
+    "description": "Description"
   },
   "orders": {
     "title": "Vos commandes",
