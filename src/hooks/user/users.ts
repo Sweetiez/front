@@ -5,6 +5,7 @@ import UserProfile from './UserProfile';
 import { authenticatedRequest } from '../common/request';
 import ProfileModel from '../../components/Profile/ProfileModel';
 import UpdateProfileRequest from './requests/UpdateProfileRequest';
+import ChangePasswordRequest from './requests/ChangePasswordRequest';
 import UpdatePasswordRequest from './requests/UpdatePasswordRequest';
 
 export function useProfile(): UserProfile | undefined {
@@ -44,7 +45,15 @@ const updateProfile = async (request: UpdateProfileRequest): Promise<any> => {
   return data;
 };
 
-const updatePassword = async (request: UpdatePasswordRequest): Promise<any> => {
+const updatePassword = async (request: ChangePasswordRequest): Promise<any> => {
+  return await authenticatedRequest({
+    url: `/auth/me/password`,
+    method: 'POST',
+    data: request,
+  });
+};
+
+const resetPassword = async (request: UpdatePasswordRequest): Promise<any> => {
   return await authenticatedRequest({
     url: `/auth/me/password`,
     method: 'PUT',
@@ -52,4 +61,4 @@ const updatePassword = async (request: UpdatePasswordRequest): Promise<any> => {
   });
 };
 
-export { updateProfile, updatePassword };
+export { updateProfile, updatePassword, resetPassword };
