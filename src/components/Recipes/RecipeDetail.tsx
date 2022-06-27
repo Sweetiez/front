@@ -40,94 +40,132 @@ const RecipeDetail: React.FC = () => {
       {!recipe ? (
         <SkeletonRecipeDetail />
       ) : (
-        <div className="grid grid-cols-5">
-          <div className="col-start-2 col-end-5">
-            <div className="place-content-center h-auto mt-2">
-              <h1 className="text-center font-birthstone text-4xl font-bold">
-                {recipe?.title}
-              </h1>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 pt-4">
-              <div className="col-start-1 col-end-3">
-                <Carousel
-                  showThumbs={false}
-                  showArrows={false}
-                  showStatus={false}
-                  autoPlay={true}
-                  infiniteLoop={true}
-                  swipeable={false}
-                  animationHandler={fadeAnimationHandler}
-                  interval={3000}
-                  className="rounded-3xl overflow-hidden transform transition"
-                >
-                  {recipe?.images?.map((image: string, index: number) => (
-                    <div key={index}>
-                      <img
-                        className="md:h-80 h-40 object-cover object-center xs:object-contain rounded-3xl"
-                        src={image}
-                        alt="recipe"
-                      />
-                    </div>
-                  ))}
-                </Carousel>
-              </div>
-              <div className="mx-3 col-start-3 col-end-4">
-                <table className="w-full table-fixed bg-gray-200 rounded mb-2">
-                  <thead className="font-bold">
-                    <tr>
-                      <th colSpan={3}>
-                        {`${t('recipes.totalTime')} : ${
-                          Number(
-                            recipe?.preparationTime
-                              ? recipe.preparationTime
-                              : 0,
-                          ) +
-                          Number(recipe?.chillTime ? recipe.chillTime : 0) +
-                          Number(recipe?.cookTime ? recipe.cookTime : 0)
-                        } min`}
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="font-bold">
-                      <td>{t('recipes.preparationTime')} </td>
-                      <td>{t('recipes.sleepTime')}</td>
-                      <td>{t('recipes.cookingTime')}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        {recipe?.preparationTime ? recipe.preparationTime : 0}{' '}
-                        min
-                      </td>
-                      <td>{recipe?.chillTime ? recipe.chillTime : 0} min</td>
-                      <td>{recipe?.cookTime ? recipe.cookTime : 0} min</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <Stars number={recipe?.rating ? recipe.rating : 2.5} />
-                <p>
-                  {t('recipes.cost')} : {recipe?.cost ? recipe.cost : 0} €
-                </p>
-                <p>
-                  {t('recipes.level')} :{' '}
-                  {recipe?.difficulty ? recipe.difficulty : ''}
-                </p>
-                <p>
-                  {t('recipes.portions')} : {recipe?.people ? recipe.people : 0}
-                </p>
-              </div>
-              <div className="col-start-1 col-end-4 my-5">
-                <span className="font-birthstone text-4xl">
-                  {t('recipes.steps')}
+        <>
+          <div className="">
+            <Carousel
+              showThumbs={false}
+              showArrows={false}
+              showStatus={false}
+              autoPlay={true}
+              infiniteLoop={true}
+              swipeable={false}
+              animationHandler={fadeAnimationHandler}
+              interval={3000}
+              className="md:h-80 h-40 w-full object-cover object-center"
+            >
+              {recipe?.images?.map((image: string, index: number) => (
+                <div key={index}>
+                  <img
+                    className="md:h-80 h-40 object-cover object-center xs:object-contain"
+                    src={image}
+                    alt="recipe"
+                  />
+                  <p className="customLegend font-birthstone">
+                    {recipe?.title}
+                  </p>
+                </div>
+              ))}
+            </Carousel>
+          </div>
+          <div className="px-4 md:px-20">
+            <div className="flex flex-col md:flex-row md:justify-center md:gap-12 gap-4 py-4">
+              <div className="max-w-lg">
+                <span className="font-birthstone flex justify-center text-4xl">
+                  {t('recipes.description')}
                 </span>
+                <p>{recipe?.description}</p>
               </div>
+              <div className="bg-white max-w-md rounded-2xl shadow mt-2">
+                <div className="bg-gray-200 rounded-t-2xl">
+                  <span className="flex justify-center pt-1">
+                    {`${t('recipes.totalTime')} : ${
+                      Number(
+                        recipe?.preparationTime ? recipe.preparationTime : 0,
+                      ) +
+                      Number(recipe?.chillTime ? recipe.chillTime : 0) +
+                      Number(recipe?.cookTime ? recipe.cookTime : 0)
+                    } min`}
+                  </span>
+                  <div className="flex flex-col">
+                    <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                      <div className="inline-block min-w-full sm:px-6 lg:px-8">
+                        <div className="overflow-hidden">
+                          <table className="min-w-full">
+                            <thead>
+                              <tr>
+                                <th
+                                  scope="col"
+                                  className="text-sm font-medium text-gray-900 px-6 py-1 text-left"
+                                >
+                                  {t('recipes.preparationTime')}
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="text-sm font-medium text-gray-900 px-6 py-1 text-left"
+                                >
+                                  {t('recipes.sleepTime')}
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="text-sm font-medium text-gray-900 px-6 py-1 text-left"
+                                >
+                                  {t('recipes.cookingTime')}
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td className="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">
+                                  {recipe?.preparationTime
+                                    ? recipe.preparationTime
+                                    : 0}{' '}
+                                  min
+                                </td>
+                                <td className="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">
+                                  {recipe?.chillTime ? recipe.chillTime : 0} min
+                                </td>
+                                <td className="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">
+                                  {recipe?.cookTime ? recipe.cookTime : 0} min
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <Stars number={recipe?.rating ? recipe.rating : 2.5} />
+                  <p className="font-pompiere text-xl">
+                    {t('recipes.cost')} : {recipe?.cost ? recipe.cost : 0} €
+                  </p>
+                  <p className="font-pompiere text-xl">
+                    {t('recipes.level')} :{' '}
+                    <span className="capitalize">
+                      {recipe?.difficulty
+                        ? recipe.difficulty.toLowerCase()
+                        : ''}
+                    </span>
+                  </p>
+                  <p className="font-pompiere text-xl">
+                    {t('recipes.portions')} :{' '}
+                    {recipe?.people ? recipe.people : 0}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span className="font-birthstone flex justify-center text-4xl my-4">
+                {t('recipes.steps')}
+              </span>
 
               {recipe?.steps?.map((step: RecipeStep, index: number) => (
                 <RecipeStepComponent step={step} key={index} />
               ))}
             </div>
           </div>
-        </div>
+        </>
       )}
     </Page>
   );
