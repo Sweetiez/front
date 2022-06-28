@@ -60,7 +60,9 @@
       "title": "Mot de passe oublié ?",
       "email": "Adresse email",
       "singIn": "Connectez-vous",
-      "submit": "Récupérer mon mot de passe"
+      "submit": "Récupérer mon mot de passe",
+      "message": "Un email vous a été envoyé avec un lien pour réinitialiser votre mot de passe",
+      "resetSuccess": "Votre mot de passe a bien été réinitialisé si les conditions de réinitialisation sont respectées"
     }
   },
   "quickShop": {
