@@ -16,7 +16,7 @@ const UserMenu = () => {
 
   return (
     <>
-      <span className="pr-1 flex-1 font-medium text-gray-900 font-birthstone text-2xl p-2 block">
+      <span className="pr-1 flex-1 font-medium text-gray-900 font-birthstone text-2xl p-2 md:block hidden">
         {t('menu.welcome')}
       </span>
       <div className="group inline-block">
