@@ -4,7 +4,7 @@ import ModalContent from '../NavMenu/ModalContentEnum';
 import TextButton from './TextButton';
 import Title from '../utils/Title';
 import UpdatePasswordRequest from '../../hooks/user/requests/UpdatePasswordRequest';
-import { resetPassword } from '../../hooks/user/users';
+import { askResetPassword } from '../../hooks/user/users';
 import Label from '../utils/Label';
 
 interface ForgottenPasswordProps {
@@ -21,7 +21,7 @@ const ForgottenPasswordForm: React.FC<ForgottenPasswordProps> = ({
     event.preventDefault();
 
     const request = new UpdatePasswordRequest(event.target.email.value);
-    await resetPassword(request);
+    await askResetPassword(request);
     setStatus(true);
   };
 
