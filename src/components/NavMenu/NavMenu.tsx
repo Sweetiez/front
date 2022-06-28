@@ -238,7 +238,7 @@ const NavMenu: React.FC = () => {
                   {AuthSectionContent}
 
                   {/* Cart */}
-                  <div className="ml-4 flow-root lg:ml-6">
+                  <div className="mx-2 flow-root lg:ml-6 justify-center">
                     <div
                       onClick={() => setCartOpen(true)}
                       className="group -m-2 p-2 flex items-center"
