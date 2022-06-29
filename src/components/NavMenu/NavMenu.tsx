@@ -181,7 +181,7 @@ const NavMenu: React.FC = () => {
             className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
           >
             <div className="border-b border-gray-200">
-              <div className="h-16 flex items-center">
+              <div className="h-16 flex items-center justify-center">
                 <button
                   type="button"
                   className="bg-white p-2 rounded-md text-gray-400 lg:hidden"
@@ -238,7 +238,7 @@ const NavMenu: React.FC = () => {
                   {AuthSectionContent}
 
                   {/* Cart */}
-                  <div className="mx-2 flow-root lg:ml-6 justify-center">
+                  <div className="mx-2 justify-center">
                     <div
                       onClick={() => setCartOpen(true)}
                       className="group -m-2 p-2 flex items-center"

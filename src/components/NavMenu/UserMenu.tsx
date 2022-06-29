@@ -20,7 +20,7 @@ const UserMenu = () => {
         {t('menu.welcome')}
       </span>
       <div className="group inline-block">
-        <button className="outline-none focus:outline-none px-3 py-1 bg-white rounded-sm flex items-center min-w-32">
+        <button className="outline-none focus:outline-none px-3 py-1 bg-white rounded-sm flex items-center">
           <span className="font-medium font-birthstone text-2xl p-2 block">
             {profile?.name}
           </span>

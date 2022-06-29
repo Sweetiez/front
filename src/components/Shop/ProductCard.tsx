@@ -24,7 +24,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <>
       <div className="relative my-3 mx-3 lg:mx-5 flex flex-wrap justify-center">
-        <div className="relative w-60 xl:w-64 min-w-full bg-white shadow-md rounded-2xl  py-0 my-0 cursor-pointer border transform transition duration-500 hover:scale-110 ">
+        <div className="relative w-60 xl:w-64 min-w-full bg-white shadow-md rounded-2xl py-0 my-0 cursor-pointer border transform transition duration-500 hover:scale-110 ">
           <div className="overflow-x-hidden rounded-t-lg relative">
             {product.images && product.images[0] !== '' ? (
               <img
