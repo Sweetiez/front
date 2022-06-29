@@ -14,12 +14,14 @@ const Recipes: React.FC = () => {
       {loading ? (
         <SkeletonRecipes />
       ) : (
-        <div className="grid grid-cols-5">
-          <div className="col-start-2 col-end-5">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 grid-rows-2">
-              {recipes?.map((recipe, index) => (
-                <RecipeCard key={index} recipe={recipe} />
-              ))}
+        <div className="flex justify-center">
+          <div className="grid grid-cols-5 pt-6">
+            <div className="col-start-1 col-end-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 grid-rows-2">
+                {recipes?.map((recipe, index) => (
+                  <RecipeCard key={index} recipe={recipe} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
