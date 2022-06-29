@@ -45,6 +45,20 @@ export const Streaming = () => {
           trickle: false,
           initiator: isInitiator,
           stream: mediaStream,
+          config: {
+            iceServers: [
+              {
+                urls: 'stun:stun.l.google.com:19302',
+              },
+              {
+                urls: 'turn:212.83.164.13:5349',
+                  credential: 'admin',
+                  username: 'admin'
+              },
+            ],
+            iceCandidatePoolSize: 20,
+            iceTransportPolicy: 'all',
+          },
         });
 
         if (isInitiator) setConnectionStatus(ConnectionStatus.OFFERING);
