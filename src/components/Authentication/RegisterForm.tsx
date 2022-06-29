@@ -10,7 +10,8 @@ import PhoneInput from 'react-phone-number-input';
 import RegisterRequest from '../../hooks/auth/requests/RegisterRequest';
 import { register } from '../../hooks/auth/register';
 import { wait } from '@testing-library/user-event/dist/utils';
-import PasswordInput from "../utils/PasswordInput";
+import PasswordInput from '../utils/PasswordInput';
+import { Link } from 'react-router-dom';
 
 interface RegisterProps {
   setModalContent: (content: ModalContent) => void;
@@ -133,11 +134,17 @@ const RegisterForm: React.FC<RegisterProps> = ({ setModalContent }) => {
           </div>
 
           <div className="mb-4">
-            <PasswordInput id={'password'} placeholder={t('authentication.register.password')}/>
+            <PasswordInput
+              id={'password'}
+              placeholder={t('authentication.register.password')}
+            />
           </div>
 
           <div className="mb-8">
-            <PasswordInput id={'passwordConfirmed'} placeholder={t('authentication.register.confirmPassword')}/>
+            <PasswordInput
+              id={'passwordConfirmed'}
+              placeholder={t('authentication.register.confirmPassword')}
+            />
           </div>
 
           <div className="flex justify-center mb-4 inline-flex items-center">
@@ -148,12 +155,23 @@ const RegisterForm: React.FC<RegisterProps> = ({ setModalContent }) => {
             />
             <span className="ml-2 text-sm font-semibold">
               {t('authentication.register.agree')}
-              <TextButton
-                setModalContent={() => setModalContent(ModalContent.LOGIN)}
-                label={t('authentication.register.cgu')}
-                color={'text-gold-100'}
-                bold={true}
-              />
+              <Link to={'/cgu'} target="_blank" rel="noopener noreferrer">
+                <TextButton
+                  setModalContent={() => {}}
+                  label={t('authentication.register.cgu')}
+                  color={'text-gold-100'}
+                  bold={true}
+                />
+              </Link>
+              {t('authentication.register.andPrivacy')}
+              <Link to={'/privacy'} target="_blank" rel="noopener noreferrer">
+                <TextButton
+                  setModalContent={() => {}}
+                  label={t('authentication.register.privacy')}
+                  color={'text-gold-100'}
+                  bold={true}
+                />
+              </Link>
             </span>
           </div>
           <div className="flex justify-center mb-2">

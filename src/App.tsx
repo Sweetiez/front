@@ -13,6 +13,7 @@ import CheckoutSuccess from './components/Checkout/CheckoutSuccess';
 import Orders from './components/Order/Orders';
 import Profile from './components/Profile/Profile';
 import Privacy from './components/Privacy';
+import Cgu from './components/Cgu';
 import ResetPassword from './components/Authentication/ResetPassword';
 import {Streaming} from "./components/Streaming/Streaming";
 
@@ -39,6 +40,7 @@ function App() {
             <Route path="/user/profile" element={<Profile />} />
             <Route path="/user/order" element={<Orders />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/cgu" element={<Cgu />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
             <Route path="/streaming" element={<Streaming />} />
             <Route path="*" element={<NotFound />} />

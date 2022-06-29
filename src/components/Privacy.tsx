@@ -1,13 +1,12 @@
 import Page from './Page/Page';
 import NavMenu from './NavMenu/NavMenu';
 import React from 'react';
-import './../assets/css/privacy.css'
 
 const Privacy: React.FC = () => {
   return (
     <Page>
       <NavMenu />
-      <div className="px-10">
+      <div className="px-10 privacy">
         <h1 className="text-center font-birthstone text-4xl font-bold mt-8">
           Politique de confidentialité
         </h1>
@@ -128,83 +127,83 @@ const Privacy: React.FC = () => {
           FINALITES POUR LESQUELLES NOUS UTILISONS LES DONNEES A CARACTERE
           PERSONNEL DANS LE CADRE DE NOS PRESTATIONS EN MILIEU PROFESSIONNEL
         </h1>
-        <table className="min-w-full divide-y divide-x divide-gray-200">
+        <table className="min-w-full divide-y divide-x divide-gray-200 border">
           <thead className="bg-gray-50" >
             <tr>
-              <th>N°</th>
-              <th>Finalité du traitement</th>
-              <th>Fondement légal</th>
-              <th>Durée de conservation des données</th>
+              <th className="border">N°</th>
+              <th className="border">Finalité du traitement</th>
+              <th className="border">Fondement légal</th>
+              <th className="border">Durée de conservation des données</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-x divide-gray-200">
             <tr>
-              <td>1</td>
-              <td>
+              <td className="border">1</td>
+              <td className="border">
                 Gérer et traiter les demandes de création et de gestion de
                 comptes sur la Plateforme
               </td>
-              <td>
+              <td className="border">
                 L’Exécution et la gestion de notre relation contractuelle avec
                 vous et/ou avec notre client (votre employeur)
               </td>
-              <td>
+              <td className="border">
                 Jusqu’à 12 mois à compter de la dernière activité ou
                 immédiatement suite au traitement de la demande de suppression
                 du compte
               </td>
             </tr>
             <tr>
-              <td>2</td>
-              <td>
+              <td className="border">2</td>
+              <td className="border">
                 Fournir les services et prestations commandées sur la Plateforme
               </td>
-              <td>
+              <td className="border">
                 L’Exécution et la gestion de notre relation contractuelle avec
                 vous et/ou avec notre client (votre employeur)
               </td>
-              <td>
+              <td className="border">
                 Jusqu’à 5 ans à compter de la fin de notre relation
                 contractuelle avec votre employeur
               </td>
             </tr>
             <tr>
-              <td>3</td>
-              <td>Répondre à vos demandes de contact</td>
-              <td>
+              <td className="border">3</td>
+              <td className="border">Répondre à vos demandes de contact</td>
+              <td className="border">
                 L’Exécution et la gestion de notre relation contractuelle avec
                 vous et/ou avec notre client (votre employeur)
                 <br />
                 Notre intérêt légitime à améliorer la qualité et l’excellence
                 opérationnelle des services que nous vous proposons
               </td>
-              <td>Jusqu’à 3 ans après le dernier contact</td>
+              <td className="border">Jusqu’à 3 ans après le dernier contact</td>
             </tr>
             <tr>
-              <td>4</td>
-              <td>
+              <td className="border">4</td>
+              <td className="border">
                 Vous permettre de consulter votre solde et/ou vos historiques,
                 votre consommation
               </td>
-              <td>
+              <td className="border">
                 L’exécution et la gestion de notre relation contractuelle avec
                 vous et/ou avec notre client (votre employeur)
               </td>
-              <td>Jusqu’à la suppression de votre compte</td>
+              <td className="border">Jusqu’à la suppression de votre compte</td>
             </tr>
             <tr>
-              <td>5</td>
-              <td>
+              <td className="border">5</td>
+              <td className="border">
                 Vous proposer des offres pour nos produits et services, vous
                 adresser des newsletters, etc.
               </td>
-              <td>
+              <td className="border">
                 Notre intérêt légitime à améliorer la qualité et l’excellence
                 opérationnelle des services que nous vous proposons
                 <br />
                 Votre consentement pour la réception d'offres de nos partenaires
               </td>
-              <td>
+              <td className="border">
                 Pour les clients existants : Jusqu’à 12 mois à compter de la
                 dernière activité ou immédiatement suite au traitement de la
                 demande de suppression du compte
@@ -214,74 +213,74 @@ const Privacy: React.FC = () => {
               </td>
             </tr>
             <tr>
-              <td>6</td>
-              <td>
+              <td className="border">6</td>
+              <td className="border">
                 Partager des données de profils avec des partenaires tiers à des
                 fins de ciblage publicitaire pour des audiences de profils
                 similaires
               </td>
-              <td>Votre consentement</td>
-              <td>
+              <td className="border">Votre consentement</td>
+              <td className="border">
                 Jusqu’à 12 mois à compter de la dernière activité ou
                 immédiatement suite au traitement de la demande de suppression
                 du compte
               </td>
             </tr>
             <tr>
-              <td>7</td>
-              <td>Réalisation des études de satisfaction</td>
-              <td>
+              <td className="border">7</td>
+              <td className="border">Réalisation des études de satisfaction</td>
+              <td className="border">
                 Notre intérêt légitime à améliorer la qualité et l’excellence
                 opérationnelle des services que nous vous proposons
               </td>
-              <td>
+              <td className="border">
                 Jusqu’à 12 mois à compter de la dernière activité ou
                 immédiatement suite au traitement de la demande de suppression
                 du compte
               </td>
             </tr>
             <tr>
-              <td>8</td>
-              <td>
+              <td className="border">8</td>
+              <td className="border">
                 Personnaliser et améliorer votre expérience sur notre Plateforme
               </td>
-              <td>
+              <td className="border">
                 Notre intérêt légitime à améliorer la qualité et l’excellence
                 opérationnelle des services que nous vous proposons
               </td>
-              <td>
+              <td className="border">
                 Jusqu’à 12 mois à compter de la dernière activité ou
                 immédiatement suite au traitement de la demande de suppression
                 du compte
               </td>
             </tr>
             <tr>
-              <td>9</td>
-              <td>
+              <td className="border">9</td>
+              <td className="border">
                 Conserver vos données de paiement par l’un de nos prestataires
                 de paiement sécurisé afin de faciliter vos prochaines
                 transactions sur la Plateforme
               </td>
-              <td>Votre consentement</td>
-              <td>Jusqu'au retrait de votre consentement</td>
+              <td className="border">Votre consentement</td>
+              <td className="border">Jusqu'au retrait de votre consentement</td>
             </tr>
             <tr>
-              <td>10</td>
-              <td>
+              <td className="border">10</td>
+              <td className="border">
                 Conserver les données relatives à vos préférences alimentaires
                 afin de personnaliser vos commandes
               </td>
-              <td>Votre consentement</td>
-              <td>Jusqu'au retrait de votre consentement</td>
+              <td className="border">Votre consentement</td>
+              <td className="border">Jusqu'au retrait de votre consentement</td>
             </tr>
             <tr>
-              <td>11</td>
-              <td>
+              <td className="border">11</td>
+              <td className="border">
                 Conserver les données relatives aux factures en vue d’un
                 contrôle en matière fiscale ou comptable
               </td>
-              <td>Le respect de certaines obligations légales</td>
-              <td>Jusqu'à 10 ans</td>
+              <td className="border">Le respect de certaines obligations légales</td>
+              <td className="border">Jusqu'à 10 ans</td>
             </tr>
           </tbody>
         </table>
@@ -358,11 +357,11 @@ const Privacy: React.FC = () => {
           Conformément à la loi applicable vous disposez de certains droits
           relatifs au traitement de vos Données à caractère personnel.
         </p>
-        <table>
+        <table className="border">
           <tbody>
             <tr>
-              <td>Droit d’accès</td>
-              <td>
+              <td className="border">Droit d’accès</td>
+              <td className="border">
                 Vous pouvez demander l’accès à vos Données à caractère
                 personnel. Vous pouvez également demander la rectification des
                 Données à caractère personnel qui seraient inexactes ou à ce que
@@ -373,8 +372,8 @@ const Privacy: React.FC = () => {
               </td>
             </tr>
             <tr>
-              <td>Droit de suppression</td>
-              <td>
+              <td className="border">Droit de suppression</td>
+              <td className="border">
                 Votre droit à l’oubli vous autorise à demander la suppression
                 des Données à caractère personnel lorsque :
                 <br />1 - les données ne sont plus nécessaires à la réalisation
@@ -393,8 +392,8 @@ const Privacy: React.FC = () => {
               </td>
             </tr>
             <tr>
-              <td>Droit à la limitation</td>
-              <td>
+              <td className="border">Droit à la limitation</td>
+              <td className="border">
                 Vous pouvez également demander la limitation au traitement de
                 vos Données à caractère personnel si :
                 <br />1 - vous contestez l’exactitude de ces données ;
@@ -404,8 +403,8 @@ const Privacy: React.FC = () => {
               </td>
             </tr>
             <tr>
-              <td>Droit de vous opposer aux messages de prospection directe</td>
-              <td>
+              <td className="border">Droit de vous opposer aux messages de prospection directe</td>
+              <td className="border">
                 Vous pourrez à tout moment nous demander de ne plus recevoir de
                 publicités ou de prospections en nous contactant directement et
                 gratuitement, ou au moyen du lien de désinscription inclus dans
@@ -421,11 +420,11 @@ const Privacy: React.FC = () => {
               </td>
             </tr>
             <tr>
-              <td>
+              <td className="border">
                 Droit de ne pas faire l’objet d’une décision fondée
                 exclusivement sur un Traitement automatisé des données
               </td>
-              <td>
+              <td className="border">
                 Vous avez la possibilité de ne pas faire l’objet d’une décision
                 fondée exclusivement sur un Traitement automatisé produisant des
                 effets juridiques vous concernant ou vous affectant de manière
@@ -433,8 +432,8 @@ const Privacy: React.FC = () => {
               </td>
             </tr>
             <tr>
-              <td>Droit à la portabilité</td>
-              <td>
+              <td className="border">Droit à la portabilité</td>
+              <td className="border">
                 Vous pouvez nous demander de vous fournir vos Données à
                 caractère personnel dans un format structuré, communément
                 utilisé, lisible par une machine, ou vous pouvez demander à ce
@@ -446,11 +445,11 @@ const Privacy: React.FC = () => {
               </td>
             </tr>
             <tr>
-              <td>
+              <td className="border">
                 Droit d’émettre des directives anticipées sur le traitement de
                 vos Données à caractère personnel après votre décès
               </td>
-              <td>
+              <td className="border">
                 En application de la loi française relative à la protection des
                 Données à caractère personnel, vous pouvez également définir des
                 directives sur l’exercice de vos droits prévus par cette section
@@ -460,11 +459,11 @@ const Privacy: React.FC = () => {
               </td>
             </tr>
             <tr>
-              <td>
+              <td className="border">
                 Droit d’introduire une réclamation auprès d’une autorité de
                 contrôle
               </td>
-              <td>
+              <td className="border">
                 Si vous avez des préoccupations ou des réclamations en ce qui
                 concerne la protection de vos Données à caractère personnel,
                 vous disposez d’un droit d’introduire une réclamation auprès de
