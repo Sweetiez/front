@@ -314,5 +314,161 @@
         "content": "La nullité d’une clause contractuelle des présentes n’entraîne pas la nullité de la totalité des présentes, les clauses non annulées conservant leur plein effet. La clause concernée, ou une partie de celle-ci, est réputée automatiquement remplacée par une ou plusieurs dispositions valides et exécutoires se rapprochant le plus possible de l'intention initiale de la Société et le Client.\n"
       }
     }
+  },
+  "privacy": {
+    "title": "Politique de confidentialité",
+    "content": "FI sweets construit avec ses clients, ses partenaires et ses consommateurs des relations fortes et durables, fondées sur la confiance réciproque : assurer la sécurité et la confidentialité de leurs données à caractère personnel est une priorité absolue pour FI sweets.\nFI sweets respecte l’ensemble des dispositions réglementaires et législatives françaises et européennes relatives à la protection des données à caractère personnel.\nFI sweets applique une politique de confidentialité extrêmement stricte pour garantir la protection des données à caractère personnel des utilisateurs de ses sites internet et autres applications :\nChaque utilisateur reste maître de ses données. Elles sont traitées de manière transparente, confidentielle et sécurisée.\nFI sweets est engagé dans une démarche continue de protection des données de ses utilisateurs, en conformité avec la Loi Informatique et Libertés du 6 janvier 1978 modifiée (ci-après « LIL ») et du Règlement (UE) Général sur la Protection des Données du 27 avril 2016 (ci-après « RGPD »).",
+    "definition": {
+      "title": "Définition",
+      "content": "« Données à caractère personnel » désigne toute information se rapportant à une personne physique identifiée ou identifiable ; est réputée être une «personne physique identifiable» une personne physique qui peut être identifiée, directement ou indirectement, notamment par référence à un identifiant, tel qu'un nom, un numéro d'identification, des données de localisation, un identifiant en ligne, ou à un ou plusieurs éléments spécifiques propres à son identité physique, physiologique, génétique, psychique, économique, culturelle ou sociale (ci-après dénommée « Personne concernée »).\n« nous » désigne la société FI sweets.\n« Responsable du traitement » désigne la personne physique ou morale qui détermine les finalités et les moyens du traitement.\n« vous » tout utilisateur / visiteur de la Plateforme."
+    },
+    "subject": {
+      "title": "Objet de la présentation",
+      "content": "Nous accordons beaucoup d’importance à la protection de vos Données à caractère personnel.\nNous avons développé cette politique pour vous informer des conditions dans lesquelles nous collectons, traitons, utilisons et protégeons vos Données à caractère personnel. Cette politique s’applique notamment aux Données à caractère personnel traitées par FI sweets via la Plateforme. Veuillez la lire attentivement afin de savoir quelles catégories de Données à caractère personnel font l’objet d’une collecte et d’un traitement, comment nous utilisons ces données et avec qui nous sommes susceptibles de les partager. Cette politique décrit également quels sont vos droits et comment vous pouvez nous contacter pour les exercer ou pour nous poser vos éventuelles questions au sujet de vos Données à caractère personnel."
+    },
+    "identity": {
+      "title": "Identité et coordonnées du responsable de traitement",
+      "content": "Le Responsable du traitement est FI sweets société située au 13 rue romy scneider, Ormesson sur marne."
+    },
+    "collect": {
+      "title": "Collecte & origine des données à caractère personnel",
+      "content": "Nous sommes susceptibles de collecter vos Données à caractère personnel directement (notamment via les formulaires de collecte disponibles sur notre Plateforme) ou indirectement (notamment votre employeur et/ou les technologies de notre Plateforme).\nNous nous engageons à recueillir votre consentement et/ou à vous permettre de vous opposer à l’utilisation de vos données pour certaines finalités, dès que cela est nécessaire. Le cas échéant, vous pourrez retirer votre consentement à tout moment dans les sections concernées de l’espace client de la Plateforme."
+    },
+    "dataType": {
+      "title": "Types de données à caractère personnel",
+      "content": "Nous pouvons collecter et traiter notamment les types de Données à caractère personnel suivants :\nles informations que vous fournissez en remplissant les formulaires sur la Plateforme, notamment à des fins d’inscription et de personnalisation de votre compte, de participation à des études de satisfaction (ex. : civilité, nom, prénom, coordonnées, société, numéro de matricule interne etc.) ;\nles informations que vous fournissez à des fins d’authentification, de connexion et de navigation internet (ex. : identifiants, adresse IP, cookies etc.) ;\nles informations que vous fournissez à des fins de gestion et de paiement d’une commande ou d’un service (ex. : préférences alimentaires, informations relatives au paiement etc.) ;\nles informations que vous fournissez par le biais des « posts », des commentaires ou d’autres contenus que vous partagez avec nous.\nA défaut d’être signalées comme facultatives, les Données à caractère personnel à fournir ont un caractère obligatoire et à défaut de renseigner ces informations, votre demande ne pourra pas être prise en compte."
+    },
+    "dataFinality": {
+      "title": "Finalités pour lesquelles nous utilisons les données à caractère personnel dans le cadre de nos préstations en milieu professionnel",
+      "table": {
+        "finality": {
+          "title": "Finalité du traitement",
+          "one": "Gérer et traiter les demandes de création et de gestion de comptes sur la Plateforme",
+          "two": "Fournir les services et prestations commandées sur la Plateforme",
+          "three": "Répondre à vos demandes de contact",
+          "four": "Vous permettre de consulter votre solde et/ou vos historiques, votre consommation",
+          "five": "Vous proposer des offres pour nos produits et services, vous adresser des newsletters, etc.",
+          "six": "Partager des données de profils avec des partenaires tiers à des fins de ciblage publicitaire pour des audiences de profils similaires",
+          "seven": "Réalisation des études de satisfaction",
+          "eight": "Personnaliser et améliorer votre expérience sur notre Plateforme",
+          "nine": "Conserver vos données de paiement par l’un de nos prestataires de paiement sécurisé afin de faciliter vos prochaines transactions sur la Plateforme",
+          "ten": "Conserver les données relatives à vos préférences alimentaires afin de personnaliser vos commandes",
+          "eleven": "Conserver les données relatives aux factures en vue d’un contrôle en matière fiscale ou comptable"
+        },
+        "legacy": {
+          "title": "Fondement légal",
+          "one": "L’Exécution et la gestion de notre relation contractuelle avec vous et/ou avec notre client (votre employeur)",
+          "two": "L’Exécution et la gestion de notre relation contractuelle avec vous et/ou avec notre client (votre employeur)",
+          "three": "L’Exécution et la gestion de notre relation contractuelle avec vous et/ou avec notre client (votre employeur)\nNotre intérêt légitime à améliorer la qualité et l’excellence opérationnelle des services que nous vous proposons",
+          "four": "L’exécution et la gestion de notre relation contractuelle avec vous et/ou avec notre client (votre employeur)",
+          "five": "Notre intérêt légitime à améliorer la qualité et l’excellence opérationnelle des services que nous vous proposons\nVotre consentement pour la réception d'offres de nos partenaires",
+          "six": "Votre consentement",
+          "seven": "Notre intérêt légitime à améliorer la qualité et l’excellence opérationnelle des services que nous vous proposons",
+          "eight": "Notre intérêt légitime à améliorer la qualité et l’excellence opérationnelle des services que nous vous proposons",
+          "nine": "Votre consentement",
+          "ten": "Votre consentement",
+          "eleven": "Le respect de certaines obligations légales"
+        },
+        "duration": {
+          "title": "Durée de conservation des données",
+          "one": "Jusqu’à 12 mois à compter de la dernière activité ou immédiatement suite au traitement de la demande de suppression du compte",
+          "two": "Jusqu’à 5 ans à compter de la fin de notre relation contractuelle avec votre employeur",
+          "three": "Jusqu’à 3 ans après le dernier contact",
+          "four": "Jusqu’à la suppression de votre compte",
+          "five": "Pour les clients existants : Jusqu’à 12 mois à compter de la dernière activité ou immédiatement suite au traitement de la demande de suppression du compte\nPour les prospects : jusqu’à 3 ans après le dernier contact émanant de leur part",
+          "six": "Jusqu’à 12 mois à compter de la dernière activité ou immédiatement suite au traitement de la demande de suppression du compte",
+          "seven": "Jusqu’à 12 mois à compter de la dernière activité ou immédiatement suite au traitement de la demande de suppression du compte",
+          "eight": "Jusqu’à 12 mois à compter de la dernière activité ou immédiatement suite au traitement de la demande de suppression du compte",
+          "nine": "Jusqu'au retrait de votre consentement",
+          "ten": "Jusqu'au retrait de votre consentement",
+          "eleven": "Jusqu'à 10 ans"
+        }
+      }
+    },
+    "dataDuration": {
+      "title": "Durée de conservation de vos données à caractère personnel",
+      "content": "Nous conserverons vos Données à caractère personnel pendant une durée qui n’excède pas la durée nécessaire aux finalités pour lesquelles elles sont collectées et traitées (cf. tableau ci-dessus).\nA l’issue de cette durée, les données strictement pertinentes peuvent être conservées (i) à des fins probatoires (en cas de contentieux ou en cas de contrôle par des organismes habilités), (ii) à des fins de respect des durées de prescription légales ou réglementaires et/ou (iii) pour respecter une obligation contractuelle avec nos clients."
+    },
+
+    "dataCommunication": {
+      "title": "Communication des données à caractère personnel",
+      "content": "Nous limitons l’accès à vos Données à caractère personnel à nos équipes qui ont besoin d’en connaître afin de traiter votre demande ou vous fournir le service demandé.\nNous ne divulguons par vos Données à caractère personnel à des tiers non autorisés. Nous pouvons toutefois partager vos données avec :\nnos clients dans le cadre d’exécution d’une obligation contractuelle ;\nles partenaires commerciaux de FI sweets (avec votre consentement préalable).\nNous nous assurons que ces destinataires mettent en œuvre des mesures de sécurité et de confidentialité appropriées afin que vos Données à caractère personnel soient protégées.\nNous n’autorisons pas ces destinataires à utiliser ou divulguer vos données, sauf dans la mesure nécessaire pour exécuter les services pour notre compte ou respecter les obligations légales. Par ailleurs, nous pouvons partager des Données à caractère personnel vous concernant (i) si la loi ou une procédure juridique nous impose de le faire, (ii) en réponse à une demande de toute autorité publique, ou (iii) si nous considérons que la transmission de ces données est nécessaire ou appropriée pour assurer la sécurité des personnes ou protéger le public et pour protéger nos droits et propriétés ainsi que ceux de nos clients."
+    },
+    "info": {
+      "title": "Informations personnelles et mineurs",
+      "content": "Le Plateforme s’adresse à des personnes majeures capables de contracter des obligations conformément à la législation du pays dans lequel vous vous trouvez.\nEn France, l'Utilisateur mineur de moins de 15 ans ou incapable doit obtenir le consentement préalable de son responsable légal préalablement à la saisie de ses données sur le Plateforme."
+    },
+    "dataTransfer": {
+      "title": "Transferts de données à caractère personnel",
+      "content": "Afin de garantir la sécurité et la confidentialité des Données à caractère personnel ainsi transférées, nous prenons toutes mesures nécessaires pour veiller à ce que ces données bénéficient d’une protection adéquate, telles que la signature de Clauses Contractuelles Types de la Commission Européenne ou tout autre mécanisme assurant un niveau de protection équivalent."
+    },
+    "rights": {
+      "title": "Vos droits",
+      "label": "Conformément à la loi applicable vous disposez de certains droits relatifs au traitement de vos Données à caractère personnel.",
+      "table": {
+        "accessRights": {
+          "title": "Droit d’accès",
+          "content": "Vous pouvez demander l’accès à vos Données à caractère personnel. Vous pouvez également demander la rectification des Données à caractère personnel qui seraient inexactes ou à ce que les données incomplètes soient complétées.\nVous avez également le droit de connaître les sources de ces Données à caractère personnel."
+        },
+        "removeRights": {
+          "title": "Droit de suppression",
+          "content": {
+            "label": "Votre droit à l’oubli vous autorise à demander la suppression des Données à caractère personnel lorsque :",
+            "one": "les données ne sont plus nécessaires à la réalisation des finalités pour lesquelles elles ont été collectées et traitées ;",
+            "two": "vous choisissez de retirer votre consentement (dans les cas où votre consentement a été collecté comme base juridique du traitement) ce retrait n’impactant pas la licéité du traitement avant sa mise en œuvre ;",
+            "three": "vous vous opposez au traitement ;",
+            "four": "vos données ont été traitées de manière illicite ;",
+            "five": "vos données doivent être effacées pour respecter une obligation légale ; ou",
+            "six": "leur suppression est requise pour garantir la conformité à la législation en vigueur."
+          }
+        },
+        "limitRights": {
+          "title": "Droit à la limitation",
+          "content": {
+            "label": "Vous pouvez également demander la limitation au traitement de vos Données à caractère personnel si :",
+            "one": "vous contestez l’exactitude de ces données ;",
+            "two": "nous n’avons plus besoin de ces données pour les besoins du traitement ; et",
+            "three": "vous vous êtes opposé(e) au traitement des données."
+          }
+        },
+        "messageRights": {
+          "title": "Droit de vous opposer aux messages de prospection directe",
+          "content": "Vous pourrez à tout moment nous demander de ne plus recevoir de publicités ou de prospections en nous contactant directement et gratuitement, ou au moyen du lien de désinscription inclus dans toute prospection que nous serions susceptible de vous adresser par courrier électronique ou en envoyant un email à l’adresse indiquée ci-après. Cette opposition est sans préjudice à la légalité des envois réalisés avant sa mise en œuvre.\nConformément à l’article L.223-2 du Code de la consommation, l’Utilisateur est informé de son droit à s’inscrire sans frais sur la liste d’opposition au démarchage téléphonique (www.bloctel.gouv.fr)."
+        },
+        "autoRights": {
+          "title": "Droit de ne pas faire l’objet d’une décision fondée exclusivement sur un Traitement automatisé des données",
+          "content": "Vous avez la possibilité de ne pas faire l’objet d’une décision fondée exclusivement sur un Traitement automatisé produisant des effets juridiques vous concernant ou vous affectant de manière significative."
+        },
+        "portability": {
+          "title": "Droit à la portabilité",
+          "content": {
+            "label": "Vous pouvez nous demander de vous fournir vos Données à caractère personnel dans un format structuré, communément utilisé, lisible par une machine, ou vous pouvez demander à ce qu’elles soient « portées » directement à un autre responsable du traitement à condition que :",
+            "one": "le traitement soit fondé sur votre consentement ou sur l’exécution d’un contrat avec vous ; et",
+            "two": "qu’il soit réalisé par des moyens automatisés."
+          }
+        },
+        "deathRights": {
+          "title": "Droit d’émettre des directives anticipées sur le traitement de vos Données à caractère personnel après votre décès",
+          "content": "En application de la loi française relative à la protection des Données à caractère personnel, vous pouvez également définir des directives sur l’exercice de vos droits prévus par cette section après votre mort, (notamment sur leur durée de conservation, leur suppression et/ou leur communication) ainsi que de désigner une personne chargée de l’exercice de ces droits."
+        },
+        "claimRights": {
+          "title": "Droit d’introduire une réclamation auprès d’une autorité de contrôle",
+          "content": "Si vous avez des préoccupations ou des réclamations en ce qui concerne la protection de vos Données à caractère personnel, vous disposez d’un droit d’introduire une réclamation auprès de la Commission Nationale de l’Informatique et des Libertés via le lien suivant : www.cnil.fr.\nVous pouvez nous adresser au préalable toute demande en nous contactant à l’adresse indiquée ci-après afin que nous puissions traiter votre demande et trouver une solution amiable."
+        },
+        "text": "Pour exercer ces droits, vous pouvez formuler votre demande par email à l’adresse fi.sweets.94@gmail.com en nous indiquant votre nom, prénom et l’objet de votre demande. Nous sommes susceptibles de vous demander des informations supplémentaires afin de vous identifier et d’être en mesure de traiter votre demande."
+      }
+    },
+    "security": {
+      "title": "Sécurité",
+      "content": "Nous mettons en œuvre toutes les mesures techniques et organisationnelles afin d’assurer la sécurité et la confidentialité des traitements de Données à caractère personnel.\nA ce titre, nous prenons toutes les précautions utiles, au regard de la nature des Données à caractère personnel et des risques présentés par le traitement, afin de préserver la sécurité des données et, notamment, d’empêcher qu’elles soient déformées, endommagées ou que des tiers non autorisés y aient accès (protection physique des locaux, procédés d’authentification avec accès personnel et sécurisé via des identifiants et mots de passe confidentiels, journalisation des connexions, chiffrement de certaines données etc.)."
+    },
+    "links": {
+      "title": "Liens vers d'autres sites",
+      "content": "Nous fournissons occasionnellement des liens vers d’autres sites Web à titre pratique et informatif. Ces sites exploités par des tiers peuvent avoir leur propre politique de confidentialité ou conditions d’utilisation, que nous vous suggérons fortement d’examiner. Nous déclinons toute responsabilité quant au contenu de ces sites, quant aux produits et services susceptibles d’y être proposés ou quant à toute autre utilisation."
+    },
+    "updatePrivacy": {
+      "title": "Mise à jour de notre politique de confidentialité",
+      "content": "Nous sommes susceptibles de mettre à jour ou modifier ponctuellement la présente politique dans l’hypothèse où nos activités ou nos obligations légales évoluent de manière substantielle. Dans le cas où nous apporterions des changements significatifs à la présente politique, nous publierons une note d’information sur notre Plateforme au moment de l’entrée en application des changements en question. Consultez régulièrement cette page pour un suivi des modifications.\nSi vous avez des questions ou des commentaires en ce qui concerne cette politique, n’hésitez pas à nous contacter à l’adresse fi.sweets.94@gmail.com ."
+    }
   }
 }

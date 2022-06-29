@@ -314,5 +314,160 @@
         "content": "The nullity of a contractual clause of the present contract does not entail the nullity of the whole of the present contract, the clauses not cancelled retaining their full effect. The clause in question, or part of it, shall be deemed automatically replaced by one or more valid and enforceable provisions that come as close as possible to the original intention of the Company and the Client. \n"
       }
     }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "content": "FI sweets builds strong and lasting relationships with its customers, partners and consumers, based on mutual trust: ensuring the security and confidentiality of their personal data is an absolute priority for FI sweets.\nFI sweets complies with all French and European regulations and legislation relating to the protection of personal data.\nFI sweets applies an extremely strict confidentiality policy to guarantee the protection of the personal data of users of its websites and other applications:\nEach user remains in control of his or her data. It is treated transparently, confidentially and securely.\nFI sweets is committed to a continuous approach to the protection of its users' data, in compliance with the French Data Protection Act of 6 January 1978 (hereinafter \"LIL\") and the General Data Protection Regulation (EU) of 27 April 2016 (hereinafter \"GDPR\").\n\nTranslated with www.DeepL.com/Translator (free version).",
+    "definition": {
+      "title": "Definition",
+      "content": "\"Personal data\" means any information relating to an identified or identifiable natural person; an \"identifiable natural person\" is one who can be identified, directly or indirectly, in particular by reference to an identifier, such as a name, an identification number, location data, an online identifier, or to one or more factors specific to his or her physical, physiological, genetic, mental, economic, cultural or social identity (hereinafter referred to as the \"Data Subject\").\n\"We\" refers to the company FI sweets.\n\"Data controller\" means the natural or legal person who determines the purposes and means of the processing.\n\"You\" means any user/visitor of the Platform.\n\nTranslated with www.DeepL.com/Translator (free version)"
+    },
+    "subject": {
+      "title": "Purpose of the presentation",
+      "content": "The protection of your Personal Information is very important to us.\nWe have developed this policy to inform you of the conditions under which we collect, process, use and protect your Personal Data. This policy applies in particular to Personal Data processed by FI sweets via the Platform. Please read this policy carefully so that you are aware of the categories of Personal Information that we collect and process, how we use that information and with whom we may share it. This policy also describes your rights and how you can contact us to exercise them or to ask any questions you may have about your Personal Information."
+    },
+    "identity": {
+      "title": "Identity and contact details of the controller",
+      "content": "The person responsible for the processing is FI sweets, a company located at 13 rue romy scneider, Ormesson sur marne."
+    },
+    "collect": {
+      "title": "Collection & origin of personal data",
+      "content": "We may collect your Personal Data directly (in particular via the collection forms available on our Platform) or indirectly (in particular your employer and/or the technologies of our Platform).\nWe undertake to obtain your consent and/or to allow you to object to the use of your data for certain purposes, as soon as this is necessary. If necessary, you may withdraw your consent at any time in the relevant sections of the Platform's customer area."
+    },
+    "dataType": {
+      "title": "Types of personal data",
+      "content": "We may collect and process the following types of Personal Data in particular:\nthe information you provide by filling in forms on the Platform, in particular for the purposes of registering and personalising your account and participating in satisfaction surveys (e.g.: title, surname, first name, contact details, company, internal registration number etc.);\nthe information you provide for authentication, connection and internet browsing purposes (e.g.: identifiers, IP address, cookies etc.);\ninformation you provide for the purpose of managing and paying for an order or service (e.g. dietary preferences, payment information etc.);\ninformation you provide through posts, comments or other content you share with us.\nUnless indicated as optional, the Personal Information to be provided is mandatory and if you do not provide this information, your request cannot be processed."
+    },
+    "dataFinality": {
+      "title": "Purposes for which we use personal data in the context of our work experience",
+      "table": {
+        "finality": {
+          "title": "Purpose of the processing",
+          "one": "Manage and process requests to create and manage accounts on the Platform",
+          "two": "Provide the services ordered on the Platform",
+          "three": "Responding to your contact requests",
+          "four": "Allow you to consult your balance and/or your history, your consumption",
+          "five": "Provide you with offers for our products and services, send you newsletters, etc.",
+          "six": "Share profile data with third-party partners for the purpose of targeting advertising to similar profile audiences",
+          "seven": "Conducting satisfaction surveys",
+          "eight": "To personalise and improve your experience on our Platform",
+          "nine": "To store your payment details with one of our secure payment providers to facilitate your future transactions on the Platform",
+          "ten": "Keeping data on your food preferences to personalise your orders",
+          "eleven": "Keeping invoice data for tax and accounting audits"
+        },
+        "legacy": {
+          "title": "Legal basis",
+          "one": "The execution and management of our contractual relationship with you and/or our client (your employer)",
+          "two": "The execution and management of our contractual relationship with you and/or our client (your employer)",
+          "three": "The performance and management of our contractual relationship with you and/or our client (your employer)\nOur legitimate interest in improving the quality and operational excellence of the services we offer you",
+          "four": "The performance and management of our contractual relationship with you and/or our client (your employer",
+          "five": "Our legitimate interest in improving the quality and operational excellence of the services we offer you\nYour consent to receive offers from our partners",
+          "six": "Your consent",
+          "seven": "Our legitimate interest in improving the quality and operational excellence of the services we offer you",
+          "eight": "Our legitimate interest in improving the quality and operational excellence of the services we offer you",
+          "nine": "Your consent",
+          "ten": "Your consent",
+          "eleven": "Compliance with certain legal obligations"
+        },
+        "duration": {
+          "title": "Duration of data retention",
+          "one": "Up to 12 months from the last activity or immediately following the processing of the request to delete the account",
+          "two": "Up to 5 years from the end of our contractual relationship with your employer",
+          "three": "Up to 3 years after the last contact",
+          "four": "Until your account is deleted",
+          "five": "For existing customers : Up to 12 months from the last activity or immediately following the processing of the account deletion request\nFor prospects: up to 3 years after the last contact from them",
+          "six": "Up to 12 months from the last activity or immediately following the processing of the request to delete the account",
+          "seven": "Up to 12 months from the last activity or immediately following the processing of the request to delete the account",
+          "eight": "Up to 12 months from the last activity or immediately following the processing of the request to delete the account",
+          "nine": "Until you withdraw your consent",
+          "ten": "Until you withdraw your consent",
+          "eleven": "Up to 10 years"
+        }
+      }
+    },
+    "dataDuration": {
+      "title": "How long your personal data is kept",
+      "content": "We will retain your Personal Data for no longer than is necessary for the purposes for which it is collected and processed (see table above).\nAt the end of this period, strictly relevant data may be kept (i) for evidential purposes (in the event of litigation or in the event of an inspection by authorised bodies), (ii) for the purposes of complying with legal or regulatory limitation periods and/or (iii) to comply with a contractual obligation with our customers."
+    },
+    "dataCommunication": {
+      "title": "Communication of personal data",
+      "content": "We restrict access to your Personal Information to those of our staff who need to know that information in order to process your request or provide you with the requested service.\nWe do not disclose your Personal Information to unauthorised third parties. We may, however, share your data with :\nour customers in the performance of a contractual obligation;\nFI sweets' business partners (with your prior consent).\nWe ensure that these recipients implement appropriate security and confidentiality measures to ensure that your Personal Data is protected.\nWe do not authorise these recipients to use or disclose your Data except to the extent necessary to perform services on our behalf or to comply with legal obligations. In addition, we may share Personal Data about you (i) if we are required to do so by law or legal process, (ii) in response to a request from any public authority, or (iii) if we consider that the disclosure of such data is necessary or appropriate to protect the safety of individuals or the public and to protect our rights and property and those of our customers."
+    },
+    "info": {
+      "title": "Personal information and minors",
+      "content": "The Platform is intended for adults who are capable of entering into obligations in accordance with the legislation of the country in which you are located.\nIn France, a minor User under 15 years of age or incapable must obtain the prior consent of his legal guardian before entering his data on the Platform."
+    },
+    "dataTransfer": {
+      "title": "Transfers of personal data",
+      "content": "In order to guarantee the security and confidentiality of Personal Data transferred in this way, we take all necessary steps to ensure that such data is adequately protected, such as signing the European Commission's Standard Contractual Clauses or any other mechanism ensuring an equivalent level of protection."
+    },
+    "rights": {
+      "title": "Your rights",
+      "label": "According to the applicable law you have certain rights regarding the processing of your Personal Data.",
+      "table": {
+        "accessRights": {
+          "title": "Right of access",
+          "content": "You may request access to your Personal Data. You may also request that inaccurate Personal Data be corrected or that incomplete data be completed.\nYou also have the right to know the sources of this Personal Da"
+        },
+        "removeRights": {
+          "title": "Right of deletion",
+          "content": {
+            "label": "Your right to be forgotten allows you to request the deletion of Personal Data when :",
+            "one": "the data are no longer necessary for the purposes for which they were collected and processed;",
+            "two": "you choose to withdraw your consent (in cases where your consent has been collected as the legal basis for the processing) as this withdrawal does not affect the lawfulness of the processing prior to its implementation;",
+            "three": "you object to the processing ;",
+            "four": "your data have been processed unlawfully ;",
+            "five": "your data must be deleted to comply with a legal obligation; or",
+            "six": "their removal is required to ensure compliance with current legislation."
+          }
+        },
+        "limitRights": {
+          "title": "Right to limitation",
+          "content": {
+            "label": "You may also request a restriction on the processing of your Personal Data if :",
+            "one": "you dispute the accuracy of the data;",
+            "two": "we no longer need the data for the purposes of processing; and",
+            "three": "you have objected to the processing of the data."
+          }
+        },
+        "messageRights": {
+          "title": "Right to object to direct marketing messages",
+          "content": "You may at any time ask us not to receive any further advertising or marketing by contacting us directly and free of charge, or by using the unsubscribe link included in any marketing that we may send to you by e-mail or by sending an e-mail to the address indicated below. This opposition is without prejudice to the legality of mailings made prior to its implementation.\nIn accordance with article L.223-2 of the French Consumer Code, the User is informed of his right to register free of charge on the opposition list to telephone canvassing (www.bloctel.gouv.fr)."
+        },
+        "autoRights": {
+          "title": "Right not to be subject to a decision based exclusively on automated data processing",
+          "content": "You have the possibility not to be subject to a decision based exclusively on automated Processing that produces legal effects concerning you or significantly affects you."
+        },
+        "portability": {
+          "title": "Right to portability",
+          "content": {
+            "label": "You may ask us to provide you with your Personal Data in a structured, commonly used, machine-readable format, or you may request that it be \"ported\" directly to another controller provided that:",
+            "one": "the processing is based on your consent or the performance of a contract with you; and",
+            "two": "that it is carried out by automated means."
+          }
+        },
+        "deathRights": {
+          "title": "Right to issue advance directives on the processing of your Personal Data after your death",
+          "content": "In accordance with the French law on the protection of personal data, you can also define directives on the exercise of your rights under this section after your death, (in particular on their retention period, deletion and/or communication) as well as designate a person responsible for the exercise of these rights."
+        },
+        "claimRights": {
+          "title": "Right to lodge a complaint with a supervisory authority",
+          "content": "If you have any concerns or complaints regarding the protection of your Personal Data, you have the right to lodge a complaint with the Commission Nationale de l'Informatique et des Libertés via the following link: www.cnil.fr.\nYou can send us any request in advance by contacting us at the address indicated below so that we can deal with your request and find an amicable solution."
+        },
+        "text": "To exercise these rights, you can send your request by email to fi.sweets.94@gmail.com indicating your name, first name and the subject of your request. We may ask you for additional information in order to identify you and to be able to process your request."
+      }
+    },
+    "security": {
+      "title": "Security",
+      "content": "We implement all technical and organisational measures to ensure the security and confidentiality of the processing of Personal Data.\nIn this respect, we take all the necessary precautions, with regard to the nature of the Personal Data and the risks presented by the processing, in order to preserve the security of the data and, in particular, to prevent them from being distorted, damaged or accessed by unauthorised third parties (physical protection of the premises, authentication procedures with personal and secure access via confidential identifiers and passwords, logging of connections, encryption of certain data etc.)."
+    },
+    "links": {
+      "title": "Links to other sites",
+      "content": "We occasionally provide links to other websites for your convenience and information. These sites operated by third parties may have their own privacy policies or terms of use, which we strongly suggest you review. We are not responsible for the content of these sites, for any products or services that may be offered on them, or for any other use."
+    },
+    "updatePrivacy": {
+      "title": "Update of our privacy policy",
+      "content": "We may update or modify this policy from time to time if our business or legal obligations change in a material way. In the event that we make significant changes to this policy, we will post a notice on our Platform at the time the changes take effect. Please check this page regularly for changes.\nIf you have any questions or comments regarding this policy, please contact us at fi.sweets.94@gmail.com ."
+    }
   }
 }
