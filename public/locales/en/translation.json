@@ -237,5 +237,9 @@
       "MIXED": "Mixed"
     }
   },
-  "productPackage": "Set of {{unit}} at the unit price of {{price}}€"
+  "productPackage": "Set of {{unit}} at the unit price of {{price}}€",
+  "footer": {
+    "privacy": "Privacy",
+    "terms": "Terms of services"
+  }
 }

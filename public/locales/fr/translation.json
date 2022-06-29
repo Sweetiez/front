@@ -237,5 +237,9 @@
       "MIXED": "Mixte"
     }
   },
-  "productPackage": "Lot de {{unit}} au prix unitaire de {{price}} €"
+  "productPackage": "Lot de {{unit}} au prix unitaire de {{price}} €",
+  "footer": {
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation"
+  }
 }
