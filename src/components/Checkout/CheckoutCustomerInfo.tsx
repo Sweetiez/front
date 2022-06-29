@@ -6,11 +6,13 @@ import CreateOrderRequest from '../../hooks/orders/requests/CreateOrderRequest';
 import { createAnOrder, storeTempEmail } from '../../hooks/orders/orders';
 import { useNavigate } from 'react-router-dom';
 import { useSelectedReward } from '../../hooks/rewards/rewardsHook';
+import { useUserProfile } from '../../hooks/user/users';
 
 const CheckoutCustomerInfo: React.FC<IHandleNav> = ({ handlePrevious }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { data: selectedReward } = useSelectedReward();
+  const { data: profileData } = useUserProfile();
   const [disabledButton, setDisabledButton] = useState(false);
 
   async function handleOrderSubmit(event: any) {
@@ -48,6 +50,7 @@ const CheckoutCustomerInfo: React.FC<IHandleNav> = ({ handlePrevious }) => {
                   <input
                     className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
                     id="firstName"
+                    defaultValue={profileData?.firstName}
                     type="text"
                     placeholder="Jane"
                     required={true}
@@ -60,6 +63,7 @@ const CheckoutCustomerInfo: React.FC<IHandleNav> = ({ handlePrevious }) => {
                   <input
                     className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
                     id="lastName"
+                    defaultValue={profileData?.lastName}
                     type="text"
                     placeholder="Doe"
                     required={true}
@@ -74,8 +78,10 @@ const CheckoutCustomerInfo: React.FC<IHandleNav> = ({ handlePrevious }) => {
                   <input
                     className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
                     id="email"
+                    defaultValue={profileData?.email}
                     type="email"
                     placeholder="email@example.com"
+                    disabled={!!profileData?.email}
                     required={true}
                   />
                 </div>
@@ -89,6 +95,7 @@ const CheckoutCustomerInfo: React.FC<IHandleNav> = ({ handlePrevious }) => {
                     className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
                     id="phone"
                     type="tel"
+                    defaultValue={profileData?.phone}
                     placeholder="06 00 00 00 00"
                     required={true}
                   />
