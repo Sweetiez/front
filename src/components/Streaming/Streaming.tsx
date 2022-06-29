@@ -48,12 +48,14 @@ export const Streaming = () => {
           config: {
             iceServers: [
               {
-                urls: 'stun:stun.l.google.com:19302',
+                urls: 'stun:212.83.164.13:3478',
+                credential: 'admin',
+                username: 'admin',
               },
               {
                 urls: 'turn:212.83.164.13:5349',
-                  credential: 'admin',
-                  username: 'admin'
+                credential: 'admin',
+                username: 'admin',
               },
             ],
             iceCandidatePoolSize: 20,
