@@ -14,6 +14,7 @@ import Orders from './components/Order/Orders';
 import Profile from './components/Profile/Profile';
 import Privacy from './components/Privacy';
 import ResetPassword from './components/Authentication/ResetPassword';
+import {Streaming} from "./components/Streaming/Streaming";
 
 function App() {
   const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ function App() {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/streaming" element={<Streaming />} />
           </Routes>
         </Router>
         <ReactQueryDevtools initialIsOpen={false} />
