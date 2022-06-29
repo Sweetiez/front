@@ -3,22 +3,24 @@
   background: #282c34;
   padding: 20px;
   text-align: center;
-  button {
-    display: block;
-    margin: 0 auto;
-    padding: 10px 25px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 20px;
-  }
-  .video-container {
-    display: flex;
-    justify-content: center;
-    .video-block {
-      height: 200px;
-      width: 300px;
-    }
-  }
+}
+
+.button-call {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+.video-container {
+  display: flex;
+  justify-content: center;
+}
+
+.video-block {
+  height: 200px;
+  width: 300px;
 }
 
 .loader {
