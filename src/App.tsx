@@ -40,8 +40,8 @@ function App() {
             <Route path="/user/order" element={<Orders />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
-            <Route path="*" element={<NotFound />} />
             <Route path="/streaming" element={<Streaming />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
         <ReactQueryDevtools initialIsOpen={false} />
