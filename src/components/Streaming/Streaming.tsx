@@ -1,8 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import SimplePeer, { Instance, SignalData } from 'simple-peer';
-import '../../assets/css/_carousel.css';
-import '../../assets/css/streaming.scss';
+import '../../assets/css/streaming.css';
 
 enum ConnectionStatus {
   OFFERING,
@@ -37,7 +35,7 @@ export const Streaming = () => {
 
   const sendOrAcceptInvitation = (isInitiator: boolean, offer?: SignalData) => {
     navigator.mediaDevices
-      .getUserMedia({ video: true, audio: false })
+      .getUserMedia({ video: true, audio: true })
       .then(async (mediaStream) => {
         const video = videoSelf.current;
         video!.srcObject = mediaStream;
@@ -68,13 +66,21 @@ export const Streaming = () => {
   return (
     <div className="web-rtc-page">
       {connectionStatus === null && (
-        <button onClick={() => sendOrAcceptInvitation(true)}>CALL</button>
+        <button
+          className="button-call"
+          onClick={() => sendOrAcceptInvitation(true)}
+        >
+          CALL
+        </button>
       )}
       {connectionStatus === ConnectionStatus.OFFERING && (
         <div className="loader"></div>
       )}
       {connectionStatus === ConnectionStatus.RECEIVING && (
-        <button onClick={() => sendOrAcceptInvitation(false, offerSignal)}>
+        <button
+          className="button-call"
+          onClick={() => sendOrAcceptInvitation(false, offerSignal)}
+        >
           ANSWER CALL
         </button>
       )}
