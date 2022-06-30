@@ -469,5 +469,9 @@
       "title": "Update of our privacy policy",
       "content": "We may update or modify this policy from time to time if our business or legal obligations change in a material way. In the event that we make significant changes to this policy, we will post a notice on our Platform at the time the changes take effect. Please check this page regularly for changes.\nIf you have any questions or comments regarding this policy, please contact us at fi.sweets.94@gmail.com ."
     }
+  },
+  "footer": {
+    "privacy": "Privacy",
+    "terms": "Terms of services"
   }
 }
