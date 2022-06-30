@@ -48,21 +48,21 @@ export const Streaming = () => {
           config: {
             iceServers: [
                 {
-                    'urls': 'stun:stun.l.google.com:19302'
+                    'urls': 'stun:stun.siwiorek.fr'
                 },
                 {
-                    'urls': 'turn:212.83.164.13:3478?transport=udp',
-                    'credential': 'admin',
-                    'username': 'admin'
-                },
-                {
-                    'urls': 'turn:212.83.164.13:3478?transport=tcp',
-                    'credential': 'admin',
-                    'username': 'admin'
+                    'urls': 'turn:turn.siwiorek.fr',
+                    'credential': 'guest',
+                    'username': 'somepassword'
                 }
+                // {
+                //     'urls': 'turn:212.83.164.13:3478?transport=tcp',
+                //     'credential': 'admin',
+                //     'username': 'admin'
+                // }
             ],
-            iceCandidatePoolSize: 20,
-            iceTransportPolicy: 'all',
+            // iceCandidatePoolSize: 20,
+            // iceTransportPolicy: 'all',
           },
         });
 
