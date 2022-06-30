@@ -47,22 +47,16 @@ export const Streaming = () => {
           stream: mediaStream,
           config: {
             iceServers: [
-                {
-                    'urls': 'stun:stun.siwiorek.fr'
-                },
-                {
-                    'urls': 'turn:turn.siwiorek.fr',
-                    'credential': 'somepassword',
-                    'username': 'guest'
-                }
-                // {
-                //     'urls': 'turn:212.83.164.13:3478?transport=tcp',
-                //     'credential': 'admin',
-                //     'username': 'admin'
-                // }
+              { urls: ['stun:stun.siwiorek.fr'] },
+              {
+                username: 'guest',
+                credential: 'somepassword',
+                urls: [
+                  'turn:turn.siwiorek.fr?transport=tcp',
+                  'turn:turn.siwiorek.fr?transport=udp',
+                ],
+              },
             ],
-            // iceCandidatePoolSize: 20,
-            // iceTransportPolicy: 'all',
           },
         });
 
