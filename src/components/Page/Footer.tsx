@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
             {t('footer.privacy')}
           </Link>
           <Socials color={''} />
-          <Link to="/privacy" className="p-2 hover:underline">
+          <Link to="/cgu" className="p-2 hover:underline">
             {t('footer.terms')}
           </Link>
         </div>
