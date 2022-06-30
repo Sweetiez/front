@@ -42,7 +42,7 @@
     "web-vitals": "^2.1.0"
   },
   "devDependencies": {
-    "@types/luxon": "^1.27.1",
+    "@types/luxon": "^2.3.2",
     "@types/react-gravatar": "^2.6.10",
     "@types/react-show-more-text": "^1.4.2",
     "@types/simple-peer": "^9.11.4",
