@@ -52,8 +52,8 @@ export const Streaming = () => {
                 },
                 {
                     'urls': 'turn:turn.siwiorek.fr',
-                    'credential': 'guest',
-                    'username': 'somepassword'
+                    'credential': 'somepassword',
+                    'username': 'guest'
                 }
                 // {
                 //     'urls': 'turn:212.83.164.13:3478?transport=tcp',
