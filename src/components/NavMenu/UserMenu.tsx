@@ -16,11 +16,11 @@ const UserMenu = () => {
 
   return (
     <>
-      <span className="pr-1 flex-1 font-medium text-gray-900 font-birthstone text-2xl p-2 block">
+      <span className="pr-1 flex-1 font-medium text-gray-900 font-birthstone text-2xl p-2 lg:block hidden">
         {t('menu.welcome')}
       </span>
       <div className="group inline-block">
-        <button className="outline-none focus:outline-none px-3 py-1 bg-white rounded-sm flex items-center min-w-32">
+        <button className="outline-none focus:outline-none px-3 py-1 bg-white rounded-sm flex items-center">
           <span className="font-medium font-birthstone text-2xl p-2 block">
             {profile?.name}
           </span>

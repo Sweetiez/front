@@ -7,7 +7,6 @@ const Footer: React.FC = () => {
       <div className="grid place-items-center justify-items-center pt-6">
         <Socials color={""}/>
       </div>
-
       <div className="justify-items-center p-4">© 2022 - FI-Sweets</div>
     </footer>
   );

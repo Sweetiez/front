@@ -178,7 +178,8 @@
     "cost": "Cost",
     "level": "Level",
     "portions": "Portions",
-    "steps": "Steps"
+    "steps": "Steps",
+    "description": "Description"
   },
   "orders": {
     "title": "Yours Orders",

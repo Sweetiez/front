@@ -16,6 +16,9 @@ import AuthMenu from './AuthMenu';
 import UserMenu from './UserMenu';
 import Modal from '../utils/Modal';
 import { useTokenAvailable } from '../../hooks/auth/tokenHook';
+import i18n from 'i18next';
+import frenchFlag from './../../assets/icons/frenchFlag.png';
+import englishFlag from './../../assets/icons/englishFlag.png';
 
 const NavMenu: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -23,6 +26,9 @@ const NavMenu: React.FC = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const [modalState, setModalState] = useState<ModalContent>(
     ModalContent.LOGIN,
+  );
+  const [language, setLanguage] = useState(
+    i18n.language || window.localStorage.i18nextLng,
   );
   const { data: cartData } = useCart();
   const { data: isTokenAvailable } = useTokenAvailable();
@@ -175,7 +181,7 @@ const NavMenu: React.FC = () => {
             className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
           >
             <div className="border-b border-gray-200">
-              <div className="h-16 flex items-center">
+              <div className="h-16 flex items-center justify-center">
                 <button
                   type="button"
                   className="bg-white p-2 rounded-md text-gray-400 lg:hidden"
@@ -186,7 +192,7 @@ const NavMenu: React.FC = () => {
                 </button>
 
                 {/* Logo */}
-                <div className="ml-4 flex lg:ml-0">
+                <div className="ml-4 flex lg:ml-0 hidden lg:block">
                   <span className="sr-only">Workflow</span>
                   {/*// @ts-ignore*/}
                   <Lottie
@@ -232,7 +238,7 @@ const NavMenu: React.FC = () => {
                   {AuthSectionContent}
 
                   {/* Cart */}
-                  <div className="ml-4 flow-root lg:ml-6">
+                  <div className="mx-2 justify-center">
                     <div
                       onClick={() => setCartOpen(true)}
                       className="group -m-2 p-2 flex items-center"
@@ -254,6 +260,71 @@ const NavMenu: React.FC = () => {
                         )}
                       </button>
                       <span className="sr-only">items in cart, view bag</span>
+                    </div>
+                  </div>
+
+                  <div className="flex">
+                    <div className="group inline-block">
+                      <button className="outline-none focus:outline-none px-3 py-1 bg-white rounded-sm flex items-center">
+                      <span className="font-medium font-birthstone text-2xl p-2 block">
+                        {language === 'fr-FR' ? (
+                            <img
+                                src={frenchFlag}
+                                alt="French Flag"
+                                style={{ width: '25px', height: '15px' }}
+                            />
+                        ) : (
+                            <img
+                                src={englishFlag}
+                                alt="English Flag"
+                                style={{ width: '25px', height: '15px' }}
+                            />
+                        )}
+                      </span>
+                        <span>
+                        <svg
+                            className="fill-current h-4 w-4 transform group-hover:-rotate-180 transition duration-150 ease-in-out"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                        >
+                          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
+                      </span>
+                      </button>
+                      <ul className="bg-white border rounded-lg transform scale-0 ml-1.5 group-hover:scale-100 absolute transition duration-150 ease-in-out origin-top">
+                        <button>
+                          {language !== 'fr-FR' && (
+                              <li
+                                  className="rounded-sm px-3 py-1 hover:bg-gray-100 font-birthstone text-2xl"
+                                  onClick={() => {
+                                    setLanguage('fr-FR');
+                                    i18n.changeLanguage('fr-FR');
+                                  }}
+                              >
+                                <img
+                                    src={frenchFlag}
+                                    alt="French Flag"
+                                    style={{ width: '25px', height: '15px' }}
+                                />
+                              </li>
+                          )}
+                          {language !== 'en-EN' && (
+                              <li
+                                  className="rounded-sm px-3 py-1 hover:bg-gray-100 font-birthstone text-2xl"
+                                  onClick={() => {
+                                    setLanguage('en-EN');
+                                    i18n.changeLanguage('en-EN');
+                                  }}
+                              >
+                                <img
+                                    src={englishFlag}
+                                    alt="English Flag"
+                                    style={{ width: '25px', height: '15px' }}
+                                />
+                              </li>
+                          )}
+                        </button>
+                      </ul>
                     </div>
                   </div>
                 </div>

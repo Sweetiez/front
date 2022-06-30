@@ -14,6 +14,7 @@ import Orders from './components/Order/Orders';
 import Profile from './components/Profile/Profile';
 import Privacy from './components/Privacy';
 import ResetPassword from './components/Authentication/ResetPassword';
+import {Streaming} from "./components/Streaming/Streaming";
 
 function App() {
   const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ function App() {
             <Route path="/user/order" element={<Orders />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
+            <Route path="/streaming" element={<Streaming />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
