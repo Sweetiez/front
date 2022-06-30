@@ -194,18 +194,13 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                   <h1 className="text-3xl font-bold text-gray-800 font-birthstone">
                     {t('productDetail.sweets')}
                   </h1>
-                  <div className="relative">
-                    <p className="py-2 pt-4 text-xl text-gray-700 font-pompiere font-size-16">
-                      {(product as TrayDetailModel).sweets?.map(
-                        (sweetQty) => sweetQty.sweet?.name,
-                      )}
-                    </p>
-                    <p className="absolute py-2 pt-4 text-xl text-gray-700 font-pompiere font-size-16 inset-y-0 right-10">
-                      x
-                      {(product as TrayDetailModel).sweets?.map(
-                        (sweetQty) => sweetQty.quantity,
-                      )}
-                    </p>
+                  <div className="pr-8 pb-2">
+                    {(product as TrayDetailModel).sweets?.map((sweetQty) => (
+                      <div className="flex justify-between text-xl text-gray-700 font-pompiere font-size-16">
+                        <span>{sweetQty.sweet?.name}</span>
+                        <span>× {sweetQty.quantity}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               ) : (
