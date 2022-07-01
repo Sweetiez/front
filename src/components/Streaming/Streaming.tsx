@@ -49,6 +49,7 @@ export const Streaming = () => {
       } // todo: display error
 
       video.srcObject = mediaStream;
+      video.muted = true;
       await video.play();
 
       const sp = new SimplePeer({
