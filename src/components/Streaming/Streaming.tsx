@@ -38,12 +38,18 @@ export const Streaming = () => {
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia({
         video: true,
-        audio: false,
+        audio: true,
       });
 
       const video = videoSelf.current;
-      video!.srcObject = mediaStream;
-      await video!.play();
+
+      if (!mediaStream || !video) {
+        console.log(mediaStream, video);
+        return;
+      } // todo: display error
+
+      video.srcObject = mediaStream;
+      await video.play();
 
       const sp = new SimplePeer({
         trickle: false,
@@ -58,62 +64,31 @@ export const Streaming = () => {
               credential: 'somepassword',
             },
           ],
+          iceTransportPolicy: 'relay',
         },
       });
 
-      if (isInitiator) setConnectionStatus(ConnectionStatus.OFFERING);
-      else offer && sp.signal(offer);
+      isInitiator
+        ? setConnectionStatus(ConnectionStatus.OFFERING)
+        : offer && sp.signal(offer);
 
       sp.on('signal', (data) => webSocketConnection.send(JSON.stringify(data)));
       sp.on('connect', () => setConnectionStatus(ConnectionStatus.CONNECTED));
       sp.on('stream', async (stream) => {
         const video = videoCaller.current;
-        video!.srcObject = stream;
-        await video!.play();
+
+        if (!mediaStream || !video) {
+          console.error(mediaStream, video);
+          return;
+        } // todo: display error
+
+        video.srcObject = stream;
+        await video.play();
       });
       setSimplePeer(sp);
     } catch (e) {
       console.error(e);
     }
-
-    // .then(async (mediaStream) => {
-    //     const video = videoSelf.current;
-    //     video!.srcObject = mediaStream;
-    //     await video!.play();
-    //
-    //     const sp = new SimplePeer({
-    //       trickle: false,
-    //       initiator: isInitiator,
-    //       stream: mediaStream,
-    //       config: {
-    //         iceServers: [
-    //           { urls: ['stun:stun.siwiorek.fr'] },
-    //           {
-    //             username: 'guest',
-    //             credential: 'somepassword',
-    //             urls: [
-    //               'turn:turn.siwiorek.fr?transport=tcp',
-    //               'turn:turn.siwiorek.fr?transport=udp',
-    //             ],
-    //           },
-    //         ],
-    //       },
-    //     });
-    //
-    //     if (isInitiator) setConnectionStatus(ConnectionStatus.OFFERING);
-    //     else offer && sp.signal(offer);
-    //
-    //     sp.on('signal', (data) =>
-    //       webSocketConnection.send(JSON.stringify(data)),
-    //     );
-    //     sp.on('connect', () => setConnectionStatus(ConnectionStatus.CONNECTED));
-    //     sp.on('stream', async (stream) => {
-    //       const video = videoCaller.current;
-    //       video!.srcObject = stream;
-    //       await video!.play();
-    //     });
-    //     setSimplePeer(sp);
-    //   });
   };
 
   return (
