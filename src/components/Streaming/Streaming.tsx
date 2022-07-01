@@ -15,9 +15,11 @@ export const Streaming = () => {
     [websocketEndpoint],
   );
   const videoSelf = useRef<HTMLVideoElement | null>(null);
-  const videoCaller = useRef<HTMLVideoElement | null>(null);
+  const videoCallers = [useRef<HTMLVideoElement | null>(null)];
+
   const [connectionStatus, setConnectionStatus] =
     useState<ConnectionStatus | null>(null);
+
   const [offerSignal, setOfferSignal] = useState<SignalData>();
   const [simplePeer, setSimplePeer] = useState<Instance>();
 
@@ -74,17 +76,21 @@ export const Streaming = () => {
         : offer && sp.signal(offer);
 
       sp.on('signal', (data) => webSocketConnection.send(JSON.stringify(data)));
-      sp.on('connect', () => setConnectionStatus(ConnectionStatus.CONNECTED));
+      sp.on('connect', () => {
+        setConnectionStatus(ConnectionStatus.CONNECTED);
+      });
       sp.on('stream', async (stream) => {
-        const video = videoCaller.current;
+        for (let i = 0; i < videoCallers.length; i++) {
+          const video = videoCallers[i];
 
-        if (!mediaStream || !video) {
-          console.error(mediaStream, video);
-          return;
-        } // todo: display error
+          if (!mediaStream || !video || !video.current) {
+            console.error(mediaStream, video);
+            return;
+          } // todo: display error
 
-        video.srcObject = stream;
-        await video.play();
+          video.current.srcObject = stream;
+          await video.current.play();
+        }
       });
       setSimplePeer(sp);
     } catch (e) {
@@ -115,7 +121,13 @@ export const Streaming = () => {
       )}
       <div className="video-container">
         <video ref={videoSelf} className="video-block" />
-        <video ref={videoCaller} className="video-block" />
+        {videoCallers.map((videoCaller, index) => (
+          <video
+            key={index}
+            ref={videoCallers[index]}
+            className="video-block"
+          />
+        ))}
       </div>
     </div>
   );
