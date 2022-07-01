@@ -15,7 +15,12 @@ export const Streaming = () => {
     [websocketEndpoint],
   );
   const videoSelf = useRef<HTMLVideoElement | null>(null);
-  const videoCallers = [useRef<HTMLVideoElement | null>(null)];
+  const videoCaller1 = useRef<HTMLVideoElement | null>(null);
+  const videoCaller2 = useRef<HTMLVideoElement | null>(null);
+  // const videoCallers = [
+  //   useRef<HTMLVideoElement | null>(null),
+  //   useRef<HTMLVideoElement | null>(null),
+  // ];
 
   const [connectionStatus, setConnectionStatus] =
     useState<ConnectionStatus | null>(null);
@@ -62,7 +67,10 @@ export const Streaming = () => {
           iceServers: [
             { urls: 'stun:stun.siwiorek.fr' },
             {
-              urls: 'turn:turn.siwiorek.fr?transport=udp',
+              urls: [
+                'turn:turn.siwiorek.fr?transport=tcp',
+                'turn:turn.siwiorek.fr?transport=udp',
+              ],
               username: 'guest',
               credential: 'somepassword',
             },
@@ -76,21 +84,22 @@ export const Streaming = () => {
         : offer && sp.signal(offer);
 
       sp.on('signal', (data) => webSocketConnection.send(JSON.stringify(data)));
-      sp.on('connect', () => {
-        setConnectionStatus(ConnectionStatus.CONNECTED);
-      });
+      sp.on('connect', () => setConnectionStatus(ConnectionStatus.CONNECTED));
       sp.on('stream', async (stream) => {
-        for (let i = 0; i < videoCallers.length; i++) {
-          const video = videoCallers[i];
+        // for (let i = 0; i < videoCallers.length; i++) {
+          const video1 = videoCaller1.current;
+          const video2 = videoCaller1.current;
 
-          if (!mediaStream || !video || !video.current) {
-            console.error(mediaStream, video);
+          if (!mediaStream || !video1 || !video2) {
+            console.error(mediaStream, video1, video2);
             return;
           } // todo: display error
 
-          video.current.srcObject = stream;
-          await video.current.play();
-        }
+          video1.srcObject = stream;
+          video2.srcObject = stream;
+          await video1.play();
+          await video2.play();
+        // }
       });
       setSimplePeer(sp);
     } catch (e) {
@@ -121,13 +130,11 @@ export const Streaming = () => {
       )}
       <div className="video-container">
         <video ref={videoSelf} className="video-block" />
-        {videoCallers.map((videoCaller, index) => (
-          <video
-            key={index}
-            ref={videoCallers[index]}
-            className="video-block"
-          />
-        ))}
+        <video ref={videoCaller1} className="video-block" />
+        <video ref={videoCaller2} className="video-block" />
+        {/*{videoCallers.map((videoCaller, index) => (*/}
+        {/*  <video key={index} ref={videoCallers[index]} className="video-block" />*/}
+        {/*))}*/}
       </div>
     </div>
   );
