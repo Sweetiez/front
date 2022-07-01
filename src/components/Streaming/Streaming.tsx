@@ -8,8 +8,6 @@ enum ConnectionStatus {
   CONNECTED,
 }
 
-// const webSocketConnection = new WebSocket(process.env.REACT_APP_WEBSOCKET_API_ENDPOINT);
-
 export const Streaming = () => {
   const websocketEndpoint = process.env.REACT_APP_WEBSOCKET_API_ENDPOINT;
   const webSocketConnection = useMemo(
@@ -33,47 +31,89 @@ export const Streaming = () => {
     };
   }, [simplePeer, webSocketConnection]);
 
-  const sendOrAcceptInvitation = (isInitiator: boolean, offer?: SignalData) => {
-    navigator.mediaDevices
-      .getUserMedia({ video: true, audio: true })
-      .then(async (mediaStream) => {
-        const video = videoSelf.current;
-        video!.srcObject = mediaStream;
-        await video!.play();
-
-        const sp = new SimplePeer({
-          trickle: false,
-          initiator: isInitiator,
-          stream: mediaStream,
-          config: {
-            iceServers: [
-              { urls: ['stun:stun.siwiorek.fr'] },
-              {
-                username: 'guest',
-                credential: 'somepassword',
-                urls: [
-                  'turn:turn.siwiorek.fr?transport=tcp',
-                  'turn:turn.siwiorek.fr?transport=udp',
-                ],
-              },
-            ],
-          },
-        });
-
-        if (isInitiator) setConnectionStatus(ConnectionStatus.OFFERING);
-        else offer && sp.signal(offer);
-
-        sp.on('signal', (data) =>
-          webSocketConnection.send(JSON.stringify(data)),
-        );
-        sp.on('connect', () => setConnectionStatus(ConnectionStatus.CONNECTED));
-        sp.on('stream', async (stream) => {
-          const video = videoCaller.current;
-          video!.srcObject = stream;
-          await video!.play();
-        });
-        setSimplePeer(sp);
+  const sendOrAcceptInvitation = async (
+    isInitiator: boolean,
+    offer?: SignalData,
+  ) => {
+    try {
+      const mediaStream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: false,
       });
+
+      const video = videoSelf.current;
+      video!.srcObject = mediaStream;
+      await video!.play();
+
+      const sp = new SimplePeer({
+        trickle: false,
+        initiator: isInitiator,
+        stream: mediaStream,
+        config: {
+          iceServers: [
+            { urls: 'stun:stun.siwiorek.fr' },
+            {
+              urls: 'turn:turn.siwiorek.fr?transport=udp',
+              username: 'guest',
+              credential: 'somepassword',
+            },
+          ],
+        },
+      });
+
+      if (isInitiator) setConnectionStatus(ConnectionStatus.OFFERING);
+      else offer && sp.signal(offer);
+
+      sp.on('signal', (data) => webSocketConnection.send(JSON.stringify(data)));
+      sp.on('connect', () => setConnectionStatus(ConnectionStatus.CONNECTED));
+      sp.on('stream', async (stream) => {
+        const video = videoCaller.current;
+        video!.srcObject = stream;
+        await video!.play();
+      });
+      setSimplePeer(sp);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // .then(async (mediaStream) => {
+    //     const video = videoSelf.current;
+    //     video!.srcObject = mediaStream;
+    //     await video!.play();
+    //
+    //     const sp = new SimplePeer({
+    //       trickle: false,
+    //       initiator: isInitiator,
+    //       stream: mediaStream,
+    //       config: {
+    //         iceServers: [
+    //           { urls: ['stun:stun.siwiorek.fr'] },
+    //           {
+    //             username: 'guest',
+    //             credential: 'somepassword',
+    //             urls: [
+    //               'turn:turn.siwiorek.fr?transport=tcp',
+    //               'turn:turn.siwiorek.fr?transport=udp',
+    //             ],
+    //           },
+    //         ],
+    //       },
+    //     });
+    //
+    //     if (isInitiator) setConnectionStatus(ConnectionStatus.OFFERING);
+    //     else offer && sp.signal(offer);
+    //
+    //     sp.on('signal', (data) =>
+    //       webSocketConnection.send(JSON.stringify(data)),
+    //     );
+    //     sp.on('connect', () => setConnectionStatus(ConnectionStatus.CONNECTED));
+    //     sp.on('stream', async (stream) => {
+    //       const video = videoCaller.current;
+    //       video!.srcObject = stream;
+    //       await video!.play();
+    //     });
+    //     setSimplePeer(sp);
+    //   });
   };
 
   return (
