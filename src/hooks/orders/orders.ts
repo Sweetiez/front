@@ -2,6 +2,7 @@ import CreateOrderRequest from './requests/CreateOrderRequest';
 import { authenticatedRequest, commonRequest } from '../common/request';
 import { useQuery } from 'react-query';
 import OrderModel from '../../components/Order/OrderModel';
+import VerifyPurchaseRequest from './requests/VerifyPurchaseRequest';
 
 export function useUserOrders() {
   return useQuery<OrderModel[], Error>(`user-order`, async () => {
@@ -16,6 +17,15 @@ export function useUserOrders() {
 export async function createAnOrder(request: CreateOrderRequest) {
   const { data } = await commonRequest({
     url: '/order',
+    method: 'POST',
+    data: request,
+  });
+  return data;
+}
+
+export async function verifyPurchase(request: VerifyPurchaseRequest) {
+  const { data } = await authenticatedRequest({
+    url: `/order/me`,
     method: 'POST',
     data: request,
   });
