@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import Stars from '../Stars/Stars';
@@ -19,6 +19,9 @@ import { SWEET_TYPE, TRAY_TYPE } from './ProductType';
 import SweetDetailModel from './SweetDetailModel';
 import TrayDetailModel from './TrayDetailModel';
 import ShowMoreText from 'react-show-more-text';
+import VerifyPurchaseRequest from "../../hooks/orders/requests/VerifyPurchaseRequest";
+import {verifyPurchase} from "../../hooks/orders/orders";
+import {useProfile} from "../../hooks/user/users";
 
 interface ProductModalProps {
   manageCloseClick: () => void;
@@ -39,9 +42,27 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
   const product = productData ? productData : undefined;
   const { t } = useTranslation();
   const [itemCount, setItemCount] = useState<string | undefined>('1');
+  const [isPurchase, setIsPurchase] = useState<boolean>(false);
   const [CommentModalState, setCommentModalState] = useState(false);
   const { data: cartData } = useCart();
   const cart = cartData ? cartData : [];
+  const profile = useProfile();
+
+
+  useEffect(() => {
+    if(isTokenAvailable) {
+      const request = new VerifyPurchaseRequest(
+          profile?.email || '',
+          productId
+      );
+      verifyPurchase(request).then(data => {
+        setIsPurchase(data.isPurchaseProduct)
+      });
+    }
+
+  }, [isTokenAvailable, productId, profile?.email]);
+
+
 
   const commentCloseClick = useCallback(() => {
     setCommentModalState(false);
@@ -196,7 +217,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                   </h1>
                   <div className="pr-8 pb-2">
                     {(product as TrayDetailModel).sweets?.map((sweetQty) => (
-                      <div className="flex justify-between text-xl text-gray-700 font-pompiere font-size-16">
+                      <div className="flex justify-between text-xl text-gray-700 font-pompiere font-size-16" key={sweetQty.sweet?.id}>
                         <span>{sweetQty.sweet?.name}</span>
                         <span>× {sweetQty.quantity}</span>
                       </div>
@@ -238,7 +259,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
               </div>
 
               <div className="flex justify-end mt-4">
-                {isTokenAvailable ? (
+                {isTokenAvailable && isPurchase ? (
                   <LabelButton
                     svg="pen"
                     label={t('productDetail.comment')}
