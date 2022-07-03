@@ -1,5 +1,5 @@
-import React, {useEffect, useRef} from 'react';
-import {Instance} from 'simple-peer';
+import React, { useEffect, useRef } from 'react';
+import { Instance } from 'simple-peer';
 
 interface VideoProps {
   peer: Instance;
@@ -11,13 +11,17 @@ const Video: React.FC<VideoProps> = ({ peer }) => {
   useEffect(() => {
     peer.on('stream', (stream) => {
       const video = videoRef.current;
-      video ? (video.srcObject = stream) : console.log('no video found');
+
+      if (video !== null) {
+        video.srcObject = stream;
+        video.load();
+      }
     });
   }, [peer]);
 
   return (
     <>
-      <video playsInline autoPlay ref={videoRef} />
+      <video autoPlay playsInline ref={videoRef} />
     </>
   );
 };

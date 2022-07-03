@@ -54,7 +54,6 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
         trickle: false,
         stream,
         config: {
-
           iceTransportPolicy: 'relay',
           iceCandidatePoolSize: 5,
           iceServers: [
@@ -69,8 +68,6 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
       });
 
       peer.on('signal', (signal: SignalData) => {
-        console.log('offer peer signal detected', signal);
-
         socket.send(
           JSON.stringify({
             eventName: 'send signal',
@@ -111,8 +108,6 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
       });
 
       peer.on('signal', (signal: SignalData) => {
-        console.log('answer peer signal detected', signal);
-
         socket.send(
           JSON.stringify({
             eventName: 'return signal',
@@ -162,7 +157,9 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
       }
 
       peersRef.current = peersRef.current.filter((p) => p.peerID !== id);
-      setPeers((peers) => [...peers]);
+      const newPeers = peersRef.current.map((el) => el.peer);
+
+      setPeers(newPeers);
     };
 
     const videoConstraints = {
@@ -175,12 +172,6 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
 
       if (response.eventName === 'connected') {
         selfSocketID.current = response.data;
-        console.log(selfSocketID.current);
-      }
-
-      if (response.eventName === 'user left') {
-        console.log(`${response.data}`);
-        userLeft(response.data);
       }
     };
 
@@ -209,8 +200,11 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
           }
 
           if (response.eventName === 'receiving returned signal') {
-            console.log(response.data);
             receivingReturnedSignal(response.data);
+          }
+
+          if (response.eventName === 'user left') {
+            userLeft(response.data);
           }
         };
       });
@@ -219,7 +213,7 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
   return (
     <>
       <div>
-        <video muted ref={userVideo} autoPlay playsInline />
+        <video muted ref={userVideo} autoPlay playsInline controls />
         {peers.map((peer, index) => {
           return <Video key={index} peer={peer} />;
         })}
