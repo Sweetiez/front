@@ -68,7 +68,7 @@ const Events: React.FC = () => {
                 draggable={true}
               >
                 {faceToFaceEvents?.map((faceToFaceEvent, index) => (
-                  <EventCard key={index} event={faceToFaceEvent} />
+                  <EventCard key={index} event={faceToFaceEvent} type="FACE_TO_FACE" />
                 ))}
               </Carousel>
             ) : (
@@ -91,7 +91,7 @@ const Events: React.FC = () => {
                 draggable={true}
               >
                 {streamingEvents?.map((streamingEvent, index) => (
-                  <EventCard key={index} event={streamingEvent} />
+                  <EventCard key={index} event={streamingEvent} type="EVENT"  />
                 ))}
               </Carousel>
             ) : (

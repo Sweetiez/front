@@ -22,11 +22,23 @@ export function useStreamingEvents() {
     return data;
   });
 }
+
 export async function registerToFaceToFaceEvent(
   request: RegisterToFaceToFaceEventRequest,
 ) {
   const { data } = await authenticatedRequest({
     url: `/events/face-to-face/subscribe`,
+    method: 'PUT',
+    data: request,
+  });
+  return data;
+}
+
+export async function registerToStreamingEvent(
+  request: RegisterToFaceToFaceEventRequest,
+) {
+  const { data } = await authenticatedRequest({
+    url: `/events/streaming/subscribe`,
     method: 'PUT',
     data: request,
   });

@@ -189,11 +189,15 @@
       "noResult": "Il n'y a aucun événement présentiel de prévu pour le moment"
     },
     "register": "S'inscrire",
+    "registered": "Inscrit",
     "availability": "Places prises : ",
     "streaming": {
       "title": "Évènements distanciels",
       "noResult": "Il n'y a aucun événement distanciels de prévu pour le moment"
-    }
+    },
+    "errorTitle": "Erreur!",
+    "errorContent": "Vous ne pouvez vous inscrire à cet évènement. Etes vous déjà inscrit?",
+    "ok": "Ok"
   },
   "orders": {
     "title": "Vos commandes",
