@@ -208,7 +208,13 @@
     "createdAt": "Commandé le",
     "pickupDate": "Commande prévue pour le",
     "totalPrice": "Prix total :",
-    "noResults": "Vous n'avez pas passé de commande"
+    "noResults": "Vous n'avez pas passé de commande",
+    "status": {
+      "paid": "Payée",
+      "delivered": "Livrée",
+      "ready": "Prête",
+      "created": "Créée"
+    }
   },
   "profile": {
     "noPhone": "non renseigné",

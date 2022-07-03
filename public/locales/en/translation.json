@@ -208,7 +208,13 @@
     "createdAt": "Ordered on",
     "pickupDate": "Order scheduled for",
     "totalPrice": "Total price :",
-    "noResults": "You have not placed an order"
+    "noResults": "You have not placed an order",
+    "status": {
+      "paid": "Payed",
+      "delivered": "Delivered",
+      "ready": "Ready",
+      "created": "Created"
+    }
   },
   "profile": {
     "noPhone": "missing",

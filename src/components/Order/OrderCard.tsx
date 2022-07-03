@@ -44,30 +44,38 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
           </h3>
         </div>
         <div className="flex items-center justify-end">
-          {order.status}
           {order.status === 'DELIVERED' ? (
-            <Lottie
-              className="h-8 w-8"
-              play
-              animationData={deliveryAnimation}
-              loop={true}
-            />
+            <>
+              {t('orders.status.delivered')}
+              <Lottie
+                className="h-8 w-8"
+                play
+                animationData={deliveryAnimation}
+                loop={true}
+              />
+            </>
           ) : order.status === 'PAID' ? (
-            <Lottie
-              className="h-8 w-8"
-              loop
-              animationData={paidAnimation}
-              play
-            />
+            <>
+              {t('orders.status.paid')}
+              <Lottie
+                className="h-8 w-8"
+                loop
+                animationData={paidAnimation}
+                play
+              />
+            </>
           ) : order.status === 'READY' ? (
-            <Lottie
-              className="h-8 w-8"
-              loop
-              animationData={readyAnimation}
-              play
-            />
+            <>
+              {t('orders.status.ready')}
+              <Lottie
+                className="h-8 w-8"
+                loop
+                animationData={readyAnimation}
+                play
+              />
+            </>
           ) : (
-            <></>
+            <>{t('orders.status.created')}</>
           )}
         </div>
         <div>
