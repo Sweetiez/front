@@ -183,6 +183,18 @@
     "steps": "Steps",
     "description": "Description"
   },
+  "events": {
+    "faceToFace": {
+      "title": "Face-to-face events",
+      "noResult": "There are no face-to-face events planned at the moment"
+    },
+    "availability": "Places taken : ",
+    "register": "Register",
+    "streaming": {
+      "title": "Remote events",
+      "noResult": "There are no remote events planned at the moment"
+    }
+  },
   "orders": {
     "title": "Yours Orders",
     "createdAt": "Ordered on",

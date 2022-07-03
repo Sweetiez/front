@@ -183,6 +183,18 @@
     "steps": "Préparation",
     "description": "Description"
   },
+  "events": {
+    "faceToFace": {
+      "title": "Évènements présentiels",
+      "noResult": "Il n'y a aucun événement présentiel de prévu pour le moment"
+    },
+    "register": "S'inscrire",
+    "availability": "Places prises : ",
+    "streaming": {
+      "title": "Évènements distanciels",
+      "noResult": "Il n'y a aucun événement distanciels de prévu pour le moment"
+    }
+  },
   "orders": {
     "title": "Vos commandes",
     "createdAt": "Commandé le",
