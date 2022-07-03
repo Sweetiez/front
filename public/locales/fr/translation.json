@@ -187,7 +187,7 @@
   "events": {
     "faceToFace": {
       "title": "Évènements présentiels",
-      "myTitle": "mes évènements présentiels",
+      "myTitle": "Mes évènements présentiels",
       "noResult": "Il n'y a aucun événement présentiel de prévu pour le moment"
     },
     "watch": "Visionner",
@@ -196,7 +196,7 @@
     "availability": "Places prises : ",
     "streaming": {
       "title": "Évènements distanciels",
-      "myTitle": "mes évènements distanciels",
+      "myTitle": "Mes évènements distanciels",
       "noResult": "Il n'y a aucun événement distanciels de prévu pour le moment"
     },
     "errorTitle": "Erreur!",
