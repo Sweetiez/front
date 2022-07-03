@@ -16,7 +16,8 @@
     "userMenu": {
       "myAccount": "Mon compte",
       "myOrders": "Mes commandes",
-      "logout": "Déconnexion"
+      "logout": "Déconnexion",
+      "myEvents": "Mes évènements"
     }
   },
   "authentication": {
@@ -186,13 +187,16 @@
   "events": {
     "faceToFace": {
       "title": "Évènements présentiels",
+      "myTitle": "mes évènements présentiels",
       "noResult": "Il n'y a aucun événement présentiel de prévu pour le moment"
     },
+    "watch": "Visionner",
     "register": "S'inscrire",
     "registered": "Inscrit",
     "availability": "Places prises : ",
     "streaming": {
       "title": "Évènements distanciels",
+      "myTitle": "mes évènements distanciels",
       "noResult": "Il n'y a aucun événement distanciels de prévu pour le moment"
     },
     "errorTitle": "Erreur!",

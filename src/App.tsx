@@ -17,6 +17,7 @@ import Cgu from './components/Cgu';
 import ResetPassword from './components/Authentication/ResetPassword';
 import {Streaming} from "./components/Streaming/Streaming";
 import Events from "./components/Event/Events";
+import MyEvents from "./components/Event/MyEvents";
 
 function App() {
   const queryClient = new QueryClient();
@@ -41,6 +42,7 @@ function App() {
             <Route path="/events" element={<Events />} />
             <Route path="/user/profile" element={<Profile />} />
             <Route path="/user/order" element={<Orders />} />
+            <Route path="/user/events" element={<MyEvents />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/cgu" element={<Cgu />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />

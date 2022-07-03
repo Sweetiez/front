@@ -16,6 +16,7 @@
     "userMenu": {
       "myAccount": "My account",
       "myOrders": "My orders",
+      "myEvents": "My events",
       "logout": "Logout"
     }
   },
@@ -186,13 +187,16 @@
   "events": {
     "faceToFace": {
       "title": "Face-to-face events",
+      "myTitle": "My face-to-face events",
       "noResult": "There are no face-to-face events planned at the moment"
     },
+    "watch": "Watch",
     "availability": "Places taken : ",
     "register": "Register",
     "registered": "Registered",
     "streaming": {
       "title": "Remote events",
+      "myTitle": "My remote events",
       "noResult": "There are no remote events planned at the moment"
     },
     "errorTitle": "Error!",
