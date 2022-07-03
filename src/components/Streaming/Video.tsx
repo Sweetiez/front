@@ -15,7 +15,11 @@ const Video: React.FC<VideoProps> = ({ peer }) => {
     });
   }, [peer]);
 
-  return <video playsInline autoPlay ref={videoRef} />;
+  return (
+    <>
+      <video playsInline autoPlay ref={videoRef} />
+    </>
+  );
 };
 
 export default Video;

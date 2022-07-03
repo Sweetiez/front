@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import SimplePeer, { Instance, SignalData } from 'simple-peer';
 import Video from './Video';
-import {setFlagsFromString} from "v8";
 
 interface RoomProps {
   roomID: string;
@@ -28,10 +27,10 @@ interface ReceivingSignalWrapper {
 }
 
 const Room: React.FC<RoomProps> = ({ roomID }) => {
-  const websocketEndpoint = process.env.REACT_APP_WEBSOCKET_API_ENDPOINT;
-  const socketRef = useRef<WebSocket>(
-    new WebSocket(websocketEndpoint ? websocketEndpoint : ''),
-  );
+  // const websocketEndpoint = process.env.REACT_APP_WEBSOCKET_API_ENDPOINT;
+  // const socketRef = useRef<WebSocket>(
+  //   new WebSocket(websocketEndpoint ? websocketEndpoint : ''),
+  // );
 
   const [peers, setPeers] = useState<Instance[]>([]);
 
@@ -48,10 +47,12 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
   };
 
   useEffect(() => {
+    const websocketEndpoint = process.env.REACT_APP_WEBSOCKET_API_ENDPOINT;
+    const socket = new WebSocket(websocketEndpoint ? websocketEndpoint : '');
     const createPeer = (
-        userToSignal: string,
-        callerID: string,
-        stream: MediaStream,
+      userToSignal: string,
+      callerID: string,
+      stream: MediaStream,
     ): Instance => {
       const peer = new SimplePeer({
         initiator: true,
@@ -70,23 +71,23 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
             },
           ],
           iceTransportPolicy: 'relay',
-
         },
       });
 
       peer.on('signal', (signal: SignalData) => {
         console.log('offer peer signal detected', signal);
 
-        socketRef.current.send(
-            JSON.stringify({
-              eventName: 'send signal',
-              data: {
-                roomID,
-                userToSignal,
-                callerID,
-                signal,
-              },
-            }),
+        socket.send(
+          // socketRef.current.send(
+          JSON.stringify({
+            eventName: 'send signal',
+            data: {
+              roomID,
+              userToSignal,
+              callerID,
+              signal,
+            },
+          }),
         );
       });
 
@@ -121,7 +122,8 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
       peer.on('signal', (signal: SignalData) => {
         console.log('answer peer signal detected', signal);
 
-        socketRef.current.send(
+        socket.send(
+          // socketRef.current.send(
           JSON.stringify({
             eventName: 'return signal',
             data: { roomID, signal, callerID },
@@ -161,17 +163,46 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
       setPeers((users) => [...users, peer]);
     };
 
+    const userLeft = (id: string) => {
+      // handling user disconnecting
+      // finding the id of the peer who just left
+      const peerObj = peersRef.current.find((p) => p.peerID === id);
+      if (peerObj) {
+        peerObj.peer.destroy();
+      }
+
+      console.log("I was here");
+
+      // removing the peer from the arrays and storing remaining peers in new array
+      // const peers = peersRef.current.filter((p) => p.peerID !== id);
+      // peersRef.current = peers;
+      // setPeers((peers) => [...peers]);
+
+      // removing the peer from the arrays and storing remaining peers in new array
+      peersRef.current = peersRef.current.filter((p) => p.peerID !== id);
+      setPeers((peers) => [...peers]);
+
+      // peersRef.current = peersRef.current.filter(p => p.peerID !== id);
+      // setPeers(peersRef.current.map(wrapper => wrapper.peer));
+    };
+
     const videoConstraints = {
       height: window.innerHeight / 2,
       width: window.innerWidth / 2,
     };
 
-    socketRef.current.onmessage = (message) => {
+    socket.onmessage = (message) => {
+      // socketRef.current.onmessage = (message) => {
       const response: Message = JSON.parse(message.data);
 
       if (response.eventName === 'connected') {
         selfSocketID.current = response.data;
-        console.log(selfSocketID.current)
+        console.log(selfSocketID.current);
+      }
+
+      if (response.eventName === 'user left') {
+        console.log(`${response.data}`);
+        userLeft(response.data);
       }
     };
 
@@ -181,14 +212,16 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
         if (!userVideo || !userVideo.current) return;
         userVideo.current.srcObject = stream;
 
-        socketRef.current.send(
+        socket.send(
+          // socketRef.current.send(
           JSON.stringify({
             eventName: 'join room',
             data: { roomID, customerID: '' },
           }),
         );
 
-        socketRef.current.onmessage = (message) => {
+        socket.onmessage = (message) => {
+          // socketRef.current.onmessage = (message) => {
           const response: Message = JSON.parse(message.data);
 
           if (response.eventName === 'all users') {

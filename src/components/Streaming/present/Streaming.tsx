@@ -12,7 +12,8 @@ enum ConnectionStatus {
 }
 
 export const Streaming: React.FC = () => {
-  const roomId = '1e136bfc-c4e6-4872-b250-c7f44eaf2391';
+  const roomId = useRef<string>('1e136bfc-c4e6-4872-b250-c7f44eaf2391');
+
   // const websocketEndpoint = process.env.REACT_APP_WEBSOCKET_API_ENDPOINT;
   // const webSocketConnection = useMemo(
   //   () => new WebSocket(websocketEndpoint ? websocketEndpoint : ''),
@@ -142,7 +143,7 @@ export const Streaming: React.FC = () => {
       {/*    /!*))}*!/*/}
       {/*  </div>*/}
       {/*</div>*/}
-      <Room roomID={roomId.toLowerCase()} />
+      <Room roomID={roomId.current} />
     </>
   );
 };
