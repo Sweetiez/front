@@ -12,7 +12,7 @@ import SkeletonProfile from '../utils/Skeleton/SkeletonProfile';
 
 const Profile: React.FC = () => {
   const { t } = useTranslation();
-  const { data: profileData, isLoading: isProfileLoading } = useUserProfile();
+  const { data: profileData, isLoading: isProfileLoading } = useUserProfile(true);
   const [changePasswordModalState, setChangePasswordModalState] =
     useState(false);
   const [editProfileModalState, setEditProfileModalState] = useState(false);

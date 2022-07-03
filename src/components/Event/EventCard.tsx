@@ -39,8 +39,8 @@ const EventCard: React.FC<RecipeCardProps> = ({
       ' / ' +
       event.availability?.totalPlaces
     : undefined;
-  const { data: user } = useUserProfile();
   const { data: token } = useTokenAvailable();
+  const { data: user } = useUserProfile(!!token);
   const [showErrorModal, setShowErrorModal] = useState<boolean>(false);
   const alreadySubscribe =
     user && event.subscribers && event.subscribers.find((s) => s === user.id);
