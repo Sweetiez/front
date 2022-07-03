@@ -16,11 +16,11 @@ const LabelButton: React.FC<ButtonProps> = ({ label, svg, onClick, disabled=fals
     <>
       <button
         className={className}
-      type="button"
+        type="button"
         onClick={onClick}
         disabled={disabled}
       >
-        <span className="text-xs content-center">{label}</span>
+        <span className="text-xs content-center mr-1">{label}</span>
         {svg && getSvg(svg)}
       </button>
     </>

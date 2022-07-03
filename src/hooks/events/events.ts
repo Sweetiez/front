@@ -22,6 +22,39 @@ export function useStreamingEvents() {
     return data;
   });
 }
+export function useFaceToFaceMyEvents(id: string) {
+  return useQuery<EventModel[], Error>(`my-face-to-face-events`, async () => {
+    if (id !== '') {
+      const { data } = await authenticatedRequest({
+        url: `/events/face-to-face/subscribers/` + id,
+      });
+
+      return data;
+    } else {
+      return {
+        data: [],
+        isLoading: true,
+      };
+    }
+  });
+}
+
+export function useStreamingMyEvents(id: string) {
+  return useQuery<EventModel[], Error>(`my-streaming-events`, async () => {
+    if (id !== '') {
+      const { data } = await authenticatedRequest({
+        url: `/events/streaming/subscribers/` + id,
+      });
+
+      return data;
+    } else {
+      return {
+        data: [],
+        isLoading: true,
+      };
+    }
+  });
+}
 
 export async function registerToFaceToFaceEvent(
   request: RegisterToFaceToFaceEventRequest,
