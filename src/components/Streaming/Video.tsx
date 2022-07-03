@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { Instance } from 'simple-peer';
+import React, {useEffect, useRef} from 'react';
+import {Instance} from 'simple-peer';
 
 interface VideoProps {
   peer: Instance;
