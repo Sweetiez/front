@@ -52,7 +52,7 @@ jobs:
   devpublish:
     name: Publish on dev server
     needs: [lint, build, docker, commitlint]
-    if: github.ref == 'refs/heads/mesh-streaming' || 'refs/heads/develop' && github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/develop' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
