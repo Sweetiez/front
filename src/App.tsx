@@ -15,7 +15,7 @@ import Profile from './components/Profile/Profile';
 import Privacy from './components/Privacy';
 import Cgu from './components/Cgu';
 import ResetPassword from './components/Authentication/ResetPassword';
-import {Streaming} from "./components/Streaming/Streaming";
+import {Streaming} from "./components/Streaming/present/Streaming";
 
 function App() {
   const queryClient = new QueryClient();
