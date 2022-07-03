@@ -27,11 +27,6 @@ interface ReceivingSignalWrapper {
 }
 
 const Room: React.FC<RoomProps> = ({ roomID }) => {
-  // const websocketEndpoint = process.env.REACT_APP_WEBSOCKET_API_ENDPOINT;
-  // const socketRef = useRef<WebSocket>(
-  //   new WebSocket(websocketEndpoint ? websocketEndpoint : ''),
-  // );
-
   const [peers, setPeers] = useState<Instance[]>([]);
 
   const userVideo = useRef<HTMLVideoElement | null>(null);
@@ -59,18 +54,17 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
         trickle: false,
         stream,
         config: {
+
+          iceTransportPolicy: 'relay',
+          iceCandidatePoolSize: 5,
           iceServers: [
             { urls: 'stun:stun.siwiorek.fr' },
             {
-              urls: [
-                'turn:turn.siwiorek.fr?transport=tcp',
-                'turn:turn.siwiorek.fr?transport=udp',
-              ],
+              urls: 'turn:turn.siwiorek.fr?transport=udp',
               username: 'guest',
               credential: 'somepassword',
             },
           ],
-          iceTransportPolicy: 'relay',
         },
       });
 
@@ -78,7 +72,6 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
         console.log('offer peer signal detected', signal);
 
         socket.send(
-          // socketRef.current.send(
           JSON.stringify({
             eventName: 'send signal',
             data: {
@@ -104,18 +97,16 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
         trickle: false,
         stream,
         config: {
+          iceTransportPolicy: 'relay',
+          iceCandidatePoolSize: 5,
           iceServers: [
             { urls: 'stun:stun.siwiorek.fr' },
             {
-              urls: [
-                'turn:turn.siwiorek.fr?transport=tcp',
-                'turn:turn.siwiorek.fr?transport=udp',
-              ],
+              urls: 'turn:turn.siwiorek.fr?transport=udp',
               username: 'guest',
               credential: 'somepassword',
             },
           ],
-          iceTransportPolicy: 'relay',
         },
       });
 
@@ -123,7 +114,6 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
         console.log('answer peer signal detected', signal);
 
         socket.send(
-          // socketRef.current.send(
           JSON.stringify({
             eventName: 'return signal',
             data: { roomID, signal, callerID },
@@ -171,19 +161,8 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
         peerObj.peer.destroy();
       }
 
-      console.log("I was here");
-
-      // removing the peer from the arrays and storing remaining peers in new array
-      // const peers = peersRef.current.filter((p) => p.peerID !== id);
-      // peersRef.current = peers;
-      // setPeers((peers) => [...peers]);
-
-      // removing the peer from the arrays and storing remaining peers in new array
       peersRef.current = peersRef.current.filter((p) => p.peerID !== id);
       setPeers((peers) => [...peers]);
-
-      // peersRef.current = peersRef.current.filter(p => p.peerID !== id);
-      // setPeers(peersRef.current.map(wrapper => wrapper.peer));
     };
 
     const videoConstraints = {
@@ -192,7 +171,6 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
     };
 
     socket.onmessage = (message) => {
-      // socketRef.current.onmessage = (message) => {
       const response: Message = JSON.parse(message.data);
 
       if (response.eventName === 'connected') {
@@ -213,7 +191,6 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
         userVideo.current.srcObject = stream;
 
         socket.send(
-          // socketRef.current.send(
           JSON.stringify({
             eventName: 'join room',
             data: { roomID, customerID: '' },
@@ -221,7 +198,6 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
         );
 
         socket.onmessage = (message) => {
-          // socketRef.current.onmessage = (message) => {
           const response: Message = JSON.parse(message.data);
 
           if (response.eventName === 'all users') {
