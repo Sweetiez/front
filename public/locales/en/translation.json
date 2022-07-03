@@ -190,10 +190,14 @@
     },
     "availability": "Places taken : ",
     "register": "Register",
+    "registered": "Registered",
     "streaming": {
       "title": "Remote events",
       "noResult": "There are no remote events planned at the moment"
-    }
+    },
+    "errorTitle": "Error!",
+    "errorContent": "You can't subscribe to this event. Are you already registered?",
+    "ok": "Ok"
   },
   "orders": {
     "title": "Yours Orders",

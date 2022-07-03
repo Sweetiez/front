@@ -9,4 +9,5 @@ export default class EventModel {
   localisation: LocalisationModel | undefined;
   schedule: ScheduleModel | undefined;
   availability: AvailabilityModel | undefined;
+  subscribers: string[] | undefined;
 }
