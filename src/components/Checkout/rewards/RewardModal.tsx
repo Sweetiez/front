@@ -9,7 +9,7 @@ import LabelButton from '../../Button/LabelButton';
 const RewardModal: React.FC = () => {
   const queryClient = useQueryClient();
   const { t } = useTranslation();
-  const { data: profileData, isLoading: isProfileLoading } = useUserProfile();
+  const { data: profileData, isLoading: isProfileLoading } = useUserProfile(true);
   const { data: rewardsData } = useRewards();
 
   async function handleRewardRemove() {

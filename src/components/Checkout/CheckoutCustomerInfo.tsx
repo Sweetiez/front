@@ -7,12 +7,14 @@ import { createAnOrder, storeTempEmail } from '../../hooks/orders/orders';
 import { useNavigate } from 'react-router-dom';
 import { useSelectedReward } from '../../hooks/rewards/rewardsHook';
 import { useUserProfile } from '../../hooks/user/users';
+import {useTokenAvailable} from "../../hooks/auth/tokenHook";
 
 const CheckoutCustomerInfo: React.FC<IHandleNav> = ({ handlePrevious }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { data: selectedReward } = useSelectedReward();
-  const { data: profileData } = useUserProfile();
+  const { data: token } = useTokenAvailable();
+  const { data: profileData } = useUserProfile(!!token);
   const [disabledButton, setDisabledButton] = useState(false);
 
   async function handleOrderSubmit(event: any) {
