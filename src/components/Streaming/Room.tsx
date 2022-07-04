@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import SimplePeer, { Instance, SignalData } from 'simple-peer';
 import Video from './Video';
+import Header from '../Page/Header';
 
 interface RoomProps {
   roomID: string;
@@ -212,11 +213,16 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
 
   return (
     <>
-      <div>
+      <Header />
+      <div className="flex justify-center">
         <video muted ref={userVideo} autoPlay playsInline controls />
-        {peers.map((peer, index) => {
-          return <Video key={index} peer={peer} />;
-        })}
+      </div>
+      <div className="flex-1 justify-center ">
+        <div className="grid grid-cols-3">
+          {peers.map((peer, index) => {
+            return <Video key={index} peer={peer} />;
+          })}
+        </div>
       </div>
     </>
   );
