@@ -113,7 +113,7 @@ const EventCard: React.FC<RecipeCardProps> = ({
                 </div>
               )}
               {canWatch && token && (
-                <Link to="/streaming">
+                <Link to={`/live/${event.id}`}>
                   <div className="absolute bottom-1 left-2 ">
                     <LabelButton svg="eye" label={t('events.watch')} />
                   </div>
