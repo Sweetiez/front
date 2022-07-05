@@ -161,7 +161,9 @@
       "pickupDate": "Order pick-up date",
       "address": "Address",
       "city": "City",
-      "zip": "Zip"
+      "zip": "Zip",
+      "info": "Hand delivery by appointment, Ormesson-sur-Marne and its surroundings (max 5km), no delivery available at the moment",
+      "info_address": "fi.sweets.94@gmail.com"
     },
     "payment": {
       "payButton": "Pay now"

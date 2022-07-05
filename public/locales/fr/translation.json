@@ -161,7 +161,9 @@
       "pickupDate": "Date de récupération de la commande",
       "address": "Adresse",
       "city": "Ville",
-      "zip": "Code postal"
+      "zip": "Code postal",
+      "info" : "Remise en main propre à la date indiqué ci-dessus. Ormesson-sur-Marne et ses alentours (max 5km), pas de livraison disponible pour le moment",
+      "info_address": "fi.sweets.94@gmail.com"
     },
     "payment": {
       "payButton": "Payer"

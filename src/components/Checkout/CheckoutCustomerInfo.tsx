@@ -7,7 +7,7 @@ import { createAnOrder, storeTempEmail } from '../../hooks/orders/orders';
 import { useNavigate } from 'react-router-dom';
 import { useSelectedReward } from '../../hooks/rewards/rewardsHook';
 import { useUserProfile } from '../../hooks/user/users';
-import {useTokenAvailable} from "../../hooks/auth/tokenHook";
+import { useTokenAvailable } from '../../hooks/auth/tokenHook';
 
 const CheckoutCustomerInfo: React.FC<IHandleNav> = ({ handlePrevious }) => {
   const { t } = useTranslation();
@@ -121,6 +121,12 @@ const CheckoutCustomerInfo: React.FC<IHandleNav> = ({ handlePrevious }) => {
                     required={true}
                   />
                 </div>
+              </div>
+              <div className="-mx-3 md:flex mb-6">
+                ⚠ {t('checkout.customerDetail.info')}
+              </div>
+              <div className="-mx-3 md:flex mb-6">
+                📧 {t('checkout.customerDetail.info_address')}
               </div>
             </div>
           </div>
