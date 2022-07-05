@@ -46,7 +46,7 @@ function App() {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/cgu" element={<Cgu />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
-            <Route path="/streaming" element={<Streaming />} />
+            <Route path="/live/:id" element={<Streaming />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>

@@ -44,6 +44,10 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
   };
 
   useEffect(() => {
+    const stun_url = process.env.REACT_APP_LIVE_STUN_URL;
+    const turn_url = process.env.REACT_APP_LIVE_TURN_URL;
+    const turn_user = process.env.REACT_APP_LIVE_TURN_USER;
+    const turn_password = process.env.REACT_APP_LIVE_TURN_PASSWORD;
     const websocketEndpoint = process.env.REACT_APP_WEBSOCKET_API_ENDPOINT;
     const socket = new WebSocket(websocketEndpoint ? websocketEndpoint : '');
     const createPeer = (
@@ -59,11 +63,11 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
           iceTransportPolicy: 'relay',
           iceCandidatePoolSize: 5,
           iceServers: [
-            { urls: 'stun:stun.siwiorek.fr' },
+            { urls: stun_url ? stun_url : '' },
             {
-              urls: 'turn:turn.siwiorek.fr?transport=udp',
-              username: 'guest',
-              credential: 'somepassword',
+              urls: turn_url ? turn_url : '',
+              username: turn_user ? turn_user : '',
+              credential: turn_password ? turn_password : '',
             },
           ],
         },
@@ -99,11 +103,11 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
           iceTransportPolicy: 'relay',
           iceCandidatePoolSize: 5,
           iceServers: [
-            { urls: 'stun:stun.siwiorek.fr' },
+            { urls: stun_url ? stun_url : '' },
             {
-              urls: 'turn:turn.siwiorek.fr?transport=udp',
-              username: 'guest',
-              credential: 'somepassword',
+              urls: turn_url ? turn_url : '',
+              username: turn_user ? turn_user : '',
+              credential: turn_password ? turn_password : '',
             },
           ],
         },

@@ -2,6 +2,7 @@ import { useQuery } from 'react-query';
 import { authenticatedRequest, commonRequest } from '../common/request';
 import EventModel from '../../components/Event/models/EventModel';
 import RegisterToFaceToFaceEventRequest from './requests/RegisterToFaceToFaceEventRequest';
+import CanAttendMasterClassRequest from './requests/CanAttendMasterClassRequest';
 
 export function useFaceToFaceEvents() {
   return useQuery<EventModel[], Error>(`all-face-to-face-events`, async () => {
@@ -75,5 +76,17 @@ export async function registerToStreamingEvent(
     method: 'PUT',
     data: request,
   });
+  return data;
+}
+
+export async function canAttendMasterclass(
+  request: CanAttendMasterClassRequest,
+) {
+  const { data } = await authenticatedRequest({
+    url: `/events/participate`,
+    method: 'POST',
+    data: request,
+  });
+  console.log(data);
   return data;
 }
