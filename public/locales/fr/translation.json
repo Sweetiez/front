@@ -16,7 +16,8 @@
     "userMenu": {
       "myAccount": "Mon compte",
       "myOrders": "Mes commandes",
-      "logout": "Déconnexion"
+      "logout": "Déconnexion",
+      "myEvents": "Mes évènements"
     }
   },
   "authentication": {
@@ -183,12 +184,37 @@
     "steps": "Préparation",
     "description": "Description"
   },
+  "events": {
+    "faceToFace": {
+      "title": "Évènements présentiels",
+      "myTitle": "Mes évènements présentiels",
+      "noResult": "Il n'y a aucun événement présentiel de prévu pour le moment"
+    },
+    "watch": "Visionner",
+    "register": "S'inscrire",
+    "registered": "Inscrit",
+    "availability": "Places prises : ",
+    "streaming": {
+      "title": "Évènements distanciels",
+      "myTitle": "Mes évènements distanciels",
+      "noResult": "Il n'y a aucun événement distanciels de prévu pour le moment"
+    },
+    "errorTitle": "Erreur!",
+    "errorContent": "Vous ne pouvez vous inscrire à cet évènement. Etes vous déjà inscrit?",
+    "ok": "Ok"
+  },
   "orders": {
     "title": "Vos commandes",
     "createdAt": "Commandé le",
     "pickupDate": "Commande prévue pour le",
     "totalPrice": "Prix total :",
-    "noResults": "Vous n'avez pas passé de commande"
+    "noResults": "Vous n'avez pas passé de commande",
+    "status": {
+      "paid": "Payée",
+      "delivered": "Livrée",
+      "ready": "Prête",
+      "created": "Créée"
+    }
   },
   "profile": {
     "noPhone": "non renseigné",

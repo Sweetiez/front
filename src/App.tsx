@@ -15,7 +15,9 @@ import Profile from './components/Profile/Profile';
 import Privacy from './components/Privacy';
 import Cgu from './components/Cgu';
 import ResetPassword from './components/Authentication/ResetPassword';
-import {Streaming} from "./components/Streaming/present/Streaming";
+import { Streaming } from './components/Streaming/present/Streaming';
+import MyEvents from './components/Event/MyEvents';
+import Events from './components/Event/Events';
 
 function App() {
   const queryClient = new QueryClient();
@@ -37,8 +39,10 @@ function App() {
             />
             <Route path="/recipes" element={<Recipes />} />
             <Route path="/recipes/:id" element={<RecipeDetail />} />
+            <Route path="/events" element={<Events />} />
             <Route path="/user/profile" element={<Profile />} />
             <Route path="/user/order" element={<Orders />} />
+            <Route path="/user/events" element={<MyEvents />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/cgu" element={<Cgu />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />

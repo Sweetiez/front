@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import SimplePeer, { Instance, SignalData } from 'simple-peer';
 import Video from './Video';
 import Header from '../Page/Header';
+import { Link } from 'react-router-dom';
 
 interface RoomProps {
   roomID: string;
@@ -223,6 +224,29 @@ const Room: React.FC<RoomProps> = ({ roomID }) => {
             return <Video key={index} peer={peer} />;
           })}
         </div>
+      </div>
+      <div className="flex justify-center">
+        <Link to="/">
+          <div className="m-3 py-2 px-4 shadow-md no-underline rounded-full bg-red-500 text-white font-sans font-semibold text-sm border-blue btn-primary hover:text-white hover:bg-blue-light focus:outline-none active:shadow-none mr-2">
+            <div className="flex justify-center">
+              <svg
+                width="24px"
+                height="24px"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-phone-off"
+              >
+                <path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"></path>
+                <line x1="23" y1="1" x2="1" y2="23"></line>
+              </svg>
+            </div>
+          </div>
+        </Link>
       </div>
     </>
   );

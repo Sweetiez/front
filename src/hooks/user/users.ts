@@ -26,13 +26,14 @@ export function useProfile(): UserProfile | undefined {
   }
 }
 
-export function useUserProfile() {
+export function useUserProfile(isConnected: boolean) {
   return useQuery<ProfileModel, Error>(`user-my-profile`, async () => {
-    const { data } = await authenticatedRequest({
-      url: `user/me`,
-    });
-
-    return data;
+    if (isConnected) {
+      const { data } = await authenticatedRequest({
+        url: `user/me`,
+      });
+      return data;
+    }
   });
 }
 

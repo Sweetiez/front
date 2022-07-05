@@ -16,6 +16,7 @@
     "userMenu": {
       "myAccount": "My account",
       "myOrders": "My orders",
+      "myEvents": "My events",
       "logout": "Logout"
     }
   },
@@ -183,12 +184,37 @@
     "steps": "Steps",
     "description": "Description"
   },
+  "events": {
+    "faceToFace": {
+      "title": "Face-to-face events",
+      "myTitle": "My face-to-face events",
+      "noResult": "There are no face-to-face events planned at the moment"
+    },
+    "watch": "Watch",
+    "availability": "Places taken : ",
+    "register": "Register",
+    "registered": "Registered",
+    "streaming": {
+      "title": "Remote events",
+      "myTitle": "My remote events",
+      "noResult": "There are no remote events planned at the moment"
+    },
+    "errorTitle": "Error!",
+    "errorContent": "You can't subscribe to this event. Are you already registered?",
+    "ok": "Ok"
+  },
   "orders": {
     "title": "Yours Orders",
     "createdAt": "Ordered on",
     "pickupDate": "Order scheduled for",
     "totalPrice": "Total price :",
-    "noResults": "You have not placed an order"
+    "noResults": "You have not placed an order",
+    "status": {
+      "paid": "Payed",
+      "delivered": "Delivered",
+      "ready": "Ready",
+      "created": "Created"
+    }
   },
   "profile": {
     "noPhone": "missing",
