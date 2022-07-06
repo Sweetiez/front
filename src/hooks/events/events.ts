@@ -87,6 +87,5 @@ export async function canAttendMasterclass(
     method: 'POST',
     data: request,
   });
-  console.log(data);
   return data;
 }
