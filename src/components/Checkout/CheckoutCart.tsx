@@ -18,7 +18,8 @@ const CheckoutCart: React.FC<IHandleNav> = ({ handleNext }) => {
   const totalPrice = cart.reduce(
     (acc, cartItem) =>
       acc +
-      (cartItem.item?.price ? cartItem.item.price : 0) *
+      (cartItem && cartItem.item && cartItem.item.price ?
+          cartItem.item.unitPerPackage ? cartItem.item.price * cartItem.item.unitPerPackage : cartItem.item.price : 0 ) *
         (cartItem?.quantity ? cartItem.quantity : 0),
     0,
   );

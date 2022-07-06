@@ -71,7 +71,7 @@ const QuickShop: React.FC<QuickShopProps> = ({ product, setOpenedModal }) => {
         <div className="px-6 py-2">
           <div className="flex items-center pb-4">
             <h1 className="font-bold font-pompiere text-3xl">{product.name}</h1>
-            <h1 className="font-bold text-xl pl-5 pt-1">{unitPrice} €</h1>
+            <h1 className="font-bold text-xl pl-5 pt-1">{unitPrice.toFixed(2)} €</h1>
           </div>
           <ShowMoreText
             lines={5}
