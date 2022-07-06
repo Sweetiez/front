@@ -16,7 +16,8 @@ const CartModal: React.FC<CartModalProps> = ({ setOpenedModal }) => {
     .reduce(
       (acc, cartItem) =>
         acc +
-        (cartItem.item?.price ? cartItem.item.price : 0) *
+        (cartItem && cartItem.item && cartItem.item.price ?
+            cartItem.item.unitPerPackage ? cartItem.item.price * cartItem.item.unitPerPackage : cartItem.item.price : 0 ) *
           (cartItem?.quantity ? cartItem.quantity : 0),
       0,
     )
@@ -82,7 +83,8 @@ const CartModal: React.FC<CartModalProps> = ({ setOpenedModal }) => {
                         <span className="font-pompiere text-2xl">
                           {itemCart.item!.name}
                         </span>
-                        <p className="ml-4">{itemCart.item!.price} €</p>
+                        <p className="ml-4">{itemCart && itemCart.item && itemCart.item.price ?
+                            itemCart.item.unitPerPackage ? itemCart.item.price * itemCart.item.unitPerPackage : itemCart.item.price : "" } €</p>
                       </div>
                     </div>
                     <div className="flex flex-1 items-end justify-between text-sm">

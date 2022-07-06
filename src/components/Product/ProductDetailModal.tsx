@@ -135,9 +135,9 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
               <div>
                 <h1 className="mx-3 font-semibold text-lg">
                   {product.packagedPrice
-                    ? product.packagedPrice
+                    ? parseFloat(product.packagedPrice.toString()).toFixed(2)
                     : product.price
-                    ? product.price
+                    ? parseFloat( product.price.toString()).toFixed(2)
                     : 1}
                   €
                 </h1>
@@ -146,7 +146,7 @@ const ProductDetailModal: React.FC<ProductModalProps> = ({
                     (
                     {t('productPackage', {
                       unit: product?.unitPerPackage,
-                      price: product?.price,
+                      price: parseFloat(product.price ? product.price.toString() : '').toFixed(2),
                     })}
                     )
                   </span>
