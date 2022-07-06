@@ -57,17 +57,21 @@ const ProductCard: React.FC<ProductCardProps> = ({
             </div>
           </div>
           <div className="p-3" onClick={() => openProductDetailClick(product)}>
-            <div className="relative">
-              <span className="text-2xl font-pompiere">{product.name}</span>
+            <div className="relative grid grid-cols-3 gap-4">
+              <span className="text-2xl font-pompiere col-span-2 h-16">
+                {product.name}
+              </span>
               {product &&
               product?.unitPerPackage &&
               product.unitPerPackage > 1 ? (
-                <span
-                  className="absolute font-pompiere inline-flex items-center justify-center px-3 py-2 inset-y-0 right-0 text-xl font-bold
-                              leading-none text-white bg-gold-100 rounded-full"
-                >
-                  x{product.unitPerPackage}
-                </span>
+                <div className="flex justify-end">
+                  <span
+                    className="font-pompiere inline-flex items-center justify-center px-3 py-2 text-xl font-bold
+                              leading-none text-white bg-gold-100 rounded-full h-9 w-10"
+                  >
+                    x{product.unitPerPackage}
+                  </span>
+                </div>
               ) : (
                 <></>
               )}
@@ -78,12 +82,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
               more=""
               less=""
               // anchorClass="text-gold-100 ml-1"
-              className="text-lg font-pompiere w-full h-8 min-h-full "
+              className="text-lg font-pompiere w-full h-8 "
             >
               {product.description}
             </ShowMoreText>
             <div className="flex justify-between mt-8">
-              <p className="text-md text-gray-800 mt-0">{product.price} €</p>
+              <p className="text-md text-gray-800 mt-0">
+                {parseFloat(
+                  product.price ? product.price.toString() : '',
+                ).toFixed(2)}{' '}
+                €
+              </p>
               {showStars ? (
                 <div className="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
                   <Stars

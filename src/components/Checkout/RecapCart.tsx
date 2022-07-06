@@ -28,6 +28,9 @@ interface RecapCartRowProps {
 
 const RecapCartRow: React.FC<RecapCartRowProps> = ({ item }) => {
   const { t } = useTranslation();
+
+  const price = item && item.item && item.item.price ?
+      item.item.unitPerPackage ? item.item.price * item.item.unitPerPackage : item.item.price : 0
   return (
     <div className="md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
       <div className="pb-4 md:pb-8 w-full md:w-40">
@@ -56,7 +59,7 @@ const RecapCartRow: React.FC<RecapCartRowProps> = ({ item }) => {
               <span className="dark:text-gray-400 text-gray-300">
                 {t('checkout.cart.unitPrice')}:{' '}
               </span>{' '}
-              {item.item?.price} €
+              {price.toFixed(2)} €
             </p>
           </div>
         </div>
@@ -68,7 +71,7 @@ const RecapCartRow: React.FC<RecapCartRowProps> = ({ item }) => {
           <p className="text-base dark:text-white xl:text-lg font-semibold leading-6 text-gray-800">
             {
               // @ts-ignore
-              (item.quantity * item.item.price).toFixed(2)
+              (item.quantity * price).toFixed(2)
             }{' '}
             €
           </p>

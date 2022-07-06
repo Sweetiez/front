@@ -136,7 +136,7 @@ const RecipeDetail: React.FC = () => {
                   </div>
                 </div>
                 <div className="p-4">
-                  <Stars number={recipe?.rating ? recipe.rating : 2.5} />
+                  {/*<Stars number={recipe?.rating ? recipe.rating : 2.5} />*/}
                   <p className="font-pompiere text-xl">
                     {t('recipes.cost')} : {recipe?.cost ? recipe.cost : 0} €
                   </p>
