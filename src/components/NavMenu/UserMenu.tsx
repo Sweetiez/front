@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useProfile } from '../../hooks/user/users';
 import { logout } from '../../hooks/auth/logout';
-import {Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const UserMenu = () => {
   const { t } = useTranslation();
@@ -11,7 +11,7 @@ const UserMenu = () => {
 
   function handleLogout() {
     logout();
-    navigate('/')
+    navigate('/');
   }
 
   return (
@@ -45,11 +45,12 @@ const UserMenu = () => {
               <li className="rounded-sm px-3 py-1 hover:bg-gray-100 font-birthstone text-2xl">
                 {t('menu.userMenu.myOrders')}
               </li>
-            </Link><Link to="/user/events">
-              <li className="rounded-sm px-3 py-1 hover:bg-gray-100 font-birthstone text-2xl">
-                {t('menu.userMenu.myEvents')}
-              </li>
             </Link>
+            {/*<Link to="/user/events">*/}
+            {/*  <li className="rounded-sm px-3 py-1 hover:bg-gray-100 font-birthstone text-2xl">*/}
+            {/*    {t('menu.userMenu.myEvents')}*/}
+            {/*  </li>*/}
+            {/*</Link>*/}
             <li
               className="rounded-sm px-3 py-1 hover:bg-gray-100 font-birthstone text-2xl"
               onClick={handleLogout}
